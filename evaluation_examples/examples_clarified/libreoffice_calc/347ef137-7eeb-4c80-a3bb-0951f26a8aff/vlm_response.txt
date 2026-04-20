@@ -1,0 +1,14 @@
+<thoughts>
+- The evaluator compares the edited workbook to a golden file by:
+  - Checking the first sheet’s cell data is unchanged (sheet_data equality).
+  - Verifying charts on that first sheet exist and match in "type" and "direction" (so they must be vertical Column charts, not horizontal Bar charts).
+- Therefore, the instruction must:
+  - Specify using the existing file (/home/user/Create_column_charts_using_statistics.xlsx) and saving back to it.
+  - Keep all sheet data exactly as-is (no helper columns, no edits).
+  - Place exactly two charts on the existing first sheet, not on new sheets.
+  - Use the per‑month totals column already present (the rightmost totals) with months as categories.
+  - Clarify chart orientation/type: vertical Column charts.
+</thoughts>
+
+<answer>
+I’ve opened /home/user/Create_column_charts_using_statistics.xlsx. On the first sheet with the “Personal Costs – 2019” and “Personal Costs – 2020” tables, please add exactly two separate charts: standard vertical Column charts (not horizontal bars), one for 2019 and one for 2020. For each chart, use the existing per‑month total values from the rightmost totals column as the data series, with the months as the categories on the X‑axis. Place both charts on this same sheet in empty space, don’t add or rename any sheets, and don’t change any cell contents or insert helper calculations. Save the changes back to /home/user/Create_column_charts_using_statistics.xlsx.

@@ -1,0 +1,14 @@
+<thoughts>
+The evaluator opens and saves a specific report file (awe_desk_env.docx) and then performs a strict table-by-table comparison with a ground truth docx. It checks:
+- That the table count matches
+- That the inserted table’s rows, columns, and each cell’s text exactly match the ground truth
+The original instruction is vague about which report file to edit, how many tables to add, where to place it, and how to extract/format the GPT-4 results. To align with what’s being checked, we need to:
+- Explicitly name the report file and its path
+- Specify inserting exactly one table under the “Main Results” heading, without altering other tables
+- Clarify using the Excel file at the absolute path
+- Instruct to include the GPT-4 entries and preserve the spreadsheet’s column set and exact cell text (no reformatting), so the table structure and content matches
+- Ensure the changes are saved to the same docx
+</thoughts>
+
+<answer>
+Please use the Excel data at /home/user/Documents/awesome-desktop/expe-results.xlsx to update my report at /home/user/Documents/awesome-desktop/awe_desk_env.docx. Under the “Main Results” heading in that docx, insert exactly one table built from the entries labeled “GPT-4” in the spreadsheet, keeping the same columns and the exact cell text/values as they appear in the sheet (don’t add or drop columns or reformat numbers). Don’t modify any other tables or sections—just add this GPT-4 results table there and save the report.

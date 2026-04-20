@@ -1,0 +1,22 @@
+<thoughts>
+The evaluator verifies very specific manifest.json fields and an exact file layout/content that the original instruction doesn’t spell out. What’s ambiguous or missing:
+- The extension must be Manifest V2 (since they check background.scripts, not MV3 service_worker).
+- The exact extension name and version in manifest.json.
+- The exact background script filename and its location (root) as background_script.js.
+- The Browser Action must have:
+  - default_title exactly "happy-extension".
+  - default_popup path exactly "browserAction/index.html" with a folder named browserAction containing index.html, style.css, and script.js.
+  - default_icon as an object with only a 64px entry pointing to "icons/icon.png" (no other sizes).
+- The files’ contents should match defaults (they’re diffed against expected templates).
+- The unzipped folder must be named exactly /home/user/Projects/happy-extension (not just anywhere under ~/Projects or with a different name).
+- Using the specific web tool URL (https://webext.eu) is implied by the setup but not stated in the instruction.
+
+The clarification should add only these specifics without becoming procedural.
+</thoughts>
+
+<answer>
+Using https://webext.eu, please generate an initial WebExtension (Manifest V2) tagged “happy-extension v0.0.1” — that is, set the manifest name to “happy-extension” and version to “0.0.1”, and leave the description empty. Include only:
+- a background script named exactly background_script.js at the project root, and
+- a Browser Action whose default_title is “happy-extension”, whose default_popup is “browserAction/index.html” (with the popup files placed under a folder named exactly browserAction: index.html, style.css, script.js), and whose default_icon is set only to the 64px entry pointing to icons/icon.png.
+
+Please use the tool’s default template contents for the background script and the popup files without edits. When you download the ZIP, unzip it to /home/user/Projects and make sure the folder is named exactly /home/user/Projects/happy-extension.

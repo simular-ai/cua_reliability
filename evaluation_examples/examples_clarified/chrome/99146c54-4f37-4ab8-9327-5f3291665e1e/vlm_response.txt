@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator restarts Chrome and checks a boolean flag indicating whether automatic data deletion is enabled.
+- Chrome’s native, persistent option is “Clear cookies and site data when you close all windows”; Chrome doesn’t have a general “clear all browsing data on exit” toggle beyond this.
+- The user’s phrase “browsing data” is ambiguous; the evaluator likely expects the cookies/site data on-exit setting to be enabled globally and persist across relaunches.
+- Clarify that it should apply to all sites, be the built-in setting (not an extension), and trigger when all Chrome windows are closed.
+</thoughts>
+
+<answer>
+Please help me turn on Chrome’s built‑in “Clear cookies and site data when you close all windows” setting so that my data is cleared automatically each time I close all Chrome windows, it applies to all sites, and it persists after I relaunch Chrome (no extensions).</answer>

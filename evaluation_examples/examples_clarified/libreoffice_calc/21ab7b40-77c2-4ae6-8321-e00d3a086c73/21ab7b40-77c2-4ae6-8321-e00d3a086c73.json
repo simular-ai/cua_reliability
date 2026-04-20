@@ -1,0 +1,93 @@
+{
+  "id": "21ab7b40-77c2-4ae6-8321-e00d3a086c73",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Please add a new third column on the first sheet (to the right of \u201cPeriod per year\u201d) with the exact header \u201cPeriod Rate (%)\u201d, where each value is calculated as Annual Rate (%) divided by Period per year (e.g., 11.25 \u00f7 2 = 5.625), stored as plain numbers (not text and not percentage format), without extra rounding beyond the direct division. Then, change the font color to green (#00ff00) for the single highest value in that new \u201cPeriod Rate (%)\u201d column only, leaving all other font colors and formatting unchanged. Save your changes back to the same file and sheet (PeriodRate.xlsx) without renaming or adding sheets.",
+  "source": "SheetCopilot@124",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/21ab7b40-77c2-4ae6-8321-e00d3a086c73/PeriodRate.xlsx",
+            "path": "/home/user/PeriodRate.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/PeriodRate.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/21ab7b40-77c2-4ae6-8321-e00d3a086c73",
+  "related_apps": [
+    "libreoffice_calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "PeriodRate.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/21ab7b40-77c2-4ae6-8321-e00d3a086c73/1_PeriodRate_gt1.xlsx",
+      "dest": "1_PeriodRate_gt1.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/PeriodRate.xlsx",
+      "dest": "PeriodRate.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        },
+        {
+          "type": "style",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0",
+          "props": [
+            "font_color"
+          ]
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator opens and saves the specific file at /home/user/Desktop/Y22-2119-assign4.docx, so the instruction should name that exact file and keep the same filename/format on save.
+- It checks that every italic run has a font size exactly 14 pt; if the size is inherited (None) or not 14, it fails. So the change must be applied as direct formatting, not only via a style.
+- It implicitly expects the change to apply to all italicized text across the document and not alter non-italic text or other formatting, to match the gold file comparison.
+</thoughts>
+
+<answer>
+I’m working in LibreOffice Writer on /home/user/Desktop/Y22-2119-assign4.docx. The regular text is 12 pt, but italics are hard to spot. Please change every italicized word throughout the document to exactly 14 pt to make them more discernible, and leave all non-italic text and other formatting/content unchanged. Make sure the 14 pt size is applied directly to the italic text (not just via a style), and save the changes back to the same .docx file.

@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator isn’t checking for indentation or the “>” character directly. It only verifies that Thunderbird’s auto-quote behavior is disabled by ensuring mail.identity.id1.auto_quote is set to false.
+- It expects this preference to be present in the current Thunderbird profile’s prefs.js at /home/user/.thunderbird/t5q2a5hp.default-release/prefs.js.
+- The instruction should make it clear that the goal is to stop including the original message automatically (which eliminates both indentation and “>”), and specify the exact pref key/value and file/location.
+</thoughts>
+
+<answer>
+When I hit Reply in Thunderbird, it inserts the original message as a quoted block with a “>” and indentation. I don’t want any quoted text at all in replies—no “>”, no indentation—so please disable automatic quoting for my account by setting mail.identity.id1.auto_quote to false in my current profile’s prefs.js at /home/user/.thunderbird/t5q2a5hp.default-release/prefs.js.

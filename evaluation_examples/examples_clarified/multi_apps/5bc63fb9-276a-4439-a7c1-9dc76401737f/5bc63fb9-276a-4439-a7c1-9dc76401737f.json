@@ -1,0 +1,73 @@
+{
+  "id": "5bc63fb9-276a-4439-a7c1-9dc76401737f",
+  "snapshot": "multiapps",
+  "instruction": "Use the JSON file at /home/user/Desktop/llm_answers.json. From that file, collect every response attributed to the Gemini model\u2014copy only the response text values (no keys, IDs, or other metadata), and keep them in the same order they appear in the JSON. Paste them into a new .docx saved as /home/user/Desktop/gemini_results.docx. Put each response as its own paragraph (one per line) with no extra blank paragraphs between them, and don\u2019t modify the text in any way. Don\u2019t filter out sentences: include each full Gemini response, and simply highlight every occurrence of the word \u201cIliad\u201d wherever it appears in those responses.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/5bc63fb9-276a-4439-a7c1-9dc76401737f/LLM%20results.json",
+            "path": "/home/user/Desktop/llm_answers.json"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/llm_answers.json"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "gemini_results.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": "compare_docx_files_and_ignore_new_lines",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/5bc63fb9-276a-4439-a7c1-9dc76401737f/gemini_results_Gold.docx",
+      "dest": "gemini_results_Gold.docx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/gemini_results.docx",
+      "dest": "gemini_results.docx"
+    },
+    "options": {
+      "ignore_blanks": false
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator launches Google Chrome and checks the browser’s default search engine string, expecting it to be exactly “Microsoft Bing” or “Bing.”
+- The original request doesn’t specify which browser or that the “main search engine” means the default search engine used by the Chrome address bar/omnibox.
+- To match the evaluator, we need to specify Google Chrome and that Bing should be set as the default search engine used for address bar searches, ideally named “Microsoft Bing.”
+- The configuration includes a Chrome help link; to preserve context, include that link.
+</thoughts>
+
+<answer>
+In Google Chrome, please set Microsoft Bing as the default search engine used for searches from the address bar/omnibox (so new searches in Chrome go through Bing). Here’s the Chrome help page I’m referring to: https://support.google.com/chrome/answer/95426?sjid=16867045591165135686-AP</answer>

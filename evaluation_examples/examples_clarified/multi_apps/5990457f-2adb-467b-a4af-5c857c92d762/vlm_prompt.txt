@@ -1,0 +1,171 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "5990457f-2adb-467b-a4af-5c857c92d762",
+  "snapshot": "chrome",
+  "instruction": "Append one entry of AI researcher Yann LeCun from Google Scholar into an existing table researchers.xlsx.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/5990457f-2adb-467b-a4af-5c857c92d762/researchers.xlsx",
+            "path": "/home/user/Desktop/researchers.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "nautilus",
+          "/home/user/Desktop"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "chrome",
+    "libreoffice_calc"
+  ],
+  "evaluator": {
+    "func": "literal_match",
+    "result": {
+      "type": "content_from_vm_file",
+      "path": "/home/user/Desktop/researchers.xlsx",
+      "file_type": "xlsx",
+      "file_content": "last_row"
+    },
+    "expected": {
+      "type": "info_from_website",
+      "url": "https://scholar.google.com/citations?user=WLN3QrAAAAAJ&hl=en",
+      "infos": [
+        {
+          "action": "inner_text",
+          "selector": "#gsc_prf_in"
+        },
+        {
+          "action": "inner_text",
+          "selector": "#gsc_rsb_st > tbody > tr:nth-child(1) > td:nth-child(2)"
+        },
+        {
+          "action": "inner_text",
+          "selector": "#gsc_rsb_st > tbody > tr:nth-child(2) > td:nth-child(2)"
+        },
+        {
+          "action": "inner_text",
+          "selector": "#gsc_rsb_st > tbody > tr:nth-child(3) > td:nth-child(2)"
+        },
+        {
+          "action": "inner_text",
+          "selector": "#gsc_a_b > tr:nth-child(1) > td.gsc_a_t > a"
+        },
+        {
+          "action": "click_and_attribute",
+          "selector": [
+            "#gsc_a_b > tr:nth-child(1) > td.gsc_a_t > a",
+            "#gsc_oci_title_gg > div:nth-child(1) > a"
+          ],
+          "attribute": "href"
+        }
+      ],
+      "backups": [
+        "Yann LeCun",
+        "345074",
+        "147",
+        "372",
+        "Deep learning",
+        "https://hal.science/hal-04206682/document"
+      ]
+    },
+    "options": {
+      "type": "list",
+      "ignore_case": true
+    }
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: literal_match
+def literal_match(result: Any, expected: Any, **options) -> float:
+    literal_type = options.get('type', 'str')
+    if literal_type == 'str':
+        ignore_case = options.get('ignore_case', False)
+        score = str(result) == str(expected) if not ignore_case else str(result).lower() == str(expected).lower()
+        return float(score)
+    elif literal_type == 'list':
+        if type(result) not in [list, tuple] or type(expected) not in [list, tuple] or len(result) != len(expected):
+            return .0
+        ignore_case = options.get('ignore_case', False)
+        result = [str(s) for s in result] if not ignore_case else [str(s).lower() for s in result]
+        expected = [str(s) for s in expected] if not ignore_case else [str(s).lower() for s in expected]
+        return float(result == expected)
+    else:
+        raise NotImplementedError(f"Type {type} not supported")
+```
+
+## Task:
+
+Analyze the instruction: "Append one entry of AI researcher Yann LeCun from Google Scholar into an existing table researchers.xlsx."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+Spreadsheet data (.xlsx):\nName,All citations,h-index,i10-index,Top Cited Work,PDF Link of Top Cited Work
+Geoffrey Hinton,760513,183,461,Imagenet classification with deep convolutional neural networks,https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf
+Christopher D Manning,241145,160,403,GloVe: Global vectors for word representation,https://aclanthology.org/D14-1162.pdf
+Andrew Ng,250530,145,344,Latent dirichlet allocation,https://www.jmlr.org/papers/volume3/blei03a/blei03a.pdf?ref=https://githubhelp.com
+Ilya Sutskever,479533,87,120,Imagenet classification with deep convolutional neural networks,https://proceedings.neurips.cc/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf

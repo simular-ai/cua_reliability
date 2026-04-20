@@ -1,0 +1,3 @@
+On https://www.recreation.gov/, search for “Diamond” and focus on the results list where the “Next Available” dates are shown. To report your result, return only this JSON (no extra text), which targets the “Next Available” column header on that page:
+
+{"type":"gotoRecreationPage_and_get_html_content","selector":"class","class":"camp-sortable-column-header","order":"2"}

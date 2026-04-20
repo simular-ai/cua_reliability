@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator only checks that the final edited image is saved as a JPEG at the exact path /home/user/Desktop/pic.jpg.
+- The source files on the Desktop have specific filenames: the requirements doc is “requirment.docx” (typo in name) and the photo has a long filename. Stating these avoids ambiguity about which files to use.
+- Clarify to save/export specifically as a JPEG with the exact lowercase name “pic.jpg” on the Desktop, and to overwrite if prompted, so the checked file matches.
+</thoughts>
+
+<answer>
+My friend left the exact edit directions in the Desktop file named “requirment.docx” (note the missing second “e”), and the photo to modify is on the Desktop as “ChMkKV8wsR6IBfEtABYfc0Tgu9cAAA1lQHO_78AFh-L733.jpg”. Please follow the instructions in that doc to edit that image, then save/export the result as a standard JPEG on the Desktop with the exact filename “pic.jpg” (lowercase), replacing any file with that name if prompted. Thank you!

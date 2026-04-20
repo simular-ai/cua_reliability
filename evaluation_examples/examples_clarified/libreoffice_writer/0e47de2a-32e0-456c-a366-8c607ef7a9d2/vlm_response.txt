@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator opens and saves the specific file at /home/user/Desktop/LibreOffice_Open_Source_Word_Processing.docx, then checks that each section’s footer exists and that the first paragraph of each footer contains a digit.
+- The original instruction doesn’t specify the exact file, that it must be in the footer (not header), that it must apply to every section, or that the number should be in the first line of the footer where the evaluator looks.
+- It also doesn’t say to save back to the same .docx at the same path.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/LibreOffice_Open_Source_Word_Processing.docx, add a numeric page number in the page footer so it shows on every page (including all sections). Place it bottom-left in the footer’s first line, then save the changes to the same .docx at that path. </answer>

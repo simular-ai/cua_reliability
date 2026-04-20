@@ -1,0 +1,9 @@
+<thoughts>
+The evaluator checks the exact contents of a specific file: /home/user/.config/Code/User/settings.json must match precisely {"workbench.colorTheme": "Visual Studio Dark"} with a trailing newline. The original instruction doesn’t specify the file path, that the entire file should be exactly that single key (no other settings), the exact JSON formatting/spaces, or the need for a trailing newline. These details must be added while keeping a natural tone and retaining the provided link.
+</thoughts>
+
+<answer>
+Please help me change the color theme of VS Code to Visual Studio Dark. Specifically, update my VS Code settings file at /home/user/.config/Code/User/settings.json so that its entire contents are exactly (including spacing) the single-line JSON:
+{"workbench.colorTheme": "Visual Studio Dark"}
+and nothing else, with a trailing newline at the end of the file. You can use this as a reference: https://www.youtube.com/watch?v=ORrELERGIHs
+</answer>

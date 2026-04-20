@@ -1,0 +1,1 @@
+In Google Chrome, please set Microsoft Bing as the default search engine used for searches from the address bar/omnibox (so new searches in Chrome go through Bing). Here’s the Chrome help page I’m referring to: https://support.google.com/chrome/answer/95426?sjid=16867045591165135686-AP

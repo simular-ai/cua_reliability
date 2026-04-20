@@ -1,0 +1,35 @@
+{
+  "id": "2bd59342-0664-4ccb-ba87-79379096cc08",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Open /home/user/OrderId_Month_Chart.xlsx in LibreOffice Calc and, on the sheet that has the OrderId, Jan, Feb, Mar, and Chart columns, add a line sparkline in the Chart cell for every order id using that row\u2019s Jan\u2013Mar values as the source. Save your changes back to the same file (don\u2019t rename or move it).",
+  "source": "https://www.youtube.com/shorts/L3Z-F1QTQFY",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/2bd59342-0664-4ccb-ba87-79379096cc08/OrderId_Month_Chart.xlsx",
+            "path": "/home/user/OrderId_Month_Chart.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/OrderId_Month_Chart.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/2bd59342-0664-4ccb-ba87-79379096cc08",
+  "related_apps": [
+    "libreoffice_calc"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

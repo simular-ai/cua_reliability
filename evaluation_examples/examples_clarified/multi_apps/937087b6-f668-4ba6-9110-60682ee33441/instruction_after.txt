@@ -1,0 +1,1 @@
+I’m on Ubuntu—could you make VLC the default app for opening video files through the GUI, so videos open in VLC by default?

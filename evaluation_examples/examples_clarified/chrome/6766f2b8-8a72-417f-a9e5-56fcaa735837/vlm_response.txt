@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator checks that the unpacked extension lives specifically at /home/user/Desktop/helloExtension, but the original instruction doesn’t name the zip file or the exact folder to load in Chrome. To align with the evaluator, the instruction needs to specify the exact zip path (/home/user/Desktop/helloExtension.zip), the extraction destination (/home/user/Desktop/), and the resulting folder (/home/user/Desktop/helloExtension) that should be used when loading the unpacked extension in Chrome.
+</thoughts>
+
+<answer>
+Could you unzip /home/user/Desktop/helloExtension.zip to /home/user/Desktop/ so it creates /home/user/Desktop/helloExtension, and then load it in Chrome’s extensions (chrome://extensions) by selecting that unpacked folder (/home/user/Desktop/helloExtension)?
+</answer>

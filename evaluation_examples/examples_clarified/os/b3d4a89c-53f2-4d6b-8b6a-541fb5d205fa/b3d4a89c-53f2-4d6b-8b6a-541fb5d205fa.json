@@ -1,0 +1,17 @@
+{
+  "id": "b3d4a89c-53f2-4d6b-8b6a-541fb5d205fa",
+  "snapshot": "os",
+  "instruction": "I want to switch on Bluetooth on this Ubuntu system. If you can\u2019t actually do that in this virtual environment (e.g., no Bluetooth hardware or permission to toggle it), please just let me know it isn\u2019t possible here and tell me what I\u2019d normally do to turn it on.",
+  "source": "https://help.ubuntu.com/lts/ubuntu-help/bluetooth-turn-on-off.html.en",
+  "trajectory": "trajectories/",
+  "config": [],
+  "related_apps": [
+    "os"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

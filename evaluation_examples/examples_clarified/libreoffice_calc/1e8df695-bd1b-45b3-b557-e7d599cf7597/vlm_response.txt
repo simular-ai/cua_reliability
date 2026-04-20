@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares the entire first sheet of /home/user/WeeklySales.xlsx to a golden sheet, so changes must be made on the first worksheet of that exact file and saved back to the same path.
+- The original instruction has a typo ("CGOS"); it should be "COGS".
+- The expected sheet has the columns ordered Week, Sales, COGS, Profit, with no extra "Unnamed: 2" column. So any empty/unnamed column must be removed to match.
+- Profit must be Sales minus COGS for every row, stored as numeric results (not text), to match the golden data.
+</thoughts>
+
+<answer>
+In /home/user/WeeklySales.xlsx (first worksheet), make sure there’s a single column named “Profit” immediately to the right of the “COGS” column—so the columns read: Week, Sales, COGS, Profit (remove any empty/unnamed column like “Unnamed: 2” if it’s there). Fill “Profit” with Sales minus COGS for each week as numeric values, then save the file back to /home/user/WeeklySales.xlsx.

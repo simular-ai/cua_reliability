@@ -1,0 +1,14 @@
+<thoughts>
+- The evaluator compares the edited file /home/user/Desktop/154_3.pptx against 154_3_Gold.pptx and is strict about:
+  - Exact RGB font color per run, so the color must be the palette color labeled “Dark Red 2,” not a custom shade.
+  - Underline being explicitly set (True) and consistent; using single underline avoids mismatches with other underline styles.
+  - Text content, runs/paragraphs, alignment, bullets/indent levels, and other font properties (name/size/bold/italic/strike) remaining unchanged.
+  - Shapes’ positions/sizes and the number of shapes unchanged; no moving/resizing/adding/removing shapes.
+  - Table cell text formatting being included and consistent.
+  - Slide background and notes unchanged.
+- The evaluator auto-saves, but it expects the final file at the same path, so specifying save location helps.
+- “On this slide” could be ambiguous; clarify it’s only the currently displayed slide in 154_3.pptx.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/154_3.pptx, on the currently displayed slide only, make all text—including titles, text boxes, and every table cell’s text—single-underlined and set its font color to the standard palette color named “Dark Red 2” (don’t use a custom shade). Keep everything else exactly the same: do not change the wording, fonts or sizes, alignment, bullets/indent levels, bold/italic/strike, or the slide background/notes, and don’t move, resize, add, or remove any shapes. Save the changes back to /home/user/Desktop/154_3.pptx.

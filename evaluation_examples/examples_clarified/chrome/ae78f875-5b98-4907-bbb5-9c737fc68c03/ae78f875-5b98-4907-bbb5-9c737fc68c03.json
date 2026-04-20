@@ -1,0 +1,17 @@
+{
+  "id": "ae78f875-5b98-4907-bbb5-9c737fc68c03",
+  "snapshot": "chrome",
+  "instruction": "On desktop Chrome, please configure Google Search so that a single page shows 50 results for my searches. If Google has removed or disabled the \u201cresults per page\u201d setting (for example, due to continuous/auto scroll), please confirm that this can\u2019t be changed right now and briefly explain the limitation. For reference, here\u2019s the related Chrome Help thread: https://support.google.com/chrome/thread/219988391/increase-search-results-per-page?hl=en",
+  "source": "https://support.google.com/chrome/thread/219988391/increase-search-results-per-page?hl=en",
+  "config": [],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "chrome"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator only checks that a file literally named "file1" exists inside each of the directories literally named "dir1", "dir2", and "dir3".
+- It doesn’t check for any messages from the agent; it just verifies file presence.
+- The instruction doesn’t state where these paths are; setup scripts typically place them in the current working directory of the opened Terminal.
+- It’s also unclear whether the filename should be preserved and whether the original should remain.
+</thoughts>
+
+<answer>
+In your current working directory, copy the existing file named “file1” into each of the directories named “dir1”, “dir2”, and “dir3” so that each of those directories contains a file named “file1”. Keep the filename exactly as “file1” (don’t rename or move the original).</answer>

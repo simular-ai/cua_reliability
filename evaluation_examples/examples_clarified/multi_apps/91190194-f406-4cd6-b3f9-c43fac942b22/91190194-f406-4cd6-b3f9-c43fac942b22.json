@@ -1,0 +1,50 @@
+{
+  "id": "91190194-f406-4cd6-b3f9-c43fac942b22",
+  "snapshot": "gimp",
+  "instruction": "From the terminal, launch GIMP and open /home/user/Desktop/cola.png. Remove exactly the top 20% of the image\u2019s height (anchored at the top edge), don\u2019t resize or make other changes, and export it as a PNG to /home/user/Desktop/cropped.png (overwrite if it already exists).",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/91190194-f406-4cd6-b3f9-c43fac942b22/cola.png",
+            "path": "/home/user/Desktop/cola.png"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.hotkey(\"ctrl\", \"alt\", \"t\"); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "gimp",
+    "os"
+  ],
+  "evaluator": {
+    "func": "check_structure_sim",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/cropped.png",
+      "dest": "cropped.png"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/91190194-f406-4cd6-b3f9-c43fac942b22/cropped_gold.png",
+      "dest": "cropped_gold.png"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

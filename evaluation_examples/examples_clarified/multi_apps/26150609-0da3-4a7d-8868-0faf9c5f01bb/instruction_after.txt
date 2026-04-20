@@ -1,0 +1,5 @@
+I’ve been tinkering with a Python Snake game and got it running, but there’s a stubborn bug: the snake never manages to eat the food. Could you update the existing code so eating works correctly?
+
+Please make the changes directly in the files under /home/user/Desktop/snake — food.py, main.py, settings.py, and snake.py — keeping the same filenames and public interfaces (so imports like from snake import Snake and from food import Food still work). Make sure importing these modules doesn’t start the game loop automatically (only run it under if __name__ == '__main__').
+
+What I need behavior-wise is: when the snake’s head reaches the food’s grid-aligned position, the snake should grow by one segment on that tick, and the food should respawn to a free grid cell within the screen bounds, aligned to the grid and not overlapping the snake, using the constants defined in settings.py. Aim for a fix that passes the provided test suite (test_suite.py).

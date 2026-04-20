@@ -1,0 +1,9 @@
+<thoughts>
+- “This video” is ambiguous; the agent needs to know it refers to the video currently open in VLC.
+- “Match my room’s lighting” is infeasible because the system can’t sense ambient light; the evaluator marks the task as infeasible and expects this limitation to be acknowledged.
+- It’s unclear whether adjustments should be temporary (playback only) or permanently saved; clarifying that they should be applied during playback avoids unintended encoding.
+- Keep the human tone and avoid procedural detail; preserve context (no links were in the original instruction text).
+</thoughts>
+
+<answer>
+Automatically adjust the brightness and contrast of the currently playing video in VLC so it looks balanced for a typical indoor room. Since you can’t actually detect my room’s ambient light from here, just use VLC’s playback video filters to apply a gentle brightness/contrast tweak for this session only (don’t permanently save/encode any changes).</answer>

@@ -1,0 +1,1 @@
+My grandmother says text in Chrome is too small. Could you open Chrome’s settings and set the browser’s Default font size (under Appearance) to the largest available option—Very large—so it applies to all sites by default (not by changing page zoom)? Here’s the article I was looking at: https://www.howtogeek.com/680260/how-to-change-chromes-default-text-size/

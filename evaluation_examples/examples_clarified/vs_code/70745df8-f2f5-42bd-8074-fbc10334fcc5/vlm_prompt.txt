@@ -1,0 +1,133 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "70745df8-f2f5-42bd-8074-fbc10334fcc5",
+  "snapshot": "vscode",
+  "instruction": "Please help me open the autosave feature of VS Code and delay AutoSave operations for 500 milliseconds in the VS Code setting.",
+  "source": "https://download.microsoft.com/download/8/A/4/8A48E46A-C355-4E5C-8417-E6ACD8A207D4/VisualStudioCode-TipsAndTricks-Vol.1.pdf",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/70745df8-f2f5-42bd-8074-fbc10334fcc5/HW-8-main-20240320T121653Z-001.zip",
+            "path": "/home/user/Downloads/HW-8-main-20240207T164539Z-001.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "/bin/bash",
+          "-c",
+          "cd /home/user/Downloads && unzip -q HW-8-main-20240207T164539Z-001.zip"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code",
+          "/home/user/Downloads/HW-8-main/"
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Visual Studio Code"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vscode"
+  ],
+  "evaluator": {
+    "func": "check_json_settings",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "files.autoSave": "afterDelay",
+          "files.autoSaveDelay": 500
+        }
+      }
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/.config/Code/User/settings.json",
+      "dest": "settings.json"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_json_settings
+def check_json_settings(actual: str, expected: str, **options) -> float:
+    """
+    Args:
+        actual (str): path to result text file
+        expected (dict): expected dict{}, containing key "expect"
+
+    Return:
+        float: the score
+    """
+    if not actual:
+        return 0.
+
+    try:
+        with open(actual, 'r') as f:
+            data = json.load(f)
+    except Exception as e:
+        return 0.0
+
+    expect = expected['expected']
+    
+    # Check if all expected key-value pairs are in the actual data
+    for key, value in expect.items():
+        if key not in data or data[key] != value:
+            return 0.0
+    
+    return 1.0
+```
+
+## Task:
+
+Analyze the instruction: "Please help me open the autosave feature of VS Code and delay AutoSave operations for 500 milliseconds in the VS Code setting."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

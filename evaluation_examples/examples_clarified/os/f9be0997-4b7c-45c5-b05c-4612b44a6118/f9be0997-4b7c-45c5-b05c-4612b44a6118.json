@@ -1,0 +1,46 @@
+{
+  "id": "f9be0997-4b7c-45c5-b05c-4612b44a6118",
+  "snapshot": "os",
+  "instruction": "I\u2019m on Ubuntu with GNOME and I want \u201cDo Not Disturb\u201d enabled so notification pop-up banners are turned off. Please switch it on so that the org.gnome.desktop.notifications show-banners setting ends up set to false.",
+  "source": "https://help.ubuntu.com/lts/ubuntu-help/shell-notifications.html.en",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "gsettings set org.gnome.desktop.notifications show-banners true",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.click({SCREEN_WIDTH_HALF}, {SCREEN_HEIGHT_HALF}); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "os"
+  ],
+  "evaluator": {
+    "func": "exact_match",
+    "result": {
+      "type": "vm_command_line",
+      "command": "gsettings get org.gnome.desktop.notifications show-banners",
+      "shell": true
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "false\n"
+      }
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

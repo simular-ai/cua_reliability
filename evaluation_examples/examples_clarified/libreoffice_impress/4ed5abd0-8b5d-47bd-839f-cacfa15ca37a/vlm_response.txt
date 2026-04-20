@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator opens and saves /home/user/Desktop/4_1.pptx and then compares every slide/shape/text run against a gold file, including font color (RGB), underline flag, text content, alignment, runs/paragraph counts, shape positions/sizes, notes, background, etc. The vague parts are: which file to edit/save, which exact objects count as “titles,” what “black” means (theme vs explicit RGB), whether to underline the whole title or part of it, and the need to avoid changing any other formatting/content. To match the strict comparison, the instruction should specify editing the main title placeholders on slides 2, 3, and 5 only, set the font color explicitly to pure black (RGB 000000), apply underline (single) to the entire title text, and leave everything else unchanged, saving back to the same .pptx path.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/4_1.pptx, make the main title placeholder on slides 2, 3, and 5 use pure black text (RGB 000000) and apply a single underline to the entire title text. Don’t change the title wording, alignment, font name/size, spacing, or any other content or slides—just the color and underline of those three titles. Save the changes back to the same file (/home/user/Desktop/4_1.pptx) in .pptx format.

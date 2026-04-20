@@ -1,0 +1,94 @@
+{
+  "id": "0326d92d-d218-48a8-9ca1-981cd6d064c7",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Work in /home/user/SalesRep.xlsx on the first sheet. Add a new summary row directly beneath the sales reps with the label \u201cTotal\u201d in the first column, and make each Jan\u2013Jun cell the sum of that month across all reps. Use those monthly totals to compute the month\u2011on\u2011month growth percentage in another row labeled \u201cGrowth\u201d: for Feb\u2013Jun, (Total of current month \u2212 Total of previous month) \u00f7 Total of previous month; leave the Jan cell blank.\n\nCreate two charts from these summary rows:\n- A bar chart of the monthly totals (Jan\u2013Jun) with the chart title set to \u201cTotal\u201d.\n- A line chart of the growth values (Feb\u2013Jun only; Jan omitted) with the chart title set to \u201cGrowth\u201d.\n\nSave the changes back to /home/user/SalesRep.xlsx.",
+  "source": "SheetCopilot@151",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/0326d92d-d218-48a8-9ca1-981cd6d064c7/SalesRep.xlsx",
+            "path": "/home/user/SalesRep.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/SalesRep.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/0326d92d-d218-48a8-9ca1-981cd6d064c7",
+  "related_apps": [
+    "libreoffice_calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "SalesRep.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/0326d92d-d218-48a8-9ca1-981cd6d064c7/2_SalesRep_gt1.xlsx",
+      "dest": "2_SalesRep_gt1.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/SalesRep.xlsx",
+      "dest": "SalesRep.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        },
+        {
+          "type": "chart",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0",
+          "chart_props": [
+            "type",
+            "title"
+          ]
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

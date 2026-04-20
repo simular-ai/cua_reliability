@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator only checks the final set of open Chrome tabs and expects them to be exactly three specific URLs, in the same order: Apple, Google Scholar, then Amazon.
+- The original instruction doesn’t specify that the first link resolves to https://www.amazon.com/ (with the exact URL format the evaluator expects).
+- It also doesn’t state that the existing tabs (https://www.apple.com/ and https://scholar.google.com/) should remain open and unchanged, or that the new tab should be added to the same Chrome window, resulting in exactly those three tabs in that order.
+- These are the minimal clarifications needed to align with what the evaluator checks.
+</thoughts>
+
+<answer>
+Please open Thunderbird, go to the Bills folder, open the most recent email, and follow the first link in it (it points to https://www.amazon.com/). Open that link as a new tab in the same Google Chrome window, keeping the two existing tabs (https://www.apple.com/ and https://scholar.google.com/) unchanged, so you end up with exactly these three tabs open in this order: https://www.apple.com/, https://scholar.google.com/, then https://www.amazon.com/. </answer>

@@ -1,0 +1,1 @@
+I’m preparing a PPT in LibreOffice Impress. In the presentation at /home/user/Desktop/saa-format-guide.pptx, the slide/page number is barely visible. Could you change the slide number text color to red in the slide master so it applies to all slides, and save the changes to that same file?

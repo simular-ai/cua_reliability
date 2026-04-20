@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator verifies three specific things that aren’t explicit in the original instruction: (1) the user “charles” exists with the exact password, (2) the user’s home directory is set to exactly “/home/test1”, and (3) “/home/test1” has owner write permission (i.e., it’s writable by its owner). It does not check for chroot/SFTP-only restrictions implied by “only allowed to access,” so clarifying that a home-directory setting suffices avoids over-implementation. The instruction should therefore explicitly require the home directory to be “/home/test1” and that the directory is writable, and note that no chroot/SFTP restriction is needed for this task.
+</thoughts>
+
+<answer>
+Please create an SSH-capable user named “charles” on Ubuntu with the password “Ex@mpleP@55w0rd!”. For this task, set “/home/test1” as charles’s home directory and make sure that directory is writable by its owner. You don’t need to configure chroot or SFTP-only restrictions—just ensure the account can authenticate with that password and that the home directory is exactly “/home/test1”.</answer>

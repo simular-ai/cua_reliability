@@ -1,0 +1,17 @@
+{
+  "id": "93eabf48-6a27-4cb6-b963-7d5fe1e0d3a9",
+  "snapshot": "chrome",
+  "instruction": "Could you help me turn off dark mode in Google Chrome? I find dark mode makes text harder to read with my astigmatism. If this can\u2019t be done from within this Chrome session (for example, if Chrome is following the OS theme or the necessary settings/flags aren\u2019t accessible here), please just let me know it\u2019s not doable in this environment and explain why, then briefly summarize what I\u2019d need to change on my system instead to disable it. For reference, here\u2019s the page I was looking at: https://superuser.com/questions/1417973/how-to-disable-google-chrome-dark-mode",
+  "source": "https://superuser.com/questions/1417973/how-to-disable-google-chrome-dark-mode",
+  "config": [],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "chrome"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

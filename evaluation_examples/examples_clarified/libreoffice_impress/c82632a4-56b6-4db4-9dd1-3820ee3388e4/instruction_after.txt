@@ -1,0 +1,1 @@
+Open /home/user/Desktop/31_2.pptx in LibreOffice Impress. On the second slide, insert the image located at /home/user/Desktop/none.png as a normal picture (not a background or shape fill), and set it to exactly 1 cm wide by 1 cm high. Don’t move or change any existing content—just add the image—and save the presentation.

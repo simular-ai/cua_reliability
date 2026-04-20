@@ -1,0 +1,7 @@
+<thoughts>
+- The evaluator compares the final saved /home/user/Desktop/Graphemes_Sound_Letter_Patterns.docx against one of two gold .docx files, checking only the tables’ cell-by-cell text and dimensions (rows/columns), not formatting.
+- Therefore, the instruction should clarify: which file to edit and save, that commas define columns and lines define rows, to preserve exact text and order, to avoid adding/removing items or extra header rows/columns, and to leave other content and existing tables unchanged so the overall table count and contents match.
+</thoughts>
+
+<answer>
+Could you help me convert the comma‑separated text in /home/user/Desktop/Graphemes_Sound_Letter_Patterns.docx into table(s)? Please split columns at each comma and treat each line/paragraph as a new row, keep every item’s wording and order exactly as written (no extra or missing items, and don’t add header rows or columns unless they already exist), leave any non–comma‑separated content and any existing tables as they are, and save the changes back to the same .docx file (Graphemes_Sound_Letter_Patterns.docx).</answer>

@@ -1,0 +1,1 @@
+Please install the official LanguageTool extension for LibreOffice by adding the .oxt to my user profile so it shows up as “org.openoffice.languagetool.oxt” under /home/user/.config/libreoffice/4/user/uno_packages/cache/uno_packages/, and make sure Java is available by installing an OpenJDK JRE or JDK via apt (e.g., openjdk-17-jre).

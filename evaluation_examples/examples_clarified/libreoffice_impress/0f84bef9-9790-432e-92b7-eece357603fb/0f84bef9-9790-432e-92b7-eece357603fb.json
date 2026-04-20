@@ -1,0 +1,40 @@
+{
+  "id": "0f84bef9-9790-432e-92b7-eece357603fb",
+  "snapshot": "libreoffice_impress",
+  "instruction": "Whenever I start LibreOffice Impress it uses both screens (the Presenter Screen with current/next slide on one, and the actual slide show on the other). I want only a single monitor showing the slide show, with no Presenter Screen, so the second monitor can be used for other tasks. Please disable the Presenter Screen (aka Presenter Console) in Impress so that the LibreOffice user config reflects this: in /home/user/.config/libreoffice/4/user/registrymodifications.xcu, under /org.openoffice.Office.Impress/Misc/Start, the EnablePresenterScreen setting should be set to false.",
+  "source": "https://stackoverflow.com/questions/29036788/how-to-disable-libreoffice-impress-to-use-multiple-display",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/0f84bef9-9790-432e-92b7-eece357603fb/multimedia_classroom_podium-2020.pptx",
+            "path": "/home/user/Desktop/multimedia_classroom_podium-2020.pptx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/multimedia_classroom_podium-2020.pptx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "evaluator": {
+    "func": "check_presenter_console_disable",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/.config/libreoffice/4/user/registrymodifications.xcu",
+      "dest": "registrymodifications.xcu"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

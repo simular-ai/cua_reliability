@@ -1,0 +1,1 @@
+Please switch VLC into true fullscreen (not just maximized) so the VLC window exactly matches the display—no title bar, menus, or borders—and the current video at “/home/user/Desktop/Gen 2.mp4” fills the entire screen.

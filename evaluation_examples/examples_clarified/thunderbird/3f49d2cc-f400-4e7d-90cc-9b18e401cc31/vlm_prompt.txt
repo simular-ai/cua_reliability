@@ -1,0 +1,228 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "3f49d2cc-f400-4e7d-90cc-9b18e401cc31",
+  "snapshot": "thunderbird",
+  "instruction": "I've got a bunch of email accounts in Thunderbird, and it's a hassle to check them one by one. Can you show me how to set up a unified inbox so I can see all my emails in one place?",
+  "source": "https://www.reddit.com/r/Thunderbird/comments/182dg5p/unified_inbox_howto/",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/thunderbird/dd84e895-72fd-4023-a336-97689ded257c/thunderbird-profile.tar.gz",
+            "path": "/home/user/thunderbird-profile.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "tar",
+          "-xzv",
+          "--recursive-unlink",
+          "-f",
+          "/home/user/thunderbird-profile.tar.gz",
+          "-C",
+          "/home/user/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "/usr/bin/thunderbird"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "thunderbird"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "close_window",
+        "parameters": {
+          "window_name": "Mail.thunderbird",
+          "strict": true,
+          "by_class": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/.thunderbird/t5q2a5hp.default-release/xulstore.json",
+      "dest": "xulstore.json"
+    },
+    "func": "check_json",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expect": [
+          {
+            "key": [
+              "chrome://messenger/content/messenger.xhtml",
+              "folderTree",
+              "mode"
+            ],
+            "method": "re",
+            "ref": "\\bsmart\\b"
+          }
+        ]
+      }
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_json
+def check_json(result: str, rules: Dict[str, List[Dict[str, Union[List[str], str]]]], is_yaml: bool = False) -> float:
+    """
+    Args:
+        result (str): path to json file
+        rules (Dict[str, List[Dict[str, Union[List[str], str]]]]): dict like
+          {
+            "expect": [
+                {
+                    "key": list of str
+                    "method": str
+                    "ref": something
+                }
+            ],
+            "unexpect": <the same as `expect`
+          }
+        is_yaml (bool): yaml rather than json
+
+    Returns:
+        float
+    """
+
+    if result is None:
+        logger.warning("Result file path is None, returning 0.0")
+        return 0.
+        
+    # Check if file exists
+    if not os.path.exists(result):
+        logger.warning(f"Result file does not exist: {result}, returning 0.0")
+        return 0.
+    
+    try:
+        with open(result, 'r', encoding='utf-8') as f:
+            if is_yaml:
+                try:
+                    # Use SafeLoader instead of Loader for better security and error handling
+                    result_data: Dict[str, Any] = yaml.safe_load(f)
+                    if result_data is None:
+                        logger.warning(f"YAML file {result} is empty or contains only null values, returning 0.0")
+                        return 0.
+                except yaml.YAMLError as e:
+                    logger.error(f"YAML parsing error in file {result}: {e}")
+                    logger.error(f"File content might be corrupted or have invalid YAML syntax")
+                    return 0.
+                except Exception as e:
+                    logger.error(f"Unexpected error parsing YAML file {result}: {e}")
+                    return 0.
+            else:
+                try:
+                    result_data: Dict[str, Any] = json.load(f)
+                except json.JSONDecodeError as e:
+                    logger.error(f"JSON parsing error in file {result}: {e}")
+                    return 0.
+                except Exception as e:
+                    logger.error(f"Unexpected error parsing JSON file {result}: {e}")
+                    return 0.
+    except IOError as e:
+        logger.error(f"IO error reading file {result}: {e}")
+        return 0.
+    except Exception as e:
+        logger.error(f"Unexpected error reading file {result}: {e}")
+        return 0.
+
+    expect_rules = rules.get("expect", {})
+    unexpect_rules = rules.get("unexpect", {})
+
+    metric = True
+    for r in expect_rules:
+        value = result_data
+        try:
+            for k in r["key"]:
+                try:
+                    value = value[k]
+                except KeyError:
+                    logger.debug(f"Key '{k}' not found in result data, returning 0.0")
+                    return 0.
+                except TypeError:
+                    logger.debug(f"Cannot access key '{k}' - value is not a dictionary, returning 0.0")
+                    return 0.
+            metric = metric and _match_value_to_rule(value, r)
+        except Exception as e:
+            logger.error(f"Error processing expect rule {r}: {e}")
+            return 0.
+            
+    for r in unexpect_rules:
+        value = result_data
+        try:
+            for k in r["key"]:
+                try:
+                    value = value[k]
+                except KeyError:
+                    value = None
+                    break
+                except TypeError:
+                    value = None
+                    break
+            metric = metric and not _match_value_to_rule(value, r)
+        except Exception as e:
+            logger.error(f"Error processing unexpect rule {r}: {e}")
+            return 0.
+            
+    return float(metric)
+```
+
+## Task:
+
+Analyze the instruction: "I've got a bunch of email accounts in Thunderbird, and it's a hassle to check them one by one. Can you show me how to set up a unified inbox so I can see all my emails in one place?"
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

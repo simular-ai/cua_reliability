@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator checks for a very specific output file path/name: /home/user/Desktop/annual-enterprise-survey-2021-financial-year-provisional.html.
+- It also checks that Chrome has four tabs open in this exact set (and order): ACL Anthology, OpenAI, LinkedIn Home, and then the local file URL file:///home/user/Desktop/annual-enterprise-survey-2021-financial-year-provisional.html.
+- The current instruction doesn’t specify the exact source file name, the exact output file name/location, or that the local HTML should be opened as an additional tab without closing/reordering the existing tabs.
+</thoughts>
+
+<answer>
+Please take the spreadsheet “annual-enterprise-survey-2021-financial-year-provisional.xlsx” that’s open in LibreOffice Calc and save it to HTML using Calc’s default HTML format, naming the file “annual-enterprise-survey-2021-financial-year-provisional.html” on the Desktop. Then open that saved file in Chrome via file:///home/user/Desktop/annual-enterprise-survey-2021-financial-year-provisional.html as a new tab, keeping the existing ACL Anthology, OpenAI, and LinkedIn tabs open and in place.

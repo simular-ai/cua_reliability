@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator compares the edited file (/home/user/Desktop/201_6.pptx) against an “Original” baseline and specifically checks that, on Slide 2, a non-text shape (the image) ends up further to the right than before and is positioned on the right side (past a minimum left-position threshold, effectively the right half of the slide). It also verifies that other content (text, notes, background, number of slides/shapes) remains unchanged. The current instruction doesn’t specify the exact file, the need to keep everything else unchanged, the expectation that the image is on the right half (beyond the midpoint), or that the change should be saved to the same file.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/201_6.pptx (open in LibreOffice Impress), go to Slide 2 and move the picture so it sits on the right half of the slide—past the slide’s midpoint, i.e., clearly further right than where it started. Don’t resize it or change any other content on any slide, and save the changes back to /home/user/Desktop/201_6.pptx.

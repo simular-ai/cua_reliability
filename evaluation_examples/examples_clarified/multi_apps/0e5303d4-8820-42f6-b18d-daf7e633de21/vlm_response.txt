@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator zips and checks the exact contents of /home/user/lecture_slides.
+- It expects only PDF files, with exact filenames matching the gold set.
+- Week 0 (lecture0.pdf) is already present; the rest should be weeks 1–9 from the CS50 Python 2022 site linked.
+- To avoid ambiguity, specify the target folder path, the week range, and the exact filenames expected.
+</thoughts>
+
+<answer>
+I’m looking at CS50’s Python 2022 site starting from Week 0 (https://cs50.harvard.edu/python/2022/weeks/0/). I already saved the Week 0 slides. Please download the lecture slide PDFs for Weeks 1 through 9 (inclusive) from the same 2022 site and save them into the folder that’s already open at /home/user/lecture_slides. Keep the filenames exactly as they download—so that folder ends up containing lecture0.pdf (already there) plus lecture1.pdf, lecture2.pdf, lecture3.pdf, lecture4.pdf, lecture5.pdf, lecture6.pdf, lecture7.pdf, lecture8.pdf, and lecture9.pdf, with no renaming or extra files.</answer>

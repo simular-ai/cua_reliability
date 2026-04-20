@@ -1,0 +1,50 @@
+{
+  "id": "4c26e3f3-3a14-4d86-b44a-d3cedebbb487",
+  "snapshot": "libreoffice_impress",
+  "instruction": "On the second slide, the image looks a bit too dim—could you slightly enhance its brightness so it’s brighter, but keep everything else the same (no cropping, resizing, or other edits)? When you’re done, please export just that image as a PNG and save it on the Desktop as /home/user/Desktop/background.png. Thanks!",
+  "source": "https://www.quora.com/How-do-I-edit-a-photo-in-GIMP",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/4c26e3f3-3a14-4d86-b44a-d3cedebbb487/PPT-Template_widescreen.pptx",
+            "path": "/home/user/Desktop/PPT-Template_widescreen.pptx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/PPT-Template_widescreen.pptx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/4c26e3f3-3a14-4d86-b44a-d3cedebbb487",
+  "related_apps": [
+    "gimp",
+    "libreoffice_impress",
+    "os"
+  ],
+  "evaluator": {
+    "func": "check_brightness_decrease_and_structure_sim",
+    "expected": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/background.png",
+      "dest": "background.png"
+    },
+    "result": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/4c26e3f3-3a14-4d86-b44a-d3cedebbb487/back.png",
+      "dest": "image_original.png"
+    },
+    "options": {
+      "threshold": 0.15
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

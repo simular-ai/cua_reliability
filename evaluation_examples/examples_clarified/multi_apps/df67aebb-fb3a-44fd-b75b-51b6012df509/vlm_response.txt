@@ -1,0 +1,12 @@
+<thoughts>
+The evaluator compares the exact text of /home/user/Desktop/references.bib against a gold file, ignoring only whitespace. So the agent must:
+- Write to the exact path /home/user/Desktop/references.bib (not another location/name).
+- Use DBLP’s BibTeX exactly as exported (same fields, keys, and formatting), since any changes to content or order will cause a mismatch.
+- Gather entries for all papers listed in the opened /home/user/Desktop/references.docx.
+- Prefer published (journal/conference) versions over arXiv when available; only use arXiv if no published version exists.
+- Avoid adding comments or reformatting beyond optional blank lines.
+- Ordering likely matters for exact match, so specifying to keep the same order as in the docx reduces ambiguity.
+</thoughts>
+
+<answer>
+I’ve listed all my references in the opened document at /home/user/Desktop/references.docx. Please get the BibTeX for each of those papers from DBLP (https://dblp.org) and save them into the file /home/user/Desktop/references.bib, overwriting its contents. Use the DBLP-provided BibTeX exactly as exported (keep the original cite keys, fields, and field order, and don’t add comments or make edits), and keep the entries in the same order they appear in the docx. If a paper has a published journal or conference version, use that instead of the arXiv entry; only use arXiv when no published version exists. For readability, it’s fine to put a blank line between each BibTeX entry.

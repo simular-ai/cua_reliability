@@ -1,0 +1,1 @@
+In /home/user/Desktop/201_6.pptx (open in LibreOffice Impress), go to Slide 2 and move the picture so it sits on the right half of the slide—past the slide’s midpoint, i.e., clearly further right than where it started. Don’t resize it or change any other content on any slide, and save the changes back to /home/user/Desktop/201_6.pptx.

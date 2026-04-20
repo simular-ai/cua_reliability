@@ -1,0 +1,79 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "937087b6-f668-4ba6-9110-60682ee33441",
+  "snapshot": "vlc",
+  "instruction": "I am currently using a ubuntu system. Could you help me set the default video player as VLC?",
+  "source": "https://superuser.com/questions/187440/set-default-ubuntu-video-player-as-vlc",
+  "config": [],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vlc",
+    "os"
+  ],
+  "evaluator": {
+    "func": "check_include_exclude",
+    "result": {
+      "type": "default_video_player"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "include": [
+          "vlc.desktop"
+        ]
+      }
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_include_exclude
+def check_include_exclude(result: str, rules: Dict[str, List[str]]) -> float:
+    if result is None:
+        return 0.
+
+    print(result, rules)
+    include = rules.get("include", [])
+    exclude = rules.get("exclude", [])
+    if all(r in result for r in include) and all(r not in result for r in exclude):
+        return 1.
+    else:
+        return 0.
+```
+
+## Task:
+
+Analyze the instruction: "I am currently using a ubuntu system. Could you help me set the default video player as VLC?"
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

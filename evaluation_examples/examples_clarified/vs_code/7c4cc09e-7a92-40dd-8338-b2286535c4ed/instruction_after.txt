@@ -1,0 +1,1 @@
+Please help me change the display language of VS Code to “Arabic” without using any extensions. If that isn’t possible in the base VS Code install, just let me know it’s not feasible under these constraints and explain why, rather than trying any workaround.

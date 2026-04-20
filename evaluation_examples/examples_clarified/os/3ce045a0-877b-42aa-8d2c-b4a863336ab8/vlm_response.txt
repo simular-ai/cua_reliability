@@ -1,0 +1,11 @@
+<thoughts>
+The evaluator checks GNOME’s system-wide settings, not app-level zoom. It passes if either:
+- The GNOME text-scaling-factor is at least 1.2 (“Large Text” in Accessibility), or
+- The GNOME Screen Magnifier is enabled with a magnification > 1.1.
+
+The original instruction doesn’t specify Ubuntu/GNOME, system-wide scope, or acceptable alternatives/thresholds. We should minimally clarify: it’s on Ubuntu (GNOME), the change should be system-wide, and either Large Text (≈1.2x+) or Screen Magnifier (>1.1x) is fine. Keep the help link.
+</thoughts>
+
+<answer>
+My glasses are broken, and I’m having trouble seeing small things clearly. On my Ubuntu (GNOME) desktop, could you make the text larger system-wide (not just in one app)? Using the Accessibility “Large Text” option (so the text scaling is about 1.2x or higher) is perfect; alternatively, turning on the built-in Screen Magnifier with the zoom set above 1.1x also works. Here’s the reference I’m looking at: https://help.ubuntu.com/lts/ubuntu-help/a11y-font-size.html.en
+</answer>

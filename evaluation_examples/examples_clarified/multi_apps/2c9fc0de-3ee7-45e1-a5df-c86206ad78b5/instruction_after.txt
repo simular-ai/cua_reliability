@@ -1,0 +1,1 @@
+Could you use the command line to stage all current changes in /home/user/projects/binder, commit them with the exact message daily update (no extra text), and push to the origin remote’s main branch (/home/user/projects/remote_project) so that local main and origin/main end up in sync?

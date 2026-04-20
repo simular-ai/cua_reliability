@@ -1,0 +1,1 @@
+Could you open /home/user/Desktop/low_resolution.jpeg in GIMP and try to make it high‑resolution (increase the pixel dimensions), but keep the saved file no larger in bytes than the original? If truly increasing resolution without increasing the file size isn’t feasible without quality loss, please let me know why and what trade‑offs would be required.

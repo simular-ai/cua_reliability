@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator checks whether the phrase "conda initialize" exists in ~/.bashrc, which implies the task expects the Bash shell to be configured via the standard conda init block in that specific file. The original instruction doesn’t specify the shell, the exact file to modify, or that the change should be effective immediately. To align with the evaluator, we need to explicitly mention Bash, ~/.bashrc, and the presence of the "conda initialize" block, plus indicate that it should be reloaded so conda is usable right away.
+</thoughts>
+
+<answer>
+When I ran "conda install datasets" in the terminal, I got "conda: command not found." Could you set up my Bash environment so conda works immediately—specifically, add the standard conda init block (the "# >>> conda initialize >>>" section) to ~/.bashrc and reload it so I can use the conda command right away?

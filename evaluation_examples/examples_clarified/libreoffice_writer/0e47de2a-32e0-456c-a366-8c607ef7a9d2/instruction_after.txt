@@ -1,0 +1,1 @@
+In /home/user/Desktop/LibreOffice_Open_Source_Word_Processing.docx, add a numeric page number in the page footer so it shows on every page (including all sections). Place it bottom-left in the footer’s first line, then save the changes to the same .docx at that path.

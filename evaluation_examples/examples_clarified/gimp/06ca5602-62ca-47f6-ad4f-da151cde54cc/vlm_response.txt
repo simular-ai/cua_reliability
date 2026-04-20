@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator will open GIMP with /home/user/Desktop/computer.png.
+- It later auto-exports with the name palette_computer.png on the Desktop.
+- The check verifies that the image used for comparison is palette-based and that the exported image is structurally similar, so the content shouldn’t change—only the mode.
+- The original instruction doesn’t specify the exact file, the required mode name (Indexed), or the export name/location that the evaluator expects.
+</thoughts>
+
+<answer>
+Please convert the opened image at /home/user/Desktop/computer.png in GIMP to a palette-based (Indexed) mode without changing its appearance, and have it exported as a PNG named palette_computer.png on the Desktop.
+</answer>

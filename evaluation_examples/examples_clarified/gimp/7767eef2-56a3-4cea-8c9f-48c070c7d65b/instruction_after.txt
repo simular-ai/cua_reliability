@@ -1,0 +1,1 @@
+Please switch GIMP from the dark theme to the Light theme, and make sure the change is saved to GIMP’s configuration so it persists after closing. Specifically, the gimprc file (typically at ~/.config/GIMP/2.10/gimprc) should contain the entry (theme "Light") once you’re done. Here’s a reference video: https://www.youtube.com/watch?v=LX-S1CX1HUI

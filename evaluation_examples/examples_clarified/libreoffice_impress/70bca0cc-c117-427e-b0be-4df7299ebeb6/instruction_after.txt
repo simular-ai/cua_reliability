@@ -1,0 +1,1 @@
+In /home/user/Desktop/71_6.pptx, change only slide 2’s background to a solid fill that exactly matches the current font color of that slide’s title. Don’t modify the title text itself or move/resize any objects, and don’t change the background of any other slide or the master. Save the file in place, overwriting /home/user/Desktop/71_6.pptx.

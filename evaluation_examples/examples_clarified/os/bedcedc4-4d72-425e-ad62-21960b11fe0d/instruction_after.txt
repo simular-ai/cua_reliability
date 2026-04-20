@@ -1,0 +1,1 @@
+Please turn off “Dim screen when inactive” in Settings, making sure the GNOME session idle delay is disabled—i.e., org.gnome.desktop.session idle-delay is set to 0 (so running “gsettings get org.gnome.desktop.session idle-delay” returns “uint32 0”).

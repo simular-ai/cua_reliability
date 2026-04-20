@@ -1,0 +1,1 @@
+On my Desktop there’s an XCF file named “QTdHniCqfJbBLJe3L3nijU-1200-80.xcf.” Please open it in GIMP, copy the full visible canvas exactly as it appears (no edits or resizing), paste it once into a new LibreOffice Writer document, and save that document on the Desktop as “image.docx” in DOCX format.

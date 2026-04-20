@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator only checks that the GNOME GTK (Applications) theme is set to a value containing “Orchis” by running gsettings get org.gnome.desktop.interface gtk-theme. The original instruction is ambiguous because “change to it” could imply shell or icon themes, which the evaluator does not check. Minimally clarifying that the Applications (GTK) theme should end up set to an Orchis variant, and referencing the exact gsettings key/value the evaluator reads, addresses the ambiguity without turning it into step-by-step instructions.
+</thoughts>
+
+<answer>
+Help me download and install the Orchis theme from gnome-look.org and switch my GNOME Applications (GTK) theme to it. I don’t need icons or the shell theme changed—just make sure the active GTK theme is an Orchis variant so that running gsettings get org.gnome.desktop.interface gtk-theme returns a value containing “Orchis.”
+</answer>

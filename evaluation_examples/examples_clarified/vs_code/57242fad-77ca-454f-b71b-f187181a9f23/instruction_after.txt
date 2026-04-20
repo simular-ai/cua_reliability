@@ -1,0 +1,1 @@
+Please use VS Code to create a new Python file named exactly “test.py” (all lowercase) and save it directly in /home/user/Desktop (not inside any subfolder). Make sure the file is actually saved so it appears at that exact path.

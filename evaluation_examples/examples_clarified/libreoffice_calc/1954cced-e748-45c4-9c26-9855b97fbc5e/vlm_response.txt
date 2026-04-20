@@ -1,0 +1,12 @@
+<thoughts>
+- The evaluator looks for a pivot table on a sheet named exactly “Sheet2,” not just any new sheet.
+- It compares pivot properties (row fields, data fields, column fields, filters), so we must specify:
+  - Row field: “Invoice No.”
+  - Data/Values field: “Invoice No.” summarized by Count
+  - No column fields and no filters
+- The pivot must be built from the full data range on Sheet1 with headers so “Invoice No.” is recognized.
+- The result must be saved back to /home/user/Invoices.xlsx without renaming the file.
+</thoughts>
+
+<answer>
+In /home/user/Invoices.xlsx, add a new sheet named exactly Sheet2 and create an actual Pivot Table there based on the full data range from Sheet1 (using the first row as headers). Use “Invoice No.” as the Row field, and add “Invoice No.” to the Values/Data area summarized by Count, with no Column fields and no Filters. Save the workbook back to /home/user/Invoices.xlsx.

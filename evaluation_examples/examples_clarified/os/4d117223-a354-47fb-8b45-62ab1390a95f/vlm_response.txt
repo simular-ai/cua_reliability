@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator likely runs checks within the current working directory (after cd into testDir) and expects every regular file in that directory and all subdirectories to have permissions exactly 0644. Ambiguities include whether to include hidden files, whether to recurse, and whether to touch directories, symlinks, or other non-regular files. It also helps to clarify that symlinks shouldn’t be followed and that the mode should be set exactly (not relatively). These are the minimal details needed for the evaluator’s pass condition.
+</thoughts>
+
+<answer>
+From the current working directory, set the permission mode of every regular file in this directory and all its subdirectories—hidden files included—to exactly 0644. Don’t modify directories, symlinks, or other non-regular files, and don’t follow symlinks.
+</answer>

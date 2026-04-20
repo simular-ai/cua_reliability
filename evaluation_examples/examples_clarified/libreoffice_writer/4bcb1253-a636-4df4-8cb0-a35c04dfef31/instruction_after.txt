@@ -1,0 +1,1 @@
+Export the currently opened document (View_Person_Organizational_Summary.docx) to PDF, keeping the same base name. The output should be named View_Person_Organizational_Summary.pdf, saved to either Desktop, Documents, Downloads, or your home folder (any one of those is fine). Don’t modify the document content—just export it as-is.

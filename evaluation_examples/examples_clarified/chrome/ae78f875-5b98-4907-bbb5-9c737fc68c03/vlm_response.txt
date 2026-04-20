@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator marks this task as infeasible, so the agent is expected to recognize product limitations.
+- The original instruction doesn’t specify that the setting is within Google Search (not Chrome browser settings), on desktop, and to acknowledge Google’s “continuous scroll” change that may remove the “results per page” option.
+- Including the support thread link maintains context.
+- No files/paths are relevant.
+</thoughts>
+
+<answer>
+On desktop Chrome, please configure Google Search so that a single page shows 50 results for my searches. If Google has removed or disabled the “results per page” setting (for example, due to continuous/auto scroll), please confirm that this can’t be changed right now and briefly explain the limitation. For reference, here’s the related Chrome Help thread: https://support.google.com/chrome/thread/219988391/increase-search-results-per-page?hl=en
+</answer>

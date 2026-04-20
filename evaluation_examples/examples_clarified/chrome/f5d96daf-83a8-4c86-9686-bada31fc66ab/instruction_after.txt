@@ -1,0 +1,1 @@
+Please use Apple’s official iPhone Compare page at https://www.apple.com/iphone/compare/ to compare iPhone 15 Pro Max with iPhone 14 Pro Max and iPhone 13 Pro Max. Make sure the comparison URL includes the modelList query with these exact slugs: iphone-15-pro-max, iphone-14-pro-max, iphone-13-pro-max.

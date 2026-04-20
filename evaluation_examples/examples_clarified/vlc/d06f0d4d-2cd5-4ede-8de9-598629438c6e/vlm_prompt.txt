@@ -1,0 +1,146 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "d06f0d4d-2cd5-4ede-8de9-598629438c6e",
+  "snapshot": "chrome",
+  "instruction": "Can you change the color of the volume slider to black-ish color? I often use the player in a low-light environment, and a darker color scheme would be less straining on my eyes, especially during nighttime usage.",
+  "source": "https://superuser.com/questions/1039392/changing-colour-of-vlc-volume-slider",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "VLC_VERBOSE=-1 vlc --no-audio --no-video-title-show",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.click({SCREEN_WIDTH_HALF}, {SCREEN_HEIGHT_HALF}); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vlc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "launch",
+        "parameters": {
+          "command": [
+            "pkill",
+            "vlc"
+          ]
+        }
+      },
+      {
+        "type": "launch",
+        "parameters": {
+          "command": "vlc --no-audio --no-video-title-show",
+          "shell": true
+        }
+      }
+    ],
+    "func": "check_qt_slider_colours",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "type": "blackish"
+      }
+    },
+    "result": {
+      "type": "vlc_config",
+      "dest": "vlcrc"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_qt_slider_colours
+def check_qt_slider_colours(actual_config_path, rule):
+    with open(actual_config_path, 'rb') as file:
+        config_file = file.read().decode('utf-8')
+
+    try:
+        qt_slider_colours = "153;210;153;20;210;20;255;199;15;245;39;29"
+        for line in config_file.split("\n"):
+            if 'qt-slider-colours' in line:
+                qt_slider_colours = line.split('=')[-1].strip()
+            # The configuration key was not found in the file
+
+        if rule['type'] == 'match':
+            expected_qt_slider_colours = rule['expected_qt_slider_colours']
+            if qt_slider_colours == expected_qt_slider_colours:
+                return 1
+            else:
+                return 0
+        elif rule['type'] == 'blackish':
+            def is_color_blackish(rgb_values, threshold=100):
+                # decide if the color is blackish
+                return all(value < threshold for value in rgb_values)
+
+            def parse_qt_slider_colours(colours_string):
+                # parse the string of colours into a list of RGB tuples
+                values = [int(x) for x in colours_string.split(';')]
+                colors = list(zip(values[0::3], values[1::3], values[2::3]))
+                return colors
+
+            colors = parse_qt_slider_colours(qt_slider_colours)
+
+            # check if all colors are blackish
+            for color in colors:
+                if is_color_blackish(color):
+                    pass
+                else:
+                    return 0
+            return 1
+
+    except FileNotFoundError:
+        logger.error("VLC configuration file not found.")
+        return 0
+    except Exception as e:
+        logger.error(f"An error occurred: {e}")
+        return 0
+```
+
+## Task:
+
+Analyze the instruction: "Can you change the color of the volume slider to black-ish color? I often use the player in a low-light environment, and a darker color scheme would be less straining on my eyes, especially during nighttime usage."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

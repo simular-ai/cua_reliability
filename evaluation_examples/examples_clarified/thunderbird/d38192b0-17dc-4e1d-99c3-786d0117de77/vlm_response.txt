@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator launches a Thunderbird compose window with the subject "New-month AWS Bill" and then checks whether an attachment named "aws-bill.pdf" is present in that specific draft.
+- The original instruction doesn’t specify which email/draft to attach to, nor does it clarify the exact attachment name as it should appear. It also has a minor grammatical error.
+- Minimal clarifications needed: reference the exact draft by subject and ensure the attachment keeps the filename "aws-bill.pdf". Keep the instruction not to send/close.
+</thoughts>
+
+<answer>
+Please attach my AWS bill—located at ~/aws-bill.pdf—to the open email draft with the subject "New-month AWS Bill," keeping the attachment name as aws-bill.pdf. Don’t send or close the draft; I haven’t finished all the contents yet.
+</answer>

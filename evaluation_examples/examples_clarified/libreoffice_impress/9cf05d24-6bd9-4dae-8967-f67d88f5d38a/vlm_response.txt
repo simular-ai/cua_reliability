@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator compares the edited file at /home/user/Desktop/214_9.pptx to a gold file, so changes must be saved to that exact path.
+- It checks the background color via solid fill RGB equality; gradients/patterns or master-level changes could fail the check. So it should be a solid fill on the selected slide only.
+- It compares all slides’ shapes, text, notes, and counts, so only slide 1’s background should change—no other content or slides should be altered.
+- “Slide 1” should be unambiguously the first slide currently in the deck.
+- The exact shade matters; the safest minimal guidance is to use the standard “Green” swatch from the default palette as a solid fill.
+</thoughts>
+
+<answer>
+Open /home/user/Desktop/214_9.pptx and go to the first slide (slide 1). Change only that slide’s background to a solid green using the standard “Green” swatch from the default palette (solid fill, not a gradient or pattern), applied to this slide only—not to all slides or the master. Don’t alter any other slides, shapes, text, or notes, and save the changes to /home/user/Desktop/214_9.pptx. </answer>

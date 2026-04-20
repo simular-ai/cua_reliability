@@ -1,0 +1,1 @@
+On the Qatar Airways website, look up flights from Mumbai (use city code BOM) to Stockholm (use city code STO) for next Monday—use the actual calendar date for the upcoming Monday based on today; if today is Monday, use the Monday of the following week—and pull up the results so that search is reflected on the page.

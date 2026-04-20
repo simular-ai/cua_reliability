@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares the embedded image(s) inside the produced PDF against a gold PDF, including the count of images. So the output should be a single-page PDF that embeds the original image without adding extra images or pages.
+- The original instruction doesn’t specify the exact source file name, but the test provides /home/user/OIP.jpg. This needs to be explicit.
+- The evaluator expects the output path and name to be exactly /home/user/Desktop/receipt.pdf.
+- To maximize match, the image should be embedded as-is (no resizing, cropping, or recompression), so the extracted image hash aligns with the gold within threshold.
+</thoughts>
+
+<answer>
+I have a receipt image at /home/user/OIP.jpg. Please convert that exact file into a single-page PDF that just embeds the original image as-is (no resizing, cropping, or recompressing, and no extra pages or images), and save it as /home/user/Desktop/receipt.pdf.

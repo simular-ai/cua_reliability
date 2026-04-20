@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator looks for specific active filters on the page (class "filter-selector-link") containing the terms: "women", "nike", "jerseys", and "over $60".
+- It also requires the page URL to include those same terms.
+- It expects only those filters to be active (is_other_exist: false).
+- The environment opens nba.com; the task should be done on the NBA Store reached from there.
+- The original instruction doesn’t mention ensuring the URL reflects the filters or that no other filters are applied, which the evaluator checks.
+</thoughts>
+
+<answer>
+On the NBA Store reached from nba.com, browse the product results page for women’s Nike jerseys priced over $60, making sure Women, Nike, Jerseys, and Over $60 are the only active filters and that both the page and its URL reflect those filters. </answer>

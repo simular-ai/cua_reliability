@@ -1,0 +1,76 @@
+{
+  "id": "da52d699-e8d2-4dc5-9191-a2199e0b6a9b",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Please open the spreadsheet at /home/user/Desktop/2023_validation_Book_Reading_Rate.xlsx (the 2022 reading log), use https://howlongtoread.com/ as needed to determine which book has the lowest words-per-day reading pace, and then open /home/user/Desktop/book_list_result.docx. In that document, enter only the exact book title as it appears in the spreadsheet (match capitalization; no author, numbers, quotes, or extra text), replace any existing content, and save the changes to the same file.",
+  "source": "GAIA",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/da52d699-e8d2-4dc5-9191-a2199e0b6a9b/2023_validation_Book_Reading_Rate.xlsx",
+            "path": "/home/user/Desktop/2023_validation_Book_Reading_Rate.xlsx"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/da52d699-e8d2-4dc5-9191-a2199e0b6a9b/book_list_result.docx",
+            "path": "/home/user/Desktop/book_list_result.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/2023_validation_Book_Reading_Rate.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/da52d699-e8d2-4dc5-9191-a2199e0b6a9b",
+  "related_apps": [
+    "libreoffice_calc",
+    "chrome",
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "func": "compare_docx_files",
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "book_list_result.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/da52d699-e8d2-4dc5-9191-a2199e0b6a9b/book_list_result_Gold.docx",
+      "dest": "book_list_result_Gold.docx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/book_list_result.docx",
+      "dest": "book_list_result.docx"
+    }
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

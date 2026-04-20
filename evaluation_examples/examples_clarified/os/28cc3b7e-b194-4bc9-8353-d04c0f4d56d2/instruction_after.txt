@@ -1,0 +1,1 @@
+My system volume is too low—could you turn the sound all the way up at the PulseAudio/system level? Please start PulseAudio if it isn’t running, and set the primary/first output device’s volume to exactly 100% (no over‑amplification), so that “pactl list sinks” shows the first sink at 100%.

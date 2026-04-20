@@ -1,0 +1,1 @@
+When I reply to an email, it quotes the original message but offsets it with an indentation and ">" character. I would like to quote the original message with no indentation, and no special character. Could you help me remove the indentation and ">" for me?

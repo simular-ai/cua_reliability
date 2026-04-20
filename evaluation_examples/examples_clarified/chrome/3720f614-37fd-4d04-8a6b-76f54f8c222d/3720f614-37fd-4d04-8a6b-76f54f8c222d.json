@@ -1,0 +1,17 @@
+{
+  "id": "3720f614-37fd-4d04-8a6b-76f54f8c222d",
+  "snapshot": "chrome",
+  "instruction": "I\u2019m more comfortable in Korean and want Chrome itself to be in Korean\u2014the browser\u2019s interface (menus and settings), not webpage translation. If you can change it here, please do. If this environment doesn\u2019t allow changing Chrome\u2019s language settings, let me know it\u2019s not possible in this setup and briefly tell me what I\u2019d do on my own Chrome to switch the UI to Korean.",
+  "source": "https://superuser.com/questions/984668/change-interface-language-of-chrome-to-english",
+  "config": [],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "chrome"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

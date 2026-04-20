@@ -1,0 +1,1 @@
+Please batch process the three images on /home/user/Desktop—squirrel.jpeg, panda.jpeg, and heron.jpeg—by applying GIMP’s Brightness/Contrast filter with Brightness set to +50 (leave Contrast at 0) to all of them in one batch run, rather than adjusting each individually, and save the changes back to the same files on the Desktop without renaming or changing formats.

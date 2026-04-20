@@ -1,0 +1,1 @@
+I’m working with the document at /home/user/Desktop/presentation_instruction_2023_Feb.docx in LibreOffice Writer and need all uppercase letters in its text converted to lowercase across the entire file. Please don’t change any wording, punctuation, spacing, or the order of content—just the letter case—and then save the changes back to the same .docx file at the same location.

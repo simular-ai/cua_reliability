@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares the actual PPTX at /home/user/Desktop/Writing-Outlines.pptx against a gold file, so the change must be made in that exact file and saved in place.
+- It checks Slide 3 content, not “Page,” and is strict about not changing slide/shape counts, positions, sizes, background, or notes.
+- It compares text exactly (including runs), alignment, paragraph count, and indent “level,” and it inspects bullets (the target line must have no bullet but keep the same indent level as the bullet text it’s aligning with).
+- The ambiguous part is which indent to match (“main idea” vs “sub topics”). The common intent (and likely gold) is: align “continuation of the sub topics” with the bullet text indent used by “sub topics,” but without a bullet. Also, only that one line should change.
+</thoughts>
+
+<answer>
+I’m working in /home/user/Desktop/Writing-Outlines.pptx in LibreOffice Impress. On Slide 3, please take the line that literally reads “continuation of the sub topics” and make it line up with the bullet text indent used by the “sub topics” item (same indentation level), but remove its bullet so that this line shows with no bullet. Keep the wording exactly the same and don’t change any other formatting (fonts, alignment, spacing), don’t move or resize any objects, and don’t add or remove slides or paragraphs. Save the changes back to /home/user/Desktop/Writing-Outlines.pptx. This is the effect described here: https://superuser.com/questions/1628656/in-libreoffice-impress-how-can-i-have-a-bullet-indentation-no-bullet-item

@@ -1,0 +1,1 @@
+Could you convert an OpenOffice/LibreOffice Impress presentation to a video file (MP4) without using screen recording, and then play the resulting video in VLC? If that isn’t possible with the tools available in this environment, please just explain that it’s not feasible here.

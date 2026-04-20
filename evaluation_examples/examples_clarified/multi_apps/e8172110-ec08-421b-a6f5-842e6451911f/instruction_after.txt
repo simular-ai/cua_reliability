@@ -1,0 +1,3 @@
+Open /home/user/Desktop/character.png in GIMP and isolate just the pixel‑art character: remove the background to full transparency and trim the canvas to the character’s exact bounding box (no extra padding, no scaling, and no color changes). Export that result as a PNG with alpha to /home/user/Desktop/character_gimp.png.
+
+Then write a Python script that reads /home/user/Desktop/character.png and performs the same extraction so the output precisely matches your GIMP result in content and canvas size (same crop, same transparency, untouched pixels). Save the script’s output to /home/user/Desktop/character_code.png.

@@ -1,0 +1,1 @@
+I’m finding VLC’s max volume of 125% too low. Could you make this persistently go up to 200% by editing VLC’s configuration and setting the qt-max-volume option to 200 (numeric, not “200%”) in its vlcrc file? On Linux this is typically at ~/.config/vlc/vlcrc. After this change, restarting VLC should let the volume slider reach 200% of the original volume.

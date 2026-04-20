@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator only checks the active Chrome tab’s URL and requires it to contain the exact, case-sensitive substring "Ticket-Delivery-FAQs". The original instruction doesn’t specify which site to use (though the session opens premier.ticketek.com.au) or what exact URL pattern confirms success. It also doesn’t state that the page must be the active tab at the end. I’ll minimally add: the site (Ticketek Australia), that the URL must include the exact "Ticket-Delivery-FAQs" text, and that this page should be the active tab when finished.
+</thoughts>
+
+<answer>
+On the Ticketek Australia website (premier.ticketek.com.au), find and open the Ticket Delivery FAQs page. Leave that page as the active tab in Chrome, and make sure the page’s URL contains the exact text “Ticket-Delivery-FAQs”.
+</answer>

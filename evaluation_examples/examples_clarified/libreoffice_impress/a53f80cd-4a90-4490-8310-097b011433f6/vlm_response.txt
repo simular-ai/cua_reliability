@@ -1,0 +1,15 @@
+<thoughts>
+- The evaluator compares the edited /home/user/Desktop/21_0.pptx against a gold PPTX, so the file path/name must be explicit and unchanged.
+- Slide numbers are 1-based; “slides 2 to 3” should mean slides 2 and 3.
+- It checks run-level font color and bold, so “black” should be explicit as pure black (RGB 000000), and bold must be set to true.
+- It also checks that text content, font name/size, alignment, shape count, and positions remain unchanged unless specified, so we should state that only color and bold of the title are changed.
+- For slide 4, it checks shape counts; we must delete exactly the personal info text and its icon shapes, and nothing else.
+- It autosaves with Ctrl+S and expects the same file path, so we should say to save back to /home/user/Desktop/21_0.pptx.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/21_0.pptx (LibreOffice Impress), adjust only the slide titles on slides 2 and 3: keep the title text itself the same, but set its font color to pure black (RGB 000000) and make it bold. Don’t change the title’s font name, size, alignment, or position.
+
+On slide 4, remove the personal information section, including its associated icon shapes (delete those text and icon elements only), and leave all other content on the slide as is.
+
+Save the changes to the same file at /home/user/Desktop/21_0.pptx.

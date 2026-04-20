@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator opens and saves a specific file: /home/user/Desktop/sample-recruitment-phone-script.odt.
+- It compares the edited file against a gold ODT and also checks that no text spans retain a yellow highlight with backgroundcolor #ffff00.
+- To pass, the agent must: edit that exact file, remove only the yellow highlighting everywhere, keep all other content/formatting unchanged, and save over the same filename and location.
+- The instruction should explicitly state the exact file path/name, clarify that only yellow highlighting (#ffff00) should be cleared across the whole document, and that nothing else should be altered, then save in place. Including the provided help link keeps context.
+</thoughts>
+
+<answer>
+I’m working in LibreOffice Writer on /home/user/Desktop/sample-recruitment-phone-script.odt. I’ve already rewritten the marked bits, so please remove every instance of yellow text highlighting (the yellow background, #ffff00) anywhere in the document. Don’t change any wording, punctuation, layout, or other formatting—just clear the yellow highlight. Save the changes to the same file and location (overwrite the existing .odt), and make sure there are no yellow‑highlighted words left. For reference, here’s the LibreOffice help page I had in mind: https://help.libreoffice.org/7.2/en-US/text/shared/02/02160000.html?&DbPAR=WRITER&System=WIN#:~:text=Select%20the%20highlighted%20text.%20On%20the%20Formatting%20bar%2C,by%20clicking%20the%20icon%20again%20or%20pressing%20Esc.

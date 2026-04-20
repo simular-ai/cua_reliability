@@ -1,0 +1,1 @@
+Computer, please open Chrome’s Password Manager at chrome://password-manager/passwords so I can look at my saved logins and find the Etsy entry, but don’t reveal the password yet.

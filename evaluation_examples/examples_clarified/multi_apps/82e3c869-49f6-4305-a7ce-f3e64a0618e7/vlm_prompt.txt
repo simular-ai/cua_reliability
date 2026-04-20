@@ -1,0 +1,189 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "82e3c869-49f6-4305-a7ce-f3e64a0618e7",
+  "snapshot": "multi_apps",
+  "instruction": "Please sift through the folder with all the event photos taken by our photographer. I need you to extract the photos featuring the presenters (a.k.a. Tao Yu) and place them in a separate folder named 'presenter'. Then, compress this folder into a zip file named 'presenter.zip' so I can easily share it with others later.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/Desktop/IDS LLM seminar/"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "path": "/home/user/Desktop/IDS LLM seminar/DSC00659.jpg",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/82e3c869-49f6-4305-a7ce-f3e64a0618e7/DSC00659.jpg"
+          },
+          {
+            "path": "/home/user/Desktop/IDS LLM seminar/DSC00657.jpg",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/82e3c869-49f6-4305-a7ce-f3e64a0618e7/DSC00657.jpg"
+          },
+          {
+            "path": "/home/user/Desktop/IDS LLM seminar/DSC00574.jpg",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/82e3c869-49f6-4305-a7ce-f3e64a0618e7/DSC00574.jpg"
+          },
+          {
+            "path": "/home/user/Desktop/IDS LLM seminar/DSC00554.jpg",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/82e3c869-49f6-4305-a7ce-f3e64a0618e7/DSC00554.jpg"
+          },
+          {
+            "path": "/home/user/Desktop/IDS LLM seminar/DSC00495.jpg",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/82e3c869-49f6-4305-a7ce-f3e64a0618e7/DSC00495.jpg"
+          },
+          {
+            "path": "/home/user/Desktop/IDS LLM seminar/DSC00454.jpg",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/82e3c869-49f6-4305-a7ce-f3e64a0618e7/DSC00454.jpg"
+          }
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/82e3c869-49f6-4305-a7ce-f3e64a0618e7",
+  "related_apps": [
+    "os",
+    "image"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "rm",
+            "-rf",
+            "/home/user/Desktop/presenter"
+          ]
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "unzip",
+            "/home/user/Desktop/presenter.zip",
+            "-d",
+            "/home/user/Desktop"
+          ]
+        }
+      }
+    ],
+    "func": "compare_image_list",
+    "result": {
+      "type": "vm_file",
+      "path": [
+        "/home/user/Desktop/presenter/DSC00657.jpg",
+        "/home/user/Desktop/presenter/DSC00574.jpg",
+        "/home/user/Desktop/presenter/DSC00554.jpg",
+        "/home/user/Desktop/presenter/DSC00495.jpg"
+      ],
+      "dest": [
+        "DSC00657.jpg",
+        "DSC00574.jpg",
+        "DSC00554.jpg",
+        "DSC00495.jpg"
+      ],
+      "multi": "true"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": [
+        "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/82e3c869-49f6-4305-a7ce-f3e64a0618e7/DSC00657.jpg",
+        "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/82e3c869-49f6-4305-a7ce-f3e64a0618e7/DSC00574.jpg",
+        "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/82e3c869-49f6-4305-a7ce-f3e64a0618e7/DSC00554.jpg",
+        "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/82e3c869-49f6-4305-a7ce-f3e64a0618e7/DSC00495.jpg"
+      ],
+      "dest": [
+        "DSC00657_gold.jpg",
+        "DSC00574_gold.jpg",
+        "DSC00554_gold.jpg",
+        "DSC00495_gold.jpg"
+      ],
+      "multi": "true"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_image_list
+def compare_image_list(pred_img_path_list: Union[str, List[str]],
+                       gold_img_path_list: Union[str, List[str]]) -> float:
+    """ Compare two image lists, only if all images are the same, return 1.0, otherwise return 0.0
+    """
+    if type(pred_img_path_list) != list:
+        pred_img_path_list = [pred_img_path_list]
+        gold_img_path_list = [gold_img_path_list]
+    for pred_img_path, gold_img_path in zip(pred_img_path_list, gold_img_path_list):
+        if not pred_img_path or not gold_img_path:
+            return 0.0
+        pred_img = Image.open(pred_img_path)
+        gold_img = Image.open(gold_img_path)
+        
+        # Check if images have different sizes and resize if necessary
+        if pred_img.size != gold_img.size:
+            logging.debug(f"Images have different sizes: {pred_img.size} vs {gold_img.size}, resizing predicted image to match gold image")
+            pred_img = pred_img.resize(gold_img.size, Image.Resampling.LANCZOS)
+        
+        # Ensure both images are in the same mode for comparison
+        if pred_img.mode != gold_img.mode:
+            pred_img = pred_img.convert(gold_img.mode)
+        
+        diff = ImageChops.difference(pred_img, gold_img)
+        if diff.getbbox():
+            return 0.0
+    return 1.0
+```
+
+## Task:
+
+Analyze the instruction: "Please sift through the folder with all the event photos taken by our photographer. I need you to extract the photos featuring the presenters (a.k.a. Tao Yu) and place them in a separate folder named 'presenter'. Then, compress this folder into a zip file named 'presenter.zip' so I can easily share it with others later."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+[IMAGE: data:image/jpg;base64,/9j/4SZHRXhpZgAASUkqAAgAAAAIAA8BAgAFAAAAbgAAABABAgAJAAAAdAAAABoBBQABAAAAfgAAAB...]
+
+[IMAGE: data:image/jpg;base64,/9j/4TuPRXhpZgAASUkqAAgAAAAIAA8BAgAFAAAAbgAAABABAgAJAAAAdAAAABoBBQABAAAAfgAAAB...]
+
+[IMAGE: data:image/jpg;base64,/9j/4Sy0RXhpZgAASUkqAAgAAAAIAA8BAgAFAAAAbgAAABABAgAJAAAAdAAAABoBBQABAAAAfgAAAB...]
+
+[IMAGE: data:image/jpg;base64,/9j/4TNpRXhpZgAASUkqAAgAAAAIAA8BAgAFAAAAbgAAABABAgAJAAAAdAAAABoBBQABAAAAfgAAAB...]

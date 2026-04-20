@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator expects text extracted specifically from the Desktop file “Unlocking-the-Power-of-ChatGPT.pptx”.
+- The output must be a .docx named exactly “script.docx” saved on the Desktop.
+- The comparison ignores order, formatting, and empty lines, so preserving slide order/layout isn’t required, but adding extra labels (e.g., “Slide 1”) could hurt similarity.
+- It’s safer to specify to include all visible slide text (titles and bullet points) and exclude non-content items like images, slide numbers/footers, and speaker notes.
+</thoughts>
+
+<answer>
+Please take the presentation “Unlocking-the-Power-of-ChatGPT.pptx” from the Desktop (opened in Impress) and copy all the visible slide text—titles and bullet points—into a single .docx file named exactly “script.docx” on the Desktop. No need to preserve layout or slide order, and don’t include images, slide numbers/footers, or speaker notes; just the slide text. I’ll handle any formatting afterward. Thank you!</answer>

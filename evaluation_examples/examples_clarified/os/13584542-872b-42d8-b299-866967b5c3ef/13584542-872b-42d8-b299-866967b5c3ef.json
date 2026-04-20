@@ -1,0 +1,58 @@
+{
+  "id": "13584542-872b-42d8-b299-866967b5c3ef",
+  "snapshot": "os",
+  "instruction": "On Linux, I currently change the terminal size via the menu (Terminal \u2192 132\u00d743), but it always resets after a reboot. Please make this the default so every new terminal window (the one opened with Ctrl+Alt+T) starts at 132 columns by 43 rows, and running \u201cstty size\u201d in a fresh session shows \u201c43 132\u201d without me having to resize it each time.",
+  "source": "https://superuser.com/questions/72176/linux-set-default-terminal-size-and-screen-position",
+  "trajectory": "trajectories/",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.click({SCREEN_WIDTH_HALF}, {SCREEN_HEIGHT_HALF}); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "related_apps": [
+    "os"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 1
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; time.sleep(0.5); pyautogui.hotkey('ctrl', 'alt', 't'); time.sleep(0.5); pyautogui.write('stty size'); time.sleep(0.5); pyautogui.press('enter')"
+          ]
+        }
+      }
+    ],
+    "func": "check_include_exclude",
+    "result": {
+      "type": "vm_terminal_output"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "include": [
+          "43 132"
+        ],
+        "exclude": []
+      }
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

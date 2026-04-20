@@ -1,0 +1,1 @@
+Could you open Thunderbird’s in‑app profile manager by opening the “About Profiles” tab? I want it to show up as a tab in the main Thunderbird window (in the tab bar) titled “About Profiles,” not the launch-time profile chooser dialog.

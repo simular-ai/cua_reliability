@@ -1,0 +1,10 @@
+<thoughts>
+The evaluator compares the resulting price.docx against a ground-truth .docx by checking that:
+- There is the same number of tables (likely one),
+- Each table has the same rows/columns,
+- Every cell’s text matches exactly (after trimming leading/trailing whitespace).
+It does not check visual formatting. It also expects the file to be saved exactly as /home/user/Desktop/price.docx and for the Writer window titled “price.docx - LibreOffice Writer” to be open. The original instruction doesn’t specify: which spreadsheet/sheet to use, how much of the sheet to transfer, that it should be a single table with unchanged cell text/structure, the exact save path/format, or that the document should remain open.
+</thoughts>
+
+<answer>
+Please take the entire used range (including headers) from the active sheet of the currently open spreadsheet “OSP_Envelope_Price-List_2023_5000.xlsx” in LibreOffice Calc and insert it into a blank LibreOffice Writer document as one table. Keep the cell text and the row/column structure exactly the same as in Calc (no extra or missing rows/columns and no altered cell text), and preserve the original formatting as much as Writer allows. Save it as a Microsoft Word .docx named “price.docx” directly on the Desktop (/home/user/Desktop/price.docx), and leave the document open in LibreOffice Writer.

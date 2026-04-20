@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator checks that the active Chrome tab is exactly the BabyCenter “Carl” name details URL: https://www.babycenter.com/baby-names/details/carl-853. The original instruction doesn’t specify which site to use or the exact page, so an agent might choose a different source or page. To align with the evaluator, the instruction should explicitly direct the agent to that specific BabyCenter page and ask for the similar names listed there, without turning it into step-by-step directions.
+</thoughts>
+
+<answer>
+On BabyCenter, open the Carl name details page at https://www.babycenter.com/baby-names/details/carl-853 and tell me the similar names listed there.

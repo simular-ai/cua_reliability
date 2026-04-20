@@ -1,0 +1,1 @@
+Please capture the frame that’s currently visible in the open VLC player of the Interstellar trailer—just the video content, not the player window or controls—and save it exactly as interstellar.png on my Desktop (/home/user/Desktop/interstellar.png).

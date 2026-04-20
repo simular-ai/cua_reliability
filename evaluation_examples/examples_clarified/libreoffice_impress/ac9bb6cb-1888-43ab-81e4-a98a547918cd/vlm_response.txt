@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator checks the saved .pptx at /home/user/Desktop/saa-format-guide.pptx and looks for the slide number color set via the slide master. The original instruction doesn’t specify which file, that the change should apply to all slides (i.e., through the master/footer), or that the result should be saved. These clarifications align with what the evaluator verifies without adding step-by-step details.
+</thoughts>
+
+<answer>
+I’m preparing a PPT in LibreOffice Impress. In the presentation at /home/user/Desktop/saa-format-guide.pptx, the slide/page number is barely visible. Could you change the slide number text color to red in the slide master so it applies to all slides, and save the changes to that same file?
+</answer>

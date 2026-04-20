@@ -1,0 +1,85 @@
+{
+  "id": "7e429b8d-a3f0-4ed0-9b58-08957d00b127",
+  "snapshot": "libreoffice_calc",
+  "instruction": "I\u2019ve put everything you need into a single spreadsheet. Please open /home/user/VLOOKUP_Fill_the_form.xlsx and, on its first (and only) worksheet, use the Branch \u2192 Officer Name lookup (the first two columns: \u201cBranch\u201d and \u201cOfficer Name\u201d) to fill in the blank cells in the \u201cOfficer Name.1\u201d column that sits next to \u201cHeadOffice\u201d. Match each HeadOffice exactly to the Branch in the lookup and place that branch\u2019s officer name into \u201cOfficer Name.1\u201d. Don\u2019t change any other cells, headers, formatting, or sheet names\u2014just populate those \u201cOfficer Name.1\u201d values\u2014and then save the file with the same name in the same location. You can use a lookup formula or fill the names directly, as long as the saved sheet shows the correct officer names in that column.",
+  "source": "https://medium.com/@divyangichaudhari17/how-to-use-vlookup-and-hlookup-in-libre-calc-3370698bb3ff",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/7e429b8d-a3f0-4ed0-9b58-08957d00b127/VLOOKUP_Fill_the_form.xlsx",
+            "path": "/home/user/VLOOKUP_Fill_the_form.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/VLOOKUP_Fill_the_form.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/7e429b8d-a3f0-4ed0-9b58-08957d00b127",
+  "related_apps": [
+    "libreoffice calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "VLOOKUP_Fill_the_form.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/7e429b8d-a3f0-4ed0-9b58-08957d00b127/VLOOKUP_Fill_the_form_gold.xlsx",
+      "dest": "VLOOKUP_Fill_the_form_gold.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/VLOOKUP_Fill_the_form.xlsx",
+      "dest": "VLOOKUP_Fill_the_form.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

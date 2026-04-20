@@ -1,0 +1,1 @@
+In VS Code, using the file /home/user/main.py that’s already open, help me run the script and open every numpy.ndarray it creates in VS Code’s interactive variable/data viewer so I can see the actual array contents (not just shapes). Please keep everything inside VS Code (no external tools) and use the built‑in Jupyter/Interactive Data Viewer for each array found.

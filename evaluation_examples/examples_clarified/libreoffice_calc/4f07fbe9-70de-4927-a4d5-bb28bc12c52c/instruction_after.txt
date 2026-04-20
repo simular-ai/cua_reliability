@@ -1,0 +1,3 @@
+Please do this in /home/user/Padding_Decimals_In_Formular.xlsx on Sheet1: make the sentence cell use the numeric value from its source cell and display it with exactly two decimal places using a dot as the decimal separator. The text should be driven by a formula that references the number (so it updates if the number changes), not hard‑typed. For the current data (PRICE = 19.5), the visible sentence should read exactly: “The price is 19.50 euros.”
+
+Don’t add or remove rows/columns, don’t rename the sheet, and don’t alter any other cells or formatting—leave all irrelevant regions (including blanks) untouched. Save the changes back to /home/user/Padding_Decimals_In_Formular.xlsx when you’re done.

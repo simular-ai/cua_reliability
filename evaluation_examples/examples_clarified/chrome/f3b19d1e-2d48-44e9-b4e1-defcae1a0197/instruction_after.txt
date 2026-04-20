@@ -1,0 +1,1 @@
+On the Ticketek Australia website (premier.ticketek.com.au), find and open the Ticket Delivery FAQs page. Leave that page as the active tab in Chrome, and make sure the page’s URL contains the exact text “Ticket-Delivery-FAQs”.

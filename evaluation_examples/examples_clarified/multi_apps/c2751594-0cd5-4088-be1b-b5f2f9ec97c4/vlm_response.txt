@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator only checks that the VM’s desktop wallpaper matches a specific reference image; it doesn’t check where the image is saved.
+- The vague parts are: which email counts as “most recent,” what “doc file” means, and what “first image” refers to.
+- Clarifying that “most recent” is by date/time in the Notes folder, “doc file” is a Word document (.doc/.docx), and “first image” means the first inline image in the document body (top-to-bottom reading order) helps the agent pick the correct image that matches the reference.
+- Avoid mentioning internal file names like background.png, since that’s evaluator-internal.
+</thoughts>
+
+<answer>
+Please open Thunderbird, go to the Notes folder, and use the most recent email there (latest by date/time). Open its attached Word document (doc/docx), export the first inline image that appears in the document body in reading order (top to bottom), and set that exact image—without editing or cropping—as the desktop wallpaper on this machine.

@@ -1,0 +1,1 @@
+Please go through the photos in /home/user/Desktop/IDS LLM seminar and pull out the shots that feature the presenter (Tao Yu). For this set, keep the original filenames and put these into a folder named presenter located on the Desktop (/home/user/Desktop/presenter), then create a zip of that folder at /home/user/Desktop/presenter.zip so it’s easy to share later.

@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator checks the background image of slide index 1 (i.e., the second slide) in /home/user/Desktop/Robotic_Workshop_Infographics.pptx, so the instruction should name that exact file and clarify “second page” means the second slide only.
+- It compares against a specific frame from the video; the timestamp must be exactly 00:08 (8 seconds) from /home/user/Desktop/landscape.mp4.
+- The background must replace the slide background (not just insert an image), and the changes must be saved to the same .pptx file.
+</thoughts>
+
+<answer>
+Please grab the exact frame at 00:08 (8 seconds) from the video at /home/user/Desktop/landscape.mp4 and use that image as the slide background for only the second slide of the already opened presentation /home/user/Desktop/Robotic_Workshop_Infographics.pptx in LibreOffice Impress. Make sure it replaces the slide’s background (not just inserted on top) and fills the slide, then save the changes to that same .pptx file. </answer>

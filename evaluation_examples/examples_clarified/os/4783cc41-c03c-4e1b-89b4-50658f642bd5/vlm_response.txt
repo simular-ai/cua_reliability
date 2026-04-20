@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator here is marked as infeasible, so it’s not checking concrete outputs, but the original instruction is still ambiguous.
+- Ambiguities: whether to copy just the directory structure or also files; whether to include hidden directories; whether to preserve relative paths; whether to create the destination root if missing; and what $sourceDir actually points to in this setup.
+- The config sets sourceDir to /home/user/Desktop/ and creates nested directories under it, but $targetDir isn’t defined; we should clarify that it must exist or be created.
+- Minimal clarifications: specify source path, that only the directory hierarchy (no files) is mirrored, include hidden directories, preserve relative paths, and do not delete/overwrite—just ensure directories exist at destination.
+</thoughts>
+
+<answer>
+From the already-set $sourceDir (/home/user/Desktop/), mirror its directory hierarchy (subdirectories only, including hidden ones) into $targetDir, preserving the same relative paths. Don’t copy any files—just ensure the corresponding directories exist under $targetDir. Create $targetDir if it doesn’t already exist, and don’t remove or overwrite anything that’s already there.

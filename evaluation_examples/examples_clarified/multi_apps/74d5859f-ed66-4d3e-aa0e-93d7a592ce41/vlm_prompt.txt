@@ -1,0 +1,370 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "74d5859f-ed66-4d3e-aa0e-93d7a592ce41",
+  "snapshot": "chrome",
+  "instruction": "Help me to set up an initial web extension project with help of the web tool, tagging it \"happy-extension v0.0.1\". Leave description blank for now. Include a background script and browser action, while other features are not required. Remember to unzip the auto-generated folder into \"~/Projects\".",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://webext.eu"
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/Projects"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "nautilus",
+          "/home/user/Projects"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/74d5859f-ed66-4d3e-aa0e-93d7a592ce41",
+  "related_apps": [
+    "chrome",
+    "os"
+  ],
+  "evaluator": {
+    "func": [
+      "check_json",
+      "diff_text_file",
+      "diff_text_file",
+      "diff_text_file",
+      "diff_text_file"
+    ],
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/Projects/happy-extension/manifest.json",
+        "dest": "manifest.json"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Projects/happy-extension/background_script.js",
+        "dest": "background_script.js"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Projects/happy-extension/browserAction/index.html",
+        "dest": "index.html"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Projects/happy-extension/browserAction/style.css",
+        "dest": "style.css"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Projects/happy-extension/browserAction/script.js",
+        "dest": "script.js"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expect": [
+            {
+              "key": [
+                "name"
+              ],
+              "method": "eq",
+              "ref": "happy-extension"
+            },
+            {
+              "key": [
+                "version"
+              ],
+              "method": "eq",
+              "ref": "0.0.1"
+            },
+            {
+              "key": [
+                "background",
+                "scripts"
+              ],
+              "method": "eq",
+              "ref": [
+                "background_script.js"
+              ]
+            },
+            {
+              "key": [
+                "browser_action",
+                "default_icon"
+              ],
+              "method": "eq",
+              "ref": {
+                "64": "icons/icon.png"
+              }
+            },
+            {
+              "key": [
+                "browser_action",
+                "default_popup"
+              ],
+              "method": "eq",
+              "ref": "browserAction/index.html"
+            },
+            {
+              "key": [
+                "browser_action",
+                "default_title"
+              ],
+              "method": "eq",
+              "ref": "happy-extension"
+            }
+          ]
+        }
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/74d5859f-ed66-4d3e-aa0e-93d7a592ce41/file_1t5Llhn6seDUXVs-eILu6CjwFEQL9Z5Qm.bin",
+        "dest": "background_script.js"
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/74d5859f-ed66-4d3e-aa0e-93d7a592ce41/index.html",
+        "dest": "index.html"
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/74d5859f-ed66-4d3e-aa0e-93d7a592ce41/style.css",
+        "dest": "style.css"
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/74d5859f-ed66-4d3e-aa0e-93d7a592ce41/file_14YYnhCfRtHQNk8M4fBPaUQeteoFMGBsA.bin",
+        "dest": "script.js"
+      }
+    ]
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_json
+def check_json(result: str, rules: Dict[str, List[Dict[str, Union[List[str], str]]]], is_yaml: bool = False) -> float:
+    """
+    Args:
+        result (str): path to json file
+        rules (Dict[str, List[Dict[str, Union[List[str], str]]]]): dict like
+          {
+            "expect": [
+                {
+                    "key": list of str
+                    "method": str
+                    "ref": something
+                }
+            ],
+            "unexpect": <the same as `expect`
+          }
+        is_yaml (bool): yaml rather than json
+
+    Returns:
+        float
+    """
+
+    if result is None:
+        logger.warning("Result file path is None, returning 0.0")
+        return 0.
+        
+    # Check if file exists
+    if not os.path.exists(result):
+        logger.warning(f"Result file does not exist: {result}, returning 0.0")
+        return 0.
+    
+    try:
+        with open(result, 'r', encoding='utf-8') as f:
+            if is_yaml:
+                try:
+                    # Use SafeLoader instead of Loader for better security and error handling
+                    result_data: Dict[str, Any] = yaml.safe_load(f)
+                    if result_data is None:
+                        logger.warning(f"YAML file {result} is empty or contains only null values, returning 0.0")
+                        return 0.
+                except yaml.YAMLError as e:
+                    logger.error(f"YAML parsing error in file {result}: {e}")
+                    logger.error(f"File content might be corrupted or have invalid YAML syntax")
+                    return 0.
+                except Exception as e:
+                    logger.error(f"Unexpected error parsing YAML file {result}: {e}")
+                    return 0.
+            else:
+                try:
+                    result_data: Dict[str, Any] = json.load(f)
+                except json.JSONDecodeError as e:
+                    logger.error(f"JSON parsing error in file {result}: {e}")
+                    return 0.
+                except Exception as e:
+                    logger.error(f"Unexpected error parsing JSON file {result}: {e}")
+                    return 0.
+    except IOError as e:
+        logger.error(f"IO error reading file {result}: {e}")
+        return 0.
+    except Exception as e:
+        logger.error(f"Unexpected error reading file {result}: {e}")
+        return 0.
+
+    expect_rules = rules.get("expect", {})
+    unexpect_rules = rules.get("unexpect", {})
+
+    metric = True
+    for r in expect_rules:
+        value = result_data
+        try:
+            for k in r["key"]:
+                try:
+                    value = value[k]
+                except KeyError:
+                    logger.debug(f"Key '{k}' not found in result data, returning 0.0")
+                    return 0.
+                except TypeError:
+                    logger.debug(f"Cannot access key '{k}' - value is not a dictionary, returning 0.0")
+                    return 0.
+            metric = metric and _match_value_to_rule(value, r)
+        except Exception as e:
+            logger.error(f"Error processing expect rule {r}: {e}")
+            return 0.
+            
+    for r in unexpect_rules:
+        value = result_data
+        try:
+            for k in r["key"]:
+                try:
+                    value = value[k]
+                except KeyError:
+                    value = None
+                    break
+                except TypeError:
+                    value = None
+                    break
+            metric = metric and not _match_value_to_rule(value, r)
+        except Exception as e:
+            logger.error(f"Error processing unexpect rule {r}: {e}")
+            return 0.
+            
+    return float(metric)
+
+# Function: diff_text_file
+def diff_text_file(result: str, expect: str) -> float:
+    if result is None:
+        return 0.
+
+    with open(result) as f:
+        result_lines: List[str] = f.read().splitlines()
+    with open(expect) as f:
+        expected_lines: List[str] = f.read().splitlines()
+    return difflib.SequenceMatcher(a=result_lines, b=expected_lines).ratio()
+
+# Function: diff_text_file
+def diff_text_file(result: str, expect: str) -> float:
+    if result is None:
+        return 0.
+
+    with open(result) as f:
+        result_lines: List[str] = f.read().splitlines()
+    with open(expect) as f:
+        expected_lines: List[str] = f.read().splitlines()
+    return difflib.SequenceMatcher(a=result_lines, b=expected_lines).ratio()
+
+# Function: diff_text_file
+def diff_text_file(result: str, expect: str) -> float:
+    if result is None:
+        return 0.
+
+    with open(result) as f:
+        result_lines: List[str] = f.read().splitlines()
+    with open(expect) as f:
+        expected_lines: List[str] = f.read().splitlines()
+    return difflib.SequenceMatcher(a=result_lines, b=expected_lines).ratio()
+
+# Function: diff_text_file
+def diff_text_file(result: str, expect: str) -> float:
+    if result is None:
+        return 0.
+
+    with open(result) as f:
+        result_lines: List[str] = f.read().splitlines()
+    with open(expect) as f:
+        expected_lines: List[str] = f.read().splitlines()
+    return difflib.SequenceMatcher(a=result_lines, b=expected_lines).ratio()
+```
+
+## Task:
+
+Analyze the instruction: "Help me to set up an initial web extension project with help of the web tool, tagging it "happy-extension v0.0.1". Leave description blank for now. Include a background script and browser action, while other features are not required. Remember to unzip the auto-generated folder into "~/Projects"."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Ground_Truth_File**: Expected output/ground truth file: background_script.js\nFile info: File format .js not displayable (77 bytes)
+
+\n**Ground_Truth_File**: Expected output/ground truth file: index.html\nFile info: File format .html not displayable (230 bytes)
+
+\n**Ground_Truth_File**: Expected output/ground truth file: style.css\nFile info: File format .css not displayable (29 bytes)
+
+\n**Ground_Truth_File**: Expected output/ground truth file: script.js\nFile info: File format .js not displayable (57 bytes)

@@ -1,0 +1,3 @@
+In the file /home/user/Name_Order_Id_move_column.xlsx, on the first worksheet, arrange the columns so that the five named headers appear in this exact left‑to‑right order: Date, First Name, Last Name, Order ID, Sales. Use the existing header text as-is (don’t rename anything), and don’t change any cell values.
+
+If there’s an index/helper column such as “Unnamed: 0”, leave it exactly where it is and simply position those five headers immediately to its right in the specified order. Don’t move, add, or delete any other columns or sheets, and don’t modify blank areas. When you’re done, save the workbook in place with the same filename.

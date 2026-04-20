@@ -1,0 +1,1 @@
+Hey, in the open LibreOffice Writer document at /home/user/Desktop/Sample_Statutory_Declaration.docx, could you insert exactly one blank page immediately after the page I’m currently on by adding a manual page break (not a section break), and then save the file with the same name in the same location? Please don’t change any existing content.

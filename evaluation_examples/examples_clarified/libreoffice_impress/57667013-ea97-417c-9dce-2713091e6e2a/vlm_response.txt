@@ -1,0 +1,15 @@
+<thoughts>
+The evaluator compares the saved file at /home/user/Desktop/1_2.pptx against a gold PPTX, checking:
+- Exact slide count and shape positions/sizes (so no moving/resizing or adding/removing shapes).
+- Text content, alignment, indentation, bullets, and various font properties.
+- Font color RGB values for all runs in text shapes and for any table text.
+- Background color and slide notes.
+It saves with Ctrl+S, so changes must be made in-place to the same file/path. To avoid mismatches, the instruction should:
+- Specify the exact file and that changes are saved back to it.
+- Clarify that only slide 5 is modified.
+- Require applying the color to all text within each textbox, but not touching tables or other objects.
+- Emphasize using the standard Yellow (RGB #FFFF00) and not altering any other formatting, content, or layout.
+</thoughts>
+
+<answer>
+In the file /home/user/Desktop/1_2.pptx, go to slide 5 and change the font color of every textbox to the standard Yellow swatch—exactly “Yellow” (RGB #FFFF00), not light/dark variants or any theme/accent alternatives. Apply it to all text within each textbox. Don’t change tables, charts, or any non-textbox objects, and don’t alter any other text, formatting (font, size, bold/italic/underline, alignment, bullets), positions/sizes of shapes, backgrounds, notes, or other slides. Save your changes back to /home/user/Desktop/1_2.pptx.

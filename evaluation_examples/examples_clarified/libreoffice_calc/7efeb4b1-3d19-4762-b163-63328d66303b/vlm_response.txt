@@ -1,0 +1,11 @@
+<thoughts>
+- The evaluator compares the first sheet of the result file against a golden file, so the work must be done on the first worksheet only.
+- It expects the file at /home/user/Order_Sales_Serial#.xlsx to be saved in place with the same name and format.
+- The comparison is strict on cell values in the “Seq No.” column, including exact text formatting (“No. 1”, “No. 2”, … with a period and a space).
+- Only the actual data rows should be numbered; trailing blank rows must remain untouched. In this file there are 28 data rows, so numbering should stop at “No. 28”.
+- The “Unnamed: 0” column must remain blank; other columns and any blank regions should not be changed, moved, sorted, or reformatted.
+- To avoid formula-related mismatches, values should be entered as plain text.
+</thoughts>
+
+<answer>
+Open /home/user/Order_Sales_Serial#.xlsx and, on the first sheet only, fill the “Seq No.” column with plain-text labels “No. 1”, “No. 2”, … in order from top to bottom, one per data row. There are 28 filled order rows in this sheet—enter “No. 1” through “No. 28” exactly (capital N, lowercase o, a period, a space, then the number), and stop before any blank rows; do not add “No. 29” or beyond. Leave the “Unnamed: 0” column and everything else (headers, other columns, formatting, row/column order, blank areas) unchanged. Save your changes back to the same file at /home/user/Order_Sales_Serial#.xlsx, and don’t touch irrelevant regions even if they’re blank.

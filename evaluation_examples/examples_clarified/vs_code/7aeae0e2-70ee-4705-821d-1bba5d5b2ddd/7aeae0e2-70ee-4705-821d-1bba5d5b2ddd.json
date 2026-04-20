@@ -1,0 +1,44 @@
+{
+  "id": "7aeae0e2-70ee-4705-821d-1bba5d5b2ddd",
+  "snapshot": "vscode",
+  "instruction": "In VS Code, using the file /home/user/main.py that\u2019s already open, help me run the script and open every numpy.ndarray it creates in VS Code\u2019s interactive variable/data viewer so I can see the actual array contents (not just shapes). Please keep everything inside VS Code (no external tools) and use the built\u2011in Jupyter/Interactive Data Viewer for each array found.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/7aeae0e2-70ee-4705-821d-1bba5d5b2ddd/main.py",
+            "path": "/home/user/main.py"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code",
+          "/home/user/main.py"
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Visual Studio Code"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vscode"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

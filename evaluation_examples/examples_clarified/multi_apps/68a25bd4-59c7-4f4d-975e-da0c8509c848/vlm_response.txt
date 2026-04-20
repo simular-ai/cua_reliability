@@ -1,0 +1,19 @@
+<thoughts>
+Key ambiguities the evaluator cares about:
+- Which spreadsheet to use and where it is: the evaluator downloads /home/user/Desktop/rsc-ebook-collection-2023.xlsx.
+- What “first paper” means: it should be the first paper entry (ignoring the header, and skipping any non-paper items if present).
+- Exact filenames/locations/formats: the evaluator checks for /home/user/paper01.pdf and a .docx at /home/user/ans.docx.
+- Content of ans.docx: likely only the exact title string, with matching case/spacing, and saved as .docx (not .odt). It should be the title as it appears in the spreadsheet for the citing paper, with no extra text.
+- Scope for citation search: only among items in the same spreadsheet list.
+</thoughts>
+
+<answer>
+I’m using the spreadsheet at /home/user/Desktop/rsc-ebook-collection-2023.xlsx. Please take the first paper entry listed in the first worksheet (ignore the header and skip any items that aren’t papers). Follow its link to get the actual PDF and save that file exactly as /home/user/paper01.pdf.
+
+Then, looking only at the other items in the same spreadsheet, find which paper in the list cites that initial paper. Create a Word document saved as /home/user/ans.docx (make sure it’s .docx, not .odt) that contains only the exact title of the citing paper as it appears in the spreadsheet—no extra text, punctuation, or notes.
+</answer>
+
+**Ground_Truth_File**: Expected output/ground truth file: paper01_Gold.pdf
+File info: File format .pdf not displayable (775166 bytes)
+**Ground_Truth_File**: Expected output/ground truth file: ans_Gold.docx
+File info: File format .docx not displayable (4477 bytes)

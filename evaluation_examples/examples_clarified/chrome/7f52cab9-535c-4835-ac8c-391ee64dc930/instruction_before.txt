@@ -1,0 +1,1 @@
+Create a list of drip coffee makers that are on sale and within $25-60 and have a black finish.

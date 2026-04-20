@@ -1,0 +1,1 @@
+Create two pivot tables in a new sheet showing the total revenue for each product and sales channel.

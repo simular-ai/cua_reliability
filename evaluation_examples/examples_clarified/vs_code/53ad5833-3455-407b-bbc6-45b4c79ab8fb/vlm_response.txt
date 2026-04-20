@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator uses a VS Code extension that verifies the opened folder by writing the folder name to /home/user/OpenProject.txt and expecting exactly "project".
+- The current instruction doesn’t explicitly say it’s a folder (could be misread as a file) and doesn’t give the absolute path.
+- To align with the evaluator, we should clarify that it’s the folder named "project" and specify the absolute path (/home/user/project), and that it should be opened in VS Code as the workspace/folder.
+</thoughts>
+
+<answer>
+Please use VS Code to open the folder named “project” located at the absolute path /home/user/project as the workspace.

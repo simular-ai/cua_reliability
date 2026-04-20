@@ -1,0 +1,11 @@
+<thoughts>
+- The evaluator only checks the Steam cart page content, not the Dota 2 site.
+- It specifically looks for the exact item name "The Dota 2 Official Soundtrack" in the cart.
+- The result page is the Steam cart at https://store.steampowered.com/cart/.
+- The original instruction says “add all DLC,” which is vague; for the eval, the required DLC is the soundtrack listed above.
+- We should clarify the store (Steam), the exact DLC name, and that the cart page should be open at the end.
+</thoughts>
+
+<answer>
+Find the Dota 2 game on the Steam Store and add its DLC to your cart—specifically make sure “The Dota 2 Official Soundtrack” is added—then finish with your Steam cart open at https://store.steampowered.com/cart/.
+</answer>

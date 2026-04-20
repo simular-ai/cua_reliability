@@ -1,0 +1,11 @@
+<thoughts>
+The evaluator compares the edited PPTX against a gold PPTX by:
+- Verifying the exact notes text per slide (string equality after trimming ends).
+- Ensuring the number of slides and shapes aren’t changed.
+- Ensuring slide text/content, layout, and background remain unchanged.
+- Expecting the specific source and destination file paths/names to match (/home/user/Desktop/lecture1-2021-with-ink.pptx).
+The original instruction doesn’t specify the exact filenames/paths, the source of the remarks (notes.docx), that notes should be copied verbatim, that only the Notes pane should be edited (not slide content), or that the file should be saved in place with the same name. These clarifications align with what the evaluator checks.
+</thoughts>
+
+<answer>
+Tomorrow I’m giving this talk, and the files are on my desktop: the slides are at /home/user/Desktop/lecture1-2021-with-ink.pptx and my speaking notes are at /home/user/Desktop/notes.docx. Please open the PPT and finish adding my planned remarks into the Notes pane for any slides that don’t have them yet, using the corresponding text from notes.docx. Copy the notes verbatim (same wording and line breaks), put them in the Notes section (not on the slide itself), and leave any slides that already have notes as they are. Don’t change the slide content, layout, or number of slides—just complete the missing notes. When you’re done, save the changes to the same file at /home/user/Desktop/lecture1-2021-with-ink.pptx (don’t create a new file).</answer>

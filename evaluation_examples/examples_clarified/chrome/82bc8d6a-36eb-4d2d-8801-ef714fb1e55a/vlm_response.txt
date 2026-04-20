@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator parses the active tab URL for fromStation, toStation, and departing (renamed to time), expecting IATA/city codes and a specific date.
+- It expects Mumbai as BOM and Stockholm as STO (city code, not a specific airport like ARN).
+- It expects the departure date to be the calendar date for “next Monday,” computed relative to the current day (if today is Monday, use the Monday of the following week).
+- The environment opens the Qatar Airways site; specifying the site helps align with what the evaluator will parse.
+</thoughts>
+
+<answer>
+On the Qatar Airways website, look up flights from Mumbai (use city code BOM) to Stockholm (use city code STO) for next Monday—use the actual calendar date for the upcoming Monday based on today; if today is Monday, use the Monday of the following week—and pull up the results so that search is reflected on the page.</answer>

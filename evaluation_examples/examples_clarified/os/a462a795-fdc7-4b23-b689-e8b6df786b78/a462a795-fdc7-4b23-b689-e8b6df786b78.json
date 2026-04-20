@@ -1,0 +1,35 @@
+{
+  "id": "a462a795-fdc7-4b23-b689-e8b6df786b78",
+  "snapshot": "os",
+  "instruction": "Could you please help me switch to the user account named \u2018charles\u2019 (lowercase; Linux usernames are case-sensitive) using the password \u2018Ex@mpleP@55w0rd!\u2019, and do it within the current session (e.g., via the terminal) without logging out of the desktop session or shutting down the machine? If the \u2018charles\u2019 account doesn\u2019t exist here or permissions prevent switching users in this environment, just let me know it\u2019s not possible without logging out or rebooting, and stop there. For reference: https://ubuntu.com/tutorials/command-line-for-beginners#5-moving-and-manipulating-files",
+  "source": "https://ubuntu.com/tutorials/command-line-for-beginners#5-moving-and-manipulating-files",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "echo {CLIENT_PASSWORD} | sudo -S su - charles",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.click({SCREEN_WIDTH_HALF}, {SCREEN_HEIGHT_HALF}); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "os"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

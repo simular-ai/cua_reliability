@@ -1,0 +1,83 @@
+{
+  "id": "9219480b-3aed-47fc-8bac-d2cffc5849f7",
+  "snapshot": "vs_code",
+  "instruction": "I\u2019ve been building a small Python Tetris game, but it crashes in some cases when I press the Up arrow to rotate. Please run it and fix the bug.\n\nThe code lives at /home/user/Desktop/tetris, and the files are block.py, main.py, settings.py, and tetris.py\u2014please keep these filenames and that location. The game should still be runnable with python3 main.py, and your changes need to make the modules import cleanly (no game loop starting on import).\n\nYour fix will be validated by an automated test (test_suite.py) that imports those exact files, so please make sure the updated code passes that test without adding new files or renaming/moving anything.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/Desktop/tetris"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "path": "/home/user/Desktop/tetris/block.py",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/9219480b-3aed-47fc-8bac-d2cffc5849f7/block.py"
+          },
+          {
+            "path": "/home/user/Desktop/tetris/main.py",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/9219480b-3aed-47fc-8bac-d2cffc5849f7/main.py"
+          },
+          {
+            "path": "/home/user/Desktop/tetris/settings.py",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/9219480b-3aed-47fc-8bac-d2cffc5849f7/settings.py"
+          },
+          {
+            "path": "/home/user/Desktop/tetris/tetris.py",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/9219480b-3aed-47fc-8bac-d2cffc5849f7/tetris.py"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code",
+          "/home/user/Desktop/tetris"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/9219480b-3aed-47fc-8bac-d2cffc5849f7",
+  "related_apps": [
+    "vs_code",
+    "os"
+  ],
+  "evaluator": {
+    "postconfig": [],
+    "func": "check_python_file_by_test_suite",
+    "result": {
+      "type": "vm_file",
+      "path": [
+        "/home/user/Desktop/tetris/block.py",
+        "/home/user/Desktop/tetris/main.py",
+        "/home/user/Desktop/tetris/settings.py",
+        "/home/user/Desktop/tetris/tetris.py"
+      ],
+      "dest": [
+        "block.py",
+        "main.py",
+        "settings.py",
+        "tetris.py"
+      ],
+      "multi": true
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/9219480b-3aed-47fc-8bac-d2cffc5849f7/test.py",
+      "dest": "test_suite.py"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

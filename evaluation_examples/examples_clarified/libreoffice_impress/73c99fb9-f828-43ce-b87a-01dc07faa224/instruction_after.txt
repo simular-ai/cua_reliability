@@ -1,0 +1,1 @@
+In /home/user/Desktop/109_4.pptx, on the second slide, put the exact text Page 1 (no quotes, one space between the words) into the existing content textbox, then save the file.

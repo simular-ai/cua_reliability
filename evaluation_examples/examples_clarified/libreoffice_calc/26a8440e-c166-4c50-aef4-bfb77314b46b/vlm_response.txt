@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares the Sheet2 data in /home/user/SalesRep.xlsx against an expected file, so the sheet name must be exactly "Sheet2" and the file must be saved in place.
+- It checks the sheet’s cell values (not formatting), so headers and data placement need to match. Starting position and ordering matter.
+- The expected data shows months Jan–Jun with totals per month, so we should clarify to use A1:B1 for headers, list Jan–Jun in A2:A7 in order, and put each month’s summed total in B2:B7.
+- Using an Excel “table” object isn’t required; plain cell data must match. Also ensure the month labels are the 3‑letter abbreviations to match expected values.
+</thoughts>
+
+<answer>
+In the workbook at /home/user/SalesRep.xlsx, add a new worksheet named exactly “Sheet2”. In cells A1 and B1, use the headers “Month” and “Total”. Starting at A2, list the months as Jan, Feb, Mar, Apr, May, and Jun (one per row, in that order), and in the adjacent B cells enter each month’s total sales summed across all entries in the file. Keep it to just these two columns beginning at A1, and save the workbook.

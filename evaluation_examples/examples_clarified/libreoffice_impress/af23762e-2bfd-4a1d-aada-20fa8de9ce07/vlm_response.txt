@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator opens and then saves /home/user/Desktop/Forests.pptx, and compares it directly to a gold file, so the work must be done on that exact file and saved in place (not as a new file).
+- The comparison is strict about slide count, shapes, text, alignment, fonts, bullets, backgrounds, and notes. So only one new slide should be added, using the default output of the built-in Summary Slide feature, with no manual reformatting and no other changes to the deck (including notes/theme/background).
+- The Summary Slide should list the titles of all slides, and typical placement is at the end of the deck to match expected ordering.
+</thoughts>
+
+<answer>
+I’m working with /home/user/Desktop/Forests.pptx in LibreOffice Impress. Please use Impress’s built‑in “Summary Slide” feature to add exactly one slide that lists the titles of all slides in the deck (i.e., summarize the whole presentation). Keep the default formatting and title that Impress creates, don’t change any existing slides, notes, background, or theme, place the summary slide at the end, and save the changes back to /home/user/Desktop/Forests.pptx.

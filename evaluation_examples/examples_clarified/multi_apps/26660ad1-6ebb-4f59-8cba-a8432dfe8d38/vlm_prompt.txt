@@ -1,0 +1,131 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "26660ad1-6ebb-4f59-8cba-a8432dfe8d38",
+  "snapshot": "multiapps",
+  "instruction": "I want to test the quality of the network environment my laptop is currently in. Please measure my network situation through speedtest.net, copy the results in speedtest.net/results, and save them to ~/Test/Speed/results.txt (if the dir does not exist, create it). Each metric occupies one line, with the metric name and its value separated by a single space.",
+  "source": "https://www.speedtest.net/",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.speedtest.net/"
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Google Chrome"
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "os",
+    "browser"
+  ],
+  "evaluator": {
+    "func": "file_contains",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Test/Speed/results.txt",
+      "dest": "results.txt"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": [
+          "Ping",
+          "Download",
+          "Upload"
+        ]
+      }
+    }
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: file_contains
+def file_contains(file_path, config):
+    # file_path ends with .txt
+    if not file_path:
+        return 0.
+    try:
+        with open(file_path, 'r') as f:
+            file_text = f.read()
+        for text in config["expected"]:
+            if text not in file_text:
+                logger.debug(f"file_contains: {text} not found in {file_path}")
+                return 0.
+    except:
+        logger.debug("file_contains: file not found or not readable")
+        return 0.
+    return 1.
+```
+
+## Task:
+
+Analyze the instruction: "I want to test the quality of the network environment my laptop is currently in. Please measure my network situation through speedtest.net, copy the results in speedtest.net/results, and save them to ~/Test/Speed/results.txt (if the dir does not exist, create it). Each metric occupies one line, with the metric name and its value separated by a single space."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator looks for a specific command in bash history that uses “libreoffice” or “soffice” with “--convert-to pdf” and the literal “*.doc”.
+- PDFs must be created in /home/user/Desktop (the terminal starts there), not in another folder, and only for .doc files in that directory (not subfolders).
+- The resulting PDFs must match the expected set and names, so they should be saved in the same directory with the same base filenames.
+</thoughts>
+
+<answer>
+From the Terminal that’s already opened in /home/user/Desktop (where the .doc files were extracted), convert all .doc files in this folder—not subdirectories—to PDF in one go using a single LibreOffice/soffice command. Please use the --convert-to pdf option with the *.doc wildcard, saving the PDFs right here so they keep the same base filenames.
+</answer>

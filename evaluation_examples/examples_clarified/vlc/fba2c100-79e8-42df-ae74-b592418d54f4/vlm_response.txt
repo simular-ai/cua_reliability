@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator compares a PNG on disk at /home/user/Desktop/interstellar.png against a reference image.
+- It expects the frame currently visible in the open VLC player (the Interstellar trailer) and not a screenshot of the entire desktop or player chrome.
+- Filename must be exactly interstellar.png (lowercase) and placed directly on the Desktop path.
+</thoughts>
+
+<answer>
+Please capture the frame that’s currently visible in the open VLC player of the Interstellar trailer—just the video content, not the player window or controls—and save it exactly as interstellar.png on my Desktop (/home/user/Desktop/interstellar.png).</answer>

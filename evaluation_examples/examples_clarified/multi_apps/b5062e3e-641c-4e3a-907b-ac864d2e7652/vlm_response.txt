@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator looks for a specific file path (/home/user/authors.xlsx) and converts that exact file; keeping “~/authors.xlsx” is fine but clarifying the absolute path avoids ambiguity.
+- It checks the first sheet’s cells A1:C1 for headers that include specific terms, and A2:C5 for exact row values in a fixed order. To prevent misalignment, we should make clear that headers are in row 1 and rows start directly beneath with one row per paper.
+- Header text is expected as “Name”, “Mail”, “Affiliation”; using “E-mail” might still pass due to the “includes” rule, but specifying the exact header words removes risk.
+- Sorting needs to match expected order (alphabetical by the full Name field, ascending, case-insensitive).
+- The folder is not explicitly named in the original instruction; specify /home/user/Documents/Papers.
+</thoughts>
+
+<answer>
+Please extract the first author’s full name, email, and affiliation from each PDF in /home/user/Documents/Papers, and put them into a single-sheet Excel table with the headers exactly “Name”, “Mail”, and “Affiliation” in the first row. List one row per paper directly beneath the headers, sort A–Z by the full Name (case-insensitive), and save the workbook as /home/user/authors.xlsx.

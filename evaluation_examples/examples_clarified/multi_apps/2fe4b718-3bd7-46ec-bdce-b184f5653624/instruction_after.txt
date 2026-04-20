@@ -1,0 +1,1 @@
+Please use VLC and GIMP (referencing https://www.maketecheasier.com/create-gif-from-video-gimp/) to make an animated GIF from the video at /home/user/Desktop/src.mp4. Take a 5‑second segment starting at 00:03 (mm:ss), and save the result exactly as /home/user/Desktop/src_clip.gif. Keep the clip as-is (no cropping or overlays) so it matches the source frames.

@@ -1,0 +1,10 @@
+<thoughts>
+The evaluator will run an automated test suite (test_suite.py) that imports and checks the code strictly by the exact filenames block.py, main.py, settings.py, and tetris.py located in /home/user/Desktop/tetris. It does not look for new files or renamed modules, and it may import modules without launching the game loop. The current instruction doesn’t specify the exact files/locations to edit, how the program should be runnable, or that the fix must pass the provided test suite. These are the missing details that the evaluator implicitly checks.
+</thoughts>
+
+<answer>
+I’ve been building a small Python Tetris game, but it crashes in some cases when I press the Up arrow to rotate. Please run it and fix the bug.
+
+The code lives at /home/user/Desktop/tetris, and the files are block.py, main.py, settings.py, and tetris.py—please keep these filenames and that location. The game should still be runnable with python3 main.py, and your changes need to make the modules import cleanly (no game loop starting on import).
+
+Your fix will be validated by an automated test (test_suite.py) that imports those exact files, so please make sure the updated code passes that test without adding new files or renaming/moving anything.

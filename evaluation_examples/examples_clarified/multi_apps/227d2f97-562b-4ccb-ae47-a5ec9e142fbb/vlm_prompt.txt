@@ -1,0 +1,141 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "227d2f97-562b-4ccb-ae47-a5ec9e142fbb",
+  "snapshot": "gimp",
+  "instruction": "I've stored my .xcf file on the Desktop. Can you assist me in copying the image and pasting it into a LibreOffice Writer document? Save the document as 'image.docx' on the Desktop, please.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "path": "/home/user/Desktop/QTdHniCqfJbBLJe3L3nijU-1200-80.xcf",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/227d2f97-562b-4ccb-ae47-a5ec9e142fbb/QTdHniCqfJbBLJe3L3nijU-1200-80.xcf"
+          }
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/227d2f97-562b-4ccb-ae47-a5ec9e142fbb",
+  "related_apps": [
+    "libreoffice_writer",
+    "gimp",
+    "os"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "image.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey(\"ctrl\", \"s\"); time.sleep(0.5);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 1.0
+        }
+      }
+    ],
+    "func": "compare_docx_images",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/image.docx",
+      "dest": "image.docx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/227d2f97-562b-4ccb-ae47-a5ec9e142fbb/image.docx",
+      "dest": "image_Gold.docx"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_docx_images
+def compare_docx_images(docx_file1, docx_file2):
+    if not docx_file1 or not docx_file2:
+        return 0
+
+    try:
+        doc1 = Document(docx_file1)
+        doc2 = Document(docx_file2)
+    except Exception as e:
+        logger.error(f"Error: {e}")
+        return 0
+
+    def extract_images(doc):
+        images = []
+        for rel in doc.part.rels.values():
+            if "image" in rel.reltype:
+                img_data = rel.target_part.blob
+                images.append(BytesIO(img_data))
+        return images
+
+    images1 = extract_images(doc1)
+    images2 = extract_images(doc2)
+    if len(images1) != len(images2):
+        return 0
+    for img1, img2 in zip(images1, images2):
+        if Image.open(img1).tobytes() != Image.open(img2).tobytes():
+            return 0
+    return 1
+```
+
+## Task:
+
+Analyze the instruction: "I've stored my .xcf file on the Desktop. Can you assist me in copying the image and pasting it into a LibreOffice Writer document? Save the document as 'image.docx' on the Desktop, please."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Ground_Truth_File**: Expected output/ground truth file: image_Gold.docx\nFile info: File format .docx not displayable (970920 bytes)

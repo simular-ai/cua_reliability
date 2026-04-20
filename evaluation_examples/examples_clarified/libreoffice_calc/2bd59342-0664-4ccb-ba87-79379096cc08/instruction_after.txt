@@ -1,0 +1,1 @@
+Open /home/user/OrderId_Month_Chart.xlsx in LibreOffice Calc and, on the sheet that has the OrderId, Jan, Feb, Mar, and Chart columns, add a line sparkline in the Chart cell for every order id using that row’s Jan–Mar values as the source. Save your changes back to the same file (don’t rename or move it).

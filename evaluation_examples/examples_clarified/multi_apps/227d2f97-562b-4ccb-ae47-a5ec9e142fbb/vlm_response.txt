@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator will open the LibreOffice Writer window titled “image.docx - LibreOffice Writer” and compare the embedded image(s) in /home/user/Desktop/image.docx to a gold DOCX, byte-for-byte. So the document must be saved on the Desktop as a DOCX named exactly “image.docx,” and the pasted image must match the composed image from the XCF without any changes (no resizing/edits), and not be duplicated. The .xcf file to use is the one on the Desktop (specifically QTdHniCqfJbBLJe3L3nijU-1200-80.xcf), and the image to copy should be the visible canvas.
+</thoughts>
+
+<answer>
+On my Desktop there’s an XCF file named “QTdHniCqfJbBLJe3L3nijU-1200-80.xcf.” Please open it in GIMP, copy the full visible canvas exactly as it appears (no edits or resizing), paste it once into a new LibreOffice Writer document, and save that document on the Desktop as “image.docx” in DOCX format.

@@ -1,0 +1,1 @@
+Could you update my timetable in /home/user/Desktop/Course Timetable.xlsx by adding a two‑hour lecture block on the first worksheet at Wednesday 12:00 (i.e., covering 12:00–14:00)? Please put the entry in the Wednesday column, 12:00 row, labeled exactly “Lecture 2 (12:00-14:00)”, leave everything else exactly as is, and save it back to the same file. Thanks!

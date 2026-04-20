@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator loads and compares the entire first sheet’s data in /home/user/MaturityDate.xlsx against a golden file.
+- It expects a new column named exactly “Maturity Date” appended to the existing two columns (“Loan Issue Date” and “Length of Loan in Days”), with values equal to Issue Date + Length in calendar days.
+- It’s sensitive to extra rows or placeholder zeros; only the populated data rows should be filled, and blank rows must remain blank (no added zeros).
+- The file path and saving location must remain /home/user/MaturityDate.xlsx.
+- Values should be actual date values (not text), and existing content/order should not be altered.
+</thoughts>
+
+<answer>
+In /home/user/MaturityDate.xlsx (first worksheet), please add a new third column to the right of “Length of Loan in Days” with the header exactly “Maturity Date,” and calculate each maturity as Loan Issue Date plus the Length of Loan in Days (calendar days). Enter real date values (not text), fill only the rows where both inputs are present, leave any other rows blank, and don’t insert or delete rows or change existing data. Save the changes back to /home/user/MaturityDate.xlsx.

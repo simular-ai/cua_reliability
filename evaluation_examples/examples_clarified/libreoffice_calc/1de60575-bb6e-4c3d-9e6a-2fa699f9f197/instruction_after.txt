@@ -1,0 +1,1 @@
+In /home/user/EntireSummerSales.xlsx, create a Pivot Table on a new sheet named exactly “Sheet2” that shows total revenue by promotion. Use Promotion as the Column field (so the promotion names are the column headers) and use Revenue as the Values field summarized by Sum. Don’t add any Row fields or report filters. Save the changes back to EntireSummerSales.xlsx.

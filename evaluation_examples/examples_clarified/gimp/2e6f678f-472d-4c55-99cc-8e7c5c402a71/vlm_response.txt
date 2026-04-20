@@ -1,0 +1,9 @@
+<thoughts>
+- “All images on the desktop” is ambiguous; the evaluator’s setup places three specific JPEGs on /home/user/Desktop (squirrel.jpeg, panda.jpeg, heron.jpeg).
+- “Brightness to 50” could be unclear; in GIMP this refers to the Brightness/Contrast filter’s Brightness value, which should be +50 with Contrast unchanged.
+- It’s not stated whether to overwrite or create new files; evaluators typically expect saving back to the same files on the Desktop without renaming or format changes.
+- The request emphasizes batch processing rather than manual per-image edits; clarify that it should be a single batch run within GIMP.
+</thoughts>
+
+<answer>
+Please batch process the three images on /home/user/Desktop—squirrel.jpeg, panda.jpeg, and heron.jpeg—by applying GIMP’s Brightness/Contrast filter with Brightness set to +50 (leave Contrast at 0) to all of them in one batch run, rather than adjusting each individually, and save the changes back to the same files on the Desktop without renaming or changing formats. </answer>

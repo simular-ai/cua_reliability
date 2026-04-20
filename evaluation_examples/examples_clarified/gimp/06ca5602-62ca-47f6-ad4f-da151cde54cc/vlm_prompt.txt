@@ -1,0 +1,201 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "06ca5602-62ca-47f6-ad4f-da151cde54cc",
+  "snapshot": "gimp",
+  "instruction": "Could you help me set the image to Palette-Based?",
+  "source": "https://stackoverflow.com/questions/74664666/how-to-export-palette-based-png-in-gimp",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/06ca5602-62ca-47f6-ad4f-da151cde54cc/computer.png",
+            "path": "/home/user/Desktop/computer.png"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "gimp",
+          "/home/user/Desktop/computer.png"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "gimp"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python3",
+            "-c",
+            "import pyautogui; pyautogui.hotkey([\"shift\", \"ctrl\", \"e\"]);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python3",
+            "-c",
+            "import pyautogui; pyautogui.write(\"palette_computer\");pyautogui.press([\"enter\"]);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python3",
+            "-c",
+            "import pyautogui; pyautogui.press([\"enter\"]);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 5
+        }
+      }
+    ],
+    "func": "check_palette_and_structure_sim",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/06ca5602-62ca-47f6-ad4f-da151cde54cc/computer.png",
+      "dest": "computer.png"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/palette_computer.png",
+      "dest": "palette_computer.png"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_palette_and_structure_sim
+def check_palette_and_structure_sim(src_path, tgt_path):
+    """
+    Check if the src image is palette-based and the structure of the two images are similar
+    Enhanced with robust error handling for file format issues and truncated files
+    gimp:06ca5602-62ca-47f6-ad4f-da151cde54cc
+    """
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    logger.info(f"Evaluating palette and structure similarity: src={src_path}, tgt={tgt_path}")
+    
+    if src_path is None or tgt_path is None:
+        logger.warning("Source or target path is None")
+        return 0.
+
+    # Safely open source image with retry mechanism
+    source_image = safe_open_image_with_retry(src_path)
+    if source_image is None:
+        logger.error("Failed to open source image")
+        return 0.
+
+    try:
+        # Check if the source image is palette-based
+        palette_based = source_image.mode == 'P'
+        logger.info(f"Source image mode: {source_image.mode}, palette-based: {palette_based}")
+
+        # Safely open target image
+        target_image = safe_open_image_with_retry(tgt_path)
+        if target_image is None:
+            logger.error("Failed to open target image")
+            source_image.close()
+            return 0.
+
+        try:
+            # Convert source image to RGB for comparison
+            source_rgb = source_image.convert('RGB')
+            logger.info(f"Source converted to RGB: {source_rgb.mode} {source_rgb.size}")
+            
+            # Check structure
+            structure_same = structure_check_by_ssim(source_rgb, target_image)
+            logger.info(f"Structure similarity check: {structure_same}")
+            
+            # Evaluation logic
+            if palette_based and structure_same:
+                result = 1.0
+            else:
+                result = 0.0
+                
+            logger.info(f"Evaluation result: {result} (palette_based={palette_based}, structure_same={structure_same})")
+            return result
+            
+        finally:
+            target_image.close()
+            
+    except Exception as e:
+        logger.error(f"Error during evaluation: {e}")
+        return 0.
+    finally:
+        source_image.close()
+```
+
+## Task:
+
+Analyze the instruction: "Could you help me set the image to Palette-Based?"
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+[IMAGE: data:image/png;base64,/9j/4AAQSkZJRgABAgEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwIQAABtbnRyUkdCIF...]
+
+[IMAGE: data:image/png;base64,/9j/4AAQSkZJRgABAgEASABIAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwIQAABtbnRyUkdCIF...]

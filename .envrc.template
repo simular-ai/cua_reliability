@@ -1,0 +1,23 @@
+# Copy this file to .envrc and fill in your API keys.
+# Then run `direnv allow` or `source .envrc` to load them.
+
+# Azure OpenAI (for GPT-5)
+export AZURE_OPENAI_API_KEY=
+export AZURE_OPENAI_ENDPOINT=
+export AZURE_OPENAI_API_BASE=
+export OPENAI_API_VERSION="2024-12-01-preview"
+
+# Anthropic (for Claude)
+export ANTHROPIC_API_KEY=
+
+# OpenRouter (for Kimi)
+export OPENROUTER_API_KEY=
+export OPEN_ROUTER_ENDPOINT_URL="https://openrouter.ai/api/v1"
+
+# vLLM (for open-source models — set to your vLLM server URL)
+export vLLM_ENDPOINT_URL=
+
+# AWS (for OSWorld VM provisioning)
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+export AWS_REGION=us-east-1

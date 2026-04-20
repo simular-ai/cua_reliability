@@ -1,0 +1,112 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "77b8ab4d-994f-43ac-8930-8ca087d7c4b4",
+  "snapshot": "gimp",
+  "instruction": "Could you assist me in placing my photo on the desktop and renaming it to export.jpg?",
+  "source": "https://superuser.com/questions/1636113/how-to-get-gimp-to-recognize-images-or-pictures-folder-as-the-default-folder-for",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/77b8ab4d-994f-43ac-8930-8ca087d7c4b4/The_Lost_River_Of_Dreams.jpg",
+            "path": "/home/user/Desktop/The_Lost_River_Of_Dreams.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "gimp",
+          "/home/user/Desktop/The_Lost_River_Of_Dreams.jpg"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "gimp"
+  ],
+  "evaluator": {
+    "func": "check_file_exists_and_structure_sim",
+    "expected": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/The_Lost_River_Of_Dreams.jpg",
+      "dest": "The_Lost_River_Of_Dreams.jpg"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/export.jpg",
+      "dest": "export.jpg"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_file_exists_and_structure_sim
+def check_file_exists_and_structure_sim(src_path, tgt_path):
+    """
+    Check if the image has been exported to the desktop
+    gimp:77b8ab4d-994f-43ac-8930-8ca087d7c4b4
+    """
+    if src_path is None or tgt_path is None:
+        return 0.
+
+    # Check if the file exists
+    export_file_exists = os.path.isfile(src_path)
+    if not export_file_exists:
+        return 0.
+
+    # Check whether the target image is the same as the source image
+    img_src = Image.open(src_path)
+    img_tgt = Image.open(tgt_path)
+    structure_same = structure_check_by_ssim(img_src, img_tgt)
+
+    if structure_same:
+        return 1.
+    else:
+        return 0.
+```
+
+## Task:
+
+Analyze the instruction: "Could you assist me in placing my photo on the desktop and renaming it to export.jpg?"
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+[IMAGE: data:image/jpg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPER...]

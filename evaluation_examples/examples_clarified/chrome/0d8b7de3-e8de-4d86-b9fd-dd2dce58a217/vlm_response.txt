@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator checks that the active tab is specifically at either https://www.drugs.com/npc/ or https://www.drugs.com/npp/. The original instruction doesn’t mention the site (Drugs.com) or these exact URLs, so an agent might browse elsewhere. To align with the evaluator, we need to clarify the target site and acceptable landing pages (including the www subdomain), without turning it into steps.
+</thoughts>
+
+<answer>
+On Drugs.com, open and browse their Natural Products database—go to https://www.drugs.com/npc/ (or https://www.drugs.com/npp/).
+</answer>

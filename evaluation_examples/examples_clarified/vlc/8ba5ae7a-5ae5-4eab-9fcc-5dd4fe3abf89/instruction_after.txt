@@ -1,0 +1,1 @@
+Please change VLC so that new recordings go to my Desktop by setting the input-record-path in the vlcrc config to exactly /home/user/Desktop (no quotes, not commented out).

@@ -1,0 +1,11 @@
+<thoughts>
+- The evaluator checks for Macy’s site filters specifically: category must be Men’s Clothing > Shirts, sleeve length must be Short Sleeve, size must be the letter “L” under Men Regular Sizes (not Big & Tall), and the discount filter must be the exact “50% off & more.”
+- The original instruction is ambiguous about:
+  • “large-size” vs the site’s “Men Regular size L” (letter L) vs Big & Tall.
+  • The exact category (“Shirts” vs tees/polos).
+  • The exact discount filter label (“50% off & more”).
+- Minimal clarification should name Macy’s, specify Men’s Clothing > Shirts, specify Men’s Regular size L (not Big & Tall), Short Sleeve, and discount “50% off & more,” and ask to show the filtered results page.
+</thoughts>
+
+<answer>
+On Macy’s, please show me Men’s Clothing > Shirts filtered to Men’s Regular size L (not Big & Tall), Short Sleeve, with the discount set to “50% off & more,” and display the resulting listing page.

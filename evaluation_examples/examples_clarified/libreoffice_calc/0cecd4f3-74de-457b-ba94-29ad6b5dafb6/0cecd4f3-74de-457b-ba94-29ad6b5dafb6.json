@@ -1,0 +1,98 @@
+{
+  "id": "0cecd4f3-74de-457b-ba94-29ad6b5dafb6",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Work in /home/user/copy_sheet_insert.xlsx (LibreOffice Calc, .xlsx). Rename the first sheet to \u201cLARS Resources,\u201d then make a duplicate of it with the same data and place that duplicate immediately to the left of the second original tab (the one that starts out as \u201cSheet2\u201d). Rename the duplicate to \u201cLARS Resources (Backup)\u201d\u2014include exactly one space before the parentheses. Finally, rename the original second tab to \u201cLARS Resources (Offline)\u201d with the same spacing. When you\u2019re done, the three sheets, left to right, should be: LARS Resources, LARS Resources (Backup), LARS Resources (Offline). Save the changes to the same .xlsx file.",
+  "source": "https://www.libreofficehelp.com/add-insert-delete-copy-move-rename-a-worksheet-in-libreoffice-calc/",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/0cecd4f3-74de-457b-ba94-29ad6b5dafb6/LARS_Science_Assessment_Resource_List_7-30-21.xlsx",
+            "path": "/home/user/copy_sheet_insert.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/copy_sheet_insert.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/0cecd4f3-74de-457b-ba94-29ad6b5dafb6",
+  "related_apps": [
+    "libreoffice_calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "copy_sheet_insert.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/copy_sheet_insert.xlsx",
+      "dest": "copy_sheet_insert.xlsx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/0cecd4f3-74de-457b-ba94-29ad6b5dafb6/LARS_Science_Assessment_Resource_List_7-30-21_gold.xlsx",
+      "dest": "copy_sheet_insert_gold.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_name"
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": 1
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 1,
+          "sheet_idx1": "EI1"
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 2,
+          "sheet_idx1": "EI2"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

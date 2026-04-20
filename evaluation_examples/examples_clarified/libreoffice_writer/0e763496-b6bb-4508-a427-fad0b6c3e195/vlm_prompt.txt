@@ -1,0 +1,131 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "0e763496-b6bb-4508-a427-fad0b6c3e195",
+  "snapshot": "libreoffice_writer",
+  "instruction": "Change the font to \"Times New Roman\" throughout the text.",
+  "source": "https://ask.libreoffice.org/t/how-do-i-change-the-font-for-the-whole-document-in-writer/9220",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/0e763496-b6bb-4508-a427-fad0b6c3e195/Dublin_Zoo_Intro.docx",
+            "path": "/home/user/Desktop/Dublin_Zoo_Intro.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/Dublin_Zoo_Intro.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Dublin_Zoo_Intro.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": "compare_font_names",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "font_name": "Times New Roman"
+      }
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/Dublin_Zoo_Intro.docx",
+      "dest": "Dublin_Zoo_Intro.docx"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_font_names
+def compare_font_names(docx_file, rules: List[Dict[str, Any]]):
+    if not docx_file:
+        return 0
+
+    try:
+        doc = Document(docx_file)
+    except Exception as e:
+        logger.error(f"Error: {e}")
+        return 0
+
+    expected_font = rules["font_name"]
+
+    for paragraph in doc.paragraphs:
+        for run in paragraph.runs:
+            font_name = run.font.name
+            if font_name != expected_font:
+                return 0
+    return 1
+```
+
+## Task:
+
+Analyze the instruction: "Change the font to "Times New Roman" throughout the text."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Input_File**: Input file downloaded to /home/user/Desktop/Dublin_Zoo_Intro.docx\nFile info: File format .docx not displayable (11973 bytes)

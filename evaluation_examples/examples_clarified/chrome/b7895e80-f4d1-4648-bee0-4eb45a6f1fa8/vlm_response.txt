@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator reads fields from the TripAdvisor hotels results page via specific XPaths, so the site and page context matter.
+- It expects the destination header to be “New York City Hotels”.
+- It checks dates as “next weekend” in America/New_York, allowing either Sat–Sun or Fri–Sun.
+- It checks the guests count display (2 guests) and the sort order exactly labeled “Price (low to high)”.
+- The original instruction doesn’t specify TripAdvisor, exact sort label, acceptable date range variants, or timezone.
+</thoughts>
+
+<answer>
+On Tripadvisor (https://www.tripadvisor.com), find New York City Hotels for 2 adults (2 guests) next weekend, using New York time, and sort the results by “Price (low to high)”. Next weekend can be Sat–Sun (check-in Saturday, check-out Sunday) or Fri–Sun—either is fine.

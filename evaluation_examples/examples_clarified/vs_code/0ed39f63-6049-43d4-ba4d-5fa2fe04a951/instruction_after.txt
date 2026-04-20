@@ -1,0 +1,1 @@
+Please open /home/user/Desktop/vscode_replace_text.txt in Visual Studio Code and change every occurrence of the lowercase substring "text" to "test" across the entire file (including inside words like "texts" and "texting"). Don’t change anything else—keep all spacing, punctuation, and line breaks exactly the same—and save the edits to the same file.

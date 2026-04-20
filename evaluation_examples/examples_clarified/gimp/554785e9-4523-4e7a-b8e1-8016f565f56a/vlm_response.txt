@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator expects edits on a specific file: /home/user/Desktop/woman_sitting_by_the_tree2.png in GIMP.
+- It checks that the final export is saved as a PNG named edited_colorful.png on the Desktop.
+- It also checks that color intensity is boosted without altering the image’s structural content: composition, size, and the overall hue/brightness patterns should remain similar (no cropping, rotation, warping, heavy filters, or overlays that change structure).
+- Therefore, the instruction should explicitly mention the input path, the desired export name/format/location, and that only vibrancy/saturation should be increased while keeping structure unchanged.
+</thoughts>
+
+<answer>
+In GIMP, please make the colors in /home/user/Desktop/woman_sitting_by_the_tree2.png look more vibrant by boosting saturation/vibrance, but keep the image’s structure the same—no cropping, resizing, rotating, warping, or heavy stylized filters that change the hue/brightness patterns or overall composition. When you’re done, export it as a PNG to the Desktop named edited_colorful.png, keeping the original dimensions.

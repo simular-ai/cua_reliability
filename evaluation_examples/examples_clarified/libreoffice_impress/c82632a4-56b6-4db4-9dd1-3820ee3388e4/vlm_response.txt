@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator compares the edited file at /home/user/Desktop/31_2.pptx to a gold .pptx and requires the exact number of shapes and their dimensions to match.
+- With examine_image_size enabled, the picture’s width and height must be 1 cm each, while its position isn’t checked; however, other non-image shapes’ positions and sizes must remain unchanged.
+- The image must be inserted as a standard picture shape (not as a background or shape fill) so it’s recognized as a picture (shape type 13).
+- The specific files and paths matter: the source presentation is /home/user/Desktop/31_2.pptx and the image is /home/user/Desktop/none.png.
+- Slide indexing is human-style (“slide 2” = the second slide). Saving the file is part of the evaluation flow.
+</thoughts>
+
+<answer>
+Open /home/user/Desktop/31_2.pptx in LibreOffice Impress. On the second slide, insert the image located at /home/user/Desktop/none.png as a normal picture (not a background or shape fill), and set it to exactly 1 cm wide by 1 cm high. Don’t move or change any existing content—just add the image—and save the presentation. </answer>

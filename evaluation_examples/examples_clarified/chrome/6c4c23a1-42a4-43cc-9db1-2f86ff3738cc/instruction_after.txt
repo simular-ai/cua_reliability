@@ -1,0 +1,1 @@
+On Delta’s website (delta.com), look up flights from Seattle (SEA) to New York City (NYC, all airports) for the 5th day of the next calendar month (relative to today). Make sure the fare type is set to “Miles” so only flights purchasable with miles are shown.

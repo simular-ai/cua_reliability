@@ -1,0 +1,1 @@
+Please convert the opened image at /home/user/Desktop/computer.png in GIMP to a palette-based (Indexed) mode without changing its appearance, and have it exported as a PNG named palette_computer.png on the Desktop.

@@ -1,0 +1,1 @@
+Please update VS Code’s User settings JSON (at /home/user/.config/Code/User/settings.json) so that the "python.analysis.diagnosticSeverityOverrides" property is set exactly to {"reportMissingImports": "none"} to disable error reporting for Python missing imports.

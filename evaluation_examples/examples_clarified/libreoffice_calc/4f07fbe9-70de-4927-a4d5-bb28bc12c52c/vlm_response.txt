@@ -1,0 +1,8 @@
+<thoughts>
+The evaluator opens and saves /home/user/Padding_Decimals_In_Formular.xlsx, then compares the printed contents of Sheet1 to a gold version by converting to CSV. It doesn’t check formulas, only what appears in the cells. The vague parts are: which file/sheet to work on, which text should display the number, the exact formatting (two decimals with a dot), that the text must be generated from the numeric cell (not hard-typed), and that nothing else (sheet name, other cells, rows/columns) should change. The expected visible result seems to include the sentence “The price is 19.50 euros.” derived from a numeric cell with value 19.5 (e.g., a “PRICE” cell). The agent must save back to the same file so the evaluator can read it.
+</thoughts>
+
+<answer>
+Please do this in /home/user/Padding_Decimals_In_Formular.xlsx on Sheet1: make the sentence cell use the numeric value from its source cell and display it with exactly two decimal places using a dot as the decimal separator. The text should be driven by a formula that references the number (so it updates if the number changes), not hard‑typed. For the current data (PRICE = 19.5), the visible sentence should read exactly: “The price is 19.50 euros.”
+
+Don’t add or remove rows/columns, don’t rename the sheet, and don’t alter any other cells or formatting—leave all irrelevant regions (including blanks) untouched. Save the changes back to /home/user/Padding_Decimals_In_Formular.xlsx when you’re done.

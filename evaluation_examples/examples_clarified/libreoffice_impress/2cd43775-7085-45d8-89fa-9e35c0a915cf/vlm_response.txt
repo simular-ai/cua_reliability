@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator reads LibreOffice’s user config XML at /home/user/.config/libreoffice/4/user/registrymodifications.xcu and looks specifically for an item with path "/org.openoffice.Office.Common/Save/Document" and a prop named "AutoSaveTimeIntervall", expecting its value to be the integer 3. The original instruction doesn’t specify that this change must be reflected in that exact file, path, and property, which is what the evaluator checks.
+</thoughts>
+
+<answer>
+In LibreOffice Impress, please turn on auto‑save so it saves every 3 minutes, and make sure this is persisted in my user profile at /home/user/.config/libreoffice/4/user/registrymodifications.xcu by setting the /org.openoffice.Office.Common/Save/Document property AutoSaveTimeIntervall to 3, so I don’t have to hit Ctrl+S so often.
+</answer>

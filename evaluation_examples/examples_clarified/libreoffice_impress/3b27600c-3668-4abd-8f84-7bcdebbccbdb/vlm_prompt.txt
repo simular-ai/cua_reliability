@@ -1,0 +1,183 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "3b27600c-3668-4abd-8f84-7bcdebbccbdb",
+  "snapshot": "libreoffice_impress",
+  "instruction": "Please make the background blue on all my slides. I was stuck by finding the entrance to do that for a while...",
+  "source": "https://www.libreofficehelp.com/change-slide-background-impress/#All_Slides",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/3b27600c-3668-4abd-8f84-7bcdebbccbdb/lec17-gui-events.pptx",
+            "path": "/home/user/Desktop/lec17-gui-events.pptx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/lec17-gui-events.pptx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "lec17-gui-events.pptx - LibreOffice Impress",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "evaluate_presentation_fill_to_rgb_distance",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "rgb": [
+          0,
+          0,
+          255
+        ],
+        "original_rgb": [
+          255,
+          255,
+          255
+        ]
+      }
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/lec17-gui-events.pptx",
+      "dest": "lec17-gui-events.pptx"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: evaluate_presentation_fill_to_rgb_distance
+def evaluate_presentation_fill_to_rgb_distance(pptx_file, rules):
+    rgb = rules["rgb"]
+
+    try:
+        original_rgb = rules["original_rgb"]
+    except:
+        original_rgb = None
+
+    def get_rgb_from_color(color):
+        try:
+            if hasattr(color, "rgb"):
+                return color.rgb
+            else:
+                return None
+        except:
+            return None
+
+    def slide_fill_distance_to_rgb(_slide, _rgb, _original_rgb):
+        fill = _slide.background.fill
+        if fill.type == 1:
+            color_rgb = get_rgb_from_color(fill.fore_color)
+            if color_rgb is None:
+                return 1
+            r1, g1, b1 = color_rgb
+            r2, g2, b2 = _rgb
+
+            if _original_rgb is not None:
+                r3, g3, b3 = _original_rgb
+                if r1 == r3 and g1 == g3 and b1 == b3:
+                    return 1
+
+            return sqrt((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2) / sqrt(255 ** 2 + 255 ** 2 + 255 ** 2)
+        elif fill.type == 5:
+            master_fill = _slide.slide_layout.slide_master.background.fill
+            if master_fill.type == 1:
+                color_rgb = get_rgb_from_color(master_fill.fore_color)
+                if color_rgb is None:
+                    return 1
+                r1, g1, b1 = color_rgb
+            else:
+                return 1
+            r2, g2, b2 = _rgb
+
+            if _original_rgb is not None:
+                r3, g3, b3 = _original_rgb
+                if r1 == r3 and g1 == g3 and b1 == b3:
+                    return 1
+
+            return sqrt((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2) / sqrt(255 ** 2 + 255 ** 2 + 255 ** 2)
+
+        return 1
+
+    prs = Presentation(pptx_file)
+    similarity = 1 - sum(slide_fill_distance_to_rgb(slide, rgb, original_rgb) for slide in prs.slides) / len(prs.slides)
+    return similarity
+```
+
+## Task:
+
+Analyze the instruction: "Please make the background blue on all my slides. I was stuck by finding the entrance to do that for a while..."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Input_File**: Input file downloaded to /home/user/Desktop/lec17-gui-events.pptx\nFile info: File format .pptx not displayable (124359 bytes)

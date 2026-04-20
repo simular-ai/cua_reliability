@@ -1,0 +1,121 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "3ef2b351-8a84-4ff2-8724-d86eae9b842e",
+  "snapshot": "libreoffice_writer",
+  "instruction": "Help me center align the heading in LibreOffice.",
+  "source": "https://askubuntu.com/questions/1066351/how-do-you-center-align-in-libreoffice#:~:text=Ctrl%20%2B%20e%20will%20Center%20align%20the%20cursor%20for%20you.",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/3ef2b351-8a84-4ff2-8724-d86eae9b842e/Constitution_Template_With_Guidelines.docx",
+            "path": "/home/user/Desktop/Constitution_Template_With_Guidelines.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/Constitution_Template_With_Guidelines.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Constitution_Template_With_Guidelines.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": "is_first_line_centered",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/Constitution_Template_With_Guidelines.docx",
+      "dest": "Constitution_Template_With_Guidelines.docx"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: is_first_line_centered
+def is_first_line_centered(docx_file):
+    if not docx_file:
+        return 0
+
+    try:
+        doc = Document(docx_file)
+    except Exception as e:
+        logger.error(f"Error: {e}")
+        return 0
+
+    first_paragraph = doc.paragraphs[0]
+
+    # check if the first line is center justified
+    return 1 if first_paragraph.paragraph_format.alignment == WD_PARAGRAPH_ALIGNMENT.CENTER else 0
+```
+
+## Task:
+
+Analyze the instruction: "Help me center align the heading in LibreOffice."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Input_File**: Input file downloaded to /home/user/Desktop/Constitution_Template_With_Guidelines.docx\nFile info: File format .docx not displayable (15123 bytes)

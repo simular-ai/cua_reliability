@@ -1,0 +1,1 @@
+In /home/user/Invoices.xlsx, add a new sheet named exactly Sheet2 and create an actual Pivot Table there based on the full data range from Sheet1 (using the first row as headers). Use “Invoice No.” as the Row field, and add “Invoice No.” to the Values/Data area summarized by Count, with no Column fields and no Filters. Save the workbook back to /home/user/Invoices.xlsx.

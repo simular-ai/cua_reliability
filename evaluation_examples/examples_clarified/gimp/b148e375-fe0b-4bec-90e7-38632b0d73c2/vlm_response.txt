@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator doesn’t check whether an actual layer was created or renamed in the image. Instead, it looks for a GIMP preference saved to the gimprc file: the key layer-new-name must have the value "Square". So the instruction should clarify that the default new-layer name preference needs to be set (and persisted), not just that a layer gets named. The config launches GIMP with white_background.xcf, which can be mentioned for context. Including the exact key and value format ensures it matches what the evaluator reads.
+</thoughts>
+
+<answer>
+In GIMP (opening the white_background.xcf file), please add a new layer and also make sure the default new-layer name preference is saved as “Square”—i.e., the gimprc setting layer-new-name should be set to "Square".</answer>

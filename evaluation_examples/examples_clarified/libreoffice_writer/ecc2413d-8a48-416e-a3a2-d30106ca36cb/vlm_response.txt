@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator inspects the specific file /home/user/Desktop/Sample_Statutory_Declaration.docx and expects it saved.
+- It checks for a manual page break encoded as a DOCX page break (w:br type="page"), not just extra blank lines or a section break.
+- It expects exactly one additional page break to reach a total of 5, so the instruction should constrain the change to a single manual page break.
+- “Right after this one” is ambiguous; clarify it refers to the currently active page in the opened document in LibreOffice Writer.
+</thoughts>
+
+<answer>
+Hey, in the open LibreOffice Writer document at /home/user/Desktop/Sample_Statutory_Declaration.docx, could you insert exactly one blank page immediately after the page I’m currently on by adding a manual page break (not a section break), and then save the file with the same name in the same location? Please don’t change any existing content. </answer>

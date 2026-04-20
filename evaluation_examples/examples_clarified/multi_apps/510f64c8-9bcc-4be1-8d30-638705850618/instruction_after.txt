@@ -1,0 +1,1 @@
+Could you open Visual Studio Code from the terminal using the ‘code’ command to open the folder at ~/Desktop/project (the folder itself, so the workspace name is “project”)? For example, ‘code ~/Desktop/project’ (or cd there and run ‘code .’) is perfect.

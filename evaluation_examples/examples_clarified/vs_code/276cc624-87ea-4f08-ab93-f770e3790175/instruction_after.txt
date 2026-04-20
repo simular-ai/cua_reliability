@@ -1,0 +1,1 @@
+Please help me set the current user's line length for code wrapping to 50 characters in VS Code by adding the user-level setting "editor.wordWrapColumn": 50 (number, not a string) to the JSON at /home/user/.config/Code/User/settings.json.

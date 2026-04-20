@@ -1,0 +1,15 @@
+<thoughts>
+- The evaluator compares the result workbook to a golden file by checking:
+  - The chart’s type and title.
+  - That the chart exists on the second sheet (it references RNSheet2 vs ENSheet2), implying the new chart must be placed on a new sheet that ends up as the second sheet.
+  - It saves and reads from the same file (WeeklySales.xlsx), so the change must be saved in place.
+- The instruction should therefore clarify:
+  - The chart must be a 2D clustered column (not stacked, not 3D).
+  - Use Week as the category axis with two series: Sales and COGS.
+  - Put the chart on a new worksheet that becomes the second sheet.
+  - Title must be exactly “Sales & COGS”.
+  - Save the changes to WeeklySales.xlsx.
+</thoughts>
+
+<answer>
+In the opened WeeklySales.xlsx, add a 2D clustered column chart (not stacked, not 3D) using Week as the category axis and two series (Sales and COGS), and place it on a new worksheet so it becomes the second sheet in the workbook. Set the chart title exactly to “Sales & COGS”, and save your changes to WeeklySales.xlsx.

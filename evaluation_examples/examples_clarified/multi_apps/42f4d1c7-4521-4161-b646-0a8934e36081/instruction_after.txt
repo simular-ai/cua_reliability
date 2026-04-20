@@ -1,0 +1,1 @@
+Configure VS Code to edit GIMP Script‑Fu scripts by installing the Lisp extension from mattn (extension ID: mattn.lisp). Then test it by writing Script‑Fu code that resizes the image at /home/user/Desktop/character.png to exactly 128×128 pixels and saves the result as a PNG named resized.png at /home/user/Desktop/resized.png. Use these exact filenames and locations.

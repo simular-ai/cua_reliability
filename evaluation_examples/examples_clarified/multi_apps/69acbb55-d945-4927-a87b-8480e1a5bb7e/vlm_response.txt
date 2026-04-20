@@ -1,0 +1,10 @@
+<thoughts>
+The evaluator runs a specific import check: it executes python -c "from InstructorEmbedding import INSTRUCTOR;" and considers the task successful only if that command produces no error output (it flags anything containing "Error:"). The original instruction doesn’t explicitly state that the environment must enable that exact import via the default python executable. It also doesn’t clarify that verification should be done with python (not python3) and that the package must be available to that interpreter. Adding these minimal clarifications will align the instruction with what’s actually checked.
+</thoughts>
+
+<answer>
+I’m working on word embedding tasks and need help configuring the environment for the project at "https://github.com/xlang-ai/instructor-embedding" under /home/user. Please use the linked Colab as a reference for dependencies, but set things up locally so that the default python interpreter on this machine (invoked as “python”) can import the library. Concretely, after setup, running this exact verification command in a terminal should succeed with no error output:
+
+python -c "from InstructorEmbedding import INSTRUCTOR;"
+
+If anything prints an error (e.g., “Error:”), that means the environment isn’t configured correctly. Please proceed with that in mind while keeping the repo under /home/user and referring to the Colab for guidance: https://colab.research.google.com/drive/1P7ivNLMosHyG7XOHmoh7CoqpXryKy3Qt?usp=sharing.

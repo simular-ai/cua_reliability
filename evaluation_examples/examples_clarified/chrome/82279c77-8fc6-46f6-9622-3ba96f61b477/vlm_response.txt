@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator parses the active tab’s URL and specifically looks for Cars.com query parameters: list_price_max=50000, maximum_distance=50, zip=10001, and fuel_slugs[]=electric. The original instruction doesn’t specify using Cars.com or that the URL must include those exact keys/values, nor does it clarify “electric-only” (excluding hybrids). Minimal clarifications should therefore: (1) direct the search on Cars.com, (2) ensure electric-only, and (3) state that the resulting URL should include those exact parameters.
+</thoughts>
+
+<answer>
+On Cars.com, find electric-only cars (not hybrids) with a max price of $50,000 within 50 miles of ZIP 10001, and make sure the results page URL reflects these filters with list_price_max=50000, maximum_distance=50, zip=10001, and fuel_slugs[]=electric.
+</answer>

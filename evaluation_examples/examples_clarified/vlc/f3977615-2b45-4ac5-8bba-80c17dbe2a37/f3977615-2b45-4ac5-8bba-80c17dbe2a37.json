@@ -1,0 +1,63 @@
+{
+  "id": "f3977615-2b45-4ac5-8bba-80c17dbe2a37",
+  "snapshot": "chrome",
+  "instruction": "I want to watch two or more videos at the same time in VLC. When I try multiple VLC windows, any file I open still starts playing in the first instance instead of the new one. On Fedora/Linux, can you configure VLC so that opening a video from a file doesn\u2019t jump to the first instance\u2014i.e., update my VLC config (~/.config/vlc/vlcrc) so one-instance-when-started-from-file is disabled (set to 0)? Source: https://www.reddit.com/r/Fedora/comments/rhljzd/how_to_run_multiple_instances_of_vlc_media_player/",
+  "source": "https://www.reddit.com/r/Fedora/comments/rhljzd/how_to_run_multiple_instances_of_vlc_media_player/",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "VLC_VERBOSE=-1 vlc --no-audio --no-video-title-show",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.click({SCREEN_WIDTH_HALF}, {SCREEN_HEIGHT_HALF}); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vlc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "launch",
+        "parameters": {
+          "command": [
+            "pkill",
+            "vlc"
+          ]
+        }
+      },
+      {
+        "type": "launch",
+        "parameters": {
+          "command": "vlc --no-audio --no-video-title-show",
+          "shell": true
+        }
+      }
+    ],
+    "func": "check_one_instance_when_started_from_file",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected_one_instance_when_started_from_file": 0
+      }
+    },
+    "result": {
+      "type": "vlc_config",
+      "dest": "vlcrc"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

@@ -1,0 +1,192 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "6f81754e-285d-4ce0-b59e-af7edb02d108",
+  "snapshot": "libreoffice_writer",
+  "instruction": "A certain railway company in Hong Kong uses a signaling system to keep track of trains in its railway system. Each line in the docx file represents a train calling at a station from 0600 to 1200 on 2022-09-22, and has the following format: time_HH:MM:SS, train_id, station_id, platform_no.. I want to remove duplicated train ids in order to know how many different trains are running from 0600 to 1200. Could you help me on this? I am doing it manually and it is very inefficient.",
+  "source": "https://superuser.com/questions/789473/remove-duplicate-lines-in-libreoffice-openoffice-writer",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/6f81754e-285d-4ce0-b59e-af7edb02d108/HK_train_record.docx",
+            "path": "/home/user/Desktop/HK_train_record.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/HK_train_record.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "HK_train_record.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": "compare_unique_train_records",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/HK_train_record.docx",
+      "dest": "HK_train_record.docx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": [
+        "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/6f81754e-285d-4ce0-b59e-af7edb02d108/HK_train_record_Gold.docx",
+        "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/6f81754e-285d-4ce0-b59e-af7edb02d108/HK_train_record.docx"
+      ],
+      "dest": [
+        "HK_train_record_Gold.docx",
+        "HK_train_record_Original.docx"
+      ],
+      "multi": true,
+      "gives": [
+        0,
+        1
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_unique_train_records
+def compare_unique_train_records(processed_file, expected_files, **kwargs):
+    """
+    Compares the processed file with a list of expected files containing the
+    gold standard and the initial document.
+    expected_files[0] should be the gold standard file.
+    expected_files[1] should be the initial file.
+    """
+    # Debug logging to understand what we're actually receiving
+    logger.info(f"DEBUG: processed_file type: {type(processed_file)}, value: {processed_file}")
+    logger.info(f"DEBUG: expected_files type: {type(expected_files)}, value: {expected_files}")
+    logger.info(f"DEBUG: kwargs: {kwargs}")
+    
+    if not processed_file or not isinstance(expected_files, list) or len(expected_files) < 2:
+        logger.error("Invalid arguments: processed_file and a list of 2 expected_files are required.")
+        return 0
+
+    gold_file = expected_files[0]
+    initial_file = expected_files[1]
+
+    if not gold_file or not initial_file:
+        logger.error("Gold file or initial file path is missing from expected_files list.")
+        return 0
+
+    # Helper function to get lines and IDs from a file
+    def get_lines_and_ids_from_file(file_path):
+        try:
+            doc = Document(file_path)
+            lines = [p.text.strip() for p in doc.paragraphs if p.text.strip()]
+            train_ids = [line.split(',')[1].strip() for line in lines if len(line.split(',')) == 4]
+            return lines, train_ids
+        except Exception as e:
+            logger.error(f"Error opening or parsing file {file_path}: {e}")
+            return None, None
+
+    # Get data from all three files
+    processed_lines, processed_train_ids = get_lines_and_ids_from_file(processed_file)
+    if processed_lines is None: return 0
+
+    gold_lines, gold_train_ids = get_lines_and_ids_from_file(gold_file)
+    if gold_lines is None: return 0
+
+    initial_lines, _ = get_lines_and_ids_from_file(initial_file)
+    if initial_lines is None: return 0
+    initial_lines_set = set(initial_lines)
+
+    # 1. Subset Check: Ensure every processed line was in the initial file
+    if not set(processed_lines).issubset(initial_lines_set):
+        logger.error("Processed file contains lines not present in the initial file.")
+        logger.error(f"Extra lines: {set(processed_lines) - initial_lines_set}")
+        return 0
+
+    # 2. Uniqueness Check: Check for duplicates within the processed file
+    if len(processed_train_ids) != len(set(processed_train_ids)):
+        logger.error("Duplicate train_ids found in the processed file.")
+        return 0
+
+    # 3. Correctness Check: Compare the set of train_ids
+    if set(processed_train_ids) != set(gold_train_ids):
+        logger.error("Set of train_ids does not match between processed file and gold file.")
+        return 0
+
+    # 4. Line count check
+    if len(processed_lines) != len(gold_lines):
+        logger.error("Number of lines does not match between processed file and gold file.")
+        return 0
+
+    return 1
+```
+
+## Task:
+
+Analyze the instruction: "A certain railway company in Hong Kong uses a signaling system to keep track of trains in its railway system. Each line in the docx file represents a train calling at a station from 0600 to 1200 on 2022-09-22, and has the following format: time_HH:MM:SS, train_id, station_id, platform_no.. I want to remove duplicated train ids in order to know how many different trains are running from 0600 to 1200. Could you help me on this? I am doing it manually and it is very inefficient."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Input_File**: Input file downloaded to /home/user/Desktop/HK_train_record.docx\nFile info: File format .docx not displayable (8369 bytes)
+
+\n**Ground_Truth_File**: Expected output/ground truth file: HK_train_record_Gold.docx\nFile info: File format .docx not displayable (7439 bytes)

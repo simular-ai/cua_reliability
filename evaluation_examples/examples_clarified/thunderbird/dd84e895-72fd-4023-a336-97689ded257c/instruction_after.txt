@@ -1,0 +1,1 @@
+In Thunderbird, open the Bills folder that’s under Local Folders (i.e., not under any mail account) in the provided profile, and mark every message in that folder as Starred by toggling the star/flag so each one shows a filled star. (Reference: https://support.mozilla.org/en-US/kb/organize-your-messages-using-filters)

@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator checks that a specific file exists at /home/user/Desktop/poster_party_night.webp at the end. The original instruction doesn’t specify the exact file name/extension, nor that it should be restored to the Desktop (its original location). To align with the check, I need to clarify: the exact filename “poster_party_night.webp,” that it was on the Desktop, and that it should be restored back to /home/user/Desktop from the Trash, while keeping a natural tone and avoiding step-by-step wording.
+</thoughts>
+
+<answer>
+I’m on Ubuntu and accidentally deleted an image called “poster_party_night.webp” that was on my Desktop. Could you restore it from the Trash back to my Desktop (at /home/user/Desktop)?
+</answer>

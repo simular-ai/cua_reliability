@@ -1,0 +1,1 @@
+Please enable VS Code’s Auto Save by setting files.autoSave to "afterDelay" and set the delay to 500 ms by setting files.autoSaveDelay to 500 in the user settings JSON at /home/user/.config/Code/User/settings.json.

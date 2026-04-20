@@ -1,0 +1,1 @@
+Open /home/user/Quarterly_Product_Sales_by_Zone.xlsx in LibreOffice Calc and, on the first (existing) sheet, fill any missing “Total” column values for each product (Q1+Q2+Q3+Q4) and the “Total” row for each Zone block.

@@ -1,0 +1,17 @@
+.envrc
+.env
+__pycache__/
+*.pyc
+*.egg-info/
+*.eggs/
+dist/
+build/
+results/
+plan_cache/
+cache/
+logs/*.log
+logs/*.txt
+*.log
+.DS_Store
+evaluation_examples/test_one*.json
+evaluation_examples/examples_clarified_test/

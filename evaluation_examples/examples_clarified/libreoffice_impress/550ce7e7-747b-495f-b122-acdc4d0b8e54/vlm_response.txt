@@ -1,0 +1,18 @@
+<thoughts>
+The evaluator compares the edited file against a gold PPTX and is strict about text content, formatting, and shape positions. It expects:
+- Editing the specific file at /home/user/Desktop/New_Club_Spring_2018_Training.pptx in LibreOffice Impress and saving in place.
+- Only adding strikethrough to the correct text runs; no changes to wording, bullets, alignment, fonts, or layout.
+- Applying a standard (single) strikethrough on exactly the first two items in the to‑do list.
+
+The original instruction doesn’t specify the exact file path/name, the app, where in the presentation the change applies, or that nothing else should be altered. Adding these minimal clarifications aligns the task with the evaluator’s checks without becoming procedural.
+</thoughts>
+
+<answer>
+I’m reviewing our soccer club’s to‑do list presentation. Please open “/home/user/Desktop/New_Club_Spring_2018_Training.pptx” in LibreOffice Impress and, on the slide that lists the to‑do items, apply a single strikethrough to the entire first and second list items (the ones we’ve completed). Don’t change any wording, bullets, alignment, fonts, or layout—just add the strikethrough—and save the changes back to the same file path.
+</answer>
+**Input_File**: Input file downloaded to /home/user/Desktop/New_Club_Spring_2018_Training.pptx
+File info: File format .pptx not displayable (168672 bytes)
+**Ground_Truth_File**: Expected output/ground truth file: New_Club_Spring_2018_Training_Gold.pptx
+File info: File format .pptx not displayable (168787 bytes)
+**Ground_Truth_File**: Expected output/ground truth file: New_Club_Spring_2018_Training_Gold_all_fonts_1.pptx
+File info: File format .pptx not displayable (189690 bytes)

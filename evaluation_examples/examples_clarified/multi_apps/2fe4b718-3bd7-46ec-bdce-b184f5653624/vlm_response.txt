@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares a produced GIF at /home/user/Desktop/src_clip.gif against a reference, so the output file path and exact filename need to be explicit.
+- The source video path should be explicit (/home/user/Desktop/src.mp4).
+- The start time "00:03" could be ambiguous; clarify it’s mm:ss.
+- Since similarity is checked, avoid unintended edits (cropping/overlays) that would change the first frame.
+</thoughts>
+
+<answer>
+Please use VLC and GIMP (referencing https://www.maketecheasier.com/create-gif-from-video-gimp/) to make an animated GIF from the video at /home/user/Desktop/src.mp4. Take a 5‑second segment starting at 00:03 (mm:ss), and save the result exactly as /home/user/Desktop/src_clip.gif. Keep the clip as-is (no cropping or overlays) so it matches the source frames.

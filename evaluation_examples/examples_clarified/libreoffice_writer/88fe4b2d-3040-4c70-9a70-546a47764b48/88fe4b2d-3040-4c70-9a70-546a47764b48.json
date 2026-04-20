@@ -1,0 +1,110 @@
+{
+  "id": "88fe4b2d-3040-4c70-9a70-546a47764b48",
+  "snapshot": "libreoffice_writer",
+  "instruction": "I\u2019m making a guideline for students and want the sentences in the first paragraph to be easier to read. In /home/user/Desktop/CCCH9003_Tutorial_guidelines.docx (opened in LibreOffice Writer), please work only on the first body paragraph (the first block of running text after the title) and separate its sentences by inserting one true empty line between them\u2014i.e., create an actual empty paragraph (no spaces) after each sentence-ending mark (., ?, or !), without changing any wording, punctuation, capitalization, or any other paragraphs. It\u2019s fine whether or not there\u2019s an extra empty line after the last sentence. Please don\u2019t use paragraph spacing settings for this; just insert blank paragraphs. Leave the file name and format unchanged and save it in place as the same .docx. Source: https://stackoverflow.com/questions/56554555/libreoffice-writer-how-to-create-empty-line-space-after-every-period-in-a-par",
+  "source": "https://stackoverflow.com/questions/56554555/libreoffice-writer-how-to-create-empty-line-space-after-every-period-in-a-par",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/88fe4b2d-3040-4c70-9a70-546a47764b48/CCCH9003_Tutorial_guidelines.docx",
+            "path": "/home/user/Desktop/CCCH9003_Tutorial_guidelines.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/CCCH9003_Tutorial_guidelines.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "CCCH9003_Tutorial_guidelines.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": [
+      "compare_docx_files",
+      "compare_docx_files",
+      "compare_docx_files"
+    ],
+    "conj": "or",
+    "expected": [
+      {
+        "type": "cloud_file",
+        "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/88fe4b2d-3040-4c70-9a70-546a47764b48/CCCH9003_Tutorial_guidelines_Gold_1.docx",
+        "dest": "CCCH9003_Tutorial_guidelines_Gold_1.docx"
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/88fe4b2d-3040-4c70-9a70-546a47764b48/CCCH9003_Tutorial_guidelines_Gold_2.docx",
+        "dest": "CCCH9003_Tutorial_guidelines_Gold_2.docx"
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/88fe4b2d-3040-4c70-9a70-546a47764b48/CCCH9003_Tutorial_guidelines_Gold_3.docx",
+        "dest": "CCCH9003_Tutorial_guidelines_Gold_3.docx"
+      }
+    ],
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/CCCH9003_Tutorial_guidelines.docx",
+        "dest": "CCCH9003_Tutorial_guidelines.docx"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/CCCH9003_Tutorial_guidelines.docx",
+        "dest": "CCCH9003_Tutorial_guidelines.docx"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/CCCH9003_Tutorial_guidelines.docx",
+        "dest": "CCCH9003_Tutorial_guidelines.docx"
+      }
+    ],
+    "options": [
+      {
+        "ignore_blanks": false
+      },
+      {
+        "ignore_blanks": false
+      },
+      {
+        "ignore_blanks": false
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

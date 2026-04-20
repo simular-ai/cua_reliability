@@ -1,0 +1,12 @@
+<thoughts>
+- The evaluator checks for saved login records in the default Thunderbird profile at /home/user/.thunderbird.
+- It specifically expects two saved credentials with:
+  - URLs imap://outlook.office365.com and smtp://smtp.office365.com
+  - Username anonym-x2024@outlook.com for both
+  - Password password for both
+- The original instruction doesn’t specify the exact incoming/outgoing server hostnames, doesn’t require saving the password, and doesn’t specify the authentication method. If OAuth2 is used, the plain password won’t be saved and the evaluation will fail.
+- Minimal clarifications needed: specify IMAP/SMTP hosts explicitly, require Normal password (not OAuth2), ensure the password is saved for both incoming and outgoing, and confirm using the default Thunderbird profile. The tolerance for login/connection errors should be retained.
+</thoughts>
+
+<answer>
+Please add my Outlook account to Thunderbird and complete the setup in the default Thunderbird profile. Use IMAP for incoming mail with server outlook.office365.com and SMTP for outgoing mail with server smtp.office365.com. Use my full email address (anonym-x2024@outlook.com) as the username for both. Set the authentication method to Normal password (not OAuth2) for both servers, and when prompted choose to save/remember the password and enter it exactly as: password (without the quotes). It’s totally fine if Thunderbird shows a login or connection error—just finish the account setup so the account and saved logins are in place.

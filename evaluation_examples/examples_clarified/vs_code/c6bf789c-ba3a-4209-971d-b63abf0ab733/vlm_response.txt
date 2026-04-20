@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator reads the global VS Code user settings file at /home/user/.config/Code/User/settings.json and requires the top-level key files.exclude to equal exactly {"**/__pycache__": true}. The original instruction doesn’t specify that it must be the global user settings (not workspace) or the exact JSON key/value, and adding any extra entries under files.exclude would cause the check to fail due to strict equality.
+</thoughts>
+
+<answer>
+Please update VS Code’s global User settings JSON (at /home/user/.config/Code/User/settings.json) so that the files.exclude entry is exactly {"**/__pycache__": true}, which will hide all “__pycache__” folders in the Explorer. Don’t add any other exclusions under files.exclude.
+</answer>

@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator opens and saves a specific file (/home/user/Represent_in_millions_billions.xlsx) and compares the printed CSV output of Sheet1, so the instruction should name the exact file and keep the sheet/headers unchanged.
+- It checks the displayed text, so we should clarify display details: exactly one decimal place always (including trailing zero), dot as decimal separator, single space before the unit, uppercase M/B, and no thousands separators.
+- It mentions “half should be rounded up,” so explicitly confirming half-up behavior for .5 cases is important.
+- The values in B and C should be derived from A (“Parameter”), not altering A.
+- The workbook should be saved in place so the converter picks up the final state.
+</thoughts>
+
+<answer>
+Work in /home/user/Represent_in_millions_billions.xlsx (Sheet1). Using the numbers in column A (header “Parameter”), show them in millions in column B (header “in millions (M)”) and in billions in column C (header “in billions (B)”). Display exactly one decimal place in every cell (always show the trailing zero), round .5 up (half-up), add a single space between the number and the unit, use uppercase M/B, use a dot as the decimal separator, and don’t use thousands separators. Keep the existing headers, sheet name, and all other cells unchanged, and save the file in place when you’re done.

@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks for a specific output file path and name: /home/user/Desktop/Baby Justin Bieber.mp3.
+- It compares the audio content of that MP3 to a reference, so the audio must come from the provided video.
+- The original instruction doesn’t clearly specify which video file to use or the exact filesystem path for saving, which could cause mismatches.
+- Minimal clarifications needed: identify the source video file on the Desktop by exact name and specify the exact save location and filename on the Desktop.
+</thoughts>
+
+<answer>
+Could you please take the audio from the video file named “Baby Justin Bieber.mp4” that’s on the Desktop (path: /home/user/Desktop/Baby Justin Bieber.mp4) and save it as an MP3 named exactly “Baby Justin Bieber.mp3” directly on the Desktop (path: /home/user/Desktop)? I’d like the full song audio from that video in .mp3 format with that exact name and location. Thanks so much! </answer>

@@ -1,0 +1,1 @@
+In /home/user/NetIncome.xlsx, add a new worksheet named exactly Sheet2. On Sheet2, place the headers "Total Revenue" in cell A1 and "Total Expenses" in cell B1. Then calculate the overall sums of the Revenue and Total Expenses columns from the existing sheet (i.e., sum each entire column) and enter those totals in A2 and B2 respectively. Save the workbook with the same filename.

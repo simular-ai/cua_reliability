@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator opens /home/user/Desktop/berries.png in GIMP and later exports with Shift+Ctrl+E to a file named berries_contrast.png. It then checks that the edited image has higher contrast than the original and that overall structure remains similar (no cropping/resizing/heavy effects). The original instruction doesn’t specify the exact source file, output name, format, or that composition should stay unchanged. These details must be added while keeping a natural tone and not turning it into steps.
+</thoughts>
+
+<answer>
+Please use GIMP to boost the contrast of the image at /home/user/Desktop/berries.png so the subject stands out more, while keeping the composition the same (no cropping, resizing, or heavy stylistic effects). When you’re done, export it as a PNG named /home/user/Desktop/berries_contrast.png.
+</answer>

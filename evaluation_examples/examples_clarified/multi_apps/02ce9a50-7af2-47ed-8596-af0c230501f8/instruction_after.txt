@@ -1,0 +1,1 @@
+I’m working in LibreOffice Writer on a Linux tutorial and want to show the result of running the ls command in /home/user. Please run ls in that directory and take a screenshot where the terminal clearly shows the command “ls” itself (along with its output). Save it as a PNG named ls.png directly on the Desktop (i.e., /home/user/Desktop/ls.png).

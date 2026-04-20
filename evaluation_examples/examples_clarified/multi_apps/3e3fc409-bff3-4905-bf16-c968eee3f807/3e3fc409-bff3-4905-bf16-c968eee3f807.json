@@ -1,0 +1,86 @@
+{
+  "id": "3e3fc409-bff3-4905-bf16-c968eee3f807",
+  "snapshot": "chrome",
+  "instruction": "I\u2019ve got an Excel file open at /home/user/Desktop/movies.xlsx. Please add a new worksheet named exactly unseen_movies to this same file (don\u2019t create a new workbook), and use the same header row exactly as in the existing sheet\u2014title, release year, ratings, description\u2014in the same order and spelling.\n\nFor the content, use the IMDb Top 250 chart and take the first 30 entries as the \u201cIMDb Top 30.\u201d From those, keep only titles released before 2024 (i.e., 2023 and earlier). Treat a movie as \u201calready seen\u201d if its title exactly matches a title in my current sheet, and include only the ones I haven\u2019t seen.\n\nOrder the unseen movies by IMDb chart rank with rank 1 at the top downward (i.e., follow IMDb\u2019s Top 250 chart order, not the numeric rating). Don\u2019t add extra columns; keep just those four headers. Save your changes back to /home/user/Desktop/movies.xlsx.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.imdb.com"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3e3fc409-bff3-4905-bf16-c968eee3f807/movies.xlsx",
+            "path": "/home/user/Desktop/movies.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "libreoffice",
+          "--calc",
+          "/home/user/Desktop/movies.xlsx"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_calc",
+    "chrome"
+  ],
+  "evaluator": {
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/movies.xlsx",
+      "dest": "movies.xlsx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/3e3fc409-bff3-4905-bf16-c968eee3f807/gold_movies.xlsx",
+      "dest": "gold_movies.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RNunseen_movies",
+          "sheet_idx1": "ENunseen_movies"
+        }
+      ]
+    }
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

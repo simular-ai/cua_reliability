@@ -1,0 +1,3 @@
+I’m using the spreadsheet at /home/user/Desktop/rsc-ebook-collection-2023.xlsx. Please take the first paper entry listed in the first worksheet (ignore the header and skip any items that aren’t papers). Follow its link to get the actual PDF and save that file exactly as /home/user/paper01.pdf.
+
+Then, looking only at the other items in the same spreadsheet, find which paper in the list cites that initial paper. Create a Word document saved as /home/user/ans.docx (make sure it’s .docx, not .odt) that contains only the exact title of the citing paper as it appears in the spreadsheet—no extra text, punctuation, or notes.

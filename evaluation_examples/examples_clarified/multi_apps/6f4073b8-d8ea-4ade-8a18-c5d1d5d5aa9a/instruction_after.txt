@@ -1,0 +1,3 @@
+I want to count the meeting cities for the three machine learning conferences from 2013 to 2019 (inclusive). Please use the Excel file named “ConferenceCity.xlsx” on the Desktop (/home/user/Desktop/ConferenceCity.xlsx). It already lists the conference names and years for ICLR, ICML, and NeurIPS.
+
+Fill in the meeting city for each listed row in the City column (column C) on the first worksheet, keeping the existing row order, headers, and structure intact (don’t add or remove rows/columns or sort). Save your edits to the same file name and location.

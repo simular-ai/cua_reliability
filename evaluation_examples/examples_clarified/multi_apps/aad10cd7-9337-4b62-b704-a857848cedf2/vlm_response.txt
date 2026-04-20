@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator compares the text content of /home/user/Desktop/notes.docx against a gold .docx, focusing on the main article text in order, with fuzzy matching and whitespace normalization.
+- Ambiguities to clarify: the exact start (“Searching” page title), the stop point (right before the “Resources” section), and exclusion of non-article elements (navigation, sidebar, footer, breadcrumbs, the Resources section itself).
+- Specify that only main body text (headings, paragraphs, bullets) is needed, images/media can be omitted.
+- Ensure exact file name and location: notes.docx on Desktop at /home/user/Desktop/notes.docx.
+- Maintain natural tone without step-by-step instructions.
+</thoughts>
+
+<answer>
+Please pull the main article text from Apple’s Human Interface Guidelines page at https://developer.apple.com/design/human-interface-guidelines/searching, starting at the “Searching” page title and continuing through all of its headings, paragraphs, and bullet points, but stop right before the “Resources” section. Don’t include any site navigation, breadcrumbs, sidebar, footer, or the “Resources” section itself; it’s fine to omit images and other media. Keep the text in the same order as it appears on the page, and save it as a Microsoft Word document named notes.docx on my Desktop (path: /home/user/Desktop/notes.docx).

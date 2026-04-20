@@ -1,0 +1,94 @@
+{
+  "id": "347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+  "snapshot": "libreoffice_calc",
+  "instruction": "I\u2019ve opened /home/user/Create_column_charts_using_statistics.xlsx. On the first sheet with the \u201cPersonal Costs \u2013 2019\u201d and \u201cPersonal Costs \u2013 2020\u201d tables, please add exactly two separate charts: standard vertical Column charts (not horizontal bars), one for 2019 and one for 2020. For each chart, use the existing per\u2011month total values from the rightmost totals column as the data series, with the months as the categories on the X\u2011axis. Place both charts on this same sheet in empty space, don\u2019t add or rename any sheets, and don\u2019t change any cell contents or insert helper calculations. Save the changes back to /home/user/Create_column_charts_using_statistics.xlsx.",
+  "source": "https://www.youtube.com/watch?v=bgO40-CjYNY",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/347ef137-7eeb-4c80-a3bb-0951f26a8aff/Create_column_charts_using_statistics.xlsx",
+            "path": "/home/user/Create_column_charts_using_statistics.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Create_column_charts_using_statistics.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/347ef137-7eeb-4c80-a3bb-0951f26a8aff",
+  "related_apps": [
+    "libreoffice_calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Create_column_charts_using_statistics.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Create_column_charts_using_statistics.xlsx",
+      "dest": "Create_column_charts_using_statistics.xlsx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/347ef137-7eeb-4c80-a3bb-0951f26a8aff/Create_column_charts_using_statistics_gold.xlsx",
+      "dest": "Create_column_charts_using_statistics_gold.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "chart",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0",
+          "chart_props": [
+            "type",
+            "direction"
+          ]
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

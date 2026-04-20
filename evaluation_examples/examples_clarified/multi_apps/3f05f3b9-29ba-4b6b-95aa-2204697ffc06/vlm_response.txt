@@ -1,0 +1,25 @@
+<thoughts>
+The evaluator checks that five specific MP3 files in /home/user/Music have their embedded ID3 tags set so that:
+- title equals the exact text after “ - ” in the filename
+- artist equals the exact text before “ - ” in the filename
+
+It expects exact string matches (including spacing and capitalization) for:
+- Cheng Xiang / Missing You
+- Han Baoyi / Tears of Dancing Girl
+- Huang An / I Know Missing is Painful
+- Chen Shaohua / Red Daughter
+- Zhou Xuan / Nights in Shanghai
+
+The current instruction doesn’t specify which files, their locations, the exact expected values, or that the tags must be written to the files (not just filenames). It also doesn’t clarify that only the “title” and “artist” tags are required and that filenames shouldn’t be changed. The minimal clarification is to name the files with full paths and state the precise artist/title values to write as ID3 tags, while keeping a conversational tone and mentioning Picard/Kid3 as options without prescribing steps.
+</thoughts>
+
+<answer>
+I’ve got a handful of MP3s in /home/user/Music whose tags are blank, but the filenames already have the right “Artist - Title” info. I’ve heard Picard or Kid3 could do this, but I’m not familiar—could you update the embedded ID3 metadata so the artist and title match the filenames exactly (case and spacing), and save those changes without renaming or moving the files?
+
+- /home/user/Music/Cheng Xiang - Missing You.mp3 → artist: “Cheng Xiang”, title: “Missing You”
+- /home/user/Music/Han Baoyi - Tears of Dancing Girl.mp3 → artist: “Han Baoyi”, title: “Tears of Dancing Girl”
+- /home/user/Music/Huang An - I Know Missing is Painful.mp3 → artist: “Huang An”, title: “I Know Missing is Painful”
+- /home/user/Music/Chen Shaohua - Red Daughter.mp3 → artist: “Chen Shaohua”, title: “Red Daughter”
+- /home/user/Music/Zhou Xuan - Nights in Shanghai.mp3 → artist: “Zhou Xuan”, title: “Nights in Shanghai”
+
+Only the “artist” and “title” tags need to be set as above.

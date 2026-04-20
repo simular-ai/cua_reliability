@@ -1,0 +1,63 @@
+{
+  "id": "d06f0d4d-2cd5-4ede-8de9-598629438c6e",
+  "snapshot": "chrome",
+  "instruction": "Could you make the volume slider dark by setting VLC\u2019s slider color configuration to a black-ish palette? Please update the qt-slider-colours entry in VLC\u2019s vlcrc (usually at ~/.config/vlc/vlcrc) to a semicolon\u2011separated list of RGB values (0\u2013255) for the slider gradient, with every R, G, and B component below 100 so it stays dark in low light. If qt-slider-colours isn\u2019t present, add it so the change persists after relaunch. This is for the Qt interface slider used by the volume control. Here\u2019s the context I was looking at: https://superuser.com/questions/1039392/changing-colour-of-vlc-volume-slider",
+  "source": "https://superuser.com/questions/1039392/changing-colour-of-vlc-volume-slider",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "VLC_VERBOSE=-1 vlc --no-audio --no-video-title-show",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.click({SCREEN_WIDTH_HALF}, {SCREEN_HEIGHT_HALF}); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vlc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "launch",
+        "parameters": {
+          "command": [
+            "pkill",
+            "vlc"
+          ]
+        }
+      },
+      {
+        "type": "launch",
+        "parameters": {
+          "command": "vlc --no-audio --no-video-title-show",
+          "shell": true
+        }
+      }
+    ],
+    "func": "check_qt_slider_colours",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "type": "blackish"
+      }
+    },
+    "result": {
+      "type": "vlc_config",
+      "dest": "vlcrc"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

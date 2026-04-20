@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator compares the text of the exported PDF against a specific ground-truth PDF and also checks for the exact output filename and acceptable save locations. The original instruction doesn’t specify the exact filename expected, nor where the PDF should be saved. It also says “keep the file name,” which could be misunderstood; the evaluator expects the same base name as the original DOCX, with a .pdf extension. The allowed save locations are Desktop, Documents, Downloads, or the home folder.
+</thoughts>
+
+<answer>
+Export the currently opened document (View_Person_Organizational_Summary.docx) to PDF, keeping the same base name. The output should be named View_Person_Organizational_Summary.pdf, saved to either Desktop, Documents, Downloads, or your home folder (any one of those is fine). Don’t modify the document content—just export it as-is.

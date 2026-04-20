@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks the VM’s system clipboard for a specific absolute path string.
+- The original instruction doesn’t specify absolute vs. relative path.
+- It also doesn’t specify copying to the system clipboard vs. an app’s internal clipboard.
+- Formatting matters: it should be exactly the path text, no quotes or extra characters, and the filename’s case must match.
+</thoughts>
+
+<answer>
+I remember there’s a file named “secret.docx” on this computer, but I can’t remember where it is. Please find it and copy its full absolute path (Linux-style, starting with /) to the system clipboard. Copy just the single-line path text—no quotes, no extra spaces or notes—and make sure the filename’s casing matches exactly (“secret.docx”).</answer>

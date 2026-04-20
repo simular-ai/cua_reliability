@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator checks that VLC is actively playing and that the playing item matches the exact HLS URL provided. The original instruction doesn’t specify using VLC, that the stream should be opened as a network stream, or that playback must be started (not paused). It also doesn’t emphasize using the exact URL. These are the minimal clarifications needed.
+</thoughts>
+
+<answer>
+Could you open VLC and start playing this exact HLS URL as a network stream, making sure it’s actually playing (not paused)? https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8
+</answer>

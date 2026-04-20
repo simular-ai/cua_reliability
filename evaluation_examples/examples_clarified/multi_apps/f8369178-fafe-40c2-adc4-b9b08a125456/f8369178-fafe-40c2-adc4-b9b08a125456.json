@@ -1,0 +1,44 @@
+{
+  "id": "f8369178-fafe-40c2-adc4-b9b08a125456",
+  "snapshot": "chrome",
+  "instruction": "Help me download and install the Orchis theme from gnome-look.org and switch my GNOME Applications (GTK) theme to it. I don\u2019t need icons or the shell theme changed\u2014just make sure the active GTK theme is an Orchis variant so that running gsettings get org.gnome.desktop.interface gtk-theme returns a value containing \u201cOrchis.\u201d",
+  "source": "https://itsfoss.com/install-switch-themes-gnome-shell",
+  "config": [],
+  "trajectory": "trajectories/f8369178-fafe-40c2-adc4-b9b08a125456",
+  "related_apps": [
+    "chrome",
+    "os"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "gsettings",
+            "get",
+            "org.gnome.desktop.interface",
+            "gtk-theme"
+          ],
+          "stdout": "gsettings.out"
+        }
+      }
+    ],
+    "func": "check_list",
+    "result": {
+      "type": "cache_file",
+      "path": "gsettings.out"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expect": [
+          "Orchis"
+        ]
+      }
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

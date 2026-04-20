@@ -1,0 +1,1 @@
+Please clone the GitHub repo at https://github.com/xlang-ai/instructor-embedding directly into /home/user so that the resulting folder is exactly /home/user/instructor-embedding and contains the repository’s full contents.

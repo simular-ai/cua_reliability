@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator looks for an EPUB specifically named after the novel and placed in a particular folder.
+- The expected novel title is “Pass Through,” and the source .txt files are in /home/user/Documents/Novels/Pass Through.
+- The EPUB should be saved in that same folder, with the filename “Pass Through.epub” (the evaluator allows variants, but specifying the exact name avoids ambiguity).
+- The instruction mentions tools opened in the browser; clarifying which ones (noveldown, txt2epub) preserves context.
+</thoughts>
+
+<answer>
+Hey! The web novel is titled “Pass Through,” and the chapter .txt files are already in /home/user/Documents/Novels/Pass Through. Could you convert all those .txt chapters into a single EPUB and save it in that same folder as “Pass Through.epub” (using exactly that filename) so it’s easy to read on my phone and Kindle? I’ve opened a couple of tools in the browser that might help: noveldown (https://github.com/potatoeggy/noveldown) and txt2epub (https://github.com/kevinboone/txt2epub). Thanks! </answer>

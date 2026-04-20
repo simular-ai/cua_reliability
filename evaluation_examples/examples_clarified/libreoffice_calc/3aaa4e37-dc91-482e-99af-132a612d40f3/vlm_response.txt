@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks for an exact file path and name: /home/user/Export_Calc_to_CSV.csv.
+- It compares the CSV content strictly, so the export should use default CSV settings and reflect what's on screen for the current sheet.
+- The original instruction doesn’t explicitly state the save location/path, only that the CSV should share the base name.
+</thoughts>
+
+<answer>
+Please export the currently active sheet to a CSV, keeping the cell values as they appear on screen and leaving all other settings at their defaults. Save it next to the original workbook, using the same base name—i.e., /home/user/Export_Calc_to_CSV.csv.
+</answer>

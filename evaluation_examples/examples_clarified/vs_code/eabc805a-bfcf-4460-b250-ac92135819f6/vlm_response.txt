@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator checks for the specific VS Code extension ID “ms-python.python” by listing installed extensions via the CLI. The original instruction only says “the extension Python,” which is ambiguous because there are multiple Python-related extensions. To align with the evaluator, we need to specify the exact extension publisher/ID (ms-python.python). Also, there’s a source link provided outside the instruction; to avoid losing context, we should include that link in the clarified instruction.
+</thoughts>
+
+<answer>
+Please help me install the official Microsoft Python extension in VS Code—the one with the extension ID ms-python.python. For reference, I’m following this video: https://www.youtube.com/watch?v=VqCgcpAypFQ
+</answer>

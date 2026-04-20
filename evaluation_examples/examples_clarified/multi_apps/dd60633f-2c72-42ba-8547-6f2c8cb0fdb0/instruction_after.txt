@@ -1,0 +1,1 @@
+Please extract all Python code and comments from Karpathy's GPT colab code cells and merge into "gpt_dev_pure_code.py" in Home directory. Include all Python code and # comments from code cells. Exclude all markdown parts like docstrings and file headers.

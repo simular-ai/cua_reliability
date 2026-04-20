@@ -1,0 +1,112 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "2cd43775-7085-45d8-89fa-9e35c0a915cf",
+  "snapshot": "libreoffice_impress",
+  "instruction": "Enable auto-save every 3min for me, so that I don't need to hit \"ctrl-s\" that much",
+  "source": "https://www.libreofficehelp.com/enable-autosave-libreoffice/",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "libreoffice",
+          "--impress"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "evaluator": {
+    "func": "check_auto_saving_time",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/.config/libreoffice/4/user/registrymodifications.xcu",
+      "dest": "registrymodifications.xcu"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "minutes": 3
+      }
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_auto_saving_time
+def check_auto_saving_time(pptx_file, rules):
+    minutes = rules["minutes"]
+
+    # open and parse xml file
+    try:
+        tree = ET.parse(pptx_file)
+        root = tree.getroot()
+
+        # Traverse the XML tree to find the autosave time setting
+        autosave_time = None
+        for item in root.findall(".//item"):
+            # Check the path attribute
+            path = item.get('{http://openoffice.org/2001/registry}path')
+            if path == "/org.openoffice.Office.Common/Save/Document":
+                # Once the correct item is found, look for the prop element with the name "AutoSaveTimeIntervall"
+                for prop in item.findall(".//prop"):
+                    name = prop.get('{http://openoffice.org/2001/registry}name')
+                    if name == "AutoSaveTimeIntervall":
+                        # Extract the value of the autosave time interval
+                        autosave_time = prop.find(".//value").text
+                        break
+
+        if autosave_time is None:
+            return 0
+        else:
+            autosave_time = int(autosave_time)
+            if autosave_time == minutes:
+                return 1
+            else:
+                return 0
+
+    except ET.ParseError as e:
+        logger.error(f"Error parsing XML: {e}")
+    except FileNotFoundError:
+        logger.error(f"File not found: {pptx_file}")
+```
+
+## Task:
+
+Analyze the instruction: "Enable auto-save every 3min for me, so that I don't need to hit "ctrl-s" that much"
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

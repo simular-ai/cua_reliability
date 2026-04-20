@@ -1,0 +1,9 @@
+<thoughts>
+- The instruction says “rotate … to mirror it horizontally,” which could be interpreted as a rotation instead of a left–right flip. The evaluator specifically checks for a horizontal mirror (left-right flip) of the whole image.
+- It’s unclear which file to modify; the evaluator opens /home/user/Desktop/berry.png.
+- The evaluator expects the result to be exported as /home/user/Desktop/berry_mirror.png (PNG) rather than overwriting the original.
+</thoughts>
+
+<answer>
+Please flip the entire image horizontally (a left‑to‑right mirror) for /home/user/Desktop/berry.png, and export the mirrored result as a new PNG named berry_mirror.png on my Desktop.
+</answer>

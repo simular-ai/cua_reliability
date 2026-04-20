@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator looks for a specific file path: /home/user/Desktop/System_Resources_Report.txt.
+- It checks that the file contains the sar CPU header fields: CPU, %user, %nice, %system, %iowait, %steal, %idle — so the header must be present in the saved output.
+- It counts lines containing HH:MM:SS timestamps and expects exactly 31. With sar, that occurs when you include the header line (which has a timestamp) plus 30 one‑second samples. Using per‑CPU output or additional reports would change this count, so it needs to be the aggregated CPU report only.
+- The original instruction is broad (“system resource usage”) but the evaluator is specifically about CPU stats via sar -u at 1-second intervals for 30 samples.
+</thoughts>
+
+<answer>
+On Ubuntu, use sar from the sysstat package to record overall CPU usage (the aggregated CPU report, not per‑CPU) once per second for 30 samples. Make sure the output includes the header with the fields CPU, %user, %nice, %system, %iowait, %steal, and %idle. Save the complete output—including the header and all samples—as a plain text file at /home/user/Desktop/System_Resources_Report.txt. The saved file should contain 31 timestamped lines in total (the header line with a time plus 30 one‑second samples).</answer>

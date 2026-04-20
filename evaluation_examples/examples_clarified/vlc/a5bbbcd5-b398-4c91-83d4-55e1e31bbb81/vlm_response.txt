@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator checks for VLC’s “qt-minimal-view” setting to be enabled (set to 1) in the user’s VLC configuration file named “vlcrc.” It likely expects the Linux user config path (~/.config/vlc/vlcrc). The original instruction doesn’t specify that “Minimal View” in the Qt interface is the mechanism to hide the bottom toolbar, nor that the change should be persisted by writing to vlcrc. To align with the evaluator without turning into a step-by-step guide, I’ll keep the conversational tone, explicitly mention enabling the Qt “Minimal View,” and specify the exact config key and file path so it’s unambiguous.
+</thoughts>
+
+<answer>
+Could you help me make VLC hide the bottom toolbar in windowed mode by using its Qt Minimal View, and have that stick as the default? I’m fine with you changing the VLC config so it’s persistent—i.e., set qt-minimal-view=1 in the vlcrc file (typically at ~/.config/vlc/vlcrc)—so whenever I’m multitasking in a normal window, the controls don’t show.

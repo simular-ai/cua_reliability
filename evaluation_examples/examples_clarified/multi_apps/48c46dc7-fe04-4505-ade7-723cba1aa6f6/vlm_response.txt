@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks for specific apps: GNOME Terminal and GNOME Files (Nautilus), not just any terminal/file manager.
+- It expects the exact project path: ~/Documents/Projects/OSWorld to be the working directory in the terminal and the folder shown in the file manager.
+- Chrome tabs must be exactly two, with specific URLs and likely in order: https://github.com then https://docs.python.org/3/.
+- Extra Chrome tabs can cause failure, so we should specify “only” those two tabs.
+</thoughts>
+
+<answer>
+Help me automatically set up my workspace: open the OSWorld project directory located at ~/Documents/Projects/OSWorld in both GNOME Terminal (with the shell’s working directory set to ~/Documents/Projects/OSWorld) and GNOME Files (Nautilus). Then, in Google Chrome, have only two tabs open—in this order: https://github.com and https://docs.python.org/3/.</answer>

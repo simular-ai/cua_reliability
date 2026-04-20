@@ -1,0 +1,10 @@
+<thoughts>
+- The instruction says “my computer” but the evaluator is checking for tabs in Google Chrome specifically.
+- It’s unclear which tab was closed; the environment closed https://www.tripadvisor.com, and the evaluator expects that exact URL to be reopened.
+- The evaluator checks for an exact set (and likely order) of open URLs: https://www.lonelyplanet.com, https://www.airbnb.com, https://www.tripadvisor.com.
+- It should be clear this happens in the same Chrome window, not a new one.
+</thoughts>
+
+<answer>
+Can you make Google Chrome bring back the last tab I closed—reopen the most recently closed tab (https://www.tripadvisor.com) in the same Chrome window—so that the open tabs, in order, are https://www.lonelyplanet.com, https://www.airbnb.com, and https://www.tripadvisor.com?
+</answer>

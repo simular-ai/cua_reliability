@@ -1,0 +1,1 @@
+I’m on Ubuntu with GNOME and I want “Do Not Disturb” enabled so notification pop-up banners are turned off. Please switch it on so that the org.gnome.desktop.notifications show-banners setting ends up set to false.

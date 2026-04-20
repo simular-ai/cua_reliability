@@ -1,0 +1,1 @@
+From the project directory (/home/user/project), run a terminal command that recursively finds all files ending with the .php extension (lowercase) under the current directory, counts all lines across those files combined, and prints only the total line count as a single number to the terminal.

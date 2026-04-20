@@ -1,0 +1,74 @@
+{
+  "id": "af630914-714e-4a24-a7bb-f9af687d3b91",
+  "snapshot": "chrome",
+  "instruction": "My grandmother says text in Chrome is too small. Could you open Chrome\u2019s settings and set the browser\u2019s Default font size (under Appearance) to the largest available option\u2014Very large\u2014so it applies to all sites by default (not by changing page zoom)? Here\u2019s the article I was looking at: https://www.howtogeek.com/680260/how-to-change-chromes-default-text-size/",
+  "source": "https://www.howtogeek.com/680260/how-to-change-chromes-default-text-size/",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "chrome"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "launch",
+        "parameters": {
+          "command": [
+            "pkill",
+            "chrome"
+          ]
+        }
+      },
+      {
+        "type": "launch",
+        "parameters": {
+          "command": [
+            "google-chrome",
+            "--remote-debugging-port=1337"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 3
+        }
+      }
+    ],
+    "func": "check_font_size",
+    "result": {
+      "type": "chrome_font_size"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "type": "range",
+        "min": 16,
+        "max": 99999
+      }
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

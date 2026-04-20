@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator looks for a PDF saved exactly at /home/user/Resize_Cells_Fit_Page.pdf and checks that it has exactly one page.
+- It also compares the PDF’s extracted text to a ground-truth PDF, so the sheet’s contents must not be altered and no extra headers/footers or cropped content should be introduced.
+- The original instruction doesn’t explicitly name the source file (/home/user/Resize_Cells_Fit_Page.xlsx), the exact output filename, or state “exactly one page,” which could cause mismatches.
+- Clarifying to fit the entire sheet to a single page, keep data unchanged, and save with the exact name/path addresses what the evaluator checks.
+</thoughts>
+
+<answer>
+I’m working on a project and need the spreadsheet at /home/user/Resize_Cells_Fit_Page.xlsx adjusted so the entire sheet fits on exactly one page for printing, then exported to PDF without changing any of the data or adding headers/footers. Please save the PDF as /home/user/Resize_Cells_Fit_Page.pdf (same name as the spreadsheet) so the resulting PDF is a single page.

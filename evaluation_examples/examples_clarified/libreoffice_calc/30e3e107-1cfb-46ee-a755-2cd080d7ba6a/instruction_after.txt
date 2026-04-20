@@ -1,0 +1,8 @@
+Open /home/user/DemographicProfile.xlsx and make all changes in that same file. Add a new sheet and keep its name exactly “Sheet2”. On Sheet2, merge A1:C1 and set the text to “Demographic Profile”; apply a blue fill (#0000ff, ARGB FF0000FF) and make the font bold white.
+
+Then, on Sheet2, create three pivot tables using the existing data on Sheet1 (the table with headers “Respondents”, “Sex”, “Civil Status”, and “Highest Educational Attainment”). For each pivot:
+- Row field: use one category at a time (first Sex, then Civil Status, then Highest Educational Attainment).
+- No column fields and no report filters.
+- Data field: use Respondents summarized by Count, and show values as % of Grand Total.
+
+Stack these three pivots vertically on Sheet2 in that order (Sex, then Civil Status, then Highest Educational Attainment), with a blank row separating each one. Save the file when you’re done.

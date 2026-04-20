@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator verifies that the December AWS invoice PDF is saved with the exact filename “aws-invoice-2312.pdf” in /home/user/Documents/Finance/receipts and that it is byte-identical to a reference file.
+- The evaluator also checks that tally_book.xlsx (at /home/user/Documents/Finance/tally_book.xlsx) has a new final row appended with exact values: Service=AWS, Month=2023.12, Amount=10.02.
+- The original instruction leaves “my receipts folder” and the filename ambiguous, and doesn’t specify the exact row values or the path to the tally book.
+</thoughts>
+
+<answer>
+In the Bills folder in Thunderbird, find the email with the AWS December 2023 invoice and save its PDF attachment into my receipts at /home/user/Documents/Finance/receipts, naming it exactly aws-invoice-2312.pdf to match the existing pattern. Then open /home/user/Documents/Finance/tally_book.xlsx and add a new entry at the end with Service = AWS, Month = 2023.12, Amount = 10.02, and save the file.

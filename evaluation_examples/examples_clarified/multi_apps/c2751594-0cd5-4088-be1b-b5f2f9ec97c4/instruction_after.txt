@@ -1,0 +1,1 @@
+Please open Thunderbird, go to the Notes folder, and use the most recent email there (latest by date/time). Open its attached Word document (doc/docx), export the first inline image that appears in the document body in reading order (top to bottom), and set that exact image—without editing or cropping—as the desktop wallpaper on this machine.

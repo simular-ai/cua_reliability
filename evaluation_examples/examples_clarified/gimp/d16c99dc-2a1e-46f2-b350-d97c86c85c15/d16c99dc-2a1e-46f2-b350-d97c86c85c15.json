@@ -1,0 +1,128 @@
+{
+  "id": "d16c99dc-2a1e-46f2-b350-d97c86c85c15",
+  "snapshot": "gimp",
+  "instruction": "Please use the GIMP project at /home/user/Desktop/dog_with_background_two_layers.xcf and scale only the \u201cdog\u201d layer so the dog itself is exactly 512 px tall with the aspect ratio locked. Leave the canvas as is, but export just the dog content (hide the background so the area around it is transparent) as a PNG to /home/user/Desktop/resized.png.",
+  "source": "https://stackoverflow.com/questions/75185543/use-gimp-to-resize-image-in-one-layer-only",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/d16c99dc-2a1e-46f2-b350-d97c86c85c15/dog_with_background.png",
+            "path": "/home/user/Desktop/dog_with_background.png"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/d16c99dc-2a1e-46f2-b350-d97c86c85c15/dog_with_background_two_layers.xcf",
+            "path": "/home/user/Desktop/dog_with_background_two_layers.xcf"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "gimp",
+          "/home/user/Desktop/dog_with_background_two_layers.xcf"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "gimp"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "GNU Image Manipulation Program"
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python3",
+            "-c",
+            "import time; import pyautogui; time.sleep(1);pyautogui.hotkey([\"shift\", \"ctrl\", \"e\"]);time.sleep(1);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python3",
+            "-c",
+            "import time; import pyautogui; pyautogui.write(\"resized\");time.sleep(1);pyautogui.press([\"enter\"]);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python3",
+            "-c",
+            "import pyautogui; pyautogui.press([\"enter\"]);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 5
+        }
+      }
+    ],
+    "func": [
+      "check_image_size",
+      "check_structure_sim_resized"
+    ],
+    "conj": "and",
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "height": 512,
+          "ignore_transparent": true
+        }
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/d16c99dc-2a1e-46f2-b350-d97c86c85c15/dog_with_background.png",
+        "dest": "dog_with_background.png"
+      }
+    ],
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/resized.png",
+        "dest": "resized.png"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/resized.png",
+        "dest": "resized.png"
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

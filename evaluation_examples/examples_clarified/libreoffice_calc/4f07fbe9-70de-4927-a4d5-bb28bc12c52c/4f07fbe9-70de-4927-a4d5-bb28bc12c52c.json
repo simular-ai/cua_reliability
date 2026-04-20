@@ -1,0 +1,118 @@
+{
+  "id": "4f07fbe9-70de-4927-a4d5-bb28bc12c52c",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Please do this in /home/user/Padding_Decimals_In_Formular.xlsx on Sheet1: make the sentence cell use the numeric value from its source cell and display it with exactly two decimal places using a dot as the decimal separator. The text should be driven by a formula that references the number (so it updates if the number changes), not hard\u2011typed. For the current data (PRICE = 19.5), the visible sentence should read exactly: \u201cThe price is 19.50 euros.\u201d\n\nDon\u2019t add or remove rows/columns, don\u2019t rename the sheet, and don\u2019t alter any other cells or formatting\u2014leave all irrelevant regions (including blanks) untouched. Save the changes back to /home/user/Padding_Decimals_In_Formular.xlsx when you\u2019re done.",
+  "source": "https://superuser.com/questions/1081048/libreoffice-calc-how-to-pad-number-to-fixed-decimals-when-used-within-formula",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4f07fbe9-70de-4927-a4d5-bb28bc12c52c/Padding_Decimals_In_Formular.xlsx",
+            "path": "/home/user/Padding_Decimals_In_Formular.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Padding_Decimals_In_Formular.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/4f07fbe9-70de-4927-a4d5-bb28bc12c52c",
+  "related_apps": [
+    "libreoffice_calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Padding_Decimals_In_Formular.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "libreoffice",
+            "--convert-to",
+            "csv:Text - txt - csv (StarCalc):44,34,UTF-8,,,,false,true,true,false,false,1",
+            "--outdir",
+            "/home/user",
+            "/home/user/Padding_Decimals_In_Formular.xlsx"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": [
+        "/home/user/Padding_Decimals_In_Formular.xlsx",
+        "/home/user/Padding_Decimals_In_Formular-Sheet1.csv"
+      ],
+      "dest": [
+        "Padding_Decimals_In_Formular.xlsx",
+        "Padding_Decimals_In_Formular-Sheet1.csv"
+      ],
+      "multi": true
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": [
+        "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4f07fbe9-70de-4927-a4d5-bb28bc12c52c/Padding_Decimals_In_Formular_gold.xlsx",
+        "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4f07fbe9-70de-4927-a4d5-bb28bc12c52c/Padding_Decimals_In_Formular_gold-Sheet1.csv"
+      ],
+      "dest": [
+        "Padding_Decimals_In_Formular_gold.xlsx",
+        "Padding_Decimals_In_Formular_gold-Sheet1.csv"
+      ],
+      "multi": true
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_print",
+          "sheet_idx0": "RNSheet1",
+          "sheet_idx1": "ENSheet1"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

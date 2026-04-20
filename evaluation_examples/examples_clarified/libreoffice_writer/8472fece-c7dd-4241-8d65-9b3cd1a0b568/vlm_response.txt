@@ -1,0 +1,8 @@
+<thoughts>
+The evaluator compares the saved .docx against a gold .docx and then checks that every run of text inside table cells is colored exactly red (RGB 255,0,0) for words starting with vowels and exactly blue (RGB 0,0,255) for words starting with non‑vowels. It treats vowels as a,e,i,o,u (case‑insensitive) and y as a non‑vowel. It only inspects words inside tables. It expects you to modify and save the existing file at /home/user/Desktop/Dolch_Sight_Words_Primer.docx without renaming or changing any other content, spacing, or layout, and to color the whole word (not just the first letter) so each word is a single, consistently colored run.
+</thoughts>
+
+<answer>
+I’m putting together a sight‑word list for a dyslexic kid and want the words color‑coded: make words that start with vowels red and those that start with non‑vowels blue. Please do this directly in /home/user/Desktop/Dolch_Sight_Words_Primer.docx (LibreOffice Writer) and save it back to the same file name.
+
+A few clarifications: apply this to the words in the document’s tables; treat vowels as a, e, i, o, u (case‑insensitive), and count “y” as a non‑vowel; color the entire word as one color (not just the first letter); and use pure red (RGB 255,0,0) for vowels and pure blue (RGB 0,0,255) for non‑vowels. Don’t change anything else in the document—no text, spacing, or layout—just the font color of the words.

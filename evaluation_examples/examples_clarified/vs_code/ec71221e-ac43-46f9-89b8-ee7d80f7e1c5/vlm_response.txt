@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator compares the saved contents of /home/user/Desktop/test.py exactly against a gold file, so the target file path must be explicit.
+- “Line 2 to line 10” should be clarified as inclusive.
+- “One tab” should be clarified as a literal tab character, not spaces, to match exact text comparison.
+- The evaluator saves before comparing, but it’s safer to state that the file should be saved.
+- No other content, whitespace, or line endings should change since the comparison is strict.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/test.py, please add exactly one tab character at the beginning of each line from line 2 through line 10 (inclusive). Don’t change anything else in the file—keep all other text, whitespace, and line endings exactly as they are—and then save the file.

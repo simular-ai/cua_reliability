@@ -1,0 +1,1 @@
+Please insert the image file named 1.png from the Desktop (/home/user/Desktop/1.png) into the currently open LibreOffice Writer document “Viewing_Your_Class_Schedule_and_Textbooks.docx,” right at the current text cursor position. Embed the image (don’t link it), add exactly one copy, and don’t modify the image or anything else in the document.

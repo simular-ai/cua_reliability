@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator opens /home/user/Desktop/Minimalist_Business_Slides.pptx in LibreOffice Impress, expects the audio to be added on the first slide, and then saves. It compares the audio embedded in the slide to a gold reference by extracting it and naming the extracted file planet.wav. So the instruction needs to clarify: the exact source video path, the exact output audio name and format (planet.wav), where to save it (Desktop), that the audio should be embedded (not just linked) and applied starting on the first slide as background music across the slideshow, and that the presentation should be saved so the evaluator can read it.
+</thoughts>
+
+<answer>
+I’m working in LibreOffice Impress with /home/user/Desktop/Minimalist_Business_Slides.pptx. Please take the audio track from the video at /home/user/Desktop/planet.mp4, save it as a WAV file named exactly /home/user/Desktop/planet.wav, and insert that audio into the presentation as embedded background music. Apply it starting on the first slide so it plays across the slideshow, and then save the presentation.

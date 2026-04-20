@@ -1,0 +1,63 @@
+{
+  "id": "2373b66a-092d-44cb-bfd7-82e86e7a3b4d",
+  "snapshot": "multiapps",
+  "instruction": "On Ubuntu, use sar from the sysstat package to record overall CPU usage (the aggregated CPU report, not per\u2011CPU) once per second for 30 samples. Make sure the output includes the header with the fields CPU, %user, %nice, %system, %iowait, %steal, and %idle. Save the complete output\u2014including the header and all samples\u2014as a plain text file at /home/user/Desktop/System_Resources_Report.txt. The saved file should contain 31 timestamped lines in total (the header line with a time plus 30 one\u2011second samples).",
+  "source": "author",
+  "config": [
+    {
+      "type": "command",
+      "parameters": {
+        "command": "echo {CLIENT_PASSWORD} | sudo -S apt-get update && echo {CLIENT_PASSWORD} | sudo -S apt-get install sysstat",
+        "shell": "true"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "os",
+    "calc"
+  ],
+  "evaluator": {
+    "func": [
+      "file_contains",
+      "check_line_number"
+    ],
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/System_Resources_Report.txt",
+        "dest": "System_Resources_Report.txt"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/System_Resources_Report.txt",
+        "dest": "System_Resources_Report.txt"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            "CPU",
+            "%user",
+            "%nice",
+            "%system",
+            "%iowait",
+            "%steal",
+            "%idle"
+          ]
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "31"
+        }
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

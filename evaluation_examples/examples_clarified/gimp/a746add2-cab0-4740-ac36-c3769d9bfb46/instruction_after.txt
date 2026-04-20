@@ -1,0 +1,1 @@
+In GIMP, with /home/user/Desktop/dog_with_background.png open, please open the Vignette filter window (just bring up the Vignette dialog; no need to apply it).

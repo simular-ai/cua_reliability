@@ -1,0 +1,1 @@
+Open /home/user/Desktop/H2O_Factsheet_WA.docx in LibreOffice Writer and make the “2” in every “H2O” a subscript. Don’t change any other text or spacing, and save the changes back to the same .docx file (same name and location).

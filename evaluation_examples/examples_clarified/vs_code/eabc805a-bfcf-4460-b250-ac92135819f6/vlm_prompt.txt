@@ -1,0 +1,99 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "eabc805a-bfcf-4460-b250-ac92135819f6",
+  "snapshot": "vscode",
+  "instruction": "Please help me install the extension Python in VS Code.",
+  "source": "https://www.youtube.com/watch?v=VqCgcpAypFQ",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code"
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Visual Studio Code"
+      }
+    }
+  ],
+  "trajectory": "trajectories/eabc805a-bfcf-4460-b250-ac92135819f6",
+  "related_apps": [
+    "vscode"
+  ],
+  "evaluator": {
+    "func": "is_extension_installed",
+    "result": {
+      "type": "vm_command_line",
+      "command": [
+        "code",
+        "--list-extensions",
+        "|",
+        "grep",
+        "ms-python.python"
+      ]
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "type": "contain",
+        "expected": "ms-python.python"
+      }
+    }
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: is_extension_installed
+def is_extension_installed(actual: str, rules: Dict, **options):
+    if rules['type'] == 'contain':
+        if rules['expected'] in actual:
+            return 1.0
+        return 0.0
+    elif rules['type'] == 'not_contain':
+        if rules['expected'] not in actual:
+            return 1.0
+        return 0.0
+    else:
+        raise NotImplementedError
+```
+
+## Task:
+
+Analyze the instruction: "Please help me install the extension Python in VS Code."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

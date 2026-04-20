@@ -1,0 +1,1 @@
+In /home/user/Desktop/test.py, please add exactly one tab character at the beginning of each line from line 2 through line 10 (inclusive). Don’t change anything else in the file—keep all other text, whitespace, and line endings exactly as they are—and then save the file.

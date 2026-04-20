@@ -1,0 +1,123 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "8df7e444-8e06-4f93-8a1a-c5c974269d82",
+  "snapshot": "libreoffice_writer",
+  "instruction": "The guidelines for submitting our essay work are provided in the \"reminder.docx\" on the Desktop. My essay is stored as a docx file in /home/user. Please assist me in organizing the files for submission according to the specified requirements.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/8df7e444-8e06-4f93-8a1a-c5c974269d82/Recruitment_and_retention_of_health_professionals_across_Europe.docx",
+            "path": "/home/user/Recruitment_and_retention_of_health_professionals_across_Europe.docx"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/8df7e444-8e06-4f93-8a1a-c5c974269d82/reminder.docx",
+            "path": "/home/user/Desktop/reminder.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/reminder.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/8df7e444-8e06-4f93-8a1a-c5c974269d82",
+  "related_apps": [
+    "libreoffice_writer",
+    "os"
+  ],
+  "evaluator": {
+    "func": "compare_zip_files",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/8df7e444-8e06-4f93-8a1a-c5c974269d82/Recruitment_and_retention_of_health_professionals_across_Europe.zip",
+      "dest": "Recruitment_and_retention_of_health_professionals_across_Europe_Gold.zip"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Recruitment_and_retention_of_health_professionals_across_Europe.zip",
+      "dest": "Recruitment_and_retention_of_health_professionals_across_Europe.zip"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_zip_files
+def compare_zip_files(actual: str, expected: str, **options) -> float:
+    """
+    Args:
+        actual (str): path to result zip file
+        expected (str): path to gold zip file
+
+    Return:
+        float: the score
+    """
+    if not actual:
+        return 0.
+
+    with zipfile.ZipFile(actual, 'r') as zip_file1, zipfile.ZipFile(expected, 'r') as zip_file2:
+        file_list1 = set(zip_file1.namelist())
+        file_list2 = set(zip_file2.namelist())
+
+        if file_list1 != file_list2:
+            return 0.0
+        
+        for file_name in file_list1:
+            content1 = zip_file1.read(file_name)
+            content2 = zip_file2.read(file_name)
+
+            if file_name.lower().endswith('.pdf'):
+                if compare_pdf_content(content1, content2, 0.95):
+                    continue
+                else:
+                    return 0.0
+            elif content1 != content2:
+                return 0.0
+    return 1.0
+```
+
+## Task:
+
+Analyze the instruction: "The guidelines for submitting our essay work are provided in the "reminder.docx" on the Desktop. My essay is stored as a docx file in /home/user. Please assist me in organizing the files for submission according to the specified requirements."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Ground_Truth_File**: Expected output/ground truth file: Recruitment_and_retention_of_health_professionals_across_Europe_Gold.zip\nFile info: File format .zip not displayable (280278 bytes)

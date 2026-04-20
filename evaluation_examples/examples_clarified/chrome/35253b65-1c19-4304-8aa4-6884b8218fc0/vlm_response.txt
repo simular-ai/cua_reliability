@@ -1,0 +1,11 @@
+<thoughts>
+- The evaluator checks for a desktop shortcut created specifically by Google Chrome that launches a site as a standalone app (Exec includes “--app-id=...”), not a generic URL shortcut.
+- To get an app-id Exec, Chrome’s “Open as window” option must be used when creating the shortcut.
+- The evaluator expects the Chrome Default profile (“--profile-directory=Default”).
+- The actual target site should be unambiguous; the environment has the 2048 page open, so including its URL removes ambiguity.
+- The location must be the Desktop.
+</thoughts>
+
+<answer>
+Hey, I need a quick way back to this site: https://www.mathsisfun.com/games/2048.html. Could you create a Google Chrome desktop shortcut for it—using my default Chrome profile—and set it to open in its own window, then put that shortcut on my Desktop?
+</answer>

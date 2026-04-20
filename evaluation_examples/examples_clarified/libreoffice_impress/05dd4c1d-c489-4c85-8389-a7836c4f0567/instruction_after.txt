@@ -1,0 +1,1 @@
+In /home/user/Desktop/38_1.pptx, set the paragraph alignment of all the text in the first textbox (not the title) on each slide as follows: slide 3 to Right, slide 4 to Center, and slide 5 to Left. Leave all other content, formatting, shapes, backgrounds, and notes exactly as they are, and save the changes back to /home/user/Desktop/38_1.pptx.

@@ -1,0 +1,1 @@
+Automatically adjust the brightness and contrast of the currently playing video in VLC so it looks balanced for a typical indoor room. Since you can’t actually detect my room’s ambient light from here, just use VLC’s playback video filters to apply a gentle brightness/contrast tweak for this session only (don’t permanently save/encode any changes).

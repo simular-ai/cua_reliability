@@ -1,0 +1,1 @@
+On Cars.com, find electric-only cars (not hybrids) with a max price of $50,000 within 50 miles of ZIP 10001, and make sure the results page URL reflects these filters with list_price_max=50000, maximum_distance=50, zip=10001, and fuel_slugs[]=electric.

@@ -1,0 +1,25 @@
+{
+  "id": "7882ed6e-bece-4bf0-bada-c32dc1ddae72",
+  "snapshot": "base_setup",
+  "instruction": "Play the most recent season of \u201cStranger Things\u201d that you purchased on Google Play Movies & TV directly inside VLC on this machine\u2014meaning open and watch the Google Play/YouTube purchase in VLC itself (not via a web browser, casting, downloads/conversion, screen recording, DRM removal, or third\u2011party plugins). See https://wiki.videolan.org/Digital_Restrictions_Management/ for the DRM context.",
+  "source": "https://wiki.videolan.org/Digital_Restrictions_Management/",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "VLC_VERBOSE=-1 vlc --no-audio --no-video-title-show",
+        "shell": true
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vlc"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

@@ -1,0 +1,1 @@
+In LibreOffice Impress, please turn on auto‑save so it saves every 3 minutes, and make sure this is persisted in my user profile at /home/user/.config/libreoffice/4/user/registrymodifications.xcu by setting the /org.openoffice.Office.Common/Save/Document property AutoSaveTimeIntervall to 3, so I don’t have to hit Ctrl+S so often.

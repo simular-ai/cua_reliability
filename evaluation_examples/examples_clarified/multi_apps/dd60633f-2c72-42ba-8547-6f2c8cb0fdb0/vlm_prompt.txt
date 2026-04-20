@@ -1,0 +1,165 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "dd60633f-2c72-42ba-8547-6f2c8cb0fdb0",
+  "snapshot": "multiapps",
+  "instruction": "Please extract all Python code and comments from Karpathy's GPT colab code cells (skip markdown parts), merge into \"gpt_dev_pure_code.py\" in Home directory. Include all Python code and # comments from code cells, but exclude markdown docstrings and file headers.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://colab.research.google.com/drive/1JMLa53HDuA-i7ZBmqV7ZnA3c_fvtXnx-?usp=sharing#scrollTo=h5hjCcLDr2WC"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "chrome",
+    "os",
+    "writer"
+  ],
+  "evaluator": {
+    "func": "compare_python_pure_text",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/gpt_dev_pure_code.py",
+      "dest": "gpt_dev_pure_code.py"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/dd60633f-2c72-42ba-8547-6f2c8cb0fdb0/gpt_dev_pure_code_gold.py",
+      "dest": "gpt_dev_pure_code_gold.py"
+    }
+  },
+  "proxy": true,
+  "env_may_change": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_python_pure_text
+def compare_python_pure_text(py_file_path, gold_file_path):
+    if not py_file_path or not gold_file_path:
+        return 0.0
+
+    def _normalize(text):
+        """
+        Minimal normalization - only handle basic formatting:
+        - Skip obvious file metadata (encoding, shebang) at the beginning
+        - Normalize whitespace and indentation
+        - Remove empty lines
+        
+        This preserves any content that shouldn't be there (like markdown)
+        so it can be detected as an error.
+        """
+        lines = text.splitlines()
+        result_lines = []
+        i = 0
+        
+        # Only skip obvious metadata at the very beginning
+        while i < len(lines) and i < 3:  # Check only first 3 lines
+            stripped = lines[i].strip()
+            
+            if (stripped.startswith('#!') or
+                stripped.startswith('# -*- coding:') or
+                stripped.startswith('# coding:') or
+                stripped.startswith('# coding=')):
+                i += 1
+                continue
+            
+            break
+        
+        # Process all remaining lines with minimal filtering
+        while i < len(lines):
+            line = lines[i]
+            stripped = line.strip()
+            
+            if stripped:  # Keep all non-empty lines
+                normalized = line.expandtabs(4).rstrip()
+                result_lines.append(normalized)
+            
+            i += 1
+        
+        return '\n'.join(result_lines)
+
+    try:
+        with open(py_file_path, 'r', encoding='utf-8') as file1:
+            user_content = file1.read()
+        with open(gold_file_path, 'r', encoding='utf-8') as file2:
+            gold_content = file2.read()
+        
+        # Apply different normalization strategies
+        user_normalized = _normalize(user_content)
+        gold_normalized = _normalize(gold_content)
+        
+        if user_normalized == gold_normalized:
+            return 1.0
+        else:
+            return 0.0
+            
+    except (FileNotFoundError, IOError, UnicodeDecodeError) as e:
+        logger.debug(f"compare_python_pure_text: Error reading files - {e}")
+        return 0.0
+    except Exception as e:
+        logger.debug(f"compare_python_pure_text: Unexpected error - {e}")
+        return 0.0
+```
+
+## Task:
+
+Analyze the instruction: "Please extract all Python code and comments from Karpathy's GPT colab code cells (skip markdown parts), merge into "gpt_dev_pure_code.py" in Home directory. Include all Python code and # comments from code cells, but exclude markdown docstrings and file headers."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Ground_Truth_File**: Expected output/ground truth file: gpt_dev_pure_code_gold.py\nFile info: File format .py not displayable (15249 bytes)

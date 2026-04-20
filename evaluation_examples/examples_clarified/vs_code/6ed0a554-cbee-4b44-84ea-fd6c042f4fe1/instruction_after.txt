@@ -1,0 +1,1 @@
+Please add the folders /home/user/data1 and /home/user/data2 to the currently open VS Code workspace at /home/user/project.code-workspace, keeping the existing “project” folder. In that file’s JSON, the top-level "folders" list should contain exactly three entries, using relative paths and in this order: project, data1, data2. Save the workspace after updating it.

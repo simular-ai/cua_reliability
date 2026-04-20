@@ -1,0 +1,1 @@
+Please create two new top‑level folders under Thunderbird’s “Local Folders” account—named exactly COMPANY and UNIVERSITY (all caps). Make them local mail folders (not under Inbox or any server account), so they appear in Local Folders storage as COMPANY and COMPANY.msf, and UNIVERSITY and UNIVERSITY.msf.

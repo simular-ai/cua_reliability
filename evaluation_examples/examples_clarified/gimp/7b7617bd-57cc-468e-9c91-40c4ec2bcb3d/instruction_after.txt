@@ -1,0 +1,1 @@
+In GIMP, set the Undo Levels preference (the max undo steps) to 100, and make sure the change is saved to GIMP’s gimprc config so it appears as (undo-levels 100) after quitting. Source: https://www.youtube.com/watch?v=G_PjQAy0iiU

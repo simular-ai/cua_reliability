@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares the exact text content of a .docx at /home/user/Desktop/notes.docx to a gold file, with whitespace differences ignored but order and casing mattering.
+- The original instruction doesn’t name the specific input file path, which could cause ambiguity.
+- It also doesn’t specify that notes should be kept in slide order, that no extra headings/labels/separators should be added, or that slides without notes should be omitted—all of which could affect the text content and cause a mismatch.
+- The exact output path/name (/home/user/Desktop/notes.docx) should be explicit to match the evaluator.
+</thoughts>
+
+<answer>
+I’ve got the presentation at /home/user/Desktop/Dickinson_Slides.pptx open in LibreOffice Impress. Could you extract only the speaker/presenter notes from each slide and save them as a Word document? Please keep the notes’ text exactly as written (same wording, capitalization, and punctuation) and list them in the same order as the slides. Don’t add anything else—no slide titles, slide numbers, headings, or separators—and skip slides that don’t have notes. Save the result as notes.docx on my Desktop at /home/user/Desktop/notes.docx.

@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator opens and later saves a specific Excel file at /home/user/Desktop/Professor_Contact.xlsx, then compares the entire first worksheet’s data to a gold file. So the task must clearly target that exact file and sheet.
+- Because the comparison is strict on sheet data, the agent must only fill the Email column and leave all other cells, headers, row order, and sheet structure unchanged. No new rows/columns/sheets or edits to existing values (e.g., the Website URLs) are allowed.
+- The emails must come from the linked homepages already listed in the Website column, and should be entered exactly as shown. If multiple emails appear, the expected output uses the primary/general contact email from the homepage.
+- The file must be saved in place with the same name and format (.xlsx) so the evaluator finds the updated data.
+</thoughts>
+
+<answer>
+I’m gathering professors’ contact info, and their homepage links are already listed in the spreadsheet. Please open the Excel file “Professor_Contact.xlsx” on my Desktop (/home/user/Desktop/Professor_Contact.xlsx) and, on the existing first sheet, use the URL in the Website column for each row to find the professor’s email. Fill only the Email column with the exact address shown on the homepage (as plain text); if multiple are listed, use the primary/general contact email on that page. Don’t change any other cells, the headers, the order of rows, or add/remove any rows, columns, or sheets. When finished, save the updates to the same .xlsx file at the same location.

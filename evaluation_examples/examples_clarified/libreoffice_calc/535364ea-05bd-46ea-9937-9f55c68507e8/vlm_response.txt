@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator compares pivot table structures (row/column/data/filter fields) on a specific new sheet named “Sheet2” in the same file, not just any new sheet.
+- It expects exactly two pivot tables on that Sheet2.
+- Each pivot must use “Revenue ($)” as the values field with SUM, and have no column or filter fields.
+- The file name/location must remain SummerSales.xlsx; the evaluator saves and then reads this file.
+- Field names must match the dataset exactly: “Product”, “Sales Channel”, “Revenue ($)”.
+</thoughts>
+
+<answer>
+In SummerSales.xlsx, add one new worksheet and leave its default name as “Sheet2”. On Sheet2, create exactly two pivot tables from the original data: one that shows total Revenue ($) by Product (Rows: Product; Values: Sum of “Revenue ($)”; no Columns or Filters), and another that shows total Revenue ($) by Sales Channel (Rows: Sales Channel; Values: Sum of “Revenue ($)”; no Columns or Filters). Place both pivots on Sheet2 (product first, then sales channel) and save the changes to the same file (SummerSales.xlsx).</answer>

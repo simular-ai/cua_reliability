@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator opens and saves /home/user/NetIncome.xlsx, then compares the data on a sheet named exactly “Sheet2” in the result workbook to an expected “Sheet2”. It checks that only the “Revenue” column (including its header) is present and that the values and order match, typically starting at A1 so the header is on the first row. It doesn’t check formatting, but it will fail if the sheet name doesn’t match exactly, if extra columns/rows are included, or if the changes aren’t saved to the same NetIncome.xlsx file. The source column is on the existing data sheet in that workbook.
+</thoughts>
+
+<answer>
+In the open workbook NetIncome.xlsx (/home/user/NetIncome.xlsx), copy only the “Revenue” column (including its header) from the existing data sheet and place it on a new sheet named exactly “Sheet2”, starting at cell A1 so “Revenue” is the header in row 1. Leave the original sheet unchanged, include no other columns, and save the changes to NetIncome.xlsx.

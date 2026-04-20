@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator only passes if the final active URL is a monthly forecast page that:
+  - Belongs to AccuWeather (URL starts with https://www.).
+  - Contains "/manchester/" in the path.
+  - Includes the current month’s name followed by "-weather" in the URL (e.g., "march-weather" for March).
+- The original instruction doesn’t specify the site, nor that the URL needs to reflect the current month in this format, nor that you must land on the actual monthly forecast page (not a search results page).
+</thoughts>
+
+<answer>
+On AccuWeather, find and open the Monthly forecast page for Manchester, GB for this month. Make sure you land on the actual monthly forecast page (not search results) so the URL starts with https://www.accuweather.com, includes “/manchester/”, and contains the current month’s name followed by “-weather” (for example, “march-weather” if it’s March).</answer>

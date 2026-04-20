@@ -1,0 +1,52 @@
+{
+  "id": "337d318b-aa07-4f4f-b763-89d9a2dd013f",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Please cross-check the three invoices on the Desktop (\u201cinvoice TII-20220301-90.pdf\u201d, \u201cInvoice # GES-20220215-82.pdf\u201d, and \u201cInvoice # 243729.pdf\u201d) against the Desktop bank statement (\u201cBank-Statement.pdf\u201d). Any invoice that doesn\u2019t reconcile with the statement should be placed, unchanged and with its exact filename, into a folder named \u201cproblematic\u201d directly on the Desktop (create /home/user/Desktop/problematic if it isn\u2019t there). In this set, \u201cInvoice # 243729.pdf\u201d is the one that doesn\u2019t match, so it should end up at /home/user/Desktop/problematic/Invoice # 243729.pdf.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "path": "/home/user/Desktop/invoice TII-20220301-90.pdf",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/337d318b-aa07-4f4f-b763-89d9a2dd013f/invoice%20TII-20220301-90.pdf"
+          },
+          {
+            "path": "/home/user/Desktop/Invoice # GES-20220215-82.pdf",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/337d318b-aa07-4f4f-b763-89d9a2dd013f/Invoice%20%23%20GES-20220215-82.pdf"
+          },
+          {
+            "path": "/home/user/Desktop/Invoice # 243729.pdf",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/337d318b-aa07-4f4f-b763-89d9a2dd013f/Invoice%20%23%20243729.pdf"
+          },
+          {
+            "path": "/home/user/Desktop/Bank-Statement.pdf",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/337d318b-aa07-4f4f-b763-89d9a2dd013f/Bank-Statement.pdf"
+          }
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/337d318b-aa07-4f4f-b763-89d9a2dd013f",
+  "related_apps": [
+    "os",
+    "pdf"
+  ],
+  "evaluator": {
+    "func": "compare_pdfs",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/problematic/Invoice # 243729.pdf",
+      "dest": "Invoice # 243729.pdf"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/337d318b-aa07-4f4f-b763-89d9a2dd013f/Invoice%20%23%20243729.pdf",
+      "dest": "Invoice # 243729 Gold.pdf"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

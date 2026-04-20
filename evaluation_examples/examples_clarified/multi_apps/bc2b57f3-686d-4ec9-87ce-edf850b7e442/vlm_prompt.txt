@@ -1,0 +1,748 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "bc2b57f3-686d-4ec9-87ce-edf850b7e442",
+  "snapshot": "libreoffice_calc",
+  "instruction": "The requirements of my data analysis assignment are listed in \"reminder.docx\" on the desktop. Help me modify my assignment opended accordingly.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/bc2b57f3-686d-4ec9-87ce-edf850b7e442/workbook-with-sample-database.xlsx",
+            "path": "/home/user/Desktop/workbook-with-sample-database.xlsx"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/bc2b57f3-686d-4ec9-87ce-edf850b7e442/reminder.docx",
+            "path": "/home/user/Desktop/reminder.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/workbook-with-sample-database.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/bc2b57f3-686d-4ec9-87ce-edf850b7e442",
+  "related_apps": [
+    "libreoffice_calc",
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "workbook-with-sample-database.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/workbook-with-sample-database.xlsx",
+      "dest": "workbook-with-sample-database.xlsx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/bc2b57f3-686d-4ec9-87ce-edf850b7e442/workbook-with-sample-database_Gold.xlsx",
+      "dest": "workbook-with-sample-database_Gold.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_name"
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RI0",
+          "sheet_idx1": "EI0"
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RI1",
+          "sheet_idx1": "EI1"
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RI2",
+          "sheet_idx1": "EI2"
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RI3",
+          "sheet_idx1": "EI3"
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RI4",
+          "sheet_idx1": "EI4"
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RI5",
+          "sheet_idx1": "EI5"
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RI6",
+          "sheet_idx1": "EI6"
+        },
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RI7",
+          "sheet_idx1": "EI7"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_table
+def compare_table(result: str, expected: str = None, **options) -> float:
+    #  function compare_table {{{ #
+    """
+    Args:
+        result (str): path to result xlsx
+        expected (str): path to golden xlsx
+        rules (List[Dict[str, Any]]): list of dict like
+          {
+            "type": str,
+            <str as parameters>: anything
+          }
+          as sequential rules
+
+    Returns:
+        float: the score
+    """
+
+    if result is None:
+        logger.error("Result file path is None")
+        return 0.0
+
+    # Check if result file exists
+    if not os.path.exists(result):
+        logger.error(f"Result file not found: {result}")
+        return 0.0
+
+    try:
+        logger.info(f"Loading result file: {result}")
+        xlworkbookr: Workbook = openpyxl.load_workbook(filename=result)
+        pdworkbookr = pd.ExcelFile(result)
+        logger.info(
+            f"Successfully loaded result file with sheets: {pdworkbookr.sheet_names}"
+        )
+    except Exception as e:
+        logger.error(f"Failed to load result file {result}: {e}")
+        return 0.0
+    worksheetr_names: List[str] = pdworkbookr.sheet_names
+
+    if expected is not None:
+        xlworkbooke: Workbook = openpyxl.load_workbook(filename=expected)
+        pdworkbooke = pd.ExcelFile(expected)
+        worksheete_names: List[str] = pdworkbooke.sheet_names
+    else:
+        xlworkbooke: Workbook = None
+        pdworkbooke = None
+        worksheete_names: List[str] = None
+
+    parse_idx: Callable[[Union[str, int], BOOK, BOOK], Tuple[BOOK, str]] = (
+        functools.partial(
+            _parse_sheet_idx,
+            result_sheet_names=worksheetr_names,
+            expected_sheet_names=worksheete_names,
+        )
+    )
+
+    passes = True
+    for r in options["rules"]:
+        if r["type"] == "sheet_name":
+            #  Compare Sheet Names {{{ #
+            metric: bool = worksheetr_names == worksheete_names
+            logger.debug(
+                "Assertion: %s.sheet_names == %s.sheet_names - %s",
+                result,
+                expected,
+                metric,
+            )
+            #  }}} Compare Sheet Names #
+
+        elif r["type"] == "sheet_data":
+            #  Compare Sheet Data by Internal Value {{{ #
+            # sheet_idx0: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # sheet_idx1: as sheet_idx0
+            # precision: int as number of decimal digits, default to 4
+
+            error_limit: int = r.get("precision", 4)
+            sheet1: pd.DataFrame = _load_sheet(
+                *parse_idx(r["sheet_idx0"], pdworkbookr, pdworkbooke)
+            )
+            if sheet1 is None:
+                return 0.0
+            sheet2: pd.DataFrame = _load_sheet(
+                *parse_idx(r["sheet_idx1"], pdworkbookr, pdworkbooke)
+            )
+
+            sheet1 = sheet1.round(error_limit)
+            sheet2 = sheet2.round(error_limit)
+            metric: bool = sheet1.equals(sheet2)
+            logger.debug("Sheet1: \n%s", str(sheet1))
+            logger.debug("Sheet2: \n%s", str(sheet2))
+            try:
+                logger.debug("Sheet1 =v= Sheet2: \n%s", str(sheet1 == sheet2))
+            except:
+                logger.debug("Sheet1 =/v= Sheet2")
+            logger.debug(
+                "Assertion: %s =v= %s - %s", r["sheet_idx0"], r["sheet_idx1"], metric
+            )
+            #  }}} Compare Sheet Data by Internal Value #
+
+        elif r["type"] == "sheet_print":
+            #  Compare Sheet Data by Printed Value {{{ #
+            # sheet_idx0: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # sheet_idx1: as sheet_idx0
+            # ignore_case: optional, defaults to False
+
+            sheet1: List[str] = _load_sheet(
+                *parse_idx(r["sheet_idx0"], result, expected)
+            )
+            if sheet1 is None:
+                return 0.0
+            sheet2: List[str] = _load_sheet(
+                *parse_idx(r["sheet_idx1"], result, expected)
+            )
+            if r.get("ignore_case", False):
+                sheet1 = [l.lower() for l in sheet1]
+                sheet2 = [l.lower() for l in sheet2]
+            metric: bool = sheet1 == sheet2
+            logger.debug(
+                "Assertion: %s =p= %s - %s", r["sheet_idx0"], r["sheet_idx1"], metric
+            )
+            #  }}} Compare Sheet Data by Printed Value #
+
+        elif r["type"] == "sheet_fuzzy":
+            #  Fuzzy Match for Ranges {{{ #
+            # sheet_idx0: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # sheet_idx1: as sheet_idx0
+            # rules: list of dict, each dict is like
+            #   { "range": ["A1:B6", "C2:E5"],
+            #     "type": "includes" | "included_by" | "fuzzy_match" | "exact_match", # 0 includes 1, 0 includes_by 1
+            #     "threshold": 85, // for fuzzy match
+            #     "ignore_case": true | false,
+            #     "ignore_chars": " ()", # filtered out
+            #     "trim_leadings": "+ ", # filtered by lstrip
+            #     "trim_trailings": "", # filtered by rstrip
+            #     "normalization": [["Rd", "Road"]], # filtered by replace
+            #   }
+
+            sheet1: Tuple[BOOK, str] = parse_idx(r["sheet_idx0"], result, expected)
+            sheet2: Tuple[BOOK, str] = parse_idx(r["sheet_idx1"], result, expected)
+            total_metric = True
+            for rl in r["rules"]:
+                for rng in MultiCellRange(rl["range"]):
+                    for cdn in rng.cells:
+                        coordinate: str = "{:}{:d}".format(
+                            get_column_letter(cdn[1]), cdn[0]
+                        )
+                        value1: str = str(read_cell_value(*sheet1, coordinate))
+                        value2: str = str(read_cell_value(*sheet2, coordinate))
+                        logger.debug("%s: %s vs %s", cdn, value1, value2)
+
+                        for rplc in rl.get("normalization", []):
+                            value1 = value1.replace(rplc[0], rplc[1])
+                            value2 = value2.replace(rplc[0], rplc[1])
+                        if "trim_leadings" in rl:
+                            value1 = value1.lstrip(rl["trim_leadings"])
+                            value2 = value2.lstrip(rl["trim_leadings"])
+                        if "trim_trailings" in rl:
+                            value1 = value1.rstrip(rl["trim_trailings"])
+                            value2 = value2.rstrip(rl["trim_trailings"])
+                        if "ignore_chars" in rl:
+                            ignore_chars: Set[str] = set(rl["ignore_chars"])
+                            value1 = "".join(
+                                filter(lambda ch: ch not in ignore_chars, value1)
+                            )
+                            value2 = "".join(
+                                filter(lambda ch: ch not in ignore_chars, value2)
+                            )
+                        if rl.get("ignore_case", False):
+                            value1 = value1.lower()
+                            value2 = value2.lower()
+
+                        if rl["type"] == "includes":
+                            metric: bool = value2 in value1
+                        elif rl["type"] == "included_by":
+                            metric: bool = value1 in value2
+                        elif rl["type"] == "fuzzy_match":
+                            metric: bool = fuzz.ratio(value1, value2) >= rl.get(
+                                "threshold", 85.0
+                            )
+                        elif rl["type"] == "exact_match":
+                            metric: bool = value1 == value2
+                        total_metric = total_metric and metric
+
+            metric: bool = total_metric
+            logger.debug(
+                "Assertion: %s =~= %s - %s", r["sheet_idx0"], r["sheet_idx1"], metric
+            )
+            #  }}} Fuzzy Match for Ranges #
+
+        elif r["type"] == "sparkline":
+            #  Compare Sparklines {{{ #
+            # sheet_idx0: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # sheet_idx1: as sheet_idx0
+
+            sparkline1: Dict[str, str] = load_sparklines(
+                *parse_idx(r["sheet_idx0"], result, expected)
+            )
+            sparkline2: Dict[str, str] = load_sparklines(
+                *parse_idx(r["sheet_idx1"], result, expected)
+            )
+            metric: bool = sparkline1 == sparkline2
+            logger.debug(
+                "Assertion: %s.sp == %.sp - %s",
+                r["sheet_idx0"],
+                r["sheet_idx1"],
+                metric,
+            )
+            #  }}} Compare Sparklines #
+
+        elif r["type"] == "chart":
+            #  Compare Charts {{{ #
+            # sheet_idx0: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # sheet_idx1: as sheet_idx0
+            # chart_props: list of str, see utils.load_charts
+
+            charts1: Dict[str, Any] = load_charts(
+                *parse_idx(r["sheet_idx0"], xlworkbookr, xlworkbooke), **r
+            )
+            charts2: Dict[str, Any] = load_charts(
+                *parse_idx(r["sheet_idx1"], xlworkbookr, xlworkbooke), **r
+            )
+            metric: bool = charts1 == charts2
+            logger.debug(
+                "Assertion: %s[chart] == %s[chart] - %s",
+                r["sheet_idx0"],
+                r["sheet_idx1"],
+                metric,
+            )
+            #  }}} Compare Charts #
+
+        elif r["type"] == "style":
+            #  Compare Style (Also Conditional Formatiing) {{{ #
+            # sheet_idx0: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # sheet_idx1: as sheet_idx0
+            # props: list of str indicating concerned styles, see utils._read_cell_style
+
+            sheet_idx1: Tuple[BOOK, str] = parse_idx(
+                r["sheet_idx0"], xlworkbookr, xlworkbooke
+            )
+            book_name1: str = parse_idx(r["sheet_idx0"], result, expected)[0]
+            styles1: Dict[str, List[Any]] = load_xlsx_styles(
+                *sheet_idx1, book_name1, **r
+            )
+
+            sheet_idx2: Tuple[BOOK, str] = parse_idx(
+                r["sheet_idx1"], xlworkbookr, xlworkbooke
+            )
+            book_name2: str = parse_idx(r["sheet_idx1"], result, expected)[0]
+            styles2: Dict[str, List[Any]] = load_xlsx_styles(
+                *sheet_idx2, book_name2, **r
+            )
+            # number_formats1: List[str] = [c.number_format.lower() for col in sheet1.iter_cols() for c in col if c.value is not None and c.data_type=="n"]
+            # number_formats2: List[str] = [c.number_format.lower() for col in sheet2.iter_cols() for c in col if c.value is not None and c.data_type=="n"]
+            metric: bool = styles1 == styles2
+            logger.debug(
+                "Assertion: %s.style == %s.style - %s",
+                r["sheet_idx0"],
+                r["sheet_idx1"],
+                metric,
+            )
+            #  }}} Compare Style (Also Conditional Formatiing) #
+
+        elif r["type"] == "freeze":
+            #  Compare Freezing {{{ #
+            # sheet_idx0: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # sheet_idx1: as sheet_idx0
+
+            sheet1: Worksheet = _load_sheet(
+                *parse_idx(r["sheet_idx0"], xlworkbookr, xlworkbooke)
+            )
+            if sheet1 is None:
+                return 0.0
+            sheet2: Worksheet = _load_sheet(
+                *parse_idx(r["sheet_idx1"], xlworkbookr, xlworkbooke)
+            )
+            metric: bool = sheet1.freeze_panes == sheet2.freeze_panes
+            logger.debug(
+                "Assertion: %s.freeze(%s) == %s.freeze(%s) - %s",
+                r["sheet_idx0"],
+                sheet1.freeze_panes,
+                r["sheet_idx1"],
+                sheet2.freeze_panes,
+                metric,
+            )
+            #  }}} Compare Freezing #
+
+        elif r["type"] == "zoom":
+            #  Check Zooming {{{ #
+            # sheet_idx: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # method: str
+            # ref: value
+
+            sheet: Worksheet = _load_sheet(
+                *parse_idx(r["sheet_idx"], xlworkbookr, xlworkbooke)
+            )
+            if sheet is None:
+                return 0.0
+            zoom_scale: Number = sheet.sheet_view.zoomScale or 100.0
+            metric: bool = _match_value_to_rule(zoom_scale, r)
+            logger.debug(
+                "Assertion: %s.zoom(%.1f) %s %.1f - %s",
+                r["sheet_idx"],
+                zoom_scale,
+                r["method"],
+                r["ref"],
+                metric,
+            )
+            #  }}} Check Zooming #
+
+        elif r["type"] == "data_validation":
+            #  Check Data Validation {{{ #
+            # sheet_idx: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # dv_props: list of dict like {attribute: {"method": str, "ref": anything}}
+            #   available attributes:
+            #     * ranges
+            #     * type
+            #     * formula1
+            #     * formula2
+            #     * operator
+            #     * allowBlank
+            #     * showDropDown
+            #     * showInputMessage
+            #     * showErrorMessage
+            #     * error
+            #     * errorTitle
+            #     * errorStyle
+            #     * prompt
+            #     * promptTitle
+            #     * imeMode
+
+            sheet: Worksheet = _load_sheet(
+                *parse_idx(r["sheet_idx"], xlworkbookr, xlworkbooke)
+            )
+            if sheet is None:
+                return 0.0
+            data_validators: List[DataValidation] = (
+                sheet.data_validations.dataValidation
+            )
+
+            total_metric = len(data_validators) >= len(r["dv_props"])
+            for dat_vldt in data_validators:
+                metric = False
+                for prpt in r["dv_props"]:
+                    metric = metric or all(
+                        _match_value_to_rule(getattr(dat_vldt, attrbt), mr)
+                        for attrbt, mr in prpt.items()
+                    )
+                    if metric:
+                        break
+                total_metric = total_metric and metric
+                if not total_metric:
+                    break
+
+            logger.debug(
+                "Assertion: %s.data_validation - %s", r["sheet_idx"], total_metric
+            )
+            metric: bool = total_metric
+            #  }}} Check Data Validation #
+
+        elif r["type"] == "row_props":
+            #  Check Row Properties {{{ #
+            # sheet_idx0: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # sheet_idx1: as sheet_idx0
+            # props: list of str, see utils.load_rows_or_cols
+
+            rows1: Dict[str, Any] = load_rows_or_cols(
+                *parse_idx(r["sheet_idx0"], xlworkbookr, xlworkbooke), obj="row", **r
+            )
+            rows2: Dict[str, Any] = load_rows_or_cols(
+                *parse_idx(r["sheet_idx1"], xlworkbookr, xlworkbooke), obj="row", **r
+            )
+            logger.debug("Rows1: %s", repr(rows1))
+            logger.debug("Rows2: %s", repr(rows2))
+            metric: bool = rows1 == rows2
+            logger.debug(
+                "Assertion: %s[rows] == %s[rows] - %s",
+                r["sheet_idx0"],
+                r["sheet_idx1"],
+                metric,
+            )
+            #  }}} Check Row Properties #
+
+        elif r["type"] == "col_props":
+            #  Check Row Properties {{{ #
+            # sheet_idx0: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # sheet_idx1: as sheet_idx0
+            # props: list of str, see utils.load_rows_or_cols
+
+            cols1: Dict[str, Any] = load_rows_or_cols(
+                *parse_idx(r["sheet_idx0"], xlworkbookr, xlworkbooke), obj="column", **r
+            )
+            cols2: Dict[str, Any] = load_rows_or_cols(
+                *parse_idx(r["sheet_idx1"], xlworkbookr, xlworkbooke), obj="column", **r
+            )
+            metric: bool = cols1 == cols2
+            logger.debug(
+                "Assertion: %s[cols] == %s[cols] - %s",
+                r["sheet_idx0"],
+                r["sheet_idx1"],
+                metric,
+            )
+            #  }}} Check Row Properties #
+
+        elif r["type"] == "filter":
+            #  Compare Filters {{{ #
+            # sheet_idx0: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # sheet_idx1: as sheet_idx0
+
+            filters1: Dict[str, Any] = load_filters(
+                *parse_idx(r["sheet_idx0"], xlworkbookr, xlworkbooke), **r
+            )
+            filters2: Dict[str, Any] = load_filters(
+                *parse_idx(r["sheet_idx1"], xlworkbookr, xlworkbooke), **r
+            )
+            metric: bool = filters1 == filters2
+            logger.debug(
+                "Assertion: %s[filter] == %s[filter] - %s",
+                r["sheet_idx0"],
+                r["sheet_idx1"],
+                metric,
+            )
+            #  }}} Compare Filters #
+
+        elif r["type"] == "pivot_table":
+            #  Compare Pivot Tables {{{ #
+            # sheet_idx0: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # sheet_idx1: as sheet_idx0
+            # pivot_props: list of str, see utils.load_pivot_tables
+
+            pivots1: Dict[str, Any] = load_pivot_tables(
+                *parse_idx(r["sheet_idx0"], xlworkbookr, xlworkbooke), **r
+            )
+            pivots2: Dict[str, Any] = load_pivot_tables(
+                *parse_idx(r["sheet_idx1"], xlworkbookr, xlworkbooke), **r
+            )
+            metric: bool = pivots1 == pivots2
+            logger.debug(
+                "Assertion: %s[pivot]==%s[pivot] - %s",
+                r["sheet_idx0"],
+                r["sheet_idx1"],
+                metric,
+            )
+            #  }}} Compare Pivot Tables #
+
+        elif r["type"] == "check_cell":
+            #  Check Cell Properties {{{ #
+            # sheet_idx: 0 == "RI0" == "RNSheet1" | "EI0" == "ENSheet1"
+            # coordinate: str, "E3"
+            # props: dict like {attribute: {"method": str, "ref": anything}}
+            #   supported attributes: value & those supported by utils._read_cell_style
+
+            try:
+                sheet: Worksheet = _load_sheet(
+                    *parse_idx(r["sheet_idx"], xlworkbookr, xlworkbooke)
+                )
+                if sheet is None:
+                    logger.error(
+                        f"Failed to load sheet for sheet_idx: {r['sheet_idx']}"
+                    )
+                    return 0.0
+                # data_frame: pd.DataFrame = _load_sheet(*parse_idx(r["sheet_idx"], pdworkbookr, pdworkbooke))
+                cell: Cell = sheet[r["coordinate"]]
+                metric: bool = True
+                for prpt, rule in r["props"].items():
+                    if prpt == "value":
+                        try:
+                            parsed_result = parse_idx(r["sheet_idx"], result, expected)
+                            logger.debug(f"parse_idx result: {parsed_result}")
+                            val = read_cell_value(*parsed_result, r["coordinate"])
+                            logger.debug(f"Cell {r['coordinate']} value: {val}")
+                        except Exception as e:
+                            logger.error(
+                                f"Failed to read cell value at {r['coordinate']}: {e}"
+                            )
+                            val = None
+                    else:
+                        try:
+                            val = _read_cell_style(prpt, cell)
+                        except Exception as e:
+                            logger.error(
+                                f"Failed to read cell style {prpt} at {r['coordinate']}: {e}"
+                            )
+                            val = None
+
+                    metric = metric and _match_value_to_rule(val, rule)
+            except Exception as e:
+                logger.error(f"Error in check_cell processing: {e}")
+                return 0.0
+
+            logger.debug(
+                "Assertion: %s[%s] :%s - %s",
+                r["sheet_idx"],
+                r["coordinate"],
+                repr(r["props"]),
+                metric,
+            )
+            #  }}} Check Cell Properties #
+
+        else:
+            raise NotImplementedError(
+                "Unimplemented sheet check: {:}".format(r["type"])
+            )
+
+        passes = passes and metric
+        if not passes:
+            break
+
+    return float(passes)
+```
+
+## Task:
+
+Analyze the instruction: "The requirements of my data analysis assignment are listed in "reminder.docx" on the desktop. Help me modify my assignment opended accordingly."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+Spreadsheet data (.xlsx):\nYear,Ouallam-Beans,Ouallam-Millet,Ouallam-Sorghum,Niamey-Beans,Niamey-Millet,Niamey-Sorghum,Tillaberi-Beans,Tillaberi-Millet,Tillaberi-Sorghum,Unnamed: 10,Unnamed: 11,Bean-5 yr avg,Millet-5 yr avg,Sorghum-5 yr avg,Bean-2014,Millet-2014,Sorghum-2014
+2010-01-01,,252.5,,,239.0,223.75,432.29,214.0,220.5,,Jan,361.565,262.3,234,428.97,285,
+2010-02-01,426.0,255.75,,411.04,241.0,218.5,433.81,226.0,222.38,,Feb,362.56,261.846,235.6875,455.16,285,
+2010-03-01,409.0,259.0,,411.04,239.0,220.89,419.0,250.0,222.23,,Mar,310.885,268.76,237.375,,285,
+2010-04-01,397.6,259.43,,408.06,241.17,219.14,432.715,244.29,227.27,,Apr,335.4075,269.286,256.683333333333,,285,
+2010-05-01,386.2,270.0,,405.08,243.42,217.39,446.43,257.58,227.27,,May,396.32,266.326,258.466666666667,,248.62,223
+2010-06-01,372.34,275.0,,451.09,241.94,218.25,428.44,250.0,241.08,,Jun,418.6675,276.75125,310.665,,,
+2010-07-01,388.21,285.72,,499.16,241.94,215.77,410.45,250.0,254.89,,Jul,450.01,290.93,248.25,,,
+2010-08-01,465.73,289.16,,412.2,234.74,224.49,416.67,251.0,265.0,,Aug,485.3675,282.37125,283.55,,,
+2010-09-01,407.28,288.5,,333.45,232.46,210.2,354.48,216.21,178.31,,Sep,487.05375,299.6725,281.2,,,
+2010-10-01,261.63,228.17,,157.65,198.41,201.61,261.53,145.66,127.18,,Oct,370.6625,278.4625,281.485,,,
+2010-11-01,386.03,200.0,,209.5,200.0,198.41,237.0,164.01,126.39,,Nov,345.9675,251.845,247.0375,,,
+2010-12-01,260.16,244.5,,166.43,199.37,197.825,250.0,139.0,137.0,,Dec,337.26,273.875,212.59,,,
+2011-01-01,294.16,237.0,233.0,299.5,196.06,197.24,,159.38,139.0,,,,,,,,
+2011-02-01,206.52,231.48,234.5,200.35,196.08,197.11,,183.19,148.0,,,,,,,,
+2011-03-01,212.77,234.0,236.0,305.49,202.0,204.0,326.09,207.0,157.0,,,,,,,,
+2011-04-01,111.11,235.0,231.48,70.56,206.0,204.0,219.52,207.5,181.0,,,,,,,,
+2011-05-01,229.38,222.5,291.74,304.95,220.5,202.5,289.86,208.0,181.0,,,,,,,,
+2011-06-01,227.0,217.25,352.0,336.0,218.0,197.63,340.0,205.0,178.0,,Comparison with ref year,,,,,,
+2011-07-01,250.0,239.0,232.56,328.41,210.0,212.5,326.68,205.0,179.0,,Year,Ouallam-Beans 2011,Ouallam-Millet 2011,Ouallam-Sorghum 2011,Ouallam-Beans 2014,Ouallam-Millet 2014,Ouallam-Sorghum 2014
+2011-08-01,263.89,245.165,239.23,308.97,206.0,208.25,377.02,205.0,180.335,,Jan,294.16,237,233,428.97,285,220
+2011-09-01,247.0,251.33,235.3,329.0,202.0,204.0,317.0,205.0,181.67,,Feb,206.52,231.48,234.5,455.16,285,225
+2011-10-01,278.0,236.0,236.97,309.62,199.0,222.0,330.88,205.0,222.0,,Mar,212.77,234,236,450,285,230
+2011-11-01,290.7,240.38,212.825,336.31,217.5,242.0,353.94,235.16,223.88,,Apr,111.11,235,231.48,440,285,225
+2011-12-01,,275.0,188.68,363.0,260.02,245.0,352.11,249.67,222.44,,May,229.38,222.5,291.74,430,248.62,223
+2012-01-01,,283.0,,,260.0,245.0,,282.0,,,Jun,227,217.25,352,,,
+2012-02-01,,283.0,,,258.0,228.67,,247.48,,,Jul,250,239,232.56,,,
+2012-03-01,,287.8,,,259.59,238.69,,294.12,,,Aug,263.89,245.165,239.23,,,
+2012-04-01,397.73,289.0,275.0,536.16,274.0,241.94,601.08,260.56,261.0,,Sep,247,251.33,235.3,,,
+2012-05-01,465.12,312.51,260.66,554.92,291.13,240.48,655.78,317.16,265.21,,Oct,278,236,236.97,,,
+2012-06-01,535.56,336.755,269.33,619.075,295.565,241.74,712.39,345.08,319.855,,Nov,290.7,240.38,212.825,,,
+2012-07-01,606.0,361.0,278.0,683.23,300.0,243.0,769.0,373.0,374.5,,Dec,,275,188.68,,,
+2012-08-01,702.34,317.16,327.87,693.43,322.95,276.0,744.94,318.46,359.55,,,,,,,,
+2012-09-01,852.27,377.36,327.1,674.6,322.58,286.0,746.27,367.65,323.72,,,,,,,,
+2012-10-01,569.2,364.68,326.0,433.77,250.0,265.31,971.9,223.88,233.73,,,,,,,,
+2012-11-01,290.47,282.0,281.25,367.72,257.17,261.77,728.555,223.88,205.22,,,,,,,,
+2012-12-01,348.84,291.0,236.5,415.89,250.28,245.5,485.21,223.88,195.31,,,,,,,,
+2013-01-01,,254.0,235.0,472.35,238.1,272.67,454.65,223.88,211.54,,,,,,,,
+2013-02-01,,254.0,236.875,472.35,252.21,242.91,454.65,261.19,223.02,,,,,,,,
+2013-03-01,,278.0,238.75,472.35,259.2,242.92,454.65,261.0,234.5,,,,,,,,
+2013-04-01,435.19,278.0,263.57,532.09,267.16,248.67,544.87,298.01,228.0,,,,,,,,
+2013-05-01,504.58,278.0,,515.72,278.62,244.1,576.92,268.6,245.98,,,,,,,,
+2013-06-01,539.77,278.0,,525.33,280.03,243.41,589.66,291.99,251.8,,,,,,,,
+2013-07-01,555.83,278.0,234.19,536.92,303.34,257.01,562.31,294.15,250.78,,,,,,,,
+2013-08-01,509.51,278.0,,532.77,286.51,260.7,534.97,296.0,250.0,,,,,,,,
+2013-09-01,441.665,281.5,,826.38,273.14,244.9,524.0,252.0,219.0,,,,,,,,
+2013-10-01,373.82,285.0,,388.54,262.87,247.17,400.11,203.85,186.61,,,,,,,,
+2013-11-01,416.67,285.0,,403.92,257.0,244.0,425.54,214.29,186.61,,,,,,,,
+2013-12-01,402.78,285.0,,416.3,270.09,242.43,451.49,217.39,199.01,,,,,,,,
+2014-01-01,428.97,285.0,,436.855,264.82,242.92,468.535,227.45,211.56,,,,,,,,
+2014-02-01,455.16,285.0,,457.41,275.05,240.73,485.58,260.55,229.15,,,,,,,,
+2014-03-01,,285.0,,,274.51,240.0,,259.27,227.82,,,,,,,,
+2014-04-01,,285.0,,,277.78,244.9,,250.2,223.88,,,,,,,,
+2014-05-01,,248.62,223.0,,275.12,244.1,,250.98,223.88,,,,,,,,
+2014-06-01,,,,,,,,,,,,,,,,,
+2014-07-01,,,,,,,,,,,,,,,,,
+2014-08-01,,,,,,,,,,,,,,,,,
+2014-09-01,,,,,,,,,,,,,,,,,
+2014-10-01,,,,,,,,,,,,,,,,,
+2014-11-01,,,,,,,,,,,,,,,,,
+2014-12-01,,,,,,,,,,,,,,,,,
+
+
+Spreadsheet data (.xlsx):\n"This sample price database is intended as an example to help MARKit users set up their own price databases. It contains real data collected from by a CRS program in Niger. This program was collecting monthly data, but other programs (especially those that are High Risk) may collect weekly data. The database for each project will be slightly different, depending on the frequency of data collection, the number of markets involved, and the number of commodities monitored. It is important to take enough time to set up your own database well."
+"For the purposes of this example, Gotheye, Mangaize, Ouallam and Tera are designated as the intervention markets. Tillaberi is used as a control market, and Niamey is considered the source market."
+The sheets included here are as follows:
+"""Raw_data"" is the sheet where prices would be entered after collection in the field. It is linked to all the other sheets, so it is very important that data entered here is correct. The cells highlighted in bright yellow are months where data was missing and the cell has been filled with an average of the preceding and following month. When more than one consecutive month of data is missing, the cells have been left blank."
+"""Beans"", ""Millet"" and ""Sorghum"" show the price data for the individual commodities from all markets and calculate the percent change from one month to the next. These illustrate the calculation from sections 4.2.1 (Month to month price changes) and 4.2.2 (Price graphs by commodity) from the MARKit manual. "
+"""Mkt Gotheye"", ""Mkt Mangaize"", ""Mkt Ouallam"", and ""Mkt Tera"" compare the named markets to the source market (Niamey) and to a control market (Tillaberi). These comparisons related to section 4.4.1 in the manual and Worksheet 2."
+"""Millet spatial integration"" provides an example that goes along with Worksheet X on using price data to calculate how well markets are integrated (part of assessing the risk in Step 2 of the manual). It has a comparison of market integration figures calculated by detrending and deseasonalizing the data and figures calculated using just the % change in prices from month to month."
+"The ""Mkt Gotheye"" and ""Mkt Mangaize"" worksheets also have examples of how to calculate historical averages, which corresponds to section 4.4.3 in the manual."
+"""Mkt Ouallam"" has an example of comparing with a reference year, as described in section 4.4.4 of the manual."

@@ -1,0 +1,1 @@
+On AccuWeather, find and open the Monthly forecast page for Manchester, GB for this month. Make sure you land on the actual monthly forecast page (not search results) so the URL starts with https://www.accuweather.com, includes “/manchester/”, and contains the current month’s name followed by “-weather” (for example, “march-weather” if it’s March).

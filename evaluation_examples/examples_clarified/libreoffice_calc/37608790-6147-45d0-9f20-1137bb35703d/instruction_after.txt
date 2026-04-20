@@ -1,0 +1,3 @@
+Please do this in the already opened workbook “Employee_Roles_and_Ranks.xlsx” (first worksheet). Leave the “Employee Data” column and all headers exactly as they are, and fill the existing columns titled “First Name”, “Last Name”, and “Rank” for every row.
+
+Split each entry in “Employee Data” by spaces so that the first word is the First Name, the second word is the Last Name, and everything after the second word is the Rank. Keep the original capitalization and spelling when you copy into those columns. Don’t insert, delete, or reorder any rows, columns, or sheets, and don’t rename anything—just populate those three columns with plain values. When you’re done, save the changes to the same file name (Employee_Roles_and_Ranks.xlsx).

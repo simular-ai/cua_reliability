@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator compares the saved file at /home/user/Date_Budget_Variance_HideNA.xlsx to a gold file, checking two things: (1) the sheet data remain unchanged, and (2) which rows are marked as hidden on the first (only) sheet.
+- Therefore, the action must be to hide entire rows (not delete or edit cells, and not use AutoFilter), specifically for rows containing the literal text "N/A".
+- It’s important to clarify that the header should remain visible, that the hiding applies to any occurrence of "N/A" in the data columns (e.g., Actual or Difference), and that the file must be saved in place with the same name/path so the evaluator can find it.
+</thoughts>
+
+<answer>
+In /home/user/Date_Budget_Variance_HideNA.xlsx (first sheet), hide every entire row that contains the literal text “N/A” in the data (for example, in the Actual or Difference columns). Keep the header row visible. Don’t delete or edit any cells and don’t use filtering—just mark those rows as hidden—and save the workbook back to the same file at /home/user/Date_Budget_Variance_HideNA.xlsx.

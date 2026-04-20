@@ -1,0 +1,1 @@
+Could you convert my image at /home/user/Desktop/gate.jpeg to CMYK color mode entirely within GIMP itself—using only GIMP’s built‑in features (no plugins or external tools)?

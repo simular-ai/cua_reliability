@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator compares the full paragraph text of the edited DOCX against a gold DOCX, so the exact text content (including punctuation and the presence/absence of brackets around the reference number) must match the expected style in the document.
+- The action happens in a specific file and location: /home/user/Desktop/Essay_Writing_English_for_uni.docx opened in LibreOffice Writer and saved in place.
+- “Cross reference (using reference number)” implies inserting the in-text reference as the numeric label that corresponds to the entry in the numbered References list, replacing the literal "<add here>" in the fourth paragraph of the main body.
+- The new reference should be appended to the existing numbered list (as the next number) without renumbering existing entries, and the in-text number should match whatever bracket/superscript style the document already uses.
+- The citation text should match the provided string exactly (including the “doi:” text and punctuation), with only the list’s numbering/formatting applied.
+</thoughts>
+
+<answer>
+Please open /home/user/Desktop/Essay_Writing_English_for_uni.docx in LibreOffice Writer, add this exact citation text (including its punctuation and “doi:” string) to the existing numbered reference list as the next item, keeping the list’s current numbering and style: “Steinberg, F. M., Bearden, M. M., & Keen, C. L. (2003). Cocoa and chocolate flavonoids: Implications for cardiovascular health. Journal of the American Dietetic Association, 103(2), 215-223. doi: 10.1053/jada.2003.50028”. Then, in the fourth paragraph of the main body where it says <add here>, replace that marker with an in-text cross-reference that displays the reference number of the new entry, using the same bracket/superscript style used elsewhere in the document. Don’t change or renumber any other references, and save the changes to the same file (keep the filename and location unchanged).

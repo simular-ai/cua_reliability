@@ -1,0 +1,1 @@
+Please install the VS Code extension from the local VSIX at "/home/user/test.vsix", and confirm it’s installed by ensuring the extension identifier shows up as "undefined_publisher.test" in the list of installed extensions.

@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator opens and saves /home/user/Desktop/55_10.pptx, then compares it to 55_10_Original.pptx. So the action must be performed on that exact file and saved in place.
+- It specifically checks slide 3 and expects the table’s top position to be significantly lower than before (near the bottom), while all other shapes remain unchanged in position/size.
+- It also checks that no text, notes, bullets, fonts, colors, background, or number/order of shapes change, and that the table’s content/formatting isn’t altered—only its position.
+- To avoid mismatches, we should clarify: slide number terminology, file path, saving, not resizing, not altering other elements or the table’s content, and keeping the table within the slide (not off-canvas) without changing layering/grouping.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/55_10.pptx (open in LibreOffice Impress), go to slide 3 (page 3) and move the existing table down so it sits near the bottom edge of the slide—clearly lower than its current position—without resizing it or moving it off the slide. Don’t change any other content, formatting, notes, or slides, and don’t alter the table’s text, style, layering, or grouping—just reposition it. Save the changes to the same file (/home/user/Desktop/55_10.pptx).</answer>

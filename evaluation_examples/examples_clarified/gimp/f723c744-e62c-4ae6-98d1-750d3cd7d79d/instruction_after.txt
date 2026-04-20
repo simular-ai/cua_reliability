@@ -1,0 +1,1 @@
+Please use GIMP to boost the contrast of the image at /home/user/Desktop/berries.png so the subject stands out more, while keeping the composition the same (no cropping, resizing, or heavy stylistic effects). When you’re done, export it as a PNG named /home/user/Desktop/berries_contrast.png.

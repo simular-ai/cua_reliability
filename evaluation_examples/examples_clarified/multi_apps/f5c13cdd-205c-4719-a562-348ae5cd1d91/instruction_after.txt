@@ -1,0 +1,1 @@
+I’ve drafted the reminder email already. Please pull the email addresses of the students who haven’t paid from the Excel payment record at /home/user/Documents/Departments/finance/tuition_payment.xlsx, and add those addresses to the To/Recipients field (not CC or BCC) of the open Thunderbird compose window for “Reminder of Payment.” Keep the existing subject and body as they are.

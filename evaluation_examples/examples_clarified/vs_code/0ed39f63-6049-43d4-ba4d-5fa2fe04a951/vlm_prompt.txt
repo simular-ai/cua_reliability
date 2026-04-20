@@ -1,0 +1,168 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "0ed39f63-6049-43d4-ba4d-5fa2fe04a951",
+  "snapshot": "vscode",
+  "instruction": "Please help me change all the places in this document that say \"text\" to \"test\".",
+  "source": "https://www.quora.com/How-do-you-find-and-replace-text-in-Visual-Studio-Code",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/0ed39f63-6049-43d4-ba4d-5fa2fe04a951/vscode_replace_text.txt",
+            "path": "/home/user/Desktop/vscode_replace_text.txt"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code",
+          "/home/user/Desktop/vscode_replace_text.txt"
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Visual Studio Code"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vscode"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Visual Studio Code"
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey('ctrl', 's');"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_text_file",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/0ed39f63-6049-43d4-ba4d-5fa2fe04a951/vscode_replace_text_gold.txt",
+      "dest": "vscode_replace_text_gold.txt"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/vscode_replace_text.txt",
+      "dest": "vscode_replace_text.txt"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_text_file
+def compare_text_file(actual: str, expected: str, **options) -> float:
+    """
+    Args:
+        actual (str): path to result text file
+        expected (str): path to gold text file
+
+    Return:
+        float: the score
+    """
+    if not actual:
+        return 0.
+
+    with open(actual) as f1:
+        actual_text = f1.read()
+    with open(expected) as f2:
+        expected_text = f2.read()
+
+    ignore_blanks = options.get('ignore_blanks', False)
+    if ignore_blanks:
+        actual_text = re.sub(r'[\t\n]', ' ', actual_text).strip()
+        actual_text = re.sub(r'\s+', ' ', actual_text)
+        expected_text = re.sub(r'[\t\n]', ' ', expected_text).strip()
+        expected_text = re.sub(r'\s+', ' ', expected_text)
+
+    ignore_case = options.get('ignore_case', False)
+    if ignore_case:
+        actual_text = actual_text.lower()
+        expected_text = expected_text.lower()
+
+    if actual_text == expected_text:
+        return 1.0
+    return 0.0
+```
+
+## Task:
+
+Analyze the instruction: "Please help me change all the places in this document that say "text" to "test"."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+File content (.txt):\nIn order to evaluate the effectiveness of the new educational curriculum, a series of texts were designed.
+These texts aimed to test not only the retention of knowledge but also the ability to apply this knowledge in various scenarios.
+During the texting phase, it became apparent that the texts themselves were a test of patience and endurance for both students and educators.
+The test results would eventually reveal how well the curriculum prepared students for real-world challenges.
+It was a test of the system's robustness, a test of educational theories in practice, and, ultimately, a test of our commitment to quality education.
+
+File content (.txt):\nIn order to evaluate the effectiveness of the new educational curriculum, a series of tests were designed.
+These tests aimed to test not only the retention of knowledge but also the ability to apply this knowledge in various scenarios.
+During the testing phase, it became apparent that the tests themselves were a test of patience and endurance for both students and educators.
+The test results would eventually reveal how well the curriculum prepared students for real-world challenges.
+It was a test of the system's robustness, a test of educational theories in practice, and, ultimately, a test of our commitment to quality education.

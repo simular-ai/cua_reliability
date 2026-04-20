@@ -1,0 +1,19 @@
+<thoughts>
+The evaluator compares the entire first worksheet of /home/user/Quarterly_Product_Sales_by_Zone.xlsx against a gold file by exact cell values, not just presence of totals. So the instruction needs to clarify: which file to edit and save, that edits should be on the first sheet only, exactly which totals are expected for each product and each zone’s totals row, and to keep all other data/layout unchanged (including blank separator rows). Providing the specific target numbers avoids ambiguity and matches what the evaluator checks.
+</thoughts>
+
+<answer>
+Open /home/user/Quarterly_Product_Sales_by_Zone.xlsx in LibreOffice Calc and, on the first (existing) sheet, fill any missing “Total” column values for each product (Q1+Q2+Q3+Q4) and the “Total” row for each Zone block so they exactly reflect the sums below. Don’t change any other data, headers, blank separator rows, or sheet order. Save the file back to the same path (/home/user/Quarterly_Product_Sales_by_Zone.xlsx).
+
+- Zone 1
+  - Product totals: Khewra Salt 14451; Lahori Paye 10781; Nihari 11091
+  - Total row: Q1 10063; Q2 8224; Q3 10265; Q4 7771; Total 36323
+
+- Zone 2
+  - Product totals: Chapli Kebab 13363; Biryani 9960; Sajji 13296
+  - Total row: Q1 10816; Q2 11448; Q3 7087; Q4 7268; Total 36619
+
+- Zone 3
+  - Product totals: Sohan Halwa 11175; Nan Khatai 16530; Gajrela 15261
+  - Total row: Q1 9791; Q2 9836; Q3 12509; Q4 10830; Total 42966
+</answer>

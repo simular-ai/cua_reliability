@@ -1,0 +1,1 @@
+On the second slide, the image looks a bit too bright—could you slightly reduce its brightness so it’s darker, but keep everything else the same (no cropping, resizing, or other edits)? When you’re done, please export just that image as a PNG and save it on the Desktop as /home/user/Desktop/background.png. Thanks!

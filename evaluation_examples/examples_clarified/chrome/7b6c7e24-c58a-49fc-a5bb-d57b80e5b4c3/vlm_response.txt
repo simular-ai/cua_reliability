@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator specifically checks that all Chrome cookies for the domain .amazon.com are gone.
+- The original instruction is vague about which browser and what exactly to delete.
+- To match the evaluator, we need to clarify: use Google Chrome, remove cookies/site data for amazon.com (including subdomains under .amazon.com), so no Amazon cookies remain.
+- Keep the natural tone and retain the provided Chrome support link.
+</thoughts>
+
+<answer>
+Can you do this in Google Chrome and remove all cookies and site data saved by amazon.com—covering .amazon.com and its subdomains—so there aren’t any Amazon cookies left on this computer? I want those Amazon pages not to remember me. Here’s the Chrome help page I’m referring to: https://support.google.com/chrome/answer/95647?hl=en&ref_topic=7438325&sjid=16867045591165135686-AP#zippy=%2Cdelete-cookies-from-a-site
+</answer>

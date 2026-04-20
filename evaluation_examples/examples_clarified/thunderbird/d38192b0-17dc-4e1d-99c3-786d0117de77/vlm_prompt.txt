@@ -1,0 +1,176 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "d38192b0-17dc-4e1d-99c3-786d0117de77",
+  "snapshot": "thunderbird",
+  "instruction": "Attach the my AWS bill to the email. The bill is stored at ~/aws-bill.pdf. Don't close it or send it. I haven't finish all the contents.",
+  "source": "https://support.mozilla.org/en-US/kb/how-use-attachments",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/thunderbird/d38192b0-17dc-4e1d-99c3-786d0117de77/invoice0123456789.pdf",
+            "path": "/home/user/aws-bill.pdf"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/thunderbird/dd84e895-72fd-4023-a336-97689ded257c/thunderbird-profile.tar.gz",
+            "path": "/home/user/thunderbird-profile.tar.gz"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/thunderbird/d38192b0-17dc-4e1d-99c3-786d0117de77/New-month%20AWS%20Bill.html",
+            "path": "/home/user/.aws-bill-mail-body.html"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "tar",
+          "-xzv",
+          "--recursive-unlink",
+          "-f",
+          "/home/user/thunderbird-profile.tar.gz",
+          "-C",
+          "/home/user/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "/usr/bin/thunderbird -compose \"from='Anonym Tester <anonym-x2024@outlook.com>',to=assistant@outlook.com,subject='New-month AWS Bill',body='$(cat /home/user/.aws-bill-mail-body.html)'\"",
+        "shell": true
+      }
+    }
+  ],
+  "trajectory": "trajectories/d088f539-cab4-4f9a-ac92-9999fc3a656e",
+  "related_apps": [
+    "thunderbird"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "download",
+        "parameters": {
+          "files": [
+            {
+              "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/thunderbird/d38192b0-17dc-4e1d-99c3-786d0117de77/show-thunderbird-attachments.py",
+              "path": "/home/user/show-thunderbird-attachments.py"
+            },
+            {
+              "url": "https://files.pythonhosted.org/packages/ee/58/257350f7db99b4ae12b614a36256d9cc870d71d9e451e79c2dc3b23d7c3c/cssselect-1.3.0-py3-none-any.whl",
+              "path": "/home/user/cssselect-1.3.0-py3-none-any.whl"
+            }
+          ]
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "pip",
+            "install",
+            "/home/user/cssselect-1.3.0-py3-none-any.whl"
+          ]
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "/home/user/show-thunderbird-attachments.py",
+            "New-month AWS Bill",
+            "aws-bill.pdf"
+          ],
+          "stdout": "check-attachments.output"
+        }
+      }
+    ],
+    "func": "check_list",
+    "result": {
+      "type": "cache_file",
+      "path": "check-attachments.output"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expect": [
+          "Attachment added!"
+        ]
+      }
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_list
+def check_list(result: str, rules: Dict[str, List[str]]) -> float:
+    """
+    Args:
+        result (str): path to list file
+        rules (Dict[str, List[str]]): dict like
+          {
+            "expect": list of str as regexes
+            "unexpect": list of str as regexes
+          }
+
+    Returns:
+        float
+    """
+
+    if result is None:
+        return 0.
+
+    expect_patterns: List[Pattern[str]] = [re.compile(ptt) for ptt in rules.get("expect", [])]
+    unexpect_patterns: List[Pattern[str]] = [re.compile(ptt) for ptt in rules.get("unexpect", [])]
+
+    expect_metrics = [False] * len(expect_patterns)
+    unexpect_metric = True
+    with open(result) as f:
+        for l in f:
+            for i, r in enumerate(expect_patterns):
+                expect_metrics[i] = expect_metrics[i] or (r.search(l) is not None)
+            unexpect_metric = unexpect_metric and all(r.search(l) is None for r in unexpect_patterns)
+    return float(all(expect_metrics) and unexpect_metric)
+```
+
+## Task:
+
+Analyze the instruction: "Attach the my AWS bill to the email. The bill is stored at ~/aws-bill.pdf. Don't close it or send it. I haven't finish all the contents."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

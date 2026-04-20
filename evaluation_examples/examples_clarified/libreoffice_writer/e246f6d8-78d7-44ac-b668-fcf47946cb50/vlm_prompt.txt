@@ -1,0 +1,134 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "e246f6d8-78d7-44ac-b668-fcf47946cb50",
+  "snapshot": "libreoffice_writer",
+  "instruction": "I found Italic font very hard to discern from the normal text for me, as it is also dark black with the same size. Current font size is 12 and I want to change the font size of italicized words to 14 to make it more discernible. Can you help me on this?",
+  "source": "https://ask.libreoffice.org/t/how-to-change-text-size-color-of-italic-font/77712",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/e246f6d8-78d7-44ac-b668-fcf47946cb50/Y22-2119-assign4.docx",
+            "path": "/home/user/Desktop/Y22-2119-assign4.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/Y22-2119-assign4.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Y22-2119-assign4.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": "check_italic_font_size_14",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/e246f6d8-78d7-44ac-b668-fcf47946cb50/Y22-2119-assign4_Gold.docx",
+      "dest": "Y22-2119-assign4.docx_Gold.docx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/Y22-2119-assign4.docx",
+      "dest": "Y22-2119-assign4.docx"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_italic_font_size_14
+def check_italic_font_size_14(path1, path2):
+    if not path1 or not path2:
+        return 0
+
+    if not compare_docx_files(path1, path2):
+        return 0
+
+    try:
+        document = Document(path1)
+    except Exception as e:
+        logger.error(f"Error: {e}")
+        return 0
+
+    for paragraph in document.paragraphs:
+        for run in paragraph.runs:
+            if run.italic:
+                # Check if font size is 14
+                if run.font.size is None or run.font.size.pt != 14:
+                    return 0
+    return 1
+```
+
+## Task:
+
+Analyze the instruction: "I found Italic font very hard to discern from the normal text for me, as it is also dark black with the same size. Current font size is 12 and I want to change the font size of italicized words to 14 to make it more discernible. Can you help me on this?"
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Input_File**: Input file downloaded to /home/user/Desktop/Y22-2119-assign4.docx\nFile info: File format .docx not displayable (196107 bytes)
+
+\n**Ground_Truth_File**: Expected output/ground truth file: Y22-2119-assign4.docx_Gold.docx\nFile info: File format .docx not displayable (196108 bytes)

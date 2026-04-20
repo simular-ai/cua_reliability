@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator parses the active Delta.com results page for specific CSS classes that display: 
+  - origin airport code = JFK
+  - destination airport code = ORD
+  - a single displayed date string for the departure set to “tomorrow”.
+- The original instruction doesn’t specify using Delta.com, doesn’t require the airport codes explicitly (could pick NYC/CHI aggregate), and doesn’t make clear that the actual search results page should be shown with the header containing JFK → ORD and tomorrow’s date. These need minimal clarification to match what’s being checked.
+</thoughts>
+
+<answer>
+On Delta.com, search for flights from New York–Kennedy (JFK) to Chicago O’Hare (ORD) departing tomorrow, and leave the results page open so the header clearly shows JFK → ORD with tomorrow’s date.

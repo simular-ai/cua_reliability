@@ -1,0 +1,1 @@
+I built a Chrome extension that needs to be installed manually by loading the unpacked folder in Chrome. The folder to load is /home/user/Desktop/helloExtension on the Desktop—please load that folder into Chrome so the extension is installed.

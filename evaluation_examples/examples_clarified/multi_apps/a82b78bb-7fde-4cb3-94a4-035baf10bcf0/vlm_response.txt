@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator looks specifically for a Chrome bookmarks folder named exactly “Liked Authors” (case-sensitive) directly on the Bookmarks Bar, not nested.
+- It requires exactly four bookmarks inside: one per author (first-listed author and the last three listed), with no extras.
+- Each bookmark must be an official personal or profile page; the evaluator accepts personal websites, university/company research profiles, or LinkedIn (and not things like Google Scholar/Twitter).
+- Order doesn’t matter, but the set must match one valid URL for each of the four authors.
+</thoughts>
+
+<answer>
+I’m really enjoying this paper. Please find the first-listed author and the last three listed authors from this paper, and for each of those four people add exactly one official personal or profile page—such as their personal website, a university/company research profile, or their LinkedIn—to a Chrome bookmarks folder named exactly “Liked Authors” (matching this capitalization, no quotes). Create that folder directly on the Bookmarks Bar (not inside another folder) and place only those four bookmarks in it—one per author, no extras. Any one suitable page per author is fine.

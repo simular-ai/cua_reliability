@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator opens and saves a specific file: /home/user/Set_Decimal_Separator_Dot.xlsx, so the instruction should name this exact file and confirm saving in place.
+- Comparison is done on the printed values of Sheet1, so the change must affect display formatting (decimal separator shown as comma) without altering underlying numeric values, formulas, or precision.
+- Structure (sheet name, headers) must remain unchanged to match the expected file.
+- Numbers should remain numeric (not converted to text) and decimal places should stay exactly the same; no thousands separators should be introduced.
+</thoughts>
+
+<answer>
+Please open /home/user/Set_Decimal_Separator_Dot.xlsx and update all numbers on Sheet1 so they display a comma (,) as the decimal separator for localization, while keeping the underlying values, formulas, and the number of decimal places exactly the same. This should be a formatting/locale change only—don’t convert numbers to text, don’t add thousand separators, and don’t rename the sheet or alter headers or layout. Save the changes back to the same .xlsx file. </answer>

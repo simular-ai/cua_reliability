@@ -1,0 +1,10 @@
+<thoughts>
+The evaluator compares the saved DOCX against a gold DOCX by checking paragraph counts and that the line spacing value of every paragraph matches exactly. So the instruction must:
+- Specify the exact file to edit and that changes must be saved back to the same path (/home/user/Desktop/Novels_Intro_Packet.docx).
+- Clarify that only the first two paragraphs should be changed and all other paragraphs/content must remain untouched (since the evaluator checks all paragraphs).
+- Specify the spacing as Double (2.0 lines) to align with how the gold file is likely set.
+Avoid adding step-by-step directions and keep a natural tone.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/Novels_Intro_Packet.docx, set the line spacing of the first two paragraphs to Double (2.0 lines) only. Don’t change the spacing or content of any other paragraphs. Save the changes to the same file (/home/user/Desktop/Novels_Intro_Packet.docx).

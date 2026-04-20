@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator runs “timedatectl status” and only checks that the “Time zone” line ends with “+0000)”. The original request doesn’t specify the platform (Ubuntu/Linux), doesn’t state that any zero-offset zone name is acceptable (not strictly “UTC”), and doesn’t mention verifying via timedatectl. Minimal clarifications: note Ubuntu, accept any UTC+0 zone (e.g., Etc/UTC), and ask to confirm by checking that timedatectl status shows +0000 on the Time zone line. Keep the help link.
+</thoughts>
+
+<answer>
+I’m on Ubuntu. Please set the system time zone to a UTC+0 zone (Etc/UTC or any region at +0000 is fine) and confirm it by checking timedatectl status — the Time zone line should show +0000. Here’s the Ubuntu help page I’m referring to: https://help.ubuntu.com/lts/ubuntu-help/clock-timezone.html.en
+</answer>

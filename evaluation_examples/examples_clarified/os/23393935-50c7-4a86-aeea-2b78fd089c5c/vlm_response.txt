@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator checks the destination at /home/user/Desktop/cpjpg specifically, so the instruction should specify the Desktop paths for both ‘photos’ and ‘cpjpg’.
+- It requires that cpjpg contain exactly four files with precise names, no more and no fewer; the instruction should make that explicit to avoid extra files causing failure.
+- The files must be copied flat into cpjpg (no subdirectories) and retain their original filenames.
+- Only .jpg files should be included (exclude non-.jpg like .png).
+</thoughts>
+
+<answer>
+From the Desktop, scan ~/Desktop/photos and all its subfolders, and copy only files with the .jpg extension into ~/Desktop/cpjpg. Put the copies directly in ~/Desktop/cpjpg (don’t recreate subfolders and don’t rename anything), and skip non-.jpg files. In the end, ~/Desktop/cpjpg should contain exactly these four files and nothing else: monk252520thailand252520wat252520arun252520scaled25255B225255D.jpg, hong-kong-china.jpg, hk_group_photo.jpg, and emnlp2023.jpg.
+</answer>

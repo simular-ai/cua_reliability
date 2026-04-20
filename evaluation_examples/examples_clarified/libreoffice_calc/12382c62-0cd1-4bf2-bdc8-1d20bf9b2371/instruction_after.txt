@@ -1,0 +1,1 @@
+In the opened WeeklySales.xlsx, add a 2D clustered column chart (not stacked, not 3D) using Week as the category axis and two series (Sales and COGS), and place it on a new worksheet so it becomes the second sheet in the workbook. Set the chart title exactly to “Sales & COGS”, and save your changes to WeeklySales.xlsx.

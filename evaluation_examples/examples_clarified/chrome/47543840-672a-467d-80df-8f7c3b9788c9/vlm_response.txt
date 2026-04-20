@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator expects the results page URL to include "reservation#/vehicles".
+- It checks that both pick-up and return are at Boston Logan Intl Airport with the airport code BOS.
+- It requires specific pick-up and drop-off times: both at 12:00 PM (noon).
+- It verifies the sort control shows the exact text "Number of Seats (High to Low)".
+- The original instruction doesn’t specify return location, exact times, the airport code, or the exact sort label.
+</thoughts>
+
+<answer>
+On the current website, show me the cars available for pick‑up and return at Boston Logan Intl Airport (BOS) from the 10th to the 11th of next month, with both pick‑up and drop‑off times set to 12:00 PM (noon), and sort the results by “Number of Seats (High to Low)” to find the largest capacity. </answer>

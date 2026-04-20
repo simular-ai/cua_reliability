@@ -1,0 +1,205 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "e135df7c-7687-4ac0-a5f0-76b74438b53e",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Please convert a .xlsx file opened in LibreOffice Calc to a .html file and view it in Chrome.",
+  "source": "https://www.ilovefreesoftware.com/23/featured/free-csv-to-html-converter-software-windows.html",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://aclanthology.org/",
+          "https://openai.com/",
+          "https://www.linkedin.com/home/"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/e135df7c-7687-4ac0-a5f0-76b74438b53e/annual-enterprise-survey-2021-financial-year-provisional.xlsx",
+            "path": "/home/user/Desktop/annual-enterprise-survey-2021-financial-year-provisional.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/annual-enterprise-survey-2021-financial-year-provisional.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "thunderbird",
+    "chrome"
+  ],
+  "evaluator": {
+    "func": [
+      "is_expected_tabs",
+      "compare_htmls"
+    ],
+    "result": [
+      {
+        "type": "open_tabs_info"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/annual-enterprise-survey-2021-financial-year-provisional.html",
+        "dest": "annual-enterprise-survey-2021-financial-year-provisional.html"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "urls": [
+            "https://aclanthology.org/",
+            "https://openai.com/",
+            "https://www.linkedin.com/home/",
+            "file:///home/user/Desktop/annual-enterprise-survey-2021-financial-year-provisional.html"
+          ]
+        }
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/e135df7c-7687-4ac0-a5f0-76b74438b53e/annual-enterprise-survey-2021-financial-year-provisional.html",
+        "dest": "annual-enterprise-survey-2021-financial-year-provisional_gold.html"
+      }
+    ],
+    "options": [
+      {},
+      {
+        "ignore_sdnum": true
+      }
+    ]
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: is_expected_tabs
+def is_expected_tabs(open_tabs: List[Dict[str, str]], rule: Dict[str, Any]) -> float:
+    """
+    Checks if the expected tabs are open in Chrome.
+    """
+    if not open_tabs:
+        return 0.
+
+    match_type = rule['type']
+
+    if match_type == "url":
+        expected_urls = rule['urls']
+        actual_urls = [tab['url'] for tab in open_tabs]
+        if not are_lists_equal(expected_urls, actual_urls, compare_urls):
+            logger.error("list not match") 
+            logger.error(expected_urls)
+            logger.error(actual_urls)
+            return 0
+        return 1 if are_lists_equal(expected_urls, actual_urls, compare_urls) else 0
+    else:
+        logger.error(f"Unknown type: {match_type}")
+        return 0
+
+# Function: compare_htmls
+def compare_htmls(html_path1: str, html_path2: str, **options) -> float:
+    """
+    Compare two HTML files.
+    """
+    with open(html_path1, 'r', encoding='utf-8') as inf:
+        soup1 = BeautifulSoup(inf, 'lxml')
+    with open(html_path2, 'r', encoding='utf-8') as inf:
+        soup2 = BeautifulSoup(inf, 'lxml')
+    ignore_sdnum = options.get("ignore_sdnum", None)
+
+    def compare_elements(elem1, elem2):
+        if not (isinstance(elem1, Tag) and isinstance(elem2, Tag)):
+            if elem1 != elem2:
+                logger.info("not the same")
+            return elem1 == elem2
+        if elem1.name != elem2.name:
+            logger.info("html name not match")
+            return False
+        if elem1.text.strip() != elem2.text.strip():
+            logger.info("html text not match")
+            return False
+        if elem1.attrs != elem2.attrs:
+            if ignore_sdnum:
+                attrs1 = {k: v for k, v in elem1.attrs.items() if k != 'sdnum'}
+                attrs2 = {k: v for k, v in elem2.attrs.items() if k != 'sdnum'}
+                return attrs1 == attrs2
+            logger.info("html attrs not match")
+            logger.info(f"{elem1.attrs}")
+            logger.info(f"{elem2.attrs}")
+            return False
+        return True
+
+    for elem1, elem2 in zip(soup1.recursiveChildGenerator(), soup2.recursiveChildGenerator()):
+        if not compare_elements(elem1, elem2):
+            logger.info("html not match")
+            return .0
+    return 1.
+```
+
+## Task:
+
+Analyze the instruction: "Please convert a .xlsx file opened in LibreOffice Calc to a .html file and view it in Chrome."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Ground_Truth_File**: Expected output/ground truth file: annual-enterprise-survey-2021-financial-year-provisional_gold.html\nFile info: File format .html not displayable (33039 bytes)

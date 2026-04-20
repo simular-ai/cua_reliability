@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator compares the newly saved file on the Desktop against the original downloaded PPTX, checking that the content is identical. The original instruction doesn’t specify which slides/presentation to save, that it should be an unchanged copy, or that the format must remain .pptx. Adding those specifics will align the action with the evaluator’s checks without turning it into step-by-step directions.
+</thoughts>
+
+<answer>
+Could you save the presentation that’s currently open (Secrets-of-Monetizing-Video.pptx) as an exact .pptx copy named pre.pptx on the Desktop, without making any changes?
+</answer>

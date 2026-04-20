@@ -1,0 +1,13 @@
+<thoughts>
+The evaluator compares your edited /home/user/Desktop/41_3.pptx against 41_3_Gold.pptx and is strict about:
+- Working on the exact file and saving in place.
+- Making the change on the slide titled “Features” only, without altering other slides or content.
+- The new table’s presence, dimensions (5 rows x 2 columns), and its default position/size among shapes (shape geometry/order must match).
+- Table cell contents and formatting (empty cells avoid text/font mismatches).
+- Not changing background, notes, or other formatting.
+
+So the instruction should clarify file/path, slide title, default insertion (no moving/resizing/styling), leaving cells blank, and not touching anything else, while staying natural.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/41_3.pptx, go to the slide titled “Features” and add a table that has 5 rows and 2 columns. Insert it using LibreOffice Impress’s default table placement in the slide’s content area—don’t move or resize it, don’t change its formatting, and leave all cells blank. Please don’t modify any other slides, text, notes, or background, and save the file with the same name and location.

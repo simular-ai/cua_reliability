@@ -1,0 +1,1 @@
+Please remove the background from /home/user/Desktop/dog_with_background.png so it’s truly transparent (add an alpha channel if needed), keeping the dog intact and the original canvas size/resolution unchanged—no cropping or resizing. Then export it as a PNG on the Desktop named dog_without_background.png.

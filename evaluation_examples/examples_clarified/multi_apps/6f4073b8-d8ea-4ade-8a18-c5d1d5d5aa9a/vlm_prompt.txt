@@ -1,0 +1,233 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "6f4073b8-d8ea-4ade-8a18-c5d1d5d5aa9a",
+  "snapshot": "multiapps",
+  "instruction": "I now want to count the meeting cities of the three machine learning conferences in the past ten years from 2013 to 2019(including 2013 and 2019). I have listed the names and years of the conferences in excel. Please fill in the vacant locations.",
+  "source": "author",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/6f4073b8-d8ea-4ade-8a18-c5d1d5d5aa9a/Conference.xlsx",
+            "path": "/home/user/Desktop/ConferenceCity.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/ConferenceCity.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "calc",
+    "chrome",
+    "os"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "download",
+        "parameters": {
+          "files": [
+            {
+              "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/6f4073b8-d8ea-4ade-8a18-c5d1d5d5aa9a/ConferenceCity%20Gold.xlsx",
+              "path": "/home/user/Desktop/ConferenceCity_Gold.xlsx"
+            }
+          ]
+        }
+      },
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "ConferenceCity.xlsx - LibreOffice Calc"
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey(\"ctrl\", \"s\"); time.sleep(0.5);"
+          ]
+        }
+      }
+    ],
+    "func": "compare_conference_city_in_order",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": [
+          "Scottsdale",
+          "Atlanta",
+          [
+            "Lake Tahoe",
+            "Stateline"
+          ],
+          [
+            "Banff",
+            "Alberta's Rockies",
+            "Alberta\u2019s Rockies"
+          ],
+          "Beijing",
+          [
+            "Montreal",
+            "Montr\u00e9al"
+          ],
+          "San Diego",
+          "Lille",
+          [
+            "Montreal",
+            "Montr\u00e9al"
+          ],
+          "San Juan",
+          [
+            "New York",
+            "New York City",
+            "NYC"
+          ],
+          "Barcelona",
+          "Toulon",
+          "Sydney",
+          [
+            "Los Angeles",
+            "Long Beach",
+            "LA"
+          ],
+          "Vancouver",
+          "Stockholm",
+          [
+            "Montreal",
+            "Montr\u00e9al"
+          ],
+          "New Orleans",
+          [
+            "Los Angeles",
+            "Long Beach",
+            "LA"
+          ],
+          "Vancouver"
+        ]
+      }
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/ConferenceCity.xlsx",
+      "dest": "ConferenceCity.xlsx"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_conference_city_in_order
+def compare_conference_city_in_order(actual_city_list_path, expected_city):
+    expected_city_list = expected_city["expected"]
+    wb = openpyxl.load_workbook(actual_city_list_path)
+    sheet = wb.active
+    actual_city_list = []
+    for row in sheet["C2:C22"]:
+        for cell in row:
+            actual_city_list.append(cell.value)
+    # expected_city is the city that we want to compare with the actual city list
+    # must in order index
+    # debug
+    try:
+        for i in range(len(actual_city_list)):
+            if isinstance(expected_city_list[i], str):
+                if expected_city_list[i] not in actual_city_list[i]:
+                    logger.debug(
+                        f"Expected city {expected_city_list[i]}; Actual city {actual_city_list[i]}"
+                    )
+                    print(
+                        f"Expected city {expected_city_list[i]}; Actual city {actual_city_list[i]}"
+                    )
+                    return 0.0
+
+            elif isinstance(expected_city_list[i], List):
+                if not any(
+                    possible_str in actual_city_list[i]
+                    for possible_str in expected_city_list[i]
+                ):
+                    logger.debug(
+                        f"Expected city {expected_city_list[i]}; Actual city {actual_city_list[i]}"
+                    )
+                    print(
+                        f"Expected city {expected_city_list[i]}; Actual city {actual_city_list[i]}"
+                    )
+                    return 0.0
+
+            else:
+                raise TypeError("Expected city should be a string or a list of strings")
+
+    except:
+        return 0.0
+
+    return 1.0
+```
+
+## Task:
+
+Analyze the instruction: "I now want to count the meeting cities of the three machine learning conferences in the past ten years from 2013 to 2019(including 2013 and 2019). I have listed the names and years of the conferences in excel. Please fill in the vacant locations."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+Spreadsheet data (.xlsx):\nYear,Conference,City
+2013,ICLR,Scottsdale
+2013,ICML,Atlanta
+2013,Neurips,Montreal
+2014,ICLR,Beijing
+2014,ICML,Beijing
+2014,Neurips,Montreal
+2015,ICLR,San Diego
+2015,ICML,Montreal
+2015,Neurips,Montreal
+2016,ICLR,Montreal
+2016,ICML,Montreal
+2016,Neurips,Montreal
+2017,ICLR,Banff
+2017,ICML,Banff
+2017,Neurips,Banff
+2018,ICLR,Montreal
+2018,ICML,Montreal
+2018,Neurips,Montreal
+2019,ICLR,Long Beach
+2019,ICML,Long Beach
+2019,Neurips,Long Beach

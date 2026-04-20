@@ -1,0 +1,1 @@
+In GIMP, please make the colors in /home/user/Desktop/woman_sitting_by_the_tree2.png look more vibrant by only boosting saturation/vibrance, but keep the image’s structure the same (no cropping, resizing, rotating, warping, etc). When you’re done, export it as a PNG to the Desktop named edited_colorful.png, keeping the original dimensions.

@@ -1,0 +1,1 @@
+Please convert the raw image at /home/user/Desktop/yicun.raw to a JPEG and save it on the Desktop as yicun.jpg.

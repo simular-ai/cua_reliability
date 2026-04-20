@@ -1,0 +1,15 @@
+<thoughts>
+The evaluator runs a Python test suite (test_suite.py) against the project and only looks at four specific files: /home/user/Desktop/snake/food.py, main.py, settings.py, and snake.py. It expects the code to be importable without side effects, to keep existing public APIs (class/function/constant names), and to implement correct “eat food” behavior (grid-aligned collision, growth by one segment on eat, and respawning food on a free grid cell within bounds using settings). The instruction should clarify:
+- Exactly which files to edit and to keep their names/locations unchanged
+- That the fix should pass the provided test suite
+- That imports shouldn’t auto-start the game loop
+- That grid alignment and non-overlapping food placement should use settings.py constants
+These are minimal additions aligned with what the evaluator checks.
+</thoughts>
+
+<answer>
+I’ve been tinkering with a Python Snake game and got it running, but there’s a stubborn bug: the snake never manages to eat the food. Could you update the existing code so eating works correctly?
+
+Please make the changes directly in the files under /home/user/Desktop/snake — food.py, main.py, settings.py, and snake.py — keeping the same filenames and public interfaces (so imports like from snake import Snake and from food import Food still work). Make sure importing these modules doesn’t start the game loop automatically (only run it under if __name__ == '__main__').
+
+What I need behavior-wise is: when the snake’s head reaches the food’s grid-aligned position, the snake should grow by one segment on that tick, and the food should respawn to a free grid cell within the screen bounds, aligned to the grid and not overlapping the snake, using the constants defined in settings.py. Aim for a fix that passes the provided test suite (test_suite.py).

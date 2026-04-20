@@ -1,0 +1,13 @@
+<thoughts>
+- The evaluator checks that specific email addresses from a payment record are added to the To field in a Thunderbird compose window.
+- The original instruction doesn’t specify which file holds the payment record, where it is located, or that the addresses must go in the main To (not CC/BCC) field.
+- The environment provides an Excel file at a specific path (/home/user/Documents/Departments/finance/tuition_payment.xlsx) and opens a Thunderbird compose window with subject “Reminder of Payment.”
+- To align with the evaluator, I should:
+  - Name the exact file and path to pull emails from.
+  - Clarify that only those marked as unpaid should be included.
+  - Specify that addresses must be added to the To/Recipients field (not CC or BCC) in the open Thunderbird compose window.
+  - Optionally mention the subject to identify the correct window without turning it into steps.
+</thoughts>
+
+<answer>
+I’ve drafted the reminder email already. Please pull the email addresses of the students who haven’t paid from the Excel payment record at /home/user/Documents/Departments/finance/tuition_payment.xlsx, and add those addresses to the To/Recipients field (not CC or BCC) of the open Thunderbird compose window for “Reminder of Payment.” Keep the existing subject and body as they are.

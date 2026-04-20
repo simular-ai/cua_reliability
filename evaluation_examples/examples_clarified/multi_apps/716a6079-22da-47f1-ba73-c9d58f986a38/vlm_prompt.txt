@@ -1,0 +1,105 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "716a6079-22da-47f1-ba73-c9d58f986a38",
+  "snapshot": "multiapps",
+  "instruction": "I remember there is a file named \"secret.docx\" on this computer, but I can't remember where it is. Please find the path where this file is stored and copy it to the clipboard.",
+  "source": "",
+  "config": [
+    {
+      "type": "command",
+      "parameters": {
+        "command": "mkdir -p /home/user/Data1/List1 && mkdir -p /home/user/Data2/List2 && mkdir -p /home/user/Data3/List3 && mkdir -p /home/user/Data4/List4 && mkdir -p /home/user/Data5/List5",
+        "shell": "true"
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/716a6079-22da-47f1-ba73-c9d58f986a38/Secret%20document.docx",
+            "path": "/home/user/Data3/List3/secret.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "command",
+      "parameters": {
+        "command": "echo {CLIENT_PASSWORD} | sudo -S apt install xsel && xsel -bc",
+        "shell": "true"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "os",
+    "terminal"
+  ],
+  "evaluator": {
+    "func": "is_in_vm_clickboard",
+    "expected": {
+      "type": "vm_command_line",
+      "command": "xsel --clipboard --output",
+      "shell": "true"
+    },
+    "result": {
+      "type": "rule",
+      "rules": {
+        "expected": "/home/user/Data3/List3/secret.docx"
+      }
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: is_in_vm_clickboard
+def is_in_vm_clickboard(config, terminal_output):
+    print("terminal_output: ")
+    print(terminal_output)
+    print("config: ")
+    print(config)
+    expected_results = config["expected"]
+    # check if terminal_output has expected results
+    if not isinstance(expected_results, list):
+        return 1 if expected_results in terminal_output else 0
+    else:
+        return 1 if all(result in terminal_output for result in expected_results) else 0
+```
+
+## Task:
+
+Analyze the instruction: "I remember there is a file named "secret.docx" on this computer, but I can't remember where it is. Please find the path where this file is stored and copy it to the clipboard."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

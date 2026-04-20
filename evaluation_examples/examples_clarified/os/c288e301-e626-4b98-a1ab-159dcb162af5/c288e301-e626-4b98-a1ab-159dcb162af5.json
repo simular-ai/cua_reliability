@@ -1,0 +1,16 @@
+{
+  "id": "c288e301-e626-4b98-a1ab-159dcb162af5",
+  "snapshot": "os",
+  "instruction": "Please set the default Python version on my Ubuntu system to Python 4. If Python 4 isn\u2019t available for Ubuntu yet, just let me know that this isn\u2019t feasible right now and don\u2019t make any changes to the system.",
+  "source": "https://stackoverflow.com/questions/41986507/unable-to-set-default-python-version-to-python3-in-ubuntu",
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "os"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

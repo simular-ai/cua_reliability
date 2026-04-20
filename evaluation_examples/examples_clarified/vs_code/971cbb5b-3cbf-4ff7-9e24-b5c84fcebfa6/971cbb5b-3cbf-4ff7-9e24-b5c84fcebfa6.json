@@ -1,0 +1,32 @@
+{
+  "id": "971cbb5b-3cbf-4ff7-9e24-b5c84fcebfa6",
+  "snapshot": "vscode",
+  "instruction": "Please help me set this up using only VS Code\u2019s built-in settings (no extensions and no external scripts or command-line flags) so that every time I open VS Code it automatically creates and saves a Python file named \u201ctest.py.\u201d If this isn\u2019t possible with settings alone, please tell me it can\u2019t be done and why, and suggest the closest built-in alternative behavior.",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code"
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Visual Studio Code"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vscode"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

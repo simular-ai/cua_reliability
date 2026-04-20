@@ -1,0 +1,78 @@
+{
+  "id": "edb61b14-a854-4bf5-a075-c8075c11293a",
+  "snapshot": "libreoffice_impress",
+  "instruction": "In /home/user/Desktop/24_8.pptx, change the font family to exactly \u201cTimes New Roman\u201d (case sensitive) for all text on the last slide\u2014including titles, body text, text boxes, grouped text, and any table text\u2014without changing the actual text, alignment, bullets, sizes, colors, bold/italic/underline, or any layout/positions, and don\u2019t modify other slides or notes. Save the file in place with the same name.",
+  "hint": "The input is case sensitive.",
+  "source": "https://arxiv.org/pdf/2311.01767.pdf",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/edb61b14-a854-4bf5-a075-c8075c11293a/24_8.pptx",
+            "path": "/home/user/Desktop/24_8.pptx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/24_8.pptx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "24_8.pptx - LibreOffice Impress",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_pptx_files",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/edb61b14-a854-4bf5-a075-c8075c11293a/24_8_Gold.pptx",
+      "dest": "24_8_Gold.pptx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/24_8.pptx",
+      "dest": "24_8.pptx"
+    },
+    "options": {}
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

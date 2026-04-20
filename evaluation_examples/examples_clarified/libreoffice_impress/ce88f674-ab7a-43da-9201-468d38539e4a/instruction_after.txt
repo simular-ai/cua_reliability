@@ -1,0 +1,1 @@
+Please change the slide orientation to Portrait (height greater than width) for the entire presentation in /home/user/Desktop/AM_Last_Page_Template.pptx (LibreOffice Impress), and save the changes back to the same .pptx file so the slides are upright instead of sideways.

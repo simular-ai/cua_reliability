@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator only checks whether the result includes the desktop file identifier "vlc.desktop".
+- The original instruction doesn’t specify the exact desktop entry name that should be set as default, which is needed for the evaluator.
+- Scope (system-wide vs user) isn’t evaluated, so keep it general and natural while ensuring "vlc.desktop" is explicitly requested as the default handler for video files.
+</thoughts>
+
+<answer>
+I’m on Ubuntu—could you make VLC the default app for opening video files by setting vlc.desktop as the default handler, so videos open in VLC by default?
+</answer>

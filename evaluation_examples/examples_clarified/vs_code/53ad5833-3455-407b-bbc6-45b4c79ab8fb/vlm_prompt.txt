@@ -1,0 +1,151 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "53ad5833-3455-407b-bbc6-45b4c79ab8fb",
+  "snapshot": "vscode",
+  "instruction": "Please help me use VS Code to open the \"project\" in the \"user\" folder under \"home\".",
+  "source": "https://www.youtube.com/watch?v=VqCgcpAypFQ",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/53ad5833-3455-407b-bbc6-45b4c79ab8fb/vscodeEvalExtension.zip",
+            "path": "/home/user/Downloads/vscodeEvalExtension.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "/bin/bash",
+          "-c",
+          "cd /home/user/Downloads && unzip -q vscodeEvalExtension.zip && code --install-extension vscodeEvalExtension/eval-0.0.1.vsix && rm -rf vscodeEvalExtension vscodeEvalExtension.zip"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code"
+        ]
+      }
+    },
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/project/.vscode"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/5e2d93d8-8ad0-4435-b150-1692aacaa994/main.py",
+            "path": "/home/user/project/main.py"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/53ad5833-3455-407b-bbc6-45b4c79ab8fb/README.md",
+            "path": "/home/user/project/README.md"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/53ad5833-3455-407b-bbc6-45b4c79ab8fb/settings.json",
+            "path": "/home/user/project/.vscode/settings.json"
+          }
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Visual Studio Code"
+      }
+    }
+  ],
+  "trajectory": "trajectories/53ad5833-3455-407b-bbc6-45b4c79ab8fb",
+  "related_apps": [
+    "vscode"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Visual Studio Code"
+        }
+      }
+    ],
+    "func": "compare_config",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": "project"
+      }
+    },
+    "result": {
+      "type": "vscode_config",
+      "vscode_extension_command": "OpenProject",
+      "path": "/home/user/OpenProject.txt",
+      "dest": "OpenProject.txt"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_config
+def compare_config(actual: str, rules: Dict, **options) -> float:
+    if not actual:
+        return 0.
+
+    with open(actual) as f1:
+        actual_text = f1.read()
+
+    if actual_text == rules['expected']:
+        return 1.0
+    return 0.0
+```
+
+## Task:
+
+Analyze the instruction: "Please help me use VS Code to open the "project" in the "user" folder under "home"."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

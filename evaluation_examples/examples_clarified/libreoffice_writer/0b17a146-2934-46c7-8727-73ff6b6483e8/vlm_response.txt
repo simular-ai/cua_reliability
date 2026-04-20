@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator opens and saves a specific file: /home/user/Desktop/H2O_Factsheet_WA.docx, so the instruction should name this file, its format, and that the save should keep the same name/location.
+- The comparison checks text equality (ignoring whitespace) and that there is subscript formatting present. To be safe, clarify to apply subscript to the “2” in all instances of H2O without altering any other content.
+- Keep the tone conversational and avoid step-by-step phrasing.
+</thoughts>
+
+<answer>
+Open /home/user/Desktop/H2O_Factsheet_WA.docx in LibreOffice Writer and make the “2” in every “H2O” a subscript. Don’t change any other text or spacing, and save the changes back to the same .docx file (same name and location).</answer>

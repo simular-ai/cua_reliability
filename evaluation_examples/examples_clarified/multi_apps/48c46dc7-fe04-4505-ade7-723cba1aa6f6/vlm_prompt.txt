@@ -1,0 +1,257 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "48c46dc7-fe04-4505-ade7-723cba1aa6f6",
+  "snapshot": "chrome",
+  "instruction": "Help me to automatically set up my work space. To be specific, open project directory of OSWorld in terminal and file manager, then open github homepage and the online document of Python in chrome browser.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/Documents/Finance/receipts",
+          "/home/user/Documents/Projects/OSWorld",
+          "/home/user/.local/share/applications"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "cp",
+          "/usr/share/applications/google-chrome.desktop",
+          "/home/user/.local/share/applications"
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "sed",
+          "-i.bak",
+          "-e",
+          "s#Exec=/usr/bin/google-chrome-stable#& --remote-debugging-port=1337#g",
+          "/home/user/.local/share/applications/google-chrome.desktop"
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "update-desktop-database"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "path": "/home/user/Documents/Finance/receipts/aws-invoice-2308.pdf",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/48c46dc7-fe04-4505-ade7-723cba1aa6f6/invoice0123456789-2308.pdf"
+          },
+          {
+            "path": "/home/user/Documents/Finance/receipts/aws-invoice-2309.pdf",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/48c46dc7-fe04-4505-ade7-723cba1aa6f6/invoice0123456789-2309.pdf"
+          },
+          {
+            "path": "/home/user/Documents/Finance/receipts/aws-invoice-2310.pdf",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/48c46dc7-fe04-4505-ade7-723cba1aa6f6/invoice0123456789-2310.pdf"
+          },
+          {
+            "path": "/home/user/Documents/Finance/receipts/aws-invoice-2311.pdf",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/48c46dc7-fe04-4505-ade7-723cba1aa6f6/invoice0123456789-2311.pdf"
+          },
+          {
+            "path": "/home/user/Documents/Finance/receipts/aws-invoice-2312.pdf",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/48c46dc7-fe04-4505-ade7-723cba1aa6f6/invoice0123456789-2312.pdf"
+          },
+          {
+            "path": "/home/user/Documents/Finance/receipts/X-receipt-2312.pdf",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/48c46dc7-fe04-4505-ade7-723cba1aa6f6/Receipt-0123-4567.pdf"
+          },
+          {
+            "path": "/home/user/Documents/Finance/tally_book.xlsx",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/48c46dc7-fe04-4505-ade7-723cba1aa6f6/tally_book.xlsx"
+          },
+          {
+            "path": "/home/user/.projects.tar.xz",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/48c46dc7-fe04-4505-ade7-723cba1aa6f6/projects.tar.xz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "tar",
+          "-xJvf",
+          "/home/user/.projects.tar.xz",
+          "-C",
+          "/home/user/Documents/Projects/OSWorld"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/48c46dc7-fe04-4505-ade7-723cba1aa6f6",
+  "related_apps": [
+    "chrome",
+    "os"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "wmctrl",
+            "-lx"
+          ],
+          "stdout": "wmctrl.out"
+        }
+      }
+    ],
+    "func": [
+      "check_list",
+      "is_expected_tabs"
+    ],
+    "result": [
+      {
+        "type": "cache_file",
+        "path": "wmctrl.out"
+      },
+      {
+        "type": "open_tabs_info"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expect": [
+            "\\borg\\.gnome\\.Nautilus\\.Org\\.gnome\\.Nautilus\\b.*\\bOSWorld\\b",
+            "gnome-terminal-server\\.Gnome-terminal\\b.*~/Documents/Projects/OSWorld\\b"
+          ]
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "type": "url",
+          "urls": [
+            "https://github.com",
+            "https://docs.python.org/3/"
+          ]
+        }
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_list
+def check_list(result: str, rules: Dict[str, List[str]]) -> float:
+    """
+    Args:
+        result (str): path to list file
+        rules (Dict[str, List[str]]): dict like
+          {
+            "expect": list of str as regexes
+            "unexpect": list of str as regexes
+          }
+
+    Returns:
+        float
+    """
+
+    if result is None:
+        return 0.
+
+    expect_patterns: List[Pattern[str]] = [re.compile(ptt) for ptt in rules.get("expect", [])]
+    unexpect_patterns: List[Pattern[str]] = [re.compile(ptt) for ptt in rules.get("unexpect", [])]
+
+    expect_metrics = [False] * len(expect_patterns)
+    unexpect_metric = True
+    with open(result) as f:
+        for l in f:
+            for i, r in enumerate(expect_patterns):
+                expect_metrics[i] = expect_metrics[i] or (r.search(l) is not None)
+            unexpect_metric = unexpect_metric and all(r.search(l) is None for r in unexpect_patterns)
+    return float(all(expect_metrics) and unexpect_metric)
+
+# Function: is_expected_tabs
+def is_expected_tabs(open_tabs: List[Dict[str, str]], rule: Dict[str, Any]) -> float:
+    """
+    Checks if the expected tabs are open in Chrome.
+    """
+    if not open_tabs:
+        return 0.
+
+    match_type = rule['type']
+
+    if match_type == "url":
+        expected_urls = rule['urls']
+        actual_urls = [tab['url'] for tab in open_tabs]
+        if not are_lists_equal(expected_urls, actual_urls, compare_urls):
+            logger.error("list not match") 
+            logger.error(expected_urls)
+            logger.error(actual_urls)
+            return 0
+        return 1 if are_lists_equal(expected_urls, actual_urls, compare_urls) else 0
+    else:
+        logger.error(f"Unknown type: {match_type}")
+        return 0
+```
+
+## Task:
+
+Analyze the instruction: "Help me to automatically set up my work space. To be specific, open project directory of OSWorld in terminal and file manager, then open github homepage and the online document of Python in chrome browser."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator only checks the pivot table’s structure on a sheet named exactly “Sheet2” and compares row fields, column fields, filters, and data fields.
+- It likely expects Product as the Row field and Sum of Revenue as the single Value field, with no Column fields and no Filters.
+- The pivot depends on a column named “Revenue” derived from product retail price, quantity, and discount; the formula should be explicit and the discount treated as a fraction.
+- The result must be saved in the same file path/name (BoomerangSales.xlsx), which the evaluator uses.
+</thoughts>
+
+<answer>
+In BoomerangSales.xlsx, add a new column named “Revenue” on the sales data sheet, calculated as Retail Price × Quantity × (1 − Discount), using the Retail Price sheet to look up each product’s unit price (Discount values are decimals, e.g., 0.15 = 15%). Then create a Pivot Table on a new sheet named exactly “Sheet2” that summarizes revenue by product: put Product in Rows and Revenue in Values as a Sum, with no column fields and no filters. Save your changes to BoomerangSales.xlsx. </answer>

@@ -1,0 +1,1 @@
+In the open workbook NetIncome.xlsx (/home/user/NetIncome.xlsx), copy only the “Revenue” column (including its header) from the existing data sheet and place it on a new sheet named exactly “Sheet2”, starting at cell A1 so “Revenue” is the header in row 1. Leave the original sheet unchanged, include no other columns, and save the changes to NetIncome.xlsx.

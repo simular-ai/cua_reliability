@@ -1,0 +1,1 @@
+Help me access my outlook account with address "anonym-x2024@outlook.com" and password 'password' (without ') in Thunderbird. It doesn't mather if Thunderbird remind of login or connection failure. Just finish the account setup and I will check the things like password mannually later.

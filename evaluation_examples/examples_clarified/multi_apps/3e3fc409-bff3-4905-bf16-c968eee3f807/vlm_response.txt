@@ -1,0 +1,10 @@
+<thoughts>
+The evaluator compares the data of a specific sheet named unseen_movies in /home/user/Desktop/movies.xlsx against a golden sheet. So the exact sheet name, the exact file path to save in, and the header names/order must match. It also likely expects the unseen list to be derived from the IMDb Top 250 chart’s first 30 entries, filtered to release year < 2024, and ordered by IMDb chart rank (not by rating). Title matching should be exact to determine what’s already “seen.” The original instruction doesn’t specify these details clearly.
+</thoughts>
+
+<answer>
+I’ve got an Excel file open at /home/user/Desktop/movies.xlsx. Please add a new worksheet named exactly unseen_movies to this same file (don’t create a new workbook), and use the same header row exactly as in the existing sheet—title, release year, ratings, description—in the same order and spelling.
+
+For the content, use the IMDb Top 250 chart and take the first 30 entries as the “IMDb Top 30.” From those, keep only titles released before 2024 (i.e., 2023 and earlier). Treat a movie as “already seen” if its title exactly matches a title in my current sheet, and include only the ones I haven’t seen.
+
+Order the unseen movies by IMDb chart rank with rank 1 at the top downward (i.e., follow IMDb’s Top 250 chart order, not the numeric rating). Don’t add extra columns; keep just those four headers. Save your changes back to /home/user/Desktop/movies.xlsx.

@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares your new sheet against an expected “Sheet2” by sheet name, so the new tab must be named Sheet2.
+- It checks the saved file at /home/user/SmallBalanceSheet.xlsx, not a new file.
+- It expects exact headers and rows for years 2015–2019 only.
+- Values are compared as internal numeric data (rounded internally by the evaluator), so results should be plain decimal numbers (e.g., 0.10 for 10%), not text and without manual rounding/percent signs.
+</thoughts>
+
+<answer>
+In /home/user/SmallBalanceSheet.xlsx, add a new sheet named “Sheet2”. On that sheet, create a 4‑column table with headers exactly: “Year”, “CA changes”, “FA changes”, and “OA changes”. List the years 2015 through 2019 (inclusive), and for each year compute the year‑over‑year change versus the prior year using (this year − last year) / last year, pulling Current Assets, Fixed Assets, and Other Assets from the original sheet (Sheet1). Enter the results as plain numeric decimals (e.g., 0.10 for 10%) without percent signs or manual rounding, then save the workbook.

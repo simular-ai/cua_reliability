@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator checks that the active URL is a Google Scholar Citations profile and specifically includes the user ID qRAQ5BsAAAAJ. The current instruction doesn’t specify that it must be the Citations profile page (not a search page), doesn’t mention the exact user ID, and doesn’t tie the “corresponding author” to the provided PDF file. To match the evaluator, we should clarify that it’s the Scholar Citations profile for the corresponding author of /home/user/Desktop/shi17a.pdf, and that the URL should be the profile with user=qRAQ5BsAAAAJ on scholar.google.com/citations, opened in Chrome.
+</thoughts>
+
+<answer>
+Could you open in Chrome the Google Scholar Citations profile of the corresponding author of the paper at /home/user/Desktop/shi17a.pdf — specifically the profile on scholar.google.com/citations with user ID qRAQ5BsAAAAJ?

@@ -1,0 +1,86 @@
+{
+  "id": "357ef137-7eeb-4c80-a3bb-0951f26a8aff",
+  "snapshot": "libreoffice_calc",
+  "instruction": "I\u2019m working in /home/user/Multiply_Time_Number.xlsx (first sheet). \u201cTotal Hours\u201d is stored as a time value (in D3) and the \u201cHourly Rate\u201d is a number (in F3). Please put the total earned amount in E3 by multiplying the time by 24 and then by the rate (for example: =D3*24*F3). The result should be about 191.6667. Don\u2019t change anything else on the sheet or in any blank areas\u2014just fill E3 with the correct numeric amount.",
+  "source": "https://www.reddit.com/r/excel/comments/17zny8u/calculating_total_amount_earned_from_total_hours/",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/357ef137-7eeb-4c80-a3bb-0951f26a8aff/Multiply_Time_Number.xlsx",
+            "path": "/home/user/Multiply_Time_Number.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Multiply_Time_Number.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/357ef137-7eeb-4c80-a3bb-0951f26a8aff",
+  "related_apps": [
+    "libreoffice calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Multiply_Time_Number.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Multiply_Time_Number.xlsx",
+      "dest": "Multiply_Time_Number.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "check_cell",
+          "sheet_idx": 0,
+          "coordinate": "E3",
+          "props": {
+            "value": {
+              "method": "approx:0.001",
+              "ref": 191.6667
+            }
+          }
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

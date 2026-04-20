@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator checks LibreOffice Writer’s global default font setting, not just the font in the currently opened document. It reads the user configuration file at /home/user/.config/libreoffice/4/user/registrymodifications.xcu and expects the Writer DefaultFont “Standard” value to be exactly “Times New Roman”. The original instruction doesn’t specify that this is for LibreOffice Writer, that it must apply to new documents (the “Default” text font), or that the change must persist in the profile file. These are the minimal clarifications needed.
+</thoughts>
+
+<answer>
+In LibreOffice Writer, set Times New Roman (exactly that name) as the default text font for new Writer documents (the Writer “Default” font), not just for the current file. Make sure the change persists in the user profile so it’s saved to /home/user/.config/libreoffice/4/user/registrymodifications.xcu as the Writer default font.
+</answer>

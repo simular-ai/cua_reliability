@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator opens and saves a specific file at /home/user/Desktop/MLA_Workshop_061X_Works_Cited.pptx and then compares it exactly to a gold .pptx, so the instruction should name this file and confirm saving to the same path/name.
+- It checks the number of slides and exact content/formatting (shapes, text, alignment, colors, notes, etc.), so the duplicates must be exact copies, including notes and formatting.
+- “Last two slides” and the order “original A, original B, duplicated A, duplicated B” need to be unambiguous: A is the second-to-last slide and B is the last slide before duplicating, and the two duplicates should be appended directly after the originals without changing anything else.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/MLA_Workshop_061X_Works_Cited.pptx, take the last two slides—treat “slide A” as the second-to-last slide and “slide B” as the final slide—make exact duplicates of both (including all content, formatting, and any slide notes), and place the copies immediately after the originals so the last four slides read: original A, original B, duplicated A, duplicated B. Don’t alter or reorder any other slides or content, and save the changes to the same .pptx file (same name and location).</answer>

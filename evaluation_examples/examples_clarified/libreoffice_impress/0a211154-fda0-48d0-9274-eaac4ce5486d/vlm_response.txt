@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator compares the edited PPTX against a gold file with strict checks on slide background color, text content, number of shapes/text shapes, alignment, and notes. It expects changes to be saved in-place to /home/user/Desktop/13_0.pptx. “Yellow” needs to be the exact solid slide background color (not a theme, gradient, or shape fill), and only applied to slides with photos of actual humans (not icons/illustrations). The title change on slide 2 must be done by editing the existing title placeholder to exactly “Let’s start”, without adding/removing shapes or altering other formatting, slides, or notes.
+</thoughts>
+
+<answer>
+Work directly on /home/user/Desktop/13_0.pptx in LibreOffice Impress and save back to the same file. For every slide that includes at least one photo of real humans (not icons, silhouettes, cartoons, or illustrations), set the slide’s background to a solid Yellow (#FFFF00, RGB 255,255,0) applied to the slide background itself (not to any shape and not via the master). On slide 2, edit the existing title placeholder so the text is exactly “Let’s start”. Don’t add or remove any slides or text boxes, and leave all other content, formatting, and notes unchanged.

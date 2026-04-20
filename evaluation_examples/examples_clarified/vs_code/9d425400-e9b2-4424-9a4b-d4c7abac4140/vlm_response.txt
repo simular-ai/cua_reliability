@@ -1,0 +1,10 @@
+<thoughts>
+- The original request doesn’t specify the exact VS Code setting name or value the evaluator checks for.
+- It also doesn’t say where to apply the change (the evaluator reads /home/user/.config/Code/User/settings.json).
+- The evaluator requires the JSON key "workbench.editor.wrapTabs" to be set to true in that file.
+- Minimal clarification should include the exact setting key, value, and file path, while keeping a natural tone and retaining the link.
+</thoughts>
+
+<answer>
+I want editor tabs to wrap onto multiple lines when they run out of space. Please enable this by setting "workbench.editor.wrapTabs": true in my VS Code user settings JSON at /home/user/.config/Code/User/settings.json. Reference: https://superuser.com/questions/1466771/is-there-a-way-to-make-editor-tabs-stack-in-vs-code
+</answer>

@@ -1,0 +1,77 @@
+{
+  "id": "a434992a-89df-4577-925c-0c58b747f0f4",
+  "snapshot": "libreoffice_impress",
+  "instruction": "Please open /home/user/Desktop/16_2.pptx in LibreOffice Impress and, on the existing slide, set all visible text\u2014this includes any placeholders, text boxes, and any text inside tables\u2014to 12 pt and change its font color to orange (use a solid \u201cOrange\u201d swatch; RGB FFA500). Then change this slide\u2019s background fill to a solid red (RGB FF0000). Don\u2019t alter the wording, font family, bold/italic/underline, alignment, bullets, the number/position/size of shapes, the slide master, or any speaker notes\u2014only update the text\u2019s size/color and this slide\u2019s background. When you\u2019re done, save the changes back to /home/user/Desktop/16_2.pptx (same file, no new slides).",
+  "source": "https://arxiv.org/pdf/2311.01767.pdf",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/a434992a-89df-4577-925c-0c58b747f0f4/16_2.pptx",
+            "path": "/home/user/Desktop/16_2.pptx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/16_2.pptx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "16_2.pptx - LibreOffice Impress",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_pptx_files",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/a434992a-89df-4577-925c-0c58b747f0f4/16_2_Gold.pptx",
+      "dest": "16_2_Gold.pptx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/16_2.pptx",
+      "dest": "16_2.pptx"
+    },
+    "options": {}
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

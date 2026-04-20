@@ -1,0 +1,85 @@
+{
+  "id": "4de54231-e4b5-49e3-b2ba-61a0bec721c0",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Please update the already opened workbook RampUpAndDown.xlsx (first sheet) and keep saving to the same file. I\u2019ve already computed the acceleration in row 2; use the existing formulas in B2 and D2 to fill down the rest of column B and column D for all rows that have data in A and C (don\u2019t change the numeric precision of A\u2013D themselves). Then add a new column immediately to the right of column D named \u201cCombined Data\u201d. For each data row (starting from row 2), concatenate the values from columns A through D in that left-to-right order using the pattern \u201cHeader: cell value, \u2026\u201d, with a comma and a space between parts. In that combined text, format every number to exactly two decimal places (with trailing zeros). When a header has an auto-suffix like \u201c.1\u201d (e.g., \u201cHanging mass (kilograms).1\u201d), drop the \u201c.1\u201d in the combined text so it reads \u201cHanging mass (kilograms)\u201d. Save the changes back to /home/user/RampUpAndDown.xlsx.",
+  "source": "SheetCopilot@147",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4de54231-e4b5-49e3-b2ba-61a0bec721c0/RampUpAndDown.xlsx",
+            "path": "/home/user/RampUpAndDown.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/RampUpAndDown.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/4de54231-e4b5-49e3-b2ba-61a0bec721c0",
+  "related_apps": [
+    "libreoffice_calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "RampUpAndDown.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4de54231-e4b5-49e3-b2ba-61a0bec721c0/3_RampUpAndDown_gt1.xlsx",
+      "dest": "3_RampUpAndDown_gt1.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/RampUpAndDown.xlsx",
+      "dest": "RampUpAndDown.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

@@ -1,0 +1,1 @@
+Please use VS Code to open the folder named “project” located at the absolute path /home/user/project as the workspace.

@@ -1,0 +1,1 @@
+Could you open the LibreOffice Calc file at /home/user/cell_search.xls, copy the exact text from cell B6, and in Chrome do a Google search on google.com for that text so the Google results page opens?

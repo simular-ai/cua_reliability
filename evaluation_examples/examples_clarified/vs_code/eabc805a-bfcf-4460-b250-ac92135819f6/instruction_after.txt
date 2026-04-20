@@ -1,0 +1,1 @@
+Please help me install the official Microsoft Python extension in VS Code—the one with the extension ID ms-python.python. For reference, I’m following this video: https://www.youtube.com/watch?v=VqCgcpAypFQ

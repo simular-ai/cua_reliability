@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator parses the active tab URL for specific fields: locationName and dropLocationName must both be “Zürich” (with umlaut), not the airport.
+- It checks the car category filter equals “large”.
+- It checks the sort criterion is “PRICE” (i.e., sorted by price).
+- It checks pickup and drop-off dates as “next Monday” to “next Friday” in the Europe/Zurich time zone.
+- The original instruction doesn’t explicitly state pickup and drop-off are both in Zürich, doesn’t specify the city vs. airport, doesn’t use the “Zürich” spelling with an umlaut, and doesn’t specify the Europe/Zurich time zone.
+</thoughts>
+
+<answer>
+Find a Large car in Zürich city (pickup and drop-off both in Zürich, not the airport) from next Monday to that Friday of the same week, using the Europe/Zurich time zone for the dates, and sort the results by price.

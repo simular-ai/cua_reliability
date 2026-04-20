@@ -1,0 +1,1 @@
+I work late and want Thunderbird to be easier on my eyes. Please switch Thunderbird to its built‑in Dark theme (not just “Follow system”), so the app uses a full dark appearance. Apply it to my current profile so that /home/user/.thunderbird/t5q2a5hp.default-release/prefs.js reflects this—i.e., the extensions.activeThemeID preference is set to a value that contains “dark.”

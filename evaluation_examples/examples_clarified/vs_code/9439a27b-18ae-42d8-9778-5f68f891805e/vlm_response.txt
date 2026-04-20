@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator looks for a specific JSON key-value pair: "debug.focusEditorOnBreak": false.
+- It checks this in a specific file path: /home/user/.config/Code/User/settings.json.
+- The original instruction doesn’t specify the exact setting name, the file format (JSON), or the exact file location that needs to be modified.
+- To match the evaluator, the clarified instruction should explicitly name the setting and the precise settings.json path, while keeping a natural tone and avoiding step-by-step directions.
+</thoughts>
+
+<answer>
+Please update my VS Code user settings so the cursor stays in the Debug Console while debugging instead of jumping back to the editor. Specifically, set the JSON setting "debug.focusEditorOnBreak": false in my user settings file at /home/user/.config/Code/User/settings.json.
+</answer>

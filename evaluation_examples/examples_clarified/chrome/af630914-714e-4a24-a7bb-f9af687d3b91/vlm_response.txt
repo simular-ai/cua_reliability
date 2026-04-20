@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator verifies Chrome’s numeric “default font size” and passes anything greater than 16. The current instruction says “largest” but doesn’t explicitly distinguish the Default font size setting from Page zoom (or other font settings), which could lead to a failure if the agent adjusts zoom instead. It also doesn’t name the target option (“Very large”), which aligns with what the evaluator will accept. Including the link preserves context. Minimal clarifications: specify that it’s Chrome’s Default font size (Appearance), set to the largest available (“Very large”), and that this should be done for all sites rather than via page zoom.
+</thoughts>
+
+<answer>
+My grandmother says text in Chrome is too small. Could you open Chrome’s settings and set the browser’s Default font size (under Appearance) to the largest available option—Very large—so it applies to all sites by default (not by changing page zoom)? Here’s the article I was looking at: https://www.howtogeek.com/680260/how-to-change-chromes-default-text-size/
+</answer>

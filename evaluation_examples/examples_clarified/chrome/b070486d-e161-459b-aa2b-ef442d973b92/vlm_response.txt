@@ -1,0 +1,8 @@
+<thoughts>
+- The original instruction doesn’t specify which website to use.
+- The evaluator expects the active browser tab to be on Drugs.com at an exact URL: either the Tamiflu page anchored to the Side Effects section or the dedicated side-effects page.
+- The environment already opens https://www.drugs.com/, and the evaluator filters URLs starting with https://www., so explicitly referencing those exact URLs removes ambiguity.
+</thoughts>
+
+<answer>
+On Drugs.com, show Tamiflu’s side effects by opening the Tamiflu page’s Side Effects section or the dedicated side-effects page—make sure the active page is exactly one of these: https://www.drugs.com/tamiflu.html#side-effects or https://www.drugs.com/sfx/tamiflu-side-effects.html.

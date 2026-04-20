@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks the final active tab’s URL against a specific regex that matches the Virginia DMV domain and an exact path: /licenses-ids/license/applying/eligibility.
+- The original instruction doesn’t specify that it must be on the Virginia DMV site or the exact page path, nor that the active tab must end on that exact URL.
+- Minimal clarification should name the site and the exact URL/path, and indicate that the active tab should end there.
+</thoughts>
+
+<answer>
+On the Virginia DMV website, navigate to the Driver License Eligibility requirements page and finish with the active tab open to: https://www.dmv.virginia.gov/licenses-ids/license/applying/eligibility.
+</answer>

@@ -1,0 +1,381 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "da46d875-6b82-4681-9284-653b0c7ae241",
+  "snapshot": "chrome",
+  "instruction": "Book an appointment to apply for a transportation access pass at the Charlie Card store on the first Monday eight months later, 10:15 am, fill in my details (James Smith, james.smith@gmail.com). And do not click \"book\" directly. Let me review it.",
+  "source": "test_task_2",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.mbta.com/"
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Google Chrome"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "chrome"
+  ],
+  "evaluator": {
+    "func": [
+      "is_expected_url_pattern_match",
+      "check_direct_json_object",
+      "check_direct_json_object"
+    ],
+    "conj": "and",
+    "result": [
+      {
+        "type": "active_tab_info"
+      },
+      {
+        "type": "active_tab_html_parse",
+        "category": "class",
+        "class_multiObject_only_child": {
+          "HAZ16": {
+            "0": "content",
+            "1": "time"
+          }
+        }
+      },
+      {
+        "type": "active_tab_html_parse",
+        "category": "input",
+        "inputObject": {
+          "/html/body/div[2]/div/form/div[7]/div/div/div[1]/input[1]": "name",
+          "/html/body/div[2]/div/form/div[7]/div/div/div[1]/input[2]": "mail"
+        }
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": [
+            "book/CharlieCardStoreAppointments@mbta.com/"
+          ]
+        }
+      },
+      {
+        "type": "rule_relativeTime",
+        "rules": {
+          "relativeTime": {
+            "from": "first monday eight months later"
+          },
+          "expected": {
+            "content": "Apply for Transportation Access Pass (TAP) CharlieCard non-auto approval",
+            "time": "{MonthFull} {Day0D}, 10:15 AM"
+          }
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": {
+            "name": "James Smith",
+            "mail": "james.smith@gmail.com"
+          }
+        }
+      }
+    ]
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: is_expected_url_pattern_match
+def is_expected_url_pattern_match(result, rules) -> float:
+    """
+    This function is used to search the expected pattern in the url using regex.
+    result is the return value of function "activte_tab_info" or return value of function "get_active_url_from_accessTree"   
+    """
+    if not result:
+        return 0.
+
+    # Extract URL from result parameter - result can be either a string URL or a dict with 'url' field
+    if isinstance(result, str):
+        result_url = result
+        logger.info("result url: {}".format(result_url))
+    elif isinstance(result, dict) and 'url' in result:
+        result_url = result['url']
+        logger.info("result url: {}".format(result_url))
+    else:
+        logger.error(f"Invalid result format: {type(result)}, expected string URL or dict with 'url' field")
+        return 0.
+
+    logger.info(f"Result URL to match: {result_url}")
+    
+    # expect_regex = re.compile(rules["expected"])
+    patterns = rules["expected"]
+    logger.info("expected_regex: {}".format(patterns))
+    for pattern in patterns:
+        match = re.search(pattern, result_url)
+        logger.info("match: {}".format(match))
+        if not match:
+            return 0.
+    return 1.
+
+# Function: check_direct_json_object
+def check_direct_json_object(result, rules) -> float:
+    """
+    One of the most commonly used function to evalute.
+    Compare two json objects directly.
+    """
+    logger.info(f"[DEBUG] check_direct_json_object called with result: {result}")
+    logger.info(f"[DEBUG] check_direct_json_object called with rules: {rules}")
+    
+    if isinstance(result, str):
+        # remove blanks before and after result
+        result = result.strip()
+        # replace all ' with "
+        result = result.replace("'", '"')
+        # load json object
+        result = json.loads(result)
+        
+    logger.info(f"[DEBUG] Processed result: {result}")
+    
+    if result is None:
+        logger.info("[DEBUG] Result is None, returning 0.0")
+        return 0.
+    
+    # Check if expected value contains evaluation failure indicator
+    try:
+        expected_json = rules.get("expected", {})
+        if expected_json:
+            for key, value in expected_json.items():
+                if value == "__EVALUATION_FAILED__":
+                    logger.error(f"[DEBUG] Expected value for key '{key}' indicates evaluation failure, returning 0.0")
+                    return 0.
+    except Exception as e:
+        logger.error(f"[DEBUG] Error checking for evaluation failure indicator: {e}")
+        return 0.
+    try:
+        expect_in_result = rules.get("expect_in_result", False)
+        logger.info(f"[DEBUG] expect_in_result: {expect_in_result}")
+        
+        if not expect_in_result:
+            expected_json = rules["expected"]
+            logger.info(f"[DEBUG] Expected JSON: {expected_json}")
+            
+            for key in expected_json.keys():
+                expected_value = expected_json.get(key)
+                actual_value = result.get(key)
+                logger.info(f"[DEBUG] Checking key '{key}': expected='{expected_value}', actual='{actual_value}'")
+                
+                if expected_json.get("ignore_list_order", False):
+                    expected_value = sorted(expected_value)
+                    result_value = sorted(result.get(key))
+                    logger.info(f"[DEBUG] Comparing lists (sorted): expected={expected_value}, actual={result_value}")
+                    if expected_value != result_value:
+                        logger.info(f"[DEBUG] List comparison failed for key '{key}', returning 0.0")
+                        return 0.
+                else:
+                    if expected_value != actual_value:
+                        logger.info(f"[DEBUG] Value comparison failed for key '{key}': expected='{expected_value}', actual='{actual_value}', returning 0.0")
+                        return 0.
+                    else:
+                        logger.info(f"[DEBUG] Value comparison passed for key '{key}'")
+                        
+            logger.info("[DEBUG] All comparisons passed, returning 1.0")
+            return 1.0
+        else:
+            expected_json = rules["expected"]
+            logger.info(f"[DEBUG] Expected JSON (expect_in_result mode): {expected_json}")
+
+            for key in expected_json.keys():
+                if isinstance(expected_json.get(key), list):
+                    flag = 0
+                    expected_value_list = expected_json.get(key)
+                    logger.info(f"[DEBUG] Checking list key '{key}': expected_list={expected_value_list}, actual='{result.get(key)}'")
+                    for each_expected_value in expected_value_list:
+                        # Handle both list and string cases
+                        if isinstance(result.get(key), list) and each_expected_value in result.get(key):
+                            flag = 1
+                            logger.info(f"[DEBUG] Found expected value '{each_expected_value}' in result list for key '{key}'")
+                            break
+                        elif isinstance(result.get(key), str) and each_expected_value == result.get(key):
+                            flag = 1
+                            logger.info(f"[DEBUG] Found expected value '{each_expected_value}' matches result string for key '{key}'")
+                            break
+                    if flag == 0:
+                        logger.info(f"[DEBUG] No expected values found in result for key '{key}', returning 0.0")
+                        return 0.
+                elif isinstance(expected_json.get(key), str):
+                    expected_str = expected_json.get(key)
+                    actual_str = result.get(key)
+                    logger.info(f"[DEBUG] Checking string key '{key}': expected='{expected_str}', actual='{actual_str}'")
+                    if expected_str not in actual_str:
+                        logger.info(f"[DEBUG] Expected string '{expected_str}' not found in actual string '{actual_str}' for key '{key}', returning 0.0")
+                        return 0.
+                else:
+                    logger.debug("check_direct_json_object: expected value type not supported")
+                    return 0.
+            logger.info("[DEBUG] All expect_in_result comparisons passed, returning 1.0")
+            return 1.0
+    except Exception as e:
+        logger.debug(f"check_direct_json_object: result is not a valid json object, error: {e}")
+        return 0.
+
+# Function: check_direct_json_object
+def check_direct_json_object(result, rules) -> float:
+    """
+    One of the most commonly used function to evalute.
+    Compare two json objects directly.
+    """
+    logger.info(f"[DEBUG] check_direct_json_object called with result: {result}")
+    logger.info(f"[DEBUG] check_direct_json_object called with rules: {rules}")
+    
+    if isinstance(result, str):
+        # remove blanks before and after result
+        result = result.strip()
+        # replace all ' with "
+        result = result.replace("'", '"')
+        # load json object
+        result = json.loads(result)
+        
+    logger.info(f"[DEBUG] Processed result: {result}")
+    
+    if result is None:
+        logger.info("[DEBUG] Result is None, returning 0.0")
+        return 0.
+    
+    # Check if expected value contains evaluation failure indicator
+    try:
+        expected_json = rules.get("expected", {})
+        if expected_json:
+            for key, value in expected_json.items():
+                if value == "__EVALUATION_FAILED__":
+                    logger.error(f"[DEBUG] Expected value for key '{key}' indicates evaluation failure, returning 0.0")
+                    return 0.
+    except Exception as e:
+        logger.error(f"[DEBUG] Error checking for evaluation failure indicator: {e}")
+        return 0.
+    try:
+        expect_in_result = rules.get("expect_in_result", False)
+        logger.info(f"[DEBUG] expect_in_result: {expect_in_result}")
+        
+        if not expect_in_result:
+            expected_json = rules["expected"]
+            logger.info(f"[DEBUG] Expected JSON: {expected_json}")
+            
+            for key in expected_json.keys():
+                expected_value = expected_json.get(key)
+                actual_value = result.get(key)
+                logger.info(f"[DEBUG] Checking key '{key}': expected='{expected_value}', actual='{actual_value}'")
+                
+                if expected_json.get("ignore_list_order", False):
+                    expected_value = sorted(expected_value)
+                    result_value = sorted(result.get(key))
+                    logger.info(f"[DEBUG] Comparing lists (sorted): expected={expected_value}, actual={result_value}")
+                    if expected_value != result_value:
+                        logger.info(f"[DEBUG] List comparison failed for key '{key}', returning 0.0")
+                        return 0.
+                else:
+                    if expected_value != actual_value:
+                        logger.info(f"[DEBUG] Value comparison failed for key '{key}': expected='{expected_value}', actual='{actual_value}', returning 0.0")
+                        return 0.
+                    else:
+                        logger.info(f"[DEBUG] Value comparison passed for key '{key}'")
+                        
+            logger.info("[DEBUG] All comparisons passed, returning 1.0")
+            return 1.0
+        else:
+            expected_json = rules["expected"]
+            logger.info(f"[DEBUG] Expected JSON (expect_in_result mode): {expected_json}")
+
+            for key in expected_json.keys():
+                if isinstance(expected_json.get(key), list):
+                    flag = 0
+                    expected_value_list = expected_json.get(key)
+                    logger.info(f"[DEBUG] Checking list key '{key}': expected_list={expected_value_list}, actual='{result.get(key)}'")
+                    for each_expected_value in expected_value_list:
+                        # Handle both list and string cases
+                        if isinstance(result.get(key), list) and each_expected_value in result.get(key):
+                            flag = 1
+                            logger.info(f"[DEBUG] Found expected value '{each_expected_value}' in result list for key '{key}'")
+                            break
+                        elif isinstance(result.get(key), str) and each_expected_value == result.get(key):
+                            flag = 1
+                            logger.info(f"[DEBUG] Found expected value '{each_expected_value}' matches result string for key '{key}'")
+                            break
+                    if flag == 0:
+                        logger.info(f"[DEBUG] No expected values found in result for key '{key}', returning 0.0")
+                        return 0.
+                elif isinstance(expected_json.get(key), str):
+                    expected_str = expected_json.get(key)
+                    actual_str = result.get(key)
+                    logger.info(f"[DEBUG] Checking string key '{key}': expected='{expected_str}', actual='{actual_str}'")
+                    if expected_str not in actual_str:
+                        logger.info(f"[DEBUG] Expected string '{expected_str}' not found in actual string '{actual_str}' for key '{key}', returning 0.0")
+                        return 0.
+                else:
+                    logger.debug("check_direct_json_object: expected value type not supported")
+                    return 0.
+            logger.info("[DEBUG] All expect_in_result comparisons passed, returning 1.0")
+            return 1.0
+    except Exception as e:
+        logger.debug(f"check_direct_json_object: result is not a valid json object, error: {e}")
+        return 0.
+```
+
+## Task:
+
+Analyze the instruction: "Book an appointment to apply for a transportation access pass at the Charlie Card store on the first Monday eight months later, 10:15 am, fill in my details (James Smith, james.smith@gmail.com). And do not click "book" directly. Let me review it."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

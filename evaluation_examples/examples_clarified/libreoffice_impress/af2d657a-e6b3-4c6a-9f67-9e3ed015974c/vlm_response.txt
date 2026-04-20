@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator compares the edited file at /home/user/Desktop/9_1.pptx against 9_1_Gold.pptx, so the change must be made in-place and saved to that exact file.
+- It checks that the number of slides and shapes, as well as each shape’s position/size, remain unchanged. So the title should be entered in the existing title placeholder on the first slide, not in a new text box, and nothing should be moved or resized.
+- It compares the exact text content and the font name. The title must be exactly “Happy Family” (including capitalization and spacing) and the font family must be set to “Microsoft JhengHei” for that title text only. Other formatting (size, bold, etc.) isn’t examined, but changing other text or global settings could cause mismatches.
+</thoughts>
+
+<answer>
+Open /home/user/Desktop/9_1.pptx and, on the first slide, replace the existing title placeholder text with exactly “Happy Family”, setting that title’s font name to “Microsoft JhengHei”. Use the current title placeholder (don’t insert a new text box or move/resize anything), leave all other content as is, and save the changes to the same file.

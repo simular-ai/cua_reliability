@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator will open and save a specific file at an exact path: /home/user/Desktop/students work/case study.docx (note the plural “students” and the space), so the instruction should name this exact file and location.
+- The evaluator locates the references by finding a paragraph that equals “References” exactly (case-sensitive) and then compares each subsequent non-empty paragraph as one reference item. So the instruction should specify the exact heading “References” on its own line and that each citation should be a separate paragraph with no extra non-reference text afterward.
+- It compares item count and order and uses fuzzy matching, so the instruction should mention keeping only the references under that heading and arranging them in APA 7 order (alphabetized by first author’s surname), with APA 7 textual conventions (authors, year, title capitalization, source, DOI/URL punctuation).
+- The evaluator expects the same file to be saved in place, so the instruction should say to save changes to the same file without renaming or moving it.
+</thoughts>
+
+<answer>
+Could you please review the references at the end of the document located at /home/user/Desktop/students work/case study.docx (the file is named “case study.docx” in the “students work” folder on the Desktop)? I want to make sure the references follow APA 7th edition. Please ensure the section heading is exactly “References” (with that capitalization) on its own line, that only the reference entries appear under it, and that each reference is its own paragraph (no numbering or bullets). Edit the entries to match APA 7 conventions (authors, year, title capitalization, source, DOI/URL punctuation) and arrange them in alphabetical order by the first author’s surname. When you’re done, save your changes to the same file and location—please don’t rename or move the document.

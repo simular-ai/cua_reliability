@@ -1,0 +1,172 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "21760ecb-8f62-40d2-8d85-0cee5725cb72",
+  "snapshot": "libreoffice_impress",
+  "instruction": "Could you help me add slide transition \"dissolve\" to my first page?",
+  "source": "https://www.libreofficehelp.com/add-animations-transitions-libreoffice-impress-slides/",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/21760ecb-8f62-40d2-8d85-0cee5725cb72/Ch4%20Video%20Effect.pptx",
+            "path": "/home/user/Desktop/Ch4 Video Effect.pptx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/Ch4 Video Effect.pptx"
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 0.5
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time;  time.sleep(4); pyautogui.doubleClick(x={SCREEN_WIDTH_HALF}, y={SCREEN_HEIGHT_HALF}); time.sleep(0.5);pyautogui.mouseDown(); pyautogui.mouseUp(); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Ch4 Video Effect.pptx - LibreOffice Impress",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(4.5);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 4.5
+        }
+      }
+    ],
+    "func": "check_transition",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "slide_idx": 0,
+        "transition_type": "dissolve"
+      }
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/Ch4 Video Effect.pptx",
+      "dest": "Ch4 Video Effect.pptx"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_transition
+def check_transition(pptx_file, rules):
+    slide_idx = rules['slide_idx']
+    transition_type = rules['transition_type']
+
+    # Use the zipfile module to open the .pptx file
+    with zipfile.ZipFile(pptx_file, 'r') as zip_ref:
+        # Get the slide XML file
+        slide_name = 'ppt/slides/slide{}.xml'.format(slide_idx + 1)
+        try:
+            zip_ref.getinfo(slide_name)
+        except KeyError:
+            # Slide does not exist
+            return 0.
+
+        with zip_ref.open(slide_name) as slide_file:
+            # 解析XML
+            tree = ET.parse(slide_file)
+            root = tree.getroot()
+
+            # XML namespace
+            namespaces = {
+                'a': 'http://schemas.openxmlformats.org/drawingml/2006/main',
+                'p': 'http://schemas.openxmlformats.org/presentationml/2006/main',
+            }
+
+            # Search for the transition element
+            transition = root.find('.//p:transition', namespaces)
+            if transition is not None:
+                # Check if the transition is an expected transition
+                dissolve = transition.find('.//p:{}'.format(transition_type), namespaces)
+                if dissolve is not None:
+                    return 1.
+                else:
+                    return 0.
+            else:
+                return 0.
+```
+
+## Task:
+
+Analyze the instruction: "Could you help me add slide transition "dissolve" to my first page?"
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Input_File**: Input file downloaded to /home/user/Desktop/Ch4 Video Effect.pptx\nFile info: File too large (13466644 bytes)

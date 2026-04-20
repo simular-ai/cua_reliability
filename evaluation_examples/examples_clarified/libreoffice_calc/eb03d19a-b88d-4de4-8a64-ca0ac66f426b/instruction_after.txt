@@ -1,0 +1,1 @@
+Transpose the 4×5 table in cells B2:F5 on the first sheet of /home/user/Students_Class_Subject_Marks.xlsx, and paste the transposed 5×4 table as plain values starting at B8 (top‑left at B8, resulting in B8:E12). Leave the original table and all other cells/sheets unchanged, and save the edits to Students_Class_Subject_Marks.xlsx.

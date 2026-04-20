@@ -1,0 +1,1 @@
+Please make the first letter of every word capitalized to the entire document. Don’t change any wording, punctuation, or layout; just adjust the casing across all text (headings and body). When done, save the changes to the same .docx file at the same path.

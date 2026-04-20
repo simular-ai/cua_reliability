@@ -1,0 +1,1 @@
+In LibreOffice Writer, center‑align the very first line at the top of /home/user/Desktop/Constitution_Template_With_Guidelines.docx (the heading) and save the change to that same .docx file.

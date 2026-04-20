@@ -1,0 +1,74 @@
+{
+  "id": "0a0faba3-5580-44df-965d-f562a99b291c",
+  "snapshot": "libreoffice_writer",
+  "instruction": "In /home/user/Desktop/04 CHIN9505 EBook Purchasing info 2021 Jan.docx, please format the text using tab stops so that, in every non-empty paragraph, the first three words remain left-aligned, then a single tab is inserted right after the third word, and all text after that tab is right-aligned. Use one right-aligned tab stop at the paragraph\u2019s right margin/right indent (same position across the document) and don\u2019t add any other custom tab stops. Leave the existing text and paragraph structure otherwise unchanged, and save the edits back to the same file. Assume each paragraph has at least three words.",
+  "source": "https://stackoverflow.com/questions/64528055/how-to-make-part-of-my-sentence-left-aligned-and-rest-as-right-aligned",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/0a0faba3-5580-44df-965d-f562a99b291c/04%20CHIN9505%20EBook%20Purchasing%20info%202021%20Jan.docx",
+            "path": "/home/user/Desktop/04 CHIN9505 EBook Purchasing info 2021 Jan.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/04 CHIN9505 EBook Purchasing info 2021 Jan.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "04 CHIN9505 EBook Purchasing info 2021 Jan.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": "check_tabstops",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/0a0faba3-5580-44df-965d-f562a99b291c/04%20CHIN9505%20EBook%20Purchasing%20info%202021%20Jan_Gold.docx",
+      "dest": "04 CHIN9505 EBook Purchasing info 2021 Jan_Gold.docx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/04 CHIN9505 EBook Purchasing info 2021 Jan.docx",
+      "dest": "04 CHIN9505 EBook Purchasing info 2021 Jan.docx"
+    },
+    "options": {
+      "word_number_split_by_tabstop": 3,
+      "index": 0
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

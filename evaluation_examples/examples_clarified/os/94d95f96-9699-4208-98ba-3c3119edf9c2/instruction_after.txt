@@ -1,0 +1,1 @@
+I want to install Spotify on my current system. Could you please help me get it set up so I can launch it from the terminal with the “spotify” command (i.e., so “which spotify” returns a path)?

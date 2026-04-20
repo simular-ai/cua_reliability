@@ -1,0 +1,7 @@
+<thoughts>
+The original request says “the music video on my desktop via vlc,” which is ambiguous because the evaluator checks that VLC is actively playing a specific file with the exact filename “Rick Astley - Never Gonna Give You Up (Official Music Video).mp4”. To match the evaluator, the instruction should specify the exact file name and that it’s on the Desktop, and confirm it should be played in VLC. No step-by-step details or links are needed because the evaluator doesn’t check those.
+</thoughts>
+
+<answer>
+Please play the music video “Rick Astley - Never Gonna Give You Up (Official Music Video).mp4” from my Desktop in VLC.
+</answer>

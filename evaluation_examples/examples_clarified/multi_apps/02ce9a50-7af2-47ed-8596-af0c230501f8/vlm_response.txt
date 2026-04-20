@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator only checks for a screenshot file at /home/user/Desktop/ls.png and uses OCR to look for the text “ls” (or the typo “1s”) in that image. The original request doesn’t guarantee the command text “ls” will actually be visible in the terminal screenshot—it could only show the output, which might not include “ls” itself. To match the evaluator, the screenshot needs to visibly include the literal “ls” in the terminal. Also, the exact path, name, and PNG format should be explicit.
+</thoughts>
+
+<answer>
+I’m working in LibreOffice Writer on a Linux tutorial and want to show the result of running the ls command in /home/user. Please run ls in that directory and take a screenshot where the terminal clearly shows the command “ls” itself (along with its output). Save it as a PNG named ls.png directly on the Desktop (i.e., /home/user/Desktop/ls.png).

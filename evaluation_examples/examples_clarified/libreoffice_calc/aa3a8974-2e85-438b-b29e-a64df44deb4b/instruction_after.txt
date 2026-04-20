@@ -1,0 +1,1 @@
+I’m working on a project and need the spreadsheet at /home/user/Resize_Cells_Fit_Page.xlsx adjusted so the entire sheet fits on exactly one page for printing, then exported to PDF without changing any of the data or adding headers/footers. Please save the PDF as /home/user/Resize_Cells_Fit_Page.pdf (same name as the spreadsheet) so the resulting PDF is a single page.

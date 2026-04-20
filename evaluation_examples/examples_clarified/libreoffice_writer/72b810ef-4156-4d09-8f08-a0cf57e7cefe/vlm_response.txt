@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks the specific file at /home/user/Desktop/GEOG2169_Course_Outline_2022-23.docx and compares it byte-wise to a gold version, so the file path/name and saving in place (no Save As) must be explicit.
+- It requires strike-through on every run in the last paragraph, meaning the entire last paragraph text (all words/characters) must be strikethrough, not just some words.
+- Any extra edits (spacing, formatting elsewhere, adding/removing paragraphs) could break the comparison, so we must clarify to change nothing else.
+- Using standard single strikethrough (not double or other styles) should be stated to match the gold formatting.
+</thoughts>
+
+<answer>
+I’m reviewing my friend’s course outline in LibreOffice Writer. In the document at /home/user/Desktop/GEOG2169_Course_Outline_2022-23.docx, please apply standard single strikethrough to the entire last paragraph (every character in that paragraph), and don’t change anything else in the file—no added or removed spaces, line breaks, or paragraphs, and no other formatting changes. Save the edits to the same file (don’t rename or Save As).

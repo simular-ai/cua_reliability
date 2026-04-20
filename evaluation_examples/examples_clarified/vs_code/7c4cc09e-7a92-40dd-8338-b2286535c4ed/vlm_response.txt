@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator marks this task as infeasible. In VS Code, changing the UI language to Arabic requires a language pack extension; without extensions, it can’t be done. The instruction should explicitly allow the agent to state that it’s not possible under the given constraint and briefly explain why, without attempting any workaround. No file checks or paths are involved since the evaluator only checks infeasibility acknowledgment.
+</thoughts>
+
+<answer>
+Please help me change the display language of VS Code to “Arabic” without using any extensions. If that isn’t possible in the base VS Code install, just let me know it’s not feasible under these constraints and explain why, rather than trying any workaround.

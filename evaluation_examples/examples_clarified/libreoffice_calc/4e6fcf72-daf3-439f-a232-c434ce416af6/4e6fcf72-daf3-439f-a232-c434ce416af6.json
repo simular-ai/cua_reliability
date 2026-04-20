@@ -1,0 +1,137 @@
+{
+  "id": "4e6fcf72-daf3-439f-a232-c434ce416af6",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Please open /home/user/Employee_Age_By_Birthday.xlsx and update only the Age column on the first worksheet. For each employee, calculate their current age in whole years as of today (using the system date), based on their Date of Birth, so that someone who hasn\u2019t had their birthday yet this year is one year younger. Enter the ages as numeric integers (no decimals), aligned with each employee, and don\u2019t alter any other cells, headers, order, formatting, sheet names, or add/delete rows or columns\u2014even blank areas must remain untouched. Save your changes back to the same file (same name and location, .xlsx format), and leave any other sheets exactly as they are.",
+  "source": "https://www.youtube.com/shorts/0uxJccNCKcE",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4e6fcf72-daf3-439f-a232-c434ce416af6/Employee_Age_By_Birthday.xlsx",
+            "path": "/home/user/Employee_Age_By_Birthday.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Employee_Age_By_Birthday.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/4e6fcf72-daf3-439f-a232-c434ce416af6",
+  "related_apps": [
+    "libreoffice calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Employee_Age_By_Birthday.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "download",
+        "parameters": {
+          "files": [
+            {
+              "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/4e6fcf72-daf3-439f-a232-c434ce416af6/Employee_Age_By_Birthday_gold.xlsx",
+              "path": "/home/user/Employee_Age_By_Birthday_gold.xlsx"
+            }
+          ]
+        }
+      },
+      {
+        "type": "open",
+        "parameters": {
+          "path": "/home/user/Employee_Age_By_Birthday_gold.xlsx"
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 2
+        }
+      },
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Employee_Age_By_Birthday_gold.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "expected": {
+      "type": "vm_file",
+      "path": "/home/user/Employee_Age_By_Birthday_gold.xlsx",
+      "dest": "Employee_Age_By_Birthday_gold.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Employee_Age_By_Birthday.xlsx",
+      "dest": "Employee_Age_By_Birthday.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

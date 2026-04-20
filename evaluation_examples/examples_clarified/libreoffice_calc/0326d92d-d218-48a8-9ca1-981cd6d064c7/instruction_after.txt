@@ -1,0 +1,7 @@
+Work in /home/user/SalesRep.xlsx on the first sheet. Add a new summary row directly beneath the sales reps with the label “Total” in the first column, and make each Jan–Jun cell the sum of that month across all reps. Use those monthly totals to compute the month‑on‑month growth percentage in another row labeled “Growth”: for Feb–Jun, (Total of current month − Total of previous month) ÷ Total of previous month; leave the Jan cell blank.
+
+Create two charts from these summary rows:
+- A bar chart of the monthly totals (Jan–Jun) with the chart title set to “Total”.
+- A line chart of the growth values (Feb–Jun only; Jan omitted) with the chart title set to “Growth”.
+
+Save the changes back to /home/user/SalesRep.xlsx.

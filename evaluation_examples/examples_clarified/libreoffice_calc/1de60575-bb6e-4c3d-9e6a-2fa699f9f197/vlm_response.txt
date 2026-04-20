@@ -1,0 +1,11 @@
+<thoughts>
+The evaluator will compare the pivot table configuration on a sheet named “Sheet2” in /home/user/EntireSummerSales.xlsx against a golden file, specifically checking:
+- That the pivot is placed on a new sheet exactly named “Sheet2”
+- Column fields include “Promotion” (promotion names as column headers)
+- Data fields include “Revenue” summarized by Sum (total revenue)
+- No row fields and no report filter fields are added
+They don’t compare cell values directly, but they do check these pivot properties, and the result must be saved back to the same file path/name. The original instruction doesn’t explicitly state the sheet name must be exactly “Sheet2,” the field assignments (Promotion as Columns, Revenue as Sum in Values), or that there should be no Row/Filter fields.
+</thoughts>
+
+<answer>
+In /home/user/EntireSummerSales.xlsx, create a Pivot Table on a new sheet named exactly “Sheet2” that shows total revenue by promotion. Use Promotion as the Column field (so the promotion names are the column headers) and use Revenue as the Values field summarized by Sum. Don’t add any Row fields or report filters. Save the changes back to EntireSummerSales.xlsx.

@@ -1,0 +1,126 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "a5bbbcd5-b398-4c91-83d4-55e1e31bbb81",
+  "snapshot": "chrome",
+  "instruction": "Could you help me hide the bottom toolbar in VLC Media Player when watching in window mode? I often multitask on my computer, and the persistent toolbar in VLC is very distracting. ",
+  "source": "https://superuser.com/questions/776056/how-to-hide-bottom-toolbar-in-vlc",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "VLC_VERBOSE=-1 vlc --no-audio --no-video-title-show",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.click({SCREEN_WIDTH_HALF}, {SCREEN_HEIGHT_HALF}); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vlc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "launch",
+        "parameters": {
+          "command": [
+            "pkill",
+            "vlc"
+          ]
+        }
+      },
+      {
+        "type": "launch",
+        "parameters": {
+          "command": "vlc --no-audio --no-video-title-show",
+          "shell": true
+        }
+      }
+    ],
+    "func": "check_qt_minimal_view",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected_qt_minimal_view": 1
+      }
+    },
+    "result": {
+      "type": "vlc_config",
+      "dest": "vlcrc"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_qt_minimal_view
+def check_qt_minimal_view(actual_config_path, rule):
+    with open(actual_config_path, 'rb') as file:
+        config_file = file.read().decode('utf-8')
+
+    expected_qt_minimal_view = rule['expected_qt_minimal_view']
+    if isinstance(expected_qt_minimal_view, int):
+        expected_qt_minimal_view = str(expected_qt_minimal_view)
+
+    try:
+        qt_minimal_view = "0"
+        for line in config_file.split("\n"):
+            if 'qt-minimal-view=' in line:
+                qt_minimal_view = line.split('=')[-1].strip()
+
+        if qt_minimal_view == expected_qt_minimal_view:
+            return 1
+        else:
+            return 0
+    except FileNotFoundError:
+        logger.error("VLC configuration file not found.")
+        return 0
+    except Exception as e:
+        logger.error(f"An error occurred: {e}")
+        return 0
+```
+
+## Task:
+
+Analyze the instruction: "Could you help me hide the bottom toolbar in VLC Media Player when watching in window mode? I often multitask on my computer, and the persistent toolbar in VLC is very distracting. "
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

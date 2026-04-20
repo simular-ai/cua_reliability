@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator is checking the Chrome profile's display name equals "Thomas" after relaunch (result.type = profile_name, exact_match on "Thomas"). The original request says "username" which could mean a Google Account name or OS username, and doesn't specify which profile or where this name appears. To match the evaluator, we need to clarify that it's the currently active Chrome profile's display name (the visible label in the profile picker and in Settings > You and Google), not the Google Account name. We should keep the source link and stay conversational without turning it into steps.
+</thoughts>
+
+<answer>
+I recently changed my English name to Thomas and want Chrome to reflect that. Please rename the currently active Chrome profile’s display name—the label you see in the top‑right profile picker and under Settings > You and Google—to “Thomas” (this is the local Chrome profile name, not the Google Account name). Here’s the reference I found: https://superuser.com/questions/1393683/how-to-change-the-username-in-google-chrome-profiles?rq=1
+</answer>

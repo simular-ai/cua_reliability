@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator compares the edited file at /home/user/Desktop/45_2.pptx against a gold PPTX and checks exact RGB font colors, unchanged text content, font properties (name/size/bold/italic/underline), bullets, alignment, shape positions/sizes, background, notes, and number of shapes/runs.
+- The original instruction doesn’t specify the exact file to edit/save, that the change is font color (not fill/outline), that all text within each textbox should be colored uniformly, that only slide 1 should be touched, or that no other formatting/content/structure should change.
+- The evaluator expects the standard, exact “Yellow”, “Red”, and “Green” swatches (no tints/variants), and any change elsewhere could cause mismatch.
+</thoughts>
+
+<answer>
+Open /home/user/Desktop/45_2.pptx and make this change only on slide 1: there are three text boxes arranged top to bottom—set the font color of all the text in the top box to Yellow, the middle box to Red, and the bottom box to Green. Use the standard “Yellow”, “Red”, and “Green” color swatches (no tints/shades or theme variations), and apply the color to all paragraphs/runs in each box.
+
+Don’t change anything else: keep the text itself, font name/size, bold/italic/underline, bullets, alignment, positions/sizes of shapes, slide background/layout, and slide notes exactly as they are; don’t add or remove any shapes or slides. Save your changes back to the same file at /home/user/Desktop/45_2.pptx.

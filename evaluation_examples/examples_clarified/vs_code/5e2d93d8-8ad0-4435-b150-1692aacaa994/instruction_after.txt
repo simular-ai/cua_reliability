@@ -1,0 +1,1 @@
+Please save the current VS Code project as a workspace named “project,” with the workspace file saved as /home/user/project/project.code-workspace.

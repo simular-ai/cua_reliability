@@ -1,0 +1,1 @@
+I’m more comfortable in Korean and want Chrome itself to be in Korean—the browser’s interface (menus and settings), not webpage translation. If you can change it here, please do. If this environment doesn’t allow changing Chrome’s language settings, let me know it’s not possible in this setup and briefly tell me what I’d do on my own Chrome to switch the UI to Korean.

@@ -1,0 +1,1 @@
+Could you trim the video at “/home/user/fullvideo.mp4” to just the segment from 00:02.0 to 00:04.0 using GIMP only? If GIMP can’t edit or trim videos in this environment (no extra plugins or external tools), please let me know that it isn’t possible rather than switching to another app.

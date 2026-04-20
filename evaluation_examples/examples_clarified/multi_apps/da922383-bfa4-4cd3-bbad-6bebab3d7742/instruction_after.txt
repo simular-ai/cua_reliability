@@ -1,0 +1,1 @@
+Please save the two blog posts currently open in Chrome as PDFs into /home/user/Documents/Blog. Name each file off of the blog's title text and append “.pdf” to the end. Make sure each PDF contains the article’s text content (not a blank or placeholder page).

@@ -1,0 +1,151 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "a503b07f-9119-456b-b75d-f5146737d24f",
+  "snapshot": "os",
+  "instruction": "I have an image of my receipt located in /home/user. I'm looking to transform it into a PDF file. Can you assist me with this task? Save the resulting PDF as \"receipt.pdf\" on the desktop.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/a503b07f-9119-456b-b75d-f5146737d24f/OIP.jpg",
+            "path": "/home/user/OIP.jpg"
+          }
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/a503b07f-9119-456b-b75d-f5146737d24f",
+  "related_apps": [
+    "os",
+    "gimp",
+    "pdf"
+  ],
+  "evaluator": {
+    "func": "compare_pdf_images",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/a503b07f-9119-456b-b75d-f5146737d24f/receipt_Gold.pdf",
+      "dest": "receipt_Gold.pdf"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/receipt.pdf",
+      "dest": "receipt.pdf"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_pdf_images
+def compare_pdf_images(pdf1_path: str, pdf2_path: str, **kwargs) -> float:
+    if not pdf1_path or not pdf2_path:
+        return 0.
+    if not all(map(os.path.exists, [pdf1_path, pdf2_path])):
+        logger.warning(f"PDF file does not exist: {pdf1_path} or {pdf2_path}")
+        return 0.
+
+    def extract_images_from_pdf(pdf_path):
+        pdf_document = fitz.open(pdf_path)
+        images = []
+
+        for page_number in range(pdf_document.page_count):
+            page = pdf_document[page_number]
+            for img_index, img in enumerate(page.get_images(full=True)):
+                xref = img[0]
+                base_image = pdf_document.extract_image(xref)
+                image_bytes = base_image["image"]
+                
+                # convert to PIL Image
+                try:
+                    pil_image = Image.open(io.BytesIO(image_bytes))
+                    images.append(pil_image)
+                except Exception as e:
+                    logger.error(f"Failed to process image in {pdf_path} on page {page_number}: {e}")
+
+        return images
+    
+    temp_dir = Path(pdf1_path).parent / "temp_pdf_comparison"
+    os.makedirs(temp_dir, exist_ok=True)
+    
+    temp_pdf1 = temp_dir / Path(pdf1_path).name
+    temp_pdf2 = temp_dir / Path(pdf2_path).name
+
+    shutil.copy(pdf1_path, temp_pdf1)
+    shutil.copy(pdf2_path, temp_pdf2)
+
+    try:
+        images1 = extract_images_from_pdf(str(temp_pdf1))
+        images2 = extract_images_from_pdf(str(temp_pdf2))
+    except Exception as e:
+        logger.error(f"Error extracting images from PDFs: {e}")
+        shutil.rmtree(temp_dir)
+        return 0.
+    finally:
+        shutil.rmtree(temp_dir)
+
+
+    if len(images1) != len(images2):
+        logger.info(f"Different number of images found. Gold: {len(images1)}, Pred: {len(images2)}")
+        return 0.
+
+    if not images1:
+        logger.info("No images found in either PDF. Considering it a match.")
+        return 1.0
+
+    hash_threshold = 5 
+    total_score = 0
+    for i, (img1, img2) in enumerate(zip(images1, images2)):
+        hash1 = imagehash.phash(img1)
+        hash2 = imagehash.phash(img2)
+        hash_diff = hash1 - hash2
+        
+        logger.info(f"Image {i+1}: Gold hash: {hash1}, Pred hash: {hash2}, Hash difference: {hash_diff}")
+
+        if hash_diff <= hash_threshold:
+            total_score +=1
+    
+    return total_score / len(images1)
+```
+
+## Task:
+
+Analyze the instruction: "I have an image of my receipt located in /home/user. I'm looking to transform it into a PDF file. Can you assist me with this task? Save the resulting PDF as "receipt.pdf" on the desktop."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Ground_Truth_File**: Expected output/ground truth file: receipt_Gold.pdf\nFile info: File format .pdf not displayable (71019 bytes)

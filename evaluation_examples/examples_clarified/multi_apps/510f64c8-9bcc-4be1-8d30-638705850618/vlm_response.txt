@@ -1,0 +1,7 @@
+<thoughts>
+- The evaluator checks bash history for a “code ” command, so the launch must use the ‘code’ CLI from the terminal (not the GUI, and not ‘code-insiders’).
+- It also verifies that the opened workspace is the folder named “project,” so VS Code must open the folder ~/Desktop/project (not just a file or a different directory).
+</thoughts>
+
+<answer>
+Could you open Visual Studio Code from the terminal using the ‘code’ command to open the folder at ~/Desktop/project (the folder itself, so the workspace name is “project”)? For example, ‘code ~/Desktop/project’ (or cd there and run ‘code .’) is perfect.

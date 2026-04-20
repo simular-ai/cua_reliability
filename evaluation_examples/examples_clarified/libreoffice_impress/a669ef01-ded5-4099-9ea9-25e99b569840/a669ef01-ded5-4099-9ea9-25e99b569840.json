@@ -1,0 +1,86 @@
+{
+  "id": "a669ef01-ded5-4099-9ea9-25e99b569840",
+  "snapshot": "libreoffice_impress",
+  "instruction": "I\u2019m working in /home/user/Desktop/Writing-Outlines.pptx in LibreOffice Impress. On Slide 3, please take the line that literally reads \u201ccontinuation of the sub topics\u201d and make it line up with the bullet text indent used by the \u201csub topics\u201d item (same indentation level), but remove its bullet so that this line shows with no bullet. Keep the wording exactly the same and don\u2019t change any other formatting (fonts, alignment, spacing), don\u2019t move or resize any objects, and don\u2019t add or remove slides or paragraphs. Save the changes back to /home/user/Desktop/Writing-Outlines.pptx. This is the effect described here: https://superuser.com/questions/1628656/in-libreoffice-impress-how-can-i-have-a-bullet-indentation-no-bullet-item",
+  "source": "https://superuser.com/questions/1628656/in-libreoffice-impress-how-can-i-have-a-bullet-indentation-no-bullet-item",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/a669ef01-ded5-4099-9ea9-25e99b569840/Writing-Outlines.pptx",
+            "path": "/home/user/Desktop/Writing-Outlines.pptx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/Writing-Outlines.pptx"
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.click({SCREEN_WIDTH_HALF}, {SCREEN_HEIGHT_HALF}); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Writing-Outlines.pptx - LibreOffice Impress",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_pptx_files",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/a669ef01-ded5-4099-9ea9-25e99b569840/Writing-Outlines_Gold.pptx",
+      "dest": "Writing-Outlines_Gold.pptx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/Writing-Outlines.pptx",
+      "dest": "Writing-Outlines.pptx"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

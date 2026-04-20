@@ -1,0 +1,11 @@
+<thoughts>
+The evaluator looks for a specific zip file at a precise path/name and compares its internal files exactly (allowing fuzzy comparison only for PDFs). The original instruction doesn’t specify:
+- the exact essay filename in /home/user,
+- the exact name and location of the final zip,
+- the need to match filenames/folder structure exactly and include only the required files per the reminder.
+
+To align with the evaluator, we should clarify the essay’s exact filename, the exact output zip filename/path, and emphasize strictly following the reminder’s required file formats, names, and structure without extras.
+</thoughts>
+
+<answer>
+The submission rules are in “reminder.docx” on the Desktop. My essay file is “/home/user/Recruitment_and_retention_of_health_professionals_across_Europe.docx.” Please follow the reminder exactly (filenames, folder structure, and any required formats like a PDF export) and include only what it specifies. When it’s organized per the reminder, package the final submission into a single zip named “Recruitment_and_retention_of_health_professionals_across_Europe.zip” saved in /home/user.

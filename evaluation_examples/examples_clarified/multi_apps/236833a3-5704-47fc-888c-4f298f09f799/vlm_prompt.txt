@@ -1,0 +1,248 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "236833a3-5704-47fc-888c-4f298f09f799",
+  "snapshot": "chrome",
+  "instruction": "Find the daily paper list on Huggingface and take down the meta information of papers on 1st March, 2024 in the opened .docx file. I have recorded two papers. Please conform to the format and complete others.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://huggingface.co/"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/236833a3-5704-47fc-888c-4f298f09f799/raw_paper_reading_2024_03_01.docx",
+            "path": "/home/user/Desktop/paper_reading_2024_03_01.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "libreoffice",
+          "--writer",
+          "/home/user/Desktop/paper_reading_2024_03_01.docx"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "chrome",
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "func": "compare_docx_files",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/paper_reading_2024_03_01.docx",
+      "dest": "paper_reading_2024_03_01.docx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/236833a3-5704-47fc-888c-4f298f09f799/paper_reading_2024_03_01.docx",
+      "dest": "gold_paper_reading_2024_03_01.docx"
+    },
+    "options": {
+      "ignore_blanks": true,
+      "ignore_case": true,
+      "ignore_order": true
+    }
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_docx_files
+def compare_docx_files(file1, file2, **options):
+    ignore_blanks = options.get('ignore_blanks', True)
+    ignore_case = options.get('ignore_case', False)
+    ignore_order = options.get('ignore_order', False)
+    content_only = options.get('content_only', False)
+    fuzzy_match = options.get('fuzzy_match', False)
+    delete_empty_lines = options.get('delete_empty_lines', False)
+
+    if not file1 or not file2:
+        return 0
+
+    def get_paragraph_texts_odt(document):
+        paragraphs = document.getElementsByType(P)
+        paragraph_texts = []
+        for paragraph in paragraphs:
+            text_parts = []
+            for node in paragraph.childNodes:
+                if node.nodeType == node.TEXT_NODE:
+                    text_parts.append(node.data)
+                elif node.nodeType == node.ELEMENT_NODE and node.tagName == 'text:span':
+                    # Assuming direct text content in <text:span>, for simplicity
+                    for child in node.childNodes:
+                        if child.nodeType == child.TEXT_NODE:
+                            text_parts.append(child.data)
+            paragraph_texts.append(''.join(text_parts))
+        return paragraph_texts
+
+    # Determine file types and load documents
+    if file1.endswith('.docx') and file2.endswith('.docx'):
+        try:
+            doc1 = Document(file1)
+            doc2 = Document(file2)
+        except Exception as e:
+            logger.error(f"Error: {e}")
+            return 0
+        doc1_paragraphs = [p.text for p in doc1.paragraphs]
+        doc2_paragraphs = [p.text for p in doc2.paragraphs]
+        if ignore_order:
+            doc1_paragraphs = sorted(doc1_paragraphs)
+            doc2_paragraphs = sorted(doc2_paragraphs)
+        if delete_empty_lines:
+            doc1_paragraphs = [p for p in doc1_paragraphs if p.strip()]
+            doc2_paragraphs = [p for p in doc2_paragraphs if p.strip()]
+    elif file1.endswith('.odt') and file2.endswith('.odt'):
+        try:
+            doc1 = load(file1)
+            doc2 = load(file2)
+        except Exception as e:
+            logger.error(f"Error: {e}")
+            return 0
+        doc1_paragraphs = get_paragraph_texts_odt(doc1)
+        doc2_paragraphs = get_paragraph_texts_odt(doc2)
+        if ignore_order:
+            doc1_paragraphs = sorted(doc1_paragraphs)
+            doc2_paragraphs = sorted(doc2_paragraphs)
+        if delete_empty_lines:
+            doc1_paragraphs = [p for p in doc1_paragraphs if p.strip()]
+            doc2_paragraphs = [p for p in doc2_paragraphs if p.strip()]
+    else:
+        # Unsupported file types or mismatch
+        print("Unsupported file types or mismatch between file types.")
+        return 0
+
+    if content_only:
+        # Compare the content of the documents
+        text1 = re.sub(r'\s+', ' ', '\n'.join(doc1_paragraphs)).strip()
+        text2 = re.sub(r'\s+', ' ', '\n'.join(doc2_paragraphs)).strip()
+        if ignore_case:
+            text1, text2 = text1.lower(), text2.lower()
+        similarity = fuzz.ratio(text1, text2) / 100.0
+        return similarity
+
+    # Process and compare documents
+    if ignore_blanks:
+        text1 = re.sub(r'\s+', ' ', '\n'.join(doc1_paragraphs)).strip()
+        text2 = re.sub(r'\s+', ' ', '\n'.join(doc2_paragraphs)).strip()
+        if ignore_case:
+            text1, text2 = text1.lower(), text2.lower()
+
+        if fuzzy_match:
+            similarity = fuzz.ratio(text1, text2) / 100.0
+            return similarity
+        else:
+            if text1 != text2:
+                return 0
+    else:
+        if len(doc1_paragraphs) != len(doc2_paragraphs):
+            print(doc1_paragraphs)
+            print(doc2_paragraphs)
+            print(len(doc1_paragraphs))
+            print(len(doc2_paragraphs))
+            return 0
+        
+        if fuzzy_match:
+            total_similarity = 0
+            if not doc1_paragraphs:
+                return 1.0
+            for p1, p2 in zip(doc1_paragraphs, doc2_paragraphs):
+                if ignore_case:
+                    p1, p2 = p1.lower(), p2.lower()
+                total_similarity += fuzz.ratio(p1, p2) / 100.0
+            
+            if len(doc1_paragraphs) == 0:
+                return 1.0 if len(doc2_paragraphs) == 0 else 0.0
+
+            avg_similarity = total_similarity / len(doc1_paragraphs)
+            return avg_similarity
+        else:
+            # Compare each paragraph
+            for p1, p2 in zip(doc1_paragraphs, doc2_paragraphs):
+                if ignore_case:
+                    p1, p2 = p1.lower(), p2.lower()
+                if p1 != p2:
+                    # show the difference
+                    print("=== First Paragraph ===")
+                    print(f"\033[92m{repr(p1)}\033[0m")  # Green color for p1, repr() shows hidden chars
+                    print("=== Second Paragraph ===")
+                    print(f"\033[91m{repr(p2)}\033[0m")  # Red color for p2, repr() shows hidden chars
+                    print("=" * 50)  # Clear boundary
+                    return 0
+
+    return 1
+```
+
+## Task:
+
+Analyze the instruction: "Find the daily paper list on Huggingface and take down the meta information of papers on 1st March, 2024 in the opened .docx file. I have recorded two papers. Please conform to the format and complete others."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Input_File**: Input file downloaded to /home/user/Desktop/paper_reading_2024_03_01.docx\nFile info: File format .docx not displayable (15697 bytes)
+
+\n**Ground_Truth_File**: Expected output/ground truth file: gold_paper_reading_2024_03_01.docx\nFile info: File format .docx not displayable (23226 bytes)

@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator checks for a specific JSON key-value in the user-level VS Code settings file: "editor.wordWrapColumn": 50. The original instruction doesn't specify the exact setting name, that it must be user-level (not workspace), the exact file path (/home/user/.config/Code/User/settings.json), or that the value should be a number (not a string). Adding these clarifications aligns the request with what the evaluator verifies while keeping the tone natural and avoiding procedural steps.
+</thoughts>
+
+<answer>
+Please help me set the current user's line length for code wrapping to 50 characters in VS Code by adding the user-level setting "editor.wordWrapColumn": 50 (number, not a string) to the JSON at /home/user/.config/Code/User/settings.json.
+</answer>

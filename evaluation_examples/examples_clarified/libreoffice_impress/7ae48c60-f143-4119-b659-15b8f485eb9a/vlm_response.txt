@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator compares your edited /home/user/Desktop/30_1.pptx directly to a gold .pptx, so the exact file path and saving in place matter.
+- It checks number/order of shapes, slide text, notes, and other formatting remain unchanged; only the target picture’s height should differ.
+- It expects centimeters as the unit.
+- “Picture” should be interpreted as the existing picture on those slides (don’t add new ones).
+- No step-by-step process is needed, just clarify scope and constraints.
+</thoughts>
+
+<answer>
+Open /home/user/Desktop/30_1.pptx in LibreOffice Impress and, on slides 3, 4, and 6, set the height of the existing picture to 20 cm, 30 cm, and 25 cm respectively (use centimeters). Don’t add, remove, or alter any other content or formatting on those slides, and save the changes to the same file at /home/user/Desktop/30_1.pptx. </answer>

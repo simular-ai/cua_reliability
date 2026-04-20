@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator checks that a directory named exactly instructor-embedding exists directly under /home/user and that its contents match the repository’s files when listed with ls -R. The original instruction doesn’t explicitly state the exact folder name or that it should be placed directly under /home/user (not nested or renamed). No need to mention log.txt since the evaluator generates it. A minimal clarification should specify the target path and exact folder name and that the full repo contents should be present.
+</thoughts>
+
+<answer>
+Please clone the GitHub repo at https://github.com/xlang-ai/instructor-embedding directly into /home/user so that the resulting folder is exactly /home/user/instructor-embedding and contains the repository’s full contents.
+</answer>

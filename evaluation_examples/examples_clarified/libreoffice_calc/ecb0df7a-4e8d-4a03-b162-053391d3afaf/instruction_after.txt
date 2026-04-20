@@ -1,0 +1,3 @@
+In the spreadsheet at /home/user/Order_Id_Mark_Pass_Fail.xlsx, set up a single list-based data validation for the “Pass/Fail/Held” column (that’s column D, header in D1), so each editable cell in that column offers a dropdown with exactly these options: Pass, Fail, Held (use this exact capitalization). Apply the validation to the existing data range D2:D29 and also to the rest of the column for future entries (D2 down to row 1,048,576); do not include the header cell D1.
+
+Please don’t change any cell contents or formatting anywhere (including in column D); just add the validation. Leave all other sheets/regions as they are, even if blank. Save your changes back to the same file (Order_Id_Mark_Pass_Fail.xlsx) in .xlsx format.

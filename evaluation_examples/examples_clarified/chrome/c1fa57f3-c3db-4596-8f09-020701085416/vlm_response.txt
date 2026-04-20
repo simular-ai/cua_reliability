@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator checks that the active tab’s URL contains “united.com/en/us/checked-bag-fee-calculator”.
+- The original instruction doesn’t specify the exact page path or locale.
+- It also doesn’t make clear that the calculator page should be the page left active at the end.
+- Minimal clarifications: include the exact URL with en/us locale and note that it should be the active tab when done.
+</thoughts>
+
+<answer>
+Open United Airlines’ Checked Bag Fee Calculator page and leave it as the active tab: https://www.united.com/en/us/checked-bag-fee-calculator
+</answer>

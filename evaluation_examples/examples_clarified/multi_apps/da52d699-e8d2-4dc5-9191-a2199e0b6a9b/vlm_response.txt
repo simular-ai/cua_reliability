@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares the saved content of /home/user/Desktop/book_list_result.docx exactly (case-sensitive, with whitespace normalized) to a gold .docx, so the output must be only the correct title text, with matching capitalization, and no extra words.
+- It expects the existing Desktop file book_list_result.docx to be opened and saved (not a new file or different name).
+- The source spreadsheet is specifically /home/user/Desktop/2023_validation_Book_Reading_Rate.xlsx, so naming and location should be explicit.
+- To avoid mismatch with site variations, the title should match the spreadsheet’s title text exactly.
+</thoughts>
+
+<answer>
+Please open the spreadsheet at /home/user/Desktop/2023_validation_Book_Reading_Rate.xlsx (the 2022 reading log), use https://howlongtoread.com/ as needed to determine which book has the lowest words-per-day reading pace, and then open /home/user/Desktop/book_list_result.docx. In that document, enter only the exact book title as it appears in the spreadsheet (match capitalization; no author, numbers, quotes, or extra text), replace any existing content, and save the changes to the same file.

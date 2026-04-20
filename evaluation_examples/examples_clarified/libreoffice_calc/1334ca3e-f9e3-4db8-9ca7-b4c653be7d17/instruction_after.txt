@@ -1,0 +1,1 @@
+In the LibreOffice Calc file at /home/user/Zoom_Out_Oversized_Cells.xlsx, the cells are so big I can’t click what I want—please zoom out a bit on the first sheet so they’re smaller (anything under 260% is fine) and save the file in place. Don’t change any cell contents or formatting—just adjust the zoom.

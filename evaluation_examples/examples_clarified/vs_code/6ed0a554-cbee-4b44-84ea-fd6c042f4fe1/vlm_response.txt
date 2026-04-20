@@ -1,0 +1,12 @@
+<thoughts>
+The evaluator reads /home/user/project.code-workspace as JSON and requires its top-level "folders" array to exactly equal [{"path": "project"}, {"path": "data1"}, {"path": "data2"}]. The original instruction doesn’t specify:
+- that the workspace file to modify is /home/user/project.code-workspace,
+- that paths should be relative ("project", "data1", "data2") rather than absolute,
+- that the existing "project" folder should remain,
+- and the order of entries (project first, then data1, then data2), which matters because the evaluator checks equality including order.
+
+The minimal clarification should mention the exact file, relative paths, preserving the existing "project" entry, and the precise order of the folders in the JSON.
+</thoughts>
+
+<answer>
+Please add the folders /home/user/data1 and /home/user/data2 to the currently open VS Code workspace at /home/user/project.code-workspace, keeping the existing “project” folder. In that file’s JSON, the top-level "folders" list should contain exactly three entries, using relative paths and in this order: project, data1, data2. Save the workspace after updating it.

@@ -1,0 +1,1 @@
+I have a folder on my Desktop (~/Desktop) named "todo_list_Jan_1". Could you rename that exact directory in place to "todo_list_Jan_2" so it appears on the Desktop with the new name?

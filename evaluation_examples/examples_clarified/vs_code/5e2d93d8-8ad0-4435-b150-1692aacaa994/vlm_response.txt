@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator specifically checks for a file named "project.code-workspace" inside /home/user/project/.
+- The original instruction doesn't specify the .code-workspace filename or the exact directory; it even suggests saving at /home/user/, which conflicts with what the evaluator looks for.
+- Minimal clarification should name the exact file and location while keeping the human tone and not adding steps.
+</thoughts>
+
+<answer>
+Please save the current VS Code project as a workspace named “project,” with the workspace file saved as /home/user/project/project.code-workspace.

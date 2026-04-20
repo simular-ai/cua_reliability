@@ -1,0 +1,32 @@
+{
+  "id": "dcbe20e8-647f-4f1d-8696-f1c5bbb570e3",
+  "snapshot": "vscode",
+  "instruction": "I want to set a photo from my Downloads as the VS Code editor background image. If that isn\u2019t supported here without installing extensions or custom CSS, please let me know it\u2019s not feasible in this environment and suggest any workable alternatives (like changing the color theme).",
+  "source": "",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code"
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Visual Studio Code"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vscode"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

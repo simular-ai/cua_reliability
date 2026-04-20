@@ -1,0 +1,12 @@
+<thoughts>
+- The evaluator opens and saves a specific file on the Desktop: /home/user/Desktop/4.3-Template_4.29.2016.pptx. So the task must be done in that exact file and saved in place (same name/format/location), not as a new, differently named presentation.
+- The comparison checks the exact number of slides and shape counts per slide. So there must be exactly six slides total, each with exactly one image and no extra text boxes/placeholders/footers/slide numbers/notes.
+- It also compares background/theme and notes. So keep the existing template background/theme and don’t add speaker notes.
+- The images are specifically /home/user/Desktop/pic1.png through pic6.png, inserted one per slide in numeric order.
+</thoughts>
+
+<answer>
+I’m working in the file that’s already open in LibreOffice Impress: /home/user/Desktop/4.3-Template_4.29.2016.pptx. Please make this presentation exactly six slides long, and use the Blank layout for each slide—no title or content placeholders, no footers or slide numbers, and no speaker notes. Insert one image per slide in numerical order from the Desktop: /home/user/Desktop/pic1.png on slide 1, then pic2.png on slide 2, through pic6.png on slide 6. Don’t add any other shapes or text, and keep the existing template background/theme as is. Save the changes back to the same file name and location (4.3-Template_4.29.2016.pptx). The intent is a simple photo‑only deck suitable for continuous playback in a kiosk or multimedia show.
+
+Reference: https://help.libreoffice.org/6.4/en-US/text/simpress/guide/photo_album.html?DbPAR=IMPRESS
+</answer>

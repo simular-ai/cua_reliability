@@ -1,0 +1,3 @@
+I’m a Chinese citizen planning to go to Macau for a concert and haven’t applied for the visa yet. I live in Futian District, Shenzhen. I heard there are 24-hour self-service check-in machines in Shenzhen. Please help me find three (3) addresses of 24-hour self-service check-in machines located in Futian District and put them into the currently open document named “AllLocations.docx” on my Desktop.
+
+Please write the addresses in Simplified Chinese, with each address alone on its own line, and don’t add any other text, numbering, bullets, or extra spaces before/after. The document should contain only these three lines. Save the changes to the same file.

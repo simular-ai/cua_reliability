@@ -1,0 +1,7 @@
+Thunderbird’s message filters seem to run automatically only on the Inbox, and I’d like them to run on subfolders too. Please configure Thunderbird so that incoming filters are applied automatically to subfolders by setting the relevant advanced preferences and making sure the changes persist in my profile.
+
+Specifically, in /home/user/.thunderbird/t5q2a5hp.default-release/prefs.js, ensure these prefs are in effect:
+- mail.server.default.applyIncomingFilters set to true
+- mail.imap.use_status_for_biff set to false
+
+Also, don’t set mail.server.default.autosync_offline_stores to false (leave it at its default/true or unset), so autosync remains enabled. The goal is that Thunderbird will automatically apply message filters to IMAP subfolders without manual runs.

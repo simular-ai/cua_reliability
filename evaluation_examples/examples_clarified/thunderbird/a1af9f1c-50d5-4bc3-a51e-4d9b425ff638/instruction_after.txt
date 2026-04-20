@@ -1,0 +1,10 @@
+For security reasons, I don’t want any incoming mail (IMAP/POP) account added or authenticated in Thunderbird. Please configure Thunderbird so I can send mail from anonym-x2024@outlook.com using an outgoing-only setup—attach the identity to Local Folders and add an SMTP server without creating or syncing any inbox.
+
+Use Outlook’s SMTP settings for sending only:
+- Server: smtp.office365.com (or smtp-mail.outlook.com)
+- Port: 587
+- Connection security: STARTTLS
+- Authentication: Normal password
+- Username: anonym-x2024@outlook.com
+
+I’m not providing mailbox credentials here, so it’s fine if you can’t actually send a test message—just set up Thunderbird so that composing “From: anonym-x2024@outlook.com” via that SMTP server is ready, with no incoming service configured.

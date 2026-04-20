@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator marks this task as infeasible, meaning the correct behavior is to recognize it cannot be done as requested.
+- The original instruction assumes VS Code settings can auto-create a saved file on startup, which is not supported without extensions or external automation.
+- Ambiguities: whether “create” means a saved file vs. an untitled buffer, whether external scripts/command-line flags are allowed, and what to do if the feature isn’t possible.
+- Minimal clarifications should: restrict the scope to built-in settings only, specify that a saved file named test.py is desired, and explicitly allow the assistant to state it’s not possible and offer the closest built-in alternative.
+</thoughts>
+
+<answer>
+Please help me set this up using only VS Code’s built-in settings (no extensions and no external scripts or command-line flags) so that every time I open VS Code it automatically creates and saves a Python file named “test.py.” If this isn’t possible with settings alone, please tell me it can’t be done and why, and suggest the closest built-in alternative behavior.

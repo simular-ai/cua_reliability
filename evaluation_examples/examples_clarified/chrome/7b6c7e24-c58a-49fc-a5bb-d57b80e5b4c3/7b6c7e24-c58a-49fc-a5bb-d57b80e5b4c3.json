@@ -1,0 +1,85 @@
+{
+  "id": "7b6c7e24-c58a-49fc-a5bb-d57b80e5b4c3",
+  "snapshot": "chrome",
+  "instruction": "Can you do this in Google Chrome and remove all cookies and site data saved by amazon.com\u2014covering .amazon.com and its subdomains\u2014so there aren\u2019t any Amazon cookies left on this computer? I want those Amazon pages not to remember me. Here\u2019s the Chrome help page I\u2019m referring to: https://support.google.com/chrome/answer/95647?hl=en&ref_topic=7438325&sjid=16867045591165135686-AP#zippy=%2Cdelete-cookies-from-a-site",
+  "source": "https://support.google.com/chrome/answer/95647?hl=en&ref_topic=7438325&sjid=16867045591165135686-AP#zippy=%2Cdelete-cookies-from-a-site",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.amazon.com",
+          "https://www.amazon.com/s?k=huggingface+transformers+book"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "chrome"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "launch",
+        "parameters": {
+          "command": [
+            "pkill",
+            "chrome"
+          ]
+        }
+      },
+      {
+        "type": "launch",
+        "parameters": {
+          "command": [
+            "google-chrome",
+            "--remote-debugging-port=1337"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 3
+        }
+      }
+    ],
+    "func": "is_cookie_deleted",
+    "result": {
+      "type": "cookie_data",
+      "dest": "Cookies"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "type": "domains",
+        "domains": [
+          ".amazon.com"
+        ]
+      }
+    }
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

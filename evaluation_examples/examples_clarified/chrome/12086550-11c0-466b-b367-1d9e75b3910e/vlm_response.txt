@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator checks that the active Chrome tab is exactly at chrome://password-manager/passwords. The original instruction vaguely says “navigate to the area… where my passwords are stored” without specifying the exact page/URL. To align with the evaluator, I’ll explicitly name and link Chrome’s Password Manager page while keeping the natural tone and preserving the Etsy and “don’t reveal” parts.
+</thoughts>
+
+<answer>
+Computer, please open Chrome’s Password Manager at chrome://password-manager/passwords so I can look at my saved logins and find the Etsy entry, but don’t reveal the password yet.
+</answer>

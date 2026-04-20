@@ -1,0 +1,14 @@
+<thoughts>
+- The evaluator loads and compares the edited file at /home/user/Calendar_Highlight_Weekend_Days.xlsx against a gold file, checking:
+  - Sheet 0’s data values must be exactly unchanged.
+  - Only the background color (bgcolor) styles are compared, so the exact fill color and which cells are filled must match.
+- Ambiguities to clarify:
+  - Which file to edit and where to save (same path/name, no new file).
+  - Which sheet to work on (first/only sheet).
+  - What constitutes “weekends” (Saturday and Sunday), and that it’s based on the actual day-of-week for each date.
+  - Apply a solid background fill exactly #ff0000 (not font color), and avoid conditional formatting rules which likely won’t match the expected style.
+  - Do not change any values, headers, sheet names, or add sheets/rows/columns, and leave blanks and non-calendar areas untouched.
+</thoughts>
+
+<answer>
+Please open /home/user/Calendar_Highlight_Weekend_Days.xlsx in LibreOffice Calc and, on the first (only) worksheet, highlight every date cell that falls on a Saturday or Sunday by directly setting that cell’s background fill to solid red (#ff0000). This applies to the visible calendar columns (Jun through Oct 2022) only. Don’t change any cell values, headers, sheet names, or the sheet’s structure, and don’t add conditional formatting rules, new sheets, or any other formatting—leave all non-weekend cells, blanks, and any areas outside those columns exactly as they are. Save the changes back to the same file (overwrite /home/user/Calendar_Highlight_Weekend_Days.xlsx).

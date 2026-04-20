@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator reads /home/user/Code/Website/academicpages.github.io/_config.yml (not .yaml), so the file name and exact path need to be clarified.
+- It specifically checks that three YAML keys are set: top-level "name", and within "author", both "name" and "email".
+- The values must match exactly: "Test Account" and "Test@gmail.com".
+- No other fields are required to change, so the instruction should pinpoint only these.
+</thoughts>
+
+<answer>
+I’m using the academicpages.github.io template and have it cloned at ~/Code/Website. Could you open the site config at /home/user/Code/Website/academicpages.github.io/_config.yml (note it’s .yml, not .yaml) and update just the following fields: set the top‑level name to “Test Account”, and inside the author section set name to “Test Account” and email to “Test@gmail.com”? Please save the file after making these changes.

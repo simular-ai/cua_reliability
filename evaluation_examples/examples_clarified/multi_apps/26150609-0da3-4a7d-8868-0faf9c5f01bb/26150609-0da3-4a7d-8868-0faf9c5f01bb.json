@@ -1,0 +1,93 @@
+{
+  "id": "26150609-0da3-4a7d-8868-0faf9c5f01bb",
+  "snapshot": "vs_code",
+  "instruction": "I\u2019ve been tinkering with a Python Snake game and got it running, but there\u2019s a stubborn bug: the snake never manages to eat the food. Could you update the existing code so eating works correctly?\n\nPlease make the changes directly in the files under /home/user/Desktop/snake \u2014 food.py, main.py, settings.py, and snake.py \u2014 keeping the same filenames and public interfaces (so imports like from snake import Snake and from food import Food still work). Make sure importing these modules doesn\u2019t start the game loop automatically (only run it under if __name__ == '__main__').\n\nWhat I need behavior-wise is: when the snake\u2019s head reaches the food\u2019s grid-aligned position, the snake should grow by one segment on that tick, and the food should respawn to a free grid cell within the screen bounds, aligned to the grid and not overlapping the snake, using the constants defined in settings.py. Aim for a fix that passes the provided test suite (test_suite.py).",
+  "source": "authors",
+  "config": [
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/Desktop/snake"
+        ]
+      }
+    },
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "pip",
+          "install",
+          "pygame"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "path": "/home/user/Desktop/snake/food.py",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/26150609-0da3-4a7d-8868-0faf9c5f01bb/food.py"
+          },
+          {
+            "path": "/home/user/Desktop/snake/main.py",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/26150609-0da3-4a7d-8868-0faf9c5f01bb/main.py"
+          },
+          {
+            "path": "/home/user/Desktop/snake/settings.py",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/26150609-0da3-4a7d-8868-0faf9c5f01bb/settings.py"
+          },
+          {
+            "path": "/home/user/Desktop/snake/snake.py",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/26150609-0da3-4a7d-8868-0faf9c5f01bb/snake.py"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code",
+          "/home/user/Desktop/snake"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/26150609-0da3-4a7d-8868-0faf9c5f01bb",
+  "related_apps": [
+    "vs_code",
+    "os"
+  ],
+  "evaluator": {
+    "postconfig": [],
+    "func": "check_python_file_by_test_suite",
+    "result": {
+      "type": "vm_file",
+      "path": [
+        "/home/user/Desktop/snake/food.py",
+        "/home/user/Desktop/snake/main.py",
+        "/home/user/Desktop/snake/settings.py",
+        "/home/user/Desktop/snake/snake.py"
+      ],
+      "dest": [
+        "food.py",
+        "main.py",
+        "settings.py",
+        "snake.py"
+      ],
+      "multi": true
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/26150609-0da3-4a7d-8868-0faf9c5f01bb/test.py",
+      "dest": "test_suite.py"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

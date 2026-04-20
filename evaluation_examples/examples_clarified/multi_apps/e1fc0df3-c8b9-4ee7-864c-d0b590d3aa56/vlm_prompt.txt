@@ -1,0 +1,182 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "e1fc0df3-c8b9-4ee7-864c-d0b590d3aa56",
+  "snapshot": "libreoffice_writer",
+  "instruction": "Install LanguageTool extension for my LibreOffice",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "libreoffice",
+          "--writer"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/e1fc0df3-c8b9-4ee7-864c-d0b590d3aa56",
+  "related_apps": [
+    "chrome",
+    "libreoffice",
+    "os"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "command",
+        "parameters": {
+          "command": [
+            "grep",
+            "-nHr",
+            "languagetool",
+            "/home/user/.config/libreoffice/4/user/uno_packages/cache/uno_packages/"
+          ],
+          "stdout": "grep.out"
+        }
+      },
+      {
+        "type": "command",
+        "parameters": {
+          "command": [
+            "apt",
+            "list",
+            "--installed"
+          ],
+          "stdout": "apt.out"
+        }
+      }
+    ],
+    "func": [
+      "check_list",
+      "check_list"
+    ],
+    "result": [
+      {
+        "type": "cache_file",
+        "path": "grep.out"
+      },
+      {
+        "type": "cache_file",
+        "path": "apt.out"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expect": [
+            "org\\.openoffice\\.languagetool\\.oxt"
+          ]
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expect": [
+            "openjdk-\\d+-(jre|jdk)"
+          ]
+        }
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_list
+def check_list(result: str, rules: Dict[str, List[str]]) -> float:
+    """
+    Args:
+        result (str): path to list file
+        rules (Dict[str, List[str]]): dict like
+          {
+            "expect": list of str as regexes
+            "unexpect": list of str as regexes
+          }
+
+    Returns:
+        float
+    """
+
+    if result is None:
+        return 0.
+
+    expect_patterns: List[Pattern[str]] = [re.compile(ptt) for ptt in rules.get("expect", [])]
+    unexpect_patterns: List[Pattern[str]] = [re.compile(ptt) for ptt in rules.get("unexpect", [])]
+
+    expect_metrics = [False] * len(expect_patterns)
+    unexpect_metric = True
+    with open(result) as f:
+        for l in f:
+            for i, r in enumerate(expect_patterns):
+                expect_metrics[i] = expect_metrics[i] or (r.search(l) is not None)
+            unexpect_metric = unexpect_metric and all(r.search(l) is None for r in unexpect_patterns)
+    return float(all(expect_metrics) and unexpect_metric)
+
+# Function: check_list
+def check_list(result: str, rules: Dict[str, List[str]]) -> float:
+    """
+    Args:
+        result (str): path to list file
+        rules (Dict[str, List[str]]): dict like
+          {
+            "expect": list of str as regexes
+            "unexpect": list of str as regexes
+          }
+
+    Returns:
+        float
+    """
+
+    if result is None:
+        return 0.
+
+    expect_patterns: List[Pattern[str]] = [re.compile(ptt) for ptt in rules.get("expect", [])]
+    unexpect_patterns: List[Pattern[str]] = [re.compile(ptt) for ptt in rules.get("unexpect", [])]
+
+    expect_metrics = [False] * len(expect_patterns)
+    unexpect_metric = True
+    with open(result) as f:
+        for l in f:
+            for i, r in enumerate(expect_patterns):
+                expect_metrics[i] = expect_metrics[i] or (r.search(l) is not None)
+            unexpect_metric = unexpect_metric and all(r.search(l) is None for r in unexpect_patterns)
+    return float(all(expect_metrics) and unexpect_metric)
+```
+
+## Task:
+
+Analyze the instruction: "Install LanguageTool extension for my LibreOffice"
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

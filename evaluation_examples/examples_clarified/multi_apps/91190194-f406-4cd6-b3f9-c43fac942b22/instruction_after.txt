@@ -1,0 +1,1 @@
+From the terminal, launch GIMP and open /home/user/Desktop/cola.png. Remove exactly the top 20% of the image’s height (anchored at the top edge), don’t resize or make other changes, and export it as a PNG to /home/user/Desktop/cropped.png (overwrite if it already exists).

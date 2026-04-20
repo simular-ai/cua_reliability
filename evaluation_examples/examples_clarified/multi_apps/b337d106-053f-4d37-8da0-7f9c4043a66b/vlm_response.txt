@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks for a specific persistent configuration rather than just finding a tutorial.
+- The success message “The File Has Set Number!” strongly suggests the script looks for set number in the user’s Vim config file.
+- The ambiguous parts in the original instruction are where to persist the setting and the exact directive needed for absolute line numbers.
+- Minimally clarifying: specify classic Vim (not Neovim), the exact option (“set number”), and the exact file/location (“~/.vimrc”) so it’s applied by default.
+</thoughts>
+
+<answer>
+I’ve been getting into Vim for coding, but it isn’t showing line numbers by default. Please find a tutorial on enabling absolute line numbers in classic Vim (not Neovim), and then make sure it’s set up on this machine so it’s on by default by adding the correct option to my Vim config at ~/.vimrc (i.e., include “set number” there).

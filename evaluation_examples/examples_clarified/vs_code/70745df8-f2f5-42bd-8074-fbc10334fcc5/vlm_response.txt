@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator checks the exact JSON keys and values in the user-level VS Code settings file, not just that Auto Save is enabled in any way.
+- “Open the autosave feature” is ambiguous; the evaluator specifically requires files.autoSave to be set to "afterDelay".
+- The 500 ms delay must be set via files.autoSaveDelay with a numeric value 500.
+- The evaluator reads /home/user/.config/Code/User/settings.json, so the instruction should specify this file and scope.
+</thoughts>
+
+<answer>
+Please enable VS Code’s Auto Save by setting files.autoSave to "afterDelay" and set the delay to 500 ms by setting files.autoSaveDelay to 500 in the user settings JSON at /home/user/.config/Code/User/settings.json.
+</answer>

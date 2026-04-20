@@ -1,0 +1,238 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "869de13e-bef9-4b91-ba51-f6708c40b096",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Can you organize my desktop by identifying academic papers, coding projects, and other documents, ensuring no file is misplaced? Specifically, place academic papers in the 'Paper_reading' folder, coding projects in 'Projects', and categorize everything else under 'Miscellaneous'. For files lacking clear extensions or names, apply content analysis to determine their appropriate classification.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/Desktop/Paper_reading"
+        ]
+      }
+    },
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/Desktop/Projects"
+        ]
+      }
+    },
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/Desktop/Miscellaneous"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/2-if-for-array.zip",
+            "path": "/home/user/Desktop/2-if-for-array.zip"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/07-cluster-kMean%20%281%29.ppt",
+            "path": "/home/user/Desktop/07-cluster-kMean (1).ppt"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/2023_validation_7bd855d8-463d-4ed5-93ca-5fe35145f733.xlsx",
+            "path": "/home/user/Desktop/2023_validation_7bd855d8-463d-4ed5-93ca-5fe35145f733.xlsx"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/assign1-data3.zip",
+            "path": "/home/user/Desktop/assign1-data3.zip"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/assignment_mark_frontpage.docx",
+            "path": "/home/user/Desktop/assignment_mark_frontpage.docx"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/cco-return-to-school-survey-underlying-data-tables.xlsx",
+            "path": "/home/user/Desktop/cco-return-to-school-survey-underlying-data-tables.xlsx"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/DOC_2480903712718068684.pdf",
+            "path": "/home/user/Desktop/DOC_2480903712718068684.pdf"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/Family%20Status%20Equality-Eng%20%28Aug%202021%29.pdf",
+            "path": "/home/user/Desktop/Family Status Equality-Eng (Aug 2021).pdf"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/IA_Format.docx",
+            "path": "/home/user/Desktop/IA_Format.docx"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/paper01.pdf",
+            "path": "/home/user/Desktop/paper01.pdf"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/GLUE%3A%20A%20MULTI-TASK%20BENCHMARK%20AND%20ANALYSIS.pdf",
+            "path": "/home/user/Desktop/GLUE: A MULTI-TASK BENCHMARK AND ANALYSIS.pdf"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/1909.10351.pdf",
+            "path": "/home/user/Desktop/1909.10351.pdf"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/1802.05365.pdf",
+            "path": "/home/user/Desktop/1802.05365.pdf"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/869de13e-bef9-4b91-ba51-f6708c40b096/1706.03762.pdf",
+            "path": "/home/user/Desktop/1706.03762.pdf"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "/bin/bash",
+          "-c",
+          "cd /home/user/Desktop && unzip -q assign1-data3.zip && rm -rf assign1-data3.zip && unzip -q 2-if-for-array.zip && rm -rf 2-if-for-array.zip && rm -rf __MACOSX"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/869de13e-bef9-4b91-ba51-f6708c40b096",
+  "related_apps": [
+    "libreoffice_writer",
+    "libreoffice_calc",
+    "os",
+    "libreoffice_impress"
+  ],
+  "evaluator": {
+    "func": [
+      "exact_match",
+      "exact_match",
+      "exact_match"
+    ],
+    "result": [
+      {
+        "type": "vm_command_line",
+        "command": [
+          "ls",
+          "/home/user/Desktop/Paper_reading"
+        ]
+      },
+      {
+        "type": "vm_command_line",
+        "command": [
+          "ls",
+          "/home/user/Desktop/Projects"
+        ]
+      },
+      {
+        "type": "vm_command_line",
+        "command": [
+          "ls",
+          "/home/user/Desktop/Miscellaneous"
+        ]
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "1706.03762.pdf\n1802.05365.pdf\n1909.10351.pdf\nGLUE: A MULTI-TASK BENCHMARK AND ANALYSIS.pdf\npaper01.pdf\n"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "2-if-for-array\nassign1-data_python3\n"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "expected": "07-cluster-kMean (1).ppt\n2023_validation_7bd855d8-463d-4ed5-93ca-5fe35145f733.xlsx\nassignment_mark_frontpage.docx\ncco-return-to-school-survey-underlying-data-tables.xlsx\nDOC_2480903712718068684.pdf\nFamily Status Equality-Eng (Aug 2021).pdf\nIA_Format.docx\n"
+        }
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: exact_match
+def exact_match(result, rules) -> float:
+    expect = rules["expected"]
+    print(result, expect)
+
+    if result == expect:
+        return 1.
+    else:
+        return 0.
+
+# Function: exact_match
+def exact_match(result, rules) -> float:
+    expect = rules["expected"]
+    print(result, expect)
+
+    if result == expect:
+        return 1.
+    else:
+        return 0.
+
+# Function: exact_match
+def exact_match(result, rules) -> float:
+    expect = rules["expected"]
+    print(result, expect)
+
+    if result == expect:
+        return 1.
+    else:
+        return 0.
+```
+
+## Task:
+
+Analyze the instruction: "Can you organize my desktop by identifying academic papers, coding projects, and other documents, ensuring no file is misplaced? Specifically, place academic papers in the 'Paper_reading' folder, coding projects in 'Projects', and categorize everything else under 'Miscellaneous'. For files lacking clear extensions or names, apply content analysis to determine their appropriate classification."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

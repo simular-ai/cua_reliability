@@ -1,0 +1,92 @@
+{
+  "id": "00fa164e-2612-4439-992e-157d019a8436",
+  "snapshot": "libreoffice_writer",
+  "instruction": "Please use the Excel data at /home/user/Documents/awesome-desktop/expe-results.xlsx to update my report at /home/user/Documents/awesome-desktop/awe_desk_env.docx. Under the \u201cMain Results\u201d heading in that docx, insert exactly one table built from the entries labeled \u201cGPT-4\u201d in the spreadsheet, keeping the same columns and the exact cell text/values as they appear in the sheet (don\u2019t add or drop columns or reformat numbers). Don\u2019t modify any other tables or sections\u2014just add this GPT-4 results table there and save the report.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/Documents/awesome-desktop/"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "path": "/home/user/Documents/awesome-desktop/awe_desk_env.docx",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/00fa164e-2612-4439-992e-157d019a8436/awe_desk_env.docx"
+          },
+          {
+            "path": "/home/user/Documents/awesome-desktop/expe-results.xlsx",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/00fa164e-2612-4439-992e-157d019a8436/results.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Documents/awesome-desktop/awe_desk_env.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/00fa164e-2612-4439-992e-157d019a8436",
+  "related_apps": [
+    "libreoffice_writer",
+    "libreoffice_calc",
+    "os"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "awe_desk_env.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 1.0
+        }
+      }
+    ],
+    "func": "compare_docx_tables",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Documents/awesome-desktop/awe_desk_env.docx",
+      "dest": "awe_desk_env.docx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/00fa164e-2612-4439-992e-157d019a8436/awe_desk_env_gt.docx",
+      "dest": "awe_desk_env_gt.docx"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

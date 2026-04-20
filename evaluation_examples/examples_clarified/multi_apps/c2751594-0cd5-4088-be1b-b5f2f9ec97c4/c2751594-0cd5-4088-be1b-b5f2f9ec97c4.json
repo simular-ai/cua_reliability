@@ -1,0 +1,64 @@
+{
+  "id": "c2751594-0cd5-4088-be1b-b5f2f9ec97c4",
+  "snapshot": "thunderbird",
+  "instruction": "Please open Thunderbird, go to the Notes folder, and use the most recent email there (latest by date/time). Open its attached Word document (doc/docx), export the first inline image that appears in the document body in reading order (top to bottom), and set that exact image\u2014without editing or cropping\u2014as the desktop wallpaper on this machine.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/c2751594-0cd5-4088-be1b-b5f2f9ec97c4/thunderbird-profile.tar.gz",
+            "path": "/home/user/thunderbird-profile.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "tar",
+          "--recursive-unlink",
+          "-xz",
+          "-f",
+          "/home/user/thunderbird-profile.tar.gz",
+          "-C",
+          "/home/user/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "/usr/bin/thunderbird"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "thunderbird",
+    "os"
+  ],
+  "evaluator": {
+    "func": "compare_images",
+    "result": {
+      "type": "vm_wallpaper",
+      "dest": "background.png"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/c2751594-0cd5-4088-be1b-b5f2f9ec97c4/background.png",
+      "dest": "gold_background.png"
+    },
+    "options": {
+      "reference_base_result": 0.54
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

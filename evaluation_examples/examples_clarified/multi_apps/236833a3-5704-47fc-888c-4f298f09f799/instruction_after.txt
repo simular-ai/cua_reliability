@@ -1,0 +1,3 @@
+Please use the Hugging Face Papers daily list (https://huggingface.co/papers) and collect the papers specifically dated March 1, 2024. In the already opened document at /home/user/Desktop/paper_reading_2024_03_01.docx, leave the two papers I recorded exactly as they are, and add all remaining papers from that date only.
+
+Follow the exact format, field labels, and punctuation used by the two existing entries (e.g., same headings and ordering of fields such as title, authors, date, and the primary link shown on the listing). Don’t add any extra commentary, headers, or sections beyond what’s already in the template. Insert the new entries in the same style and save your changes to the same file (/home/user/Desktop/paper_reading_2024_03_01.docx).

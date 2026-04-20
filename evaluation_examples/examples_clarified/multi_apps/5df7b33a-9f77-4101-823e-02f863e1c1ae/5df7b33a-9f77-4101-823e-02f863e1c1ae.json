@@ -1,0 +1,80 @@
+{
+  "id": "5df7b33a-9f77-4101-823e-02f863e1c1ae",
+  "snapshot": "libreoffice_writer",
+  "instruction": "I’m reading this in LibreOffice/your PDF tools from the “Spectral Graph Theory.pdf” in /home/user/Desktop/book. Please split the entire book into one PDF per chapter.  Name each chapter file exactly the same way I’ve already named Chapter 1 (match the wording, capitalization, punctuation, spacing, and any numbering/leading zeros). Finally save all the chapter PDFs directly into /home/user/Desktop/book.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/5df7b33a-9f77-4101-823e-02f863e1c1ae/raw_book.zip",
+            "path": "/home/user/Desktop/book.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "/bin/bash",
+          "-c",
+          "unzip -q /home/user/Desktop/book.zip -d /home/user/Desktop && rm /home/user/Desktop/book.zip"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "nautilus",
+          "/home/user/Desktop/book"
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/book/Spectral Graph Theory.pdf"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "os",
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "/bin/bash",
+            "-c",
+            "cd /home/user/Desktop/book && zip -qr book.zip *.pdf"
+          ]
+        }
+      }
+    ],
+    "func": "compare_archive",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/book/book.zip",
+      "dest": "book.zip"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/5df7b33a-9f77-4101-823e-02f863e1c1ae/book.zip",
+      "dest": "gold_book.zip"
+    },
+    "options": {
+      "file_type": "pdf"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

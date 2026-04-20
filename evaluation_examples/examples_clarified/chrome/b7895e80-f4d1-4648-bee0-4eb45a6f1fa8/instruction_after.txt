@@ -1,0 +1,1 @@
+On Tripadvisor (https://www.tripadvisor.com), find New York City Hotels for 2 adults (2 guests) next weekend, using New York time, and sort the results by “Price (low to high)”. Next weekend can be Sat–Sun (check-in Saturday, check-out Sunday) or Fri–Sun—either is fine.

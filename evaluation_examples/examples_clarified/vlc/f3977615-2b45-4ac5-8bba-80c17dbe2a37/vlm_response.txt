@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator isn’t checking general advice about multiple VLC instances; it specifically reads the VLC config file and verifies that the setting one-instance-when-started-from-file is set to 0. The original instruction doesn’t mention editing vlcrc, the exact key name, its required value, or where the file lives. To align with the evaluator, I’ll minimally clarify that I’m on Linux (Fedora), and explicitly ask to update ~/.config/vlc/vlcrc with one-instance-when-started-from-file=0 so opening a file doesn’t force playback into the first instance. I’ll keep the natural tone and avoid step-by-step wording.
+</thoughts>
+
+<answer>
+I want to watch two or more videos at the same time in VLC. When I try multiple VLC windows, any file I open still starts playing in the first instance instead of the new one. On Fedora/Linux, can you configure VLC so that opening a video from a file doesn’t jump to the first instance—i.e., update my VLC config (~/.config/vlc/vlcrc) so one-instance-when-started-from-file is disabled (set to 0)? Source: https://www.reddit.com/r/Fedora/comments/rhljzd/how_to_run_multiple_instances_of_vlc_media_player/

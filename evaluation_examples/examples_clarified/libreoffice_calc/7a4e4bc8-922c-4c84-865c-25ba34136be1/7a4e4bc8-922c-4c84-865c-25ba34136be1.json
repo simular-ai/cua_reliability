@@ -1,0 +1,85 @@
+{
+  "id": "7a4e4bc8-922c-4c84-865c-25ba34136be1",
+  "snapshot": "libreoffice_calc",
+  "instruction": "In the file /home/user/Name_Order_Id_move_column.xlsx, on the first worksheet, arrange the columns so that the five named headers appear in this exact left\u2011to\u2011right order: Date, First Name, Last Name, Order ID, Sales. Use the existing header text as-is (don\u2019t rename anything), and don\u2019t change any cell values.\n\nIf there\u2019s an index/helper column such as \u201cUnnamed: 0\u201d, leave it exactly where it is and simply position those five headers immediately to its right in the specified order. Don\u2019t move, add, or delete any other columns or sheets, and don\u2019t modify blank areas. When you\u2019re done, save the workbook in place with the same filename.",
+  "source": "https://www.youtube.com/shorts/bvUhr1AHs44",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/7a4e4bc8-922c-4c84-865c-25ba34136be1/Name_Order_Id_move_column.xlsx",
+            "path": "/home/user/Name_Order_Id_move_column.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Name_Order_Id_move_column.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/7a4e4bc8-922c-4c84-865c-25ba34136be1",
+  "related_apps": [
+    "libreoffice calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Name_Order_Id_move_column.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/7a4e4bc8-922c-4c84-865c-25ba34136be1/Name_Order_Id_move_column_gold.xlsx",
+      "dest": "Name_Order_Id_move_column_gold.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Name_Order_Id_move_column.xlsx",
+      "dest": "Name_Order_Id_move_column.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

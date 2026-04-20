@@ -1,0 +1,76 @@
+{
+  "id": "aad10cd7-9337-4b62-b704-a857848cedf2",
+  "snapshot": "chrome",
+  "instruction": "Please pull the main article text from Apple\u2019s Human Interface Guidelines page at https://developer.apple.com/design/human-interface-guidelines/searching, starting at the \u201cSearching\u201d page title and continuing through all of its headings, paragraphs, and bullet points, but stop right before the \u201cResources\u201d section. Don\u2019t include any site navigation, breadcrumbs, sidebar, footer, or the \u201cResources\u201d section itself; it\u2019s fine to omit images and other media. Keep the text in the same order as it appears on the page, and save it as a Microsoft Word document named notes.docx on my Desktop (path: /home/user/Desktop/notes.docx).",
+  "source": "authors",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/aad10cd7-9337-4b62-b704-a857848cedf2",
+  "related_apps": [
+    "os",
+    "chrome"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "notes.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": "compare_docx_files",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/aad10cd7-9337-4b62-b704-a857848cedf2/notes.docx",
+      "dest": "notes_Gold.docx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/notes.docx",
+      "dest": "notes.docx"
+    },
+    "options": {
+      "fuzzy_match": true
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator checks Thunderbird’s global database for messages with the “star/flag” attribute set (attributeID 58, value 1).
+- It restricts the check to a specific folder (folderID 13), which corresponds to the “Bills” folder under “Local Folders” in the provided Thunderbird profile.
+- The original instruction says “local Bills folder,” which is ambiguous; it should explicitly mean “Bills” under “Local Folders,” not under any account.
+- The action should be “mark as Starred (toggle the star/flag)” so it’s clear which UI attribute is expected.
+- We should keep the natural tone and avoid step-by-step directions, while clarifying these specifics.
+</thoughts>
+
+<answer>
+In Thunderbird, open the Bills folder that’s under Local Folders (i.e., not under any mail account) in the provided profile, and mark every message in that folder as Starred by toggling the star/flag so each one shows a filled star. (Reference: https://support.mozilla.org/en-US/kb/organize-your-messages-using-filters)

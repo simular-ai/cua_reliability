@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator opens and saves a specific file: /home/user/Desktop/workbook-with-sample-database.xlsx. So the instruction should explicitly say to modify and save that exact file in place (same name, same location, same .xlsx format), not create a copy.
+- The evaluator compares the workbook to a gold version by sheet names (exact list and order) and by sheet data on multiple sheets. The instruction should make clear that updates must make the sheet names/order and the tables’ contents match the requirements exactly.
+- The current instruction has a typo (“opended”) and doesn’t identify the file to be modified by name.
+- “reminder.docx” is on the Desktop; the instruction should confirm its location and that its requirements drive the edits across all relevant sheets.
+</thoughts>
+
+<answer>
+The requirements for my data analysis assignment are in “reminder.docx” on the Desktop. Please read that and update the spreadsheet I already have open — Desktop/workbook-with-sample-database.xlsx — so that its sheet names and order, formulas, and data match the reminder exactly. Save your changes to the same file on the Desktop (keep the .xlsx format and overwrite workbook-with-sample-database.xlsx; don’t create a new file).

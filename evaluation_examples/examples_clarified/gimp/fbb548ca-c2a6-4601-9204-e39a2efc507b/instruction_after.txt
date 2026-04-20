@@ -1,0 +1,1 @@
+Blue is my favorite color—could you change GIMP’s color theme to “Blue”? If a built‑in “Blue” theme isn’t available in this GIMP installation, please just let me know that it can’t be done here (without installing anything or editing files) and, if you can, tell me the closest available theme by name.

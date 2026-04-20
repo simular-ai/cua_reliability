@@ -1,0 +1,115 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "35253b65-1c19-4304-8aa4-6884b8218fc0",
+  "snapshot": "chrome",
+  "instruction": "Hey, I need a quick way back to this site. Could you whip up a shortcut on my desktop for me?",
+  "source": "https://www.laptopmag.com/articles/how-to-create-desktop-shortcuts-for-web-pages-using-chrome",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.mathsisfun.com/games/2048.html"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "chrome"
+  ],
+  "evaluator": {
+    "func": "is_shortcut_on_desktop",
+    "result": {
+      "type": "shortcuts_on_desktop"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "type": "exec",
+        "exec": "/opt/google/chrome/google-chrome --profile-directory=Default --app-id=poahllcmmahlafplfhgjomkjmeblpapf"
+      }
+    }
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: is_shortcut_on_desktop
+def is_shortcut_on_desktop(shortcuts: Dict[str, str], rule):
+    """
+    Check if the shortcut is on the desktop.
+    """
+    # fixme: if the name of the website changed in the future, this will not work; can be replaced with url
+    if rule['type'] == 'name':
+        for shortcut_path, shortcut_content in shortcuts.items():
+            if "Name=" + rule['name'] + "\n" in shortcut_content:
+                return 1.
+        return 0.0
+    elif rule['type'] == 'exec':
+        for shortcut_path, shortcut_content in shortcuts.items():
+            if "Exec=" + rule['exec'] + "\n" in shortcut_content:
+                return 1.
+        return 0.0
+    elif rule['type'] == 'url':
+        raise TypeError(f"{rule['type']} not support yet!")
+    elif rule['type'] == 'id':
+        raise TypeError(f"{rule['type']} not support yet!")
+    else:
+        raise TypeError(f"{rule['type']} not support yet!")
+```
+
+## Task:
+
+Analyze the instruction: "Hey, I need a quick way back to this site. Could you whip up a shortcut on my desktop for me?"
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

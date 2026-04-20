@@ -1,0 +1,1 @@
+When I hit Reply in Thunderbird, it inserts the original message as a quoted block with a “>” and indentation. I don’t want any quoted text at all in replies—no “>”, no indentation—so please disable automatic quoting for my account by setting mail.identity.id1.auto_quote to false in my current profile’s prefs.js at /home/user/.thunderbird/t5q2a5hp.default-release/prefs.js.

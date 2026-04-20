@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator parses the active Chrome tab’s URL on apple.com and specifically checks for a query parameter named modelList that contains the three exact Apple slugs for the devices, separated by commas. The original instruction doesn’t specify using Apple’s official iPhone Compare page or ensuring the URL includes modelList with those exact slug values. To align with the evaluator, we need to clarify: use https://www.apple.com/iphone/compare/ and have the URL include modelList=iphone-15-pro-max,iphone-14-pro-max,iphone-13-pro-max (order doesn’t matter). No other output or file is checked.
+</thoughts>
+
+<answer>
+Please use Apple’s official iPhone Compare page at https://www.apple.com/iphone/compare/ to compare iPhone 15 Pro Max with iPhone 14 Pro Max and iPhone 13 Pro Max. Make sure the comparison URL includes the modelList query with these exact slugs: iphone-15-pro-max, iphone-14-pro-max, iphone-13-pro-max.

@@ -1,0 +1,38 @@
+{
+  "id": "8ea73f6f-9689-42ad-8c60-195bbf06a7ba",
+  "snapshot": "gimp",
+  "instruction": "Could you open /home/user/Desktop/low_resolution.jpeg in GIMP and try to make it high\u2011resolution (increase the pixel dimensions), but keep the saved file no larger in bytes than the original? If truly increasing resolution without increasing the file size isn\u2019t feasible without quality loss, please let me know why and what trade\u2011offs would be required.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/8ea73f6f-9689-42ad-8c60-195bbf06a7ba/low_resolution.jpeg",
+            "path": "/home/user/Desktop/low_resolution.jpeg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "gimp",
+          "/home/user/Desktop/low_resolution.jpeg"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "gimp"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

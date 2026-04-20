@@ -1,0 +1,1 @@
+Could you turn off the cone icon on VLC’s splash/background? Please make sure the Qt background cone setting is disabled by having qt-bgcone=0 in VLC’s config file (vlcrc) so it sticks. The file is the vlcrc in VLC’s config directory (for example, ~/.config/vlc/vlcrc). Here’s the reference I was looking at: https://superuser.com/questions/1224784/how-to-change-vlcs-splash-screen.

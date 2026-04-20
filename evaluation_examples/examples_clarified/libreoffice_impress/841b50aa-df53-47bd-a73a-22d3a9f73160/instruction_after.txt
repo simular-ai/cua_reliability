@@ -1,0 +1,1 @@
+In /home/user/Desktop/181_2.pptx, on the current (first) slide, add the slide note APP in the Notes pane (exactly uppercase “APP”), and set that slide’s background to a solid purple fill (use a plain solid color, not a gradient or image; e.g., RGB 128,0,128). Don’t add or move any shapes on the slide, and save the changes to the same file path (/home/user/Desktop/181_2.pptx).

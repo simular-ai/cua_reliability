@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator specifically checks that Chrome’s “Enhanced Safe Browsing” (Enhanced protection) is enabled, not just the default/standard warnings. The current instruction asks for warnings in general but doesn’t specify the Enhanced protection level. To match what’s being evaluated, I should explicitly request enabling Safe Browsing set to “Enhanced protection” within Chrome’s Privacy & Security > Security settings, and make it clear it applies to this Chrome profile. No file paths are involved, and keeping it conversational without steps is appropriate.
+</thoughts>
+
+<answer>
+Please turn on Chrome’s Safe Browsing with Enhanced protection (Privacy & Security > Security > Safe Browsing: Enhanced protection) in this browser, so I’ll get warnings about potentially harmful or unsafe sites, downloads, and extensions.

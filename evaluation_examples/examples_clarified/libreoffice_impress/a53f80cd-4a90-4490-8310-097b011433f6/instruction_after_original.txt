@@ -1,0 +1,5 @@
+In /home/user/Desktop/21_0.pptx (LibreOffice Impress), adjust only the slide titles on slides 2 and 3: keep the title text itself the same, but set its font color to pure black (RGB 000000) and make it bold. Don’t change the title’s font name, size, alignment, or position.
+
+On slide 4, remove the personal information section, including its associated icon shapes (delete those text and icon elements only), and leave all other content on the slide as is.
+
+Save the changes to the same file at /home/user/Desktop/21_0.pptx.

@@ -1,0 +1,165 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "6ed0a554-cbee-4b44-84ea-fd6c042f4fe1",
+  "snapshot": "vscode",
+  "instruction": "Please help me add folder \"/home/user/data1\" and folder \"/home/user/data2\" to the current workspace.",
+  "source": "https://www.youtube.com/watch?v=B-s71n0dHUk",
+  "config": [
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/project"
+        ]
+      }
+    },
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/data1"
+        ]
+      }
+    },
+    {
+      "type": "command",
+      "parameters": {
+        "command": [
+          "mkdir",
+          "-p",
+          "/home/user/data2"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vs_code/6ed0a554-cbee-4b44-84ea-fd6c042f4fe1/project.code-workspace",
+            "path": "/home/user/project.code-workspace"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code",
+          "/home/user/project.code-workspace"
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Visual Studio Code"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vscode"
+  ],
+  "evaluator": {
+    "func": "check_json_settings",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "folders": [
+            {
+              "path": "project"
+            },
+            {
+              "path": "data1"
+            },
+            {
+              "path": "data2"
+            }
+          ]
+        }
+      }
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/project.code-workspace",
+      "dest": "project.code-workspace"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_json_settings
+def check_json_settings(actual: str, expected: str, **options) -> float:
+    """
+    Args:
+        actual (str): path to result text file
+        expected (dict): expected dict{}, containing key "expect"
+
+    Return:
+        float: the score
+    """
+    if not actual:
+        return 0.
+
+    try:
+        with open(actual, 'r') as f:
+            data = json.load(f)
+    except Exception as e:
+        return 0.0
+
+    expect = expected['expected']
+    
+    # Check if all expected key-value pairs are in the actual data
+    for key, value in expect.items():
+        if key not in data or data[key] != value:
+            return 0.0
+    
+    return 1.0
+```
+
+## Task:
+
+Analyze the instruction: "Please help me add folder "/home/user/data1" and folder "/home/user/data2" to the current workspace."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Input_File**: Input file downloaded to /home/user/project.code-workspace\nFile info: File format .code-workspace not displayable (67 bytes)

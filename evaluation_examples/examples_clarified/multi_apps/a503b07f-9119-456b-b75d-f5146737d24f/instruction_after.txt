@@ -1,0 +1,1 @@
+I have a receipt image at /home/user/OIP.jpg. Please convert that exact file into a single-page PDF that just embeds the original image as-is (no resizing, cropping, or recompressing, and no extra pages or images), and save it as /home/user/Desktop/receipt.pdf.

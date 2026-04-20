@@ -1,0 +1,1 @@
+In the /tmp/test_files directory and all its subfolders, compress each regular file that were last modified 30 days ago. Do this in place using gzip so each matching file becomes filename.ext.gz in the same directory (i.e., don’t create a single archive); leave non‑matching files as they are.

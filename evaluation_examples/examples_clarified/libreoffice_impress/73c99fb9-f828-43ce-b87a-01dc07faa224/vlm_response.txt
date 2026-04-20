@@ -1,0 +1,14 @@
+<thoughts>
+The evaluator compares the edited /home/user/Desktop/109_4.pptx to a gold file and is strict about:
+- Editing the correct slide (the second slide in the deck)
+- Using the existing content placeholder (not the title, and not creating a new text box)
+- Exact text content (no quotes, exact spelling/case/spacing), paragraph count, and no extra line breaks
+- Keeping shape positions and sizes unchanged
+- Preserving the placeholder’s default formatting (font, size, alignment) and not toggling bullets
+- Saving the file under the same path/name
+
+The original instruction doesn’t specify these, so minimal clarifications should lock these down without becoming procedural.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/109_4.pptx, on the second slide, put the exact text Page 1 (no quotes, one space between the words) into the existing content placeholder (the body/content textbox, not the title). Make it a single line with no extra spaces or line breaks, and don’t create or move any shapes. Keep the placeholder’s default formatting and alignment as-is (don’t toggle bullets or change fonts), then save the file with the same name and location. </answer>

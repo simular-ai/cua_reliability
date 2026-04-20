@@ -1,0 +1,12 @@
+<thoughts>
+The evaluator starts PulseAudio and then parses the first sink’s volume from “pactl list sinks …” expecting exactly “100”. The original instruction is ambiguous about:
+- Scope: system-wide PulseAudio output vs. per-app volume
+- Which device: multiple sinks exist; the evaluator checks the first sink
+- “Max” could exceed 100% (PulseAudio allows over-amplification), but the evaluator expects exactly 100%
+- Ensuring PulseAudio is running
+
+The minimal clarifications are: ensure PulseAudio is running, set the system (PulseAudio) output volume to exactly 100% (no over-amplification), and make sure this applies to the first/primary output device so that pactl shows 100% for the first sink.
+</thoughts>
+
+<answer>
+My system volume is too low—could you turn the sound all the way up at the PulseAudio/system level? Please start PulseAudio if it isn’t running, and set the primary/first output device’s volume to exactly 100% (no over‑amplification), so that “pactl list sinks” shows the first sink at 100%. </answer>

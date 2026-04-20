@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator compares the final DOCX’s embedded images to a gold version, so the key is that the image 1.png from the Desktop is inserted into the currently open LibreOffice Writer document at the caret, and that the image is embedded (not linked), unmodified, and inserted exactly once. It also expects this to be done in the specific document “Viewing_Your_Class_Schedule_and_Textbooks.docx” that’s already open, with the file remaining at its Desktop path. Clarifying these points resolves ambiguity about where “my cursor” is (in the open Writer doc), which file to use (exact path/name), how to insert it (embed vs link), and not altering anything else that could change the image count/content.
+</thoughts>
+
+<answer>
+Please insert the image file named 1.png from the Desktop (/home/user/Desktop/1.png) into the currently open LibreOffice Writer document “Viewing_Your_Class_Schedule_and_Textbooks.docx,” right at the current text cursor position. Embed the image (don’t link it), add exactly one copy, and don’t modify the image or anything else in the document.

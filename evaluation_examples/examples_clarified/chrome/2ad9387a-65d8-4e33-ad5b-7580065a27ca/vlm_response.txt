@@ -1,0 +1,14 @@
+<thoughts>
+- The evaluator checks Chrome’s bookmarks data, specifically the set of folder names at the top level of the bookmarks bar.
+- It requires that the set of folder names equals exactly ["Favorites"], meaning:
+  - The folder must be created on the bookmarks bar (top-level, not nested).
+  - It must be named exactly Favorites (correct capitalization), with no quotes or trailing period.
+  - There must be no other folders on the bookmarks bar besides Favorites.
+- The original instruction is ambiguous about:
+  - Whether the period after ‘Favorites.’ is part of the name.
+  - Which browser to use (environment uses Google Chrome).
+  - Whether other folders may remain on the bookmarks bar.
+</thoughts>
+
+<answer>
+Can you create a new top‑level folder on the Google Chrome bookmarks bar named exactly Favorites (no quotes and no period), and make sure it’s the only folder on the bookmarks bar when you’re done?</answer>

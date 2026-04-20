@@ -1,0 +1,1 @@
+I’m working on my algorithm practice using the “Bubble_Sort_tutorial.docx” on the Desktop. Please help me finish the bubbleSort function in the bubbleSort.py from the project extracted on my Desktop, and then save the result as a plain text file named “res.txt” at /home/user/Desktop/res.txt.

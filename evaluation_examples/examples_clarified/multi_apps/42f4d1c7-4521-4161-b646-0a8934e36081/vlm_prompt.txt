@@ -1,0 +1,183 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "42f4d1c7-4521-4161-b646-0a8934e36081",
+  "snapshot": "gimp",
+  "instruction": "Configure VS Code to edit GIMP script-fu scripts effectively by installing lisp extension. Test by writing code to resize the image \"character.png\" to 128 * 128 as \"resized.png\".",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/42f4d1c7-4521-4161-b646-0a8934e36081/character.png",
+            "path": "/home/user/Desktop/character.png"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "gimp",
+    "vs_code"
+  ],
+  "evaluator": {
+    "func": [
+      "is_extension_installed",
+      "check_image_size"
+    ],
+    "result": [
+      {
+        "type": "vm_command_line",
+        "command": [
+          "code",
+          "--list-extensions",
+          "|",
+          "grep",
+          "mattn.lisp"
+        ]
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/resized.png",
+        "dest": "resized.png"
+      }
+    ],
+    "expected": [
+      {
+        "type": "rule",
+        "rules": {
+          "type": "contain",
+          "expected": "mattn.lisp"
+        }
+      },
+      {
+        "type": "rule",
+        "rules": {
+          "height": 128,
+          "width": 128
+        }
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: is_extension_installed
+def is_extension_installed(actual: str, rules: Dict, **options):
+    if rules['type'] == 'contain':
+        if rules['expected'] in actual:
+            return 1.0
+        return 0.0
+    elif rules['type'] == 'not_contain':
+        if rules['expected'] not in actual:
+            return 1.0
+        return 0.0
+    else:
+        raise NotImplementedError
+
+# Function: check_image_size
+def check_image_size(src_path, rule):
+    """
+    Check if the size of the src image is correct
+    multi-apps:42f4d1c7-4521-4161-b646-0a8934e36081
+    """
+    if src_path is None:
+        return 0.
+
+    # Load the image
+    img = Image.open(src_path)
+    
+    # Check if we should ignore transparent parts
+    ignore_transparent = rule.get("ignore_transparent", False)
+    
+    if ignore_transparent and img.mode in ('RGBA', 'LA') or 'transparency' in img.info:
+        # Calculate bounding box of non-transparent pixels
+        if img.mode != 'RGBA':
+            img = img.convert('RGBA')
+        
+        # Get alpha channel
+        alpha = img.split()[-1]
+        
+        # Find bounding box of non-transparent pixels
+        bbox = alpha.getbbox()
+        
+        if bbox is None:
+            # Image is completely transparent
+            actual_width = 0
+            actual_height = 0
+        else:
+            # Calculate actual content size
+            actual_width = bbox[2] - bbox[0]
+            actual_height = bbox[3] - bbox[1]
+        
+        logging.debug(f"Original size: {img.size}, Content size: {actual_width}x{actual_height}")
+    else:
+        # Use original image size
+        actual_width = img.size[0]
+        actual_height = img.size[1]
+        logging.debug(f"Image size: {img.size}")
+
+    # Check the size
+    if rule.get("height", None) is not None:
+        height_same = actual_height == rule["height"]
+    else:
+        height_same = True
+    if rule.get("width", None) is not None:
+        width_same = actual_width == rule["width"]
+    else:
+        width_same = True
+
+    if height_same and width_same:
+        logging.debug(f"height_same: {height_same}, width_same: {width_same}")
+        return 1.
+    else:
+        logging.debug(f"height_same: {height_same}, width_same: {width_same}")
+        return 0.
+```
+
+## Task:
+
+Analyze the instruction: "Configure VS Code to edit GIMP script-fu scripts effectively by installing lisp extension. Test by writing code to resize the image "character.png" to 128 * 128 as "resized.png"."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

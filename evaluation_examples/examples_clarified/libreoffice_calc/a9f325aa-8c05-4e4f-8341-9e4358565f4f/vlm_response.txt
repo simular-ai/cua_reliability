@@ -1,0 +1,11 @@
+<thoughts>
+- The evaluator loads and compares the entire first worksheet of /home/user/Movie_title_garbage_clean.xlsx against a gold file, so any unintended changes anywhere on the sheet (including headers, IDs, or blank cells) will fail the check.
+- The exact file path/name and .xlsx format matter; the evaluator also saves in place.
+- The column header for the source is “Garbage Movie titles” (lowercase “t”), not “Garbage Movie Titles,” so the exact label should be specified to avoid touching the wrong column.
+- The transformation expectations include: trimming leading/trailing spaces, collapsing multiple internal spaces, preserving punctuation/numbers, and applying title casing to every word—even small words and hyphenated parts (e.g., “Puip-Fre”).
+- Only the “Clean Movie Titles” column should be filled; no sorting, renaming, or editing of other cells/sheets.
+- Writing plain text values (not formulas) helps ensure the data matches expected values.
+</thoughts>
+
+<answer>
+Please work in the file /home/user/Movie_title_garbage_clean.xlsx (keep it as .xlsx). On the first sheet, take each title from the column labeled exactly “Garbage Movie titles” and put the cleaned result into the matching row of the “Clean Movie Titles” column. By “cleaned,” I mean: trim leading and trailing spaces, collapse any runs of whitespace into a single space, keep punctuation and numbers as they are, and set casing so the first letter of every word is uppercase and all other letters are lowercase—including after hyphens (e.g., “Puip-Fre,” and capitalize articles/prepositions like “The,” “Of,” “And”). Enter the cleaned results as plain text values (not formulas). Don’t change the headers, the “Unnamed: 0” column, row order, sheet name, or any other cells—leave irrelevant regions exactly as they are, even if blank. Save the changes back to /home/user/Movie_title_garbage_clean.xlsx.

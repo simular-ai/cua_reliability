@@ -1,0 +1,11 @@
+<thoughts>
+The evaluator looks for two exact files: /home/user/Desktop/contacts.csv and /home/user/Desktop/contacts.xlsx. The original instruction doesn’t explicitly name the .xlsx file or its exact location, and it doesn’t state that the CSV should use the default header and field order. Since compare_csv is strict line-by-line and compare_table checks the first sheet’s data, the instruction should clarify:
+- exact save paths and filenames for both outputs,
+- that all contacts from “Personal Address Book” are exported,
+- to use the standard CSV export with header and default field order,
+- not to alter data during conversion.
+The source link should be retained.
+</thoughts>
+
+<answer>
+Please export all contacts from Thunderbird’s "Personal Address Book" to a CSV named contacts.csv saved on my Desktop at /home/user/Desktop, then open that CSV in LibreOffice Calc and save it as an Excel file named contacts.xlsx in the same /home/user/Desktop folder. Please use the standard comma-separated CSV export with the header row and default field order, and don’t modify any data during the conversion. Source: https://www.sync.blue/en/sync/mozilla-thunderbird/google-sheets/</answer>

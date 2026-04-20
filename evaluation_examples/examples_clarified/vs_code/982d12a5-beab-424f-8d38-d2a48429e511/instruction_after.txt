@@ -1,0 +1,3 @@
+Please help me change the color theme of VS Code to Visual Studio Dark. Specifically, update my VS Code settings file at /home/user/.config/Code/User/settings.json so that its entire contents are exactly (including spacing) the single-line JSON:
+{"workbench.colorTheme": "Visual Studio Dark"}
+and nothing else, with a trailing newline at the end of the file. You can use this as a reference: https://www.youtube.com/watch?v=ORrELERGIHs

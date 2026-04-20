@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator verifies the change via GIMP’s gimprc config, looking for a line where the key is theme and the value is "Light" (i.e., (theme "Light")).
+- It also closes GIMP (Ctrl+Q) after the action, so the change needs to persist to disk.
+- The original instruction doesn’t specify the exact theme name, the config file name, or that the setting must be saved in gimprc and persist after closing.
+</thoughts>
+
+<answer>
+Please switch GIMP from the dark theme to the Light theme, and make sure the change is saved to GIMP’s configuration so it persists after closing. Specifically, the gimprc file (typically at ~/.config/GIMP/2.10/gimprc) should contain the entry (theme "Light") once you’re done. Here’s a reference video: https://www.youtube.com/watch?v=LX-S1CX1HUI
+</answer>

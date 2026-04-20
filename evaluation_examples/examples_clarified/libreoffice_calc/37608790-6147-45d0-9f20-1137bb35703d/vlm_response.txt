@@ -1,0 +1,15 @@
+<thoughts>
+The evaluator opens and saves a specific file at /home/user/Employee_Roles_and_Ranks.xlsx and compares the entire first sheet’s data to a gold version. So the agent must:
+- Work in that exact file and on the first worksheet
+- Keep the existing “Employee Data” column and headers unchanged
+- Fill only the three columns named “First Name”, “Last Name”, and “Rank” for all rows
+- Split by spaces with first token = First Name, second = Last Name, everything after = Rank, preserving capitalization/spelling
+- Not add/delete/reorder rows, columns, or sheets, nor rename anything
+- Save the edits in place to the same filename so the sheet’s values match exactly
+These specifics aren’t explicit in the original instruction but are required for the evaluator’s sheet_data equality check.
+</thoughts>
+
+<answer>
+Please do this in the already opened workbook “Employee_Roles_and_Ranks.xlsx” (first worksheet). Leave the “Employee Data” column and all headers exactly as they are, and fill the existing columns titled “First Name”, “Last Name”, and “Rank” for every row.
+
+Split each entry in “Employee Data” by spaces so that the first word is the First Name, the second word is the Last Name, and everything after the second word is the Rank. Keep the original capitalization and spelling when you copy into those columns. Don’t insert, delete, or reorder any rows, columns, or sheets, and don’t rename anything—just populate those three columns with plain values. When you’re done, save the changes to the same file name (Employee_Roles_and_Ranks.xlsx).

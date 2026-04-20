@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator compares the modified /home/user/Desktop/33_1.pptx against a gold .pptx, checking not just the text but also slide/shape counts, table dimensions, positions/sizes, paragraph/run counts, alignment, and font properties. Any change beyond the exact cell text (like moving/resizing the table, adding/removing rows/columns, changing fonts/bullets/underline, or altering other slides) will cause a mismatch. It also expects the file to be saved back to the same path and format. The phrasing "T1","T2","T3","T4" could be misread as including quotes, so we should clarify that the visible text should be T1, T2, T3, T4 without quotes and in left-to-right order on the first row of the table on slide 4.
+</thoughts>
+
+<answer>
+Open /home/user/Desktop/33_1.pptx in LibreOffice Impress. On slide 4 (as numbered in the left sidebar), edit the table’s first row so the four cells read, from left to right: T1, T2, T3, T4 (plain text, no quotation marks). Only change the text—do not add or remove rows/columns, do not move or resize the table or any shapes, and keep the existing font, size, alignment, and formatting. Leave everything else in the file unchanged, and save the changes back to /home/user/Desktop/33_1.pptx as a .pptx.

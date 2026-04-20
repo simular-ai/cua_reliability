@@ -1,0 +1,1 @@
+Help me automatically set up my workspace: open the OSWorld project directory located at ~/Documents/Projects/OSWorld in both GNOME Terminal (with the shell’s working directory set to ~/Documents/Projects/OSWorld) and GNOME Files (Nautilus). Then, in Google Chrome, have only two tabs open—in this order: https://github.com and https://docs.python.org/3/.

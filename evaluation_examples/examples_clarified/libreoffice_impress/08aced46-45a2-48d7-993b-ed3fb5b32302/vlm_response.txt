@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator compares the edited /home/user/Desktop/22_6.pptx against a gold file and checks very strict details: exact text content, paragraph alignment, number/order of shapes, their positions/sizes, fonts/styles, slide notes, and background. It also checks that only slide 2 is changed, no shapes are added/removed or moved, and that the file is saved in place with the same name. The title text must match exactly (case and spacing) and be right-aligned at the paragraph level. Any extra spaces/line breaks or other edits (including notes) would fail.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/22_6.pptx, go to slide 2 (the second slide) and edit the existing title placeholder so the title text is exactly Note (no quotation marks, no extra spaces or line breaks), with the title paragraph set to Right alignment. Don’t add, remove, move, or resize any shapes, and don’t change fonts, colors, bullets, the background, slide notes, or any other slide content. Save the presentation in place as /home/user/Desktop/22_6.pptx. </answer>

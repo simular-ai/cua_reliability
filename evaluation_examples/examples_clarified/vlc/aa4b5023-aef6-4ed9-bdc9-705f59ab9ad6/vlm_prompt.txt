@@ -1,0 +1,135 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "aa4b5023-aef6-4ed9-bdc9-705f59ab9ad6",
+  "snapshot": "base_setup",
+  "instruction": "Hey, could you turn this video the right way up for me? And once it's flipped around, could you save it for me with the name '1984_Apple_Macintosh_Commercial.mp4' on the main screen where all my files are?",
+  "source": "https://www.dedoimedo.com/computers/vlc-rotate-videos.html",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vlc/aa4b5023-aef6-4ed9-bdc9-705f59ab9ad6/flipped_1984_Apple_Macintosh_Commercial.mp4",
+            "path": "/home/user/Desktop/flipped_1984_Apple_Macintosh_Commercial.mp4"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "VLC_VERBOSE=-1 vlc --no-audio --no-video-title-show /home/user/Desktop/flipped_1984_Apple_Macintosh_Commercial.mp4",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.click({SCREEN_WIDTH_HALF}, {SCREEN_HEIGHT_HALF}); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vlc"
+  ],
+  "evaluator": {
+    "func": "compare_videos",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/vlc/aa4b5023-aef6-4ed9-bdc9-705f59ab9ad6/1984_Apple_Macintosh_Commercial.mp4",
+      "dest": "1984_Apple_Macintosh_Commercial_gold.mp4"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "1984_Apple_Macintosh_Commercial.mp4",
+      "dest": "1984_Apple_Macintosh_Commercial.mp4"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_videos
+def compare_videos(video_path1, video_path2, max_frames_to_check=100, threshold=5):
+    # Open both video files
+    cap1 = cv2.VideoCapture(video_path1)
+    cap2 = cv2.VideoCapture(video_path2)
+
+    frames_checked = 0
+    mismatch_count = 0
+
+    while frames_checked < max_frames_to_check:
+        # Read frames from both videos
+        ret1, frame1 = cap1.read()
+        ret2, frame2 = cap2.read()
+
+        # If a video ends, then check if both ended to confirm they are of the same length
+        if not ret1 or not ret2:
+            return 1. if ret1 == ret2 else 0. # return float only 
+
+        # Convert frames to PIL Images
+        frame1 = Image.fromarray(cv2.cvtColor(frame1, cv2.COLOR_BGR2RGB))
+        frame2 = Image.fromarray(cv2.cvtColor(frame2, cv2.COLOR_BGR2RGB))
+
+        # Compute the perceptual hash for each frame
+        hash1 = imagehash.phash(frame1)
+        hash2 = imagehash.phash(frame2)
+
+        # Increment the frames checked
+        frames_checked += 1
+
+        # Compute the difference in the hashes
+        if hash1 - hash2 > threshold:
+            mismatch_count += 1
+            # If there's a significant difference, the frames are not the same
+            if mismatch_count > threshold:
+                return 0.
+
+    # If we reach here, the content appears to be the same
+    return 1.
+```
+
+## Task:
+
+Analyze the instruction: "Hey, could you turn this video the right way up for me? And once it's flipped around, could you save it for me with the name '1984_Apple_Macintosh_Commercial.mp4' on the main screen where all my files are?"
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Ground_Truth_File**: Expected output/ground truth file: 1984_Apple_Macintosh_Commercial_gold.mp4\nFile info: File format .mp4 not displayable (2826084 bytes)

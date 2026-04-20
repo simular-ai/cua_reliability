@@ -1,0 +1,12 @@
+<thoughts>
+The evaluator opens and later saves the file /home/user/Arrang_Value_min_to_max.xlsx, then compares the full data of the first sheet against a gold file. So the instruction should specify:
+- The exact file and location.
+- Operate on the first (only) sheet.
+- Sort by the Amount column, ascending.
+- Treat the first row as headers so it remains at the top.
+- Sort entire rows so Date/Customer/Product/Amount stay aligned.
+- Save back to the same file, without other changes.
+</thoughts>
+
+<answer>
+Could you sort the dataset in /home/user/Arrang_Value_min_to_max.xlsx on the first sheet by the Amount column in ascending order, treating the first row as headers so it stays at the top and keeping each row’s Date/Customer/Product/Amount together? Please save the changes back to the same file and don’t modify anything else. </answer>

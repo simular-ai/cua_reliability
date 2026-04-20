@@ -1,0 +1,1 @@
+Could you turn on Chrome’s built-in Do Not Track setting—specifically the toggle labeled “Send a ‘Do Not Track’ request with your browsing traffic”—in this Chrome instance’s browser settings (not just for a single site), and make sure it stays enabled even after Chrome is relaunched?

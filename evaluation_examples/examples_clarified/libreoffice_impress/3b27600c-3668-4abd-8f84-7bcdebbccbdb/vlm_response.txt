@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator checks the exact PPTX file at /home/user/Desktop/lec17-gui-events.pptx and inspects each slide’s background fill color programmatically. It expects a solid fill set to pure blue with RGB exactly (0, 0, 255), applied either directly on each slide or via the slide master so all slides inherit it. It will not count gradients, patterns, images, or theme-tinted colors as valid. The file must remain a .pptx and be saved in place so the change is present when the evaluator reopens it. The original instruction doesn’t specify the exact shade, solid fill requirement, or the file path/format to save back to.
+</thoughts>
+
+<answer>
+Please update /home/user/Desktop/lec17-gui-events.pptx so that every slide has a solid background set to pure blue (RGB 0,0,255). It’s fine to do this via the Slide Master or an “apply to all slides” option—just make sure it’s a solid color (not a gradient, pattern, image, or theme tint). Save the changes back to the same PPTX file (lec17-gui-events.pptx). I was stuck finding where to do this; I was looking at this guide: https://www.libreofficehelp.com/change-slide-background-impress/#All_Slides

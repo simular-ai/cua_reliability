@@ -1,0 +1,1 @@
+In /home/user/Desktop/21_0.pptx (LibreOffice Impress), set the title to font color Black and bold on slides 2 and 3 and remove the personal information section on Slide 4, including its associated icon shapes.  Save the changes to the same file at /home/user/Desktop/21_0.pptx.

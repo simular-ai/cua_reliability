@@ -1,0 +1,11 @@
+<thoughts>
+The evaluator lists the contents of /home/user/emails.bak and expects to find .eml files whose filenames include the subjects “歡迎使用新的 Outlook.com 帳戶” and “A Test E-mail”. The original instruction doesn’t specify:
+- That this is the Thunderbird Inbox.
+- That filenames should use the email subjects (needed to match those expected names, including non-English characters).
+- The exact path resolution of ~/emails.bak to /home/user/emails.bak.
+It also helps to confirm inclusion of those two specific messages. No need to add step-by-step details; just clarify these points.
+</thoughts>
+
+<answer>
+Could you help me back up all the messages from my Thunderbird Inbox by exporting each email as its own .eml file and saving them into ~/emails.bak (i.e., /home/user/emails.bak)? Please use each email’s subject as the filename (preserving any non‑English characters), and make sure the .eml files for the messages titled “歡迎使用新的 Outlook.com 帳戶” and “A Test E-mail” are included there.
+</answer>

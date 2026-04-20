@@ -1,0 +1,85 @@
+{
+  "id": "a9f325aa-8c05-4e4f-8341-9e4358565f4f",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Please work in the file /home/user/Movie_title_garbage_clean.xlsx (keep it as .xlsx). On the first sheet, take each title from the column labeled exactly \u201cGarbage Movie titles\u201d and put the cleaned result into the matching row of the \u201cClean Movie Titles\u201d column. By \u201ccleaned,\u201d I mean: trim leading and trailing spaces, collapse any runs of whitespace into a single space, keep punctuation and numbers as they are, and set casing so the first letter of every word is uppercase and all other letters are lowercase\u2014including after hyphens (e.g., \u201cPuip-Fre,\u201d and capitalize articles/prepositions like \u201cThe,\u201d \u201cOf,\u201d \u201cAnd\u201d). Enter the cleaned results as plain text values (not formulas). Don\u2019t change the headers, the \u201cUnnamed: 0\u201d column, row order, sheet name, or any other cells\u2014leave irrelevant regions exactly as they are, even if blank. Save the changes back to /home/user/Movie_title_garbage_clean.xlsx.",
+  "source": "https://www.youtube.com/shorts/A0gmEBRKXWs",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/a9f325aa-8c05-4e4f-8341-9e4358565f4f/Movie_titles_garbage_clean.xlsx",
+            "path": "/home/user/Movie_title_garbage_clean.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Movie_title_garbage_clean.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/a9f325aa-8c05-4e4f-8341-9e4358565f4f",
+  "related_apps": [
+    "libreoffice calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Movie_title_garbage_clean.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/a9f325aa-8c05-4e4f-8341-9e4358565f4f/Movie_titles_garbage_clean_gold.xlsx",
+      "dest": "Movie_title_garbage_clean_gold.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Movie_title_garbage_clean.xlsx",
+      "dest": "Movie_title_garbage_clean.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

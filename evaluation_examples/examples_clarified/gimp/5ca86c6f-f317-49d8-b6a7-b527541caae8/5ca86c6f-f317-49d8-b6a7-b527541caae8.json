@@ -1,0 +1,17 @@
+{
+  "id": "5ca86c6f-f317-49d8-b6a7-b527541caae8",
+  "snapshot": "gimp",
+  "instruction": "Could you help me get the University of Hong Kong logo as a .png strictly within GIMP\u2014no external web browser, no other apps or third\u2011party plugins? If GIMP can\u2019t directly fetch or download it on its own, just let me know that it isn\u2019t possible under these constraints, give a brief reason why, and tell me what the closest thing you could do in GIMP would be (for example, exporting a provided local image to .png).",
+  "source": "",
+  "config": [],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "gimp"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

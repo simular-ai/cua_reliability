@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator opens kohls.com and checks the active page’s breadcrumbs and sort option.
+- It specifically looks for breadcrumbs containing “Spider-Man”, “Toys”, and “Kids” (in that taxonomy) and for the sort option labeled “Price Low-High”.
+- It also infers the sort via a URL parameter (S=4), which corresponds to selecting “Price Low-High” on Kohl’s.
+- The original instruction doesn’t specify the site (Kohl’s), doesn’t name the exact sort label, and doesn’t make clear that the Kids > Toys department should be selected so the breadcrumbs show those terms.
+</thoughts>
+
+<answer>
+On kohls.com, browse Spider-Man toys specifically in the Kids > Toys department (so the page breadcrumbs read Spider-Man > Toys > Kids), and set the sort to “Price Low-High” (lowest price).</answer>

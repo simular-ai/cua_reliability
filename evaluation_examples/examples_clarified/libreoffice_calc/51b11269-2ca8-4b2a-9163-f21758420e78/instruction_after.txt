@@ -1,0 +1,1 @@
+Could you sort the dataset in /home/user/Arrang_Value_min_to_max.xlsx on the first sheet by the Amount column in ascending order, treating the first row as headers so it stays at the top and keeping each row’s Date/Customer/Product/Amount together? Please save the changes back to the same file and don’t modify anything else.

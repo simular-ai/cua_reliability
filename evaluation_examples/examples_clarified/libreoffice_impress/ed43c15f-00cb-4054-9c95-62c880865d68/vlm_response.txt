@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks slide index (uses “slide 2”, not “page 2”), and specifically the top position of the picture (shape_type 13) on slide 2, expecting it to be near the top edge.
+- It compares shapes count and many text properties, so adding/removing shapes or changing text content, fonts, sizes, alignment, bullets, notes, or backgrounds would fail.
+- It expects the edits saved in-place to /home/user/Desktop/43_1.pptx.
+- It checks underline formatting at the run level, so the text in the text boxes on slides 1 and 2 should be underlined, while other formatting remains unchanged.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/43_1.pptx, on slide 2 move the existing picture up so it sits near the top edge of the slide (don’t resize, replace, or otherwise alter it). On slides 1 and 2, make the text in the existing text boxes underlined, and leave all other text, fonts, sizes, alignment, bullets, notes, backgrounds, and objects exactly as they are—don’t add or remove any shapes or slides. Save the changes to /home/user/Desktop/43_1.pptx.

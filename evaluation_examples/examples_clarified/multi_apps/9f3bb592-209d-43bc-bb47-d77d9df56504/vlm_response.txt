@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator downloads a gold SRT to /home/user/subtitles_Gold.srt and then runs a Python script that likely checks for an exported subtitles file named exactly /home/user/subtitles.srt, comparing it to the gold. The current instruction doesn’t specify the video’s exact path (/home/user/video.mp4) or explicitly say to extract the embedded subtitle track rather than re-encode the video. To match what’s being checked, the instruction should clarify the exact file location and name for the output (subtitles.srt in /home/user) and that the task is to export/extract the subtitle track, not modify the video file itself.
+</thoughts>
+
+<answer>
+I downloaded a video to practice listening, but I don’t know how to remove the subtitles. The video file is at /home/user/video.mp4. Please extract the embedded subtitle track from that video and export it as a plain SRT named subtitles.srt, saved in the same folder as the video (/home/user/subtitles.srt). You don’t need to change or re-encode the video itself—just make sure the subtitles are exported to that path.

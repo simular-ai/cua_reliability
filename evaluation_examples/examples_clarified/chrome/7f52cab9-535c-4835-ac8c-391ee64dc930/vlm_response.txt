@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks the active tab URL for a q parameter containing the exact phrase "drip coffee maker" (singular), so the instruction should specify that exact search term.
+- The evaluator expects the page to be on a www.* domain (e.g., the Shopping tab on www.google.com), not shopping.google.com, so that should be mentioned.
+- The evaluator looks for the specific filter chips "Black", "$25 - $60", and "On sale" and expects no other filters applied, so the instruction should call out these exact labels and say not to add others.
+- No file output is checked, and the “list” can be satisfied by the filtered Shopping results page; we shouldn’t add any file/format requirements.
+</thoughts>
+
+<answer>
+On Google Shopping (the Shopping tab on www.google.com), search for the exact term “drip coffee maker,” then apply only these filters to the results: “Black,” “$25 - $60,” and “On sale.” Use that filtered results page as the list. Do not add any other filters.

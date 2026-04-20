@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator verifies that the specific VS Code extension with the Marketplace ID "njpwerner.autodocstring" is installed by checking the output of "code --list-extensions". The original instruction doesn’t specify the exact extension ID or publisher, which could lead to installing the wrong docstring extension. Minimal clarification is to name the exact extension and its ID, while keeping a natural tone and preserving the provided source link.
+</thoughts>
+
+<answer>
+Please install the autoDocstring – Python Docstring Generator extension in VS Code—the one by Nils Werner (Marketplace ID: njpwerner.autodocstring). I’m following this guide: https://campbell-muscle-lab.github.io/howtos_Python/pages/documentation/best_practices/vscode_docstring_extension/vscode_docstring_extension.html#:~:text=Type%2C%20Ctrl%20%2B%20Shift%20%2B%20P,select%20the%20NumPy%20docstring%20format.
+</answer>

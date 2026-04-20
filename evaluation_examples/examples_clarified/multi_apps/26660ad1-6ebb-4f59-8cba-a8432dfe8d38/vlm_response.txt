@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator only checks that the saved file at /home/user/Test/Speed/results.txt exists and contains the exact substrings “Ping”, “Download”, and “Upload” (case‑sensitive).
+- The current instruction uses “~/Test/Speed/results.txt” without expanding the path, which could be ambiguous for the checker expecting /home/user/Test/Speed/results.txt.
+- Speedtest’s UI may label latency as “Latency”; to pass, the saved metric name must be “Ping”. The instruction doesn’t specify exact metric names/casing.
+- Formatting beyond containing those words isn’t enforced, but the instruction already specifies one line per metric and a single space between name and value; that can stay.
+</thoughts>
+
+<answer>
+Please run a test on https://www.speedtest.net, open its results view, and save a plain‑text summary to ~/Test/Speed/results.txt (i.e., /home/user/Test/Speed/results.txt; create the directory if it doesn’t exist). Include at least these three lines, one per metric, with the metric name and its value separated by a single space: “Ping <value>”, “Download <value>”, and “Upload <value>”. Use those metric names exactly with that capitalization; if the site shows “Latency”, still record it under “Ping”.</answer>

@@ -1,0 +1,1 @@
+Please update VS Code’s global User settings JSON (at /home/user/.config/Code/User/settings.json) so that the files.exclude entry is exactly {"**/__pycache__": true}, which will hide all “__pycache__” folders in the Explorer. Don’t add any other exclusions under files.exclude.

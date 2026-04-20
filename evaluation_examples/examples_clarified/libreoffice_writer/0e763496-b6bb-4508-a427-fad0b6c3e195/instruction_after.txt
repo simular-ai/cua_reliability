@@ -1,0 +1,1 @@
+Open /home/user/Desktop/Dublin_Zoo_Intro.docx in LibreOffice Writer and change the font of all text throughout the document to exactly “Times New Roman.” Apply it as direct formatting to every piece of text (not just by changing styles), and then save the changes back to the same .docx file at /home/user/Desktop/Dublin_Zoo_Intro.docx.

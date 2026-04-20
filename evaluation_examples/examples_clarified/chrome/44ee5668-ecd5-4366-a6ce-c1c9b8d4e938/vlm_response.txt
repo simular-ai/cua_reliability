@@ -1,0 +1,11 @@
+<thoughts>
+The evaluator verifies that, after the task, Chrome’s history database contains no entries whose domain includes the substring “youtube”. It doesn’t check YouTube account watch history, only Chrome’s browsing history, and it isn’t limited by a time range. The ambiguous parts in the original instruction are:
+- Whether to clear Chrome browsing history vs. YouTube’s own watch history.
+- Whether to remove only recent entries or all time.
+- What exactly qualifies as “YouTube” (the evaluator looks for the substring “youtube” in the domain).
+
+A minimal clarification should specify that the deletion is in Google Chrome’s browsing history, for all time, and that every history entry whose domain contains “youtube” should be removed so none remain.
+</thoughts>
+
+<answer>
+I want this done in Google Chrome’s browsing history (not my YouTube account watch history). Please remove all my YouTube entries from Chrome for all time—i.e., delete every history item whose site/domain contains “youtube” (such as www.youtube.com)—so that no YouTube results remain and I can more easily find the site I visited a month ago.

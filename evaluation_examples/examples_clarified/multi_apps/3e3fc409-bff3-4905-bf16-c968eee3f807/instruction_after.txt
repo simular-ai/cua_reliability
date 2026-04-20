@@ -1,0 +1,5 @@
+I’ve got an Excel file open at /home/user/Desktop/movies.xlsx. Please add a new worksheet named exactly unseen_movies to this same file (don’t create a new workbook), and use the same header row exactly as in the existing sheet—title, release year, ratings, description—in the same order and spelling.
+
+For the content, use the IMDb Top 250 chart and take the first 30 entries as the “IMDb Top 30.” From those, keep only titles released before 2024 (i.e., 2023 and earlier). Treat a movie as “already seen” if its title exactly matches a title in my current sheet, and include only the ones I haven’t seen.
+
+Order the unseen movies by IMDb chart rank with rank 1 at the top downward (i.e., follow IMDb’s Top 250 chart order, not the numeric rating). Don’t add extra columns; keep just those four headers. Save your changes back to /home/user/Desktop/movies.xlsx.

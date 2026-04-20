@@ -1,0 +1,1 @@
+Please use LibreOffice Impress to export the open presentation wssf-project-plan-on-a-page.pptx as a single PNG of the first/current slide, and save it to the Desktop with the exact filename res.png. Just accept the default PNG export options.

@@ -1,0 +1,5 @@
+Using https://webext.eu, please generate an initial WebExtension (Manifest V2) tagged “happy-extension v0.0.1” — that is, set the manifest name to “happy-extension” and version to “0.0.1”, and leave the description empty. Include only:
+- a background script named exactly background_script.js at the project root, and
+- a Browser Action whose default_title is “happy-extension”, whose default_popup is “browserAction/index.html” (with the popup files placed under a folder named exactly browserAction: index.html, style.css, script.js), and whose default_icon is set only to the 64px entry pointing to icons/icon.png.
+
+Please use the tool’s default template contents for the background script and the popup files without edits. When you download the ZIP, unzip it to /home/user/Projects and make sure the folder is named exactly /home/user/Projects/happy-extension.

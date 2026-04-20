@@ -1,0 +1,1 @@
+Could you unzip /home/user/Desktop/helloExtension.zip to /home/user/Desktop/ so it creates /home/user/Desktop/helloExtension, and then load it in Chrome’s extensions (chrome://extensions) by selecting that unpacked folder (/home/user/Desktop/helloExtension)?

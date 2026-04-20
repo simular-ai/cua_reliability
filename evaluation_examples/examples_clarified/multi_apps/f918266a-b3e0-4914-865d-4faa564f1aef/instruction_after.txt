@@ -1,0 +1,1 @@
+Please complete calculator.py from the project on the Desktop, run it, and capture exactly what it prints to stdout. Save that output verbatim—no extra text or blank lines—into a plain text file named log.txt (all lowercase) placed directly on the Desktop at /home/user/Desktop/log.txt (not inside any subfolder).

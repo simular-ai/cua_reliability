@@ -1,0 +1,5 @@
+I’ve been building a small Python Tetris game, but it crashes in some cases when I press the Up arrow to rotate. Please run it and fix the bug.
+
+The code lives at /home/user/Desktop/tetris, and the files are block.py, main.py, settings.py, and tetris.py—please keep these filenames and that location. The game should still be runnable with python3 main.py, and your changes need to make the modules import cleanly (no game loop starting on import).
+
+Your fix will be validated by an automated test (test_suite.py) that imports those exact files, so please make sure the updated code passes that test without adding new files or renaming/moving anything.

@@ -1,0 +1,1 @@
+From the current working directory, set the permission mode of every regular file in this directory and all its subdirectories—hidden files included—to exactly 0644. Don’t modify directories, symlinks, or other non-regular files, and don’t follow symlinks.

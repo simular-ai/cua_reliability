@@ -1,0 +1,1 @@
+Please update my VS Code user settings so the cursor stays in the Debug Console while debugging instead of jumping back to the editor. Specifically, set the JSON setting "debug.focusEditorOnBreak": false in my user settings file at /home/user/.config/Code/User/settings.json.

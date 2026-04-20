@@ -1,0 +1,12 @@
+<thoughts>
+The evaluator compares the edited /home/user/Desktop/24_8.pptx against 24_8_Gold.pptx and checks:
+- Exact font name (font.name) on every run of text
+- All text shapes, including titles, body placeholders, text boxes, grouped shapes, and table cells
+- That no other properties change (text content, alignment, bullets, bold/italic/underline, size, color), and that shape positions/sizes, slide notes, number of shapes/slides remain identical
+- Save-in-place of the same .pptx file
+
+The original instruction is ambiguous about whether “font style” means family vs. bold/italic, which text elements to affect, whether to touch other formatting/content/layout, and which file to edit/save. The hint about case sensitivity implies the font family string must be exactly “Times New Roman”.
+</thoughts>
+
+<answer>
+In /home/user/Desktop/24_8.pptx, change the font family to exactly “Times New Roman” (case sensitive) for all text on the last slide—including titles, body text, text boxes, grouped text, and any table text—without changing the actual text, alignment, bullets, sizes, colors, bold/italic/underline, or any layout/positions, and don’t modify other slides or notes. Save the file in place with the same name.

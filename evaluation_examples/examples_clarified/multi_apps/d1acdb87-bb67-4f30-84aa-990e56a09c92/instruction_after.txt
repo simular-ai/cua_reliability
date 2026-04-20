@@ -1,0 +1,9 @@
+Hello! I’m planning a culinary adventure to Hong Kong and have a list of must‑visit restaurants. Could you please look them up on Google Maps and fill in a few details for me?
+
+Please use the Excel form at /home/user/Desktop/MUST_VISIT.xlsx and enter the information on its existing first sheet (RNSheet1). Keep the current column headers exactly as they are: “Restaurant Name”, “Address”, “Contact Number”, and “Website”. Use the restaurant list in /home/user/Desktop/restaurants.txt, and fill rows 2–6 in the same order as that list.
+
+- Address: copy the street address as shown on Google Maps (including floor/shop details if available).
+- Contact Number: enter the Hong Kong phone number; it’s fine if you include +852, but make sure the local 8‑digit number appears. If no phone is listed, leave it blank.
+- Website: enter the official website URL (include http:// or https://). If there’s no official site, leave it blank.
+
+Please don’t rename the sheet or change the headers, and save your changes to the same file and location. Many thanks!

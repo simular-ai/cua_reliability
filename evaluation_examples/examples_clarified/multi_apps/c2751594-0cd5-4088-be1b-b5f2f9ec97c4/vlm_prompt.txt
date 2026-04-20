@@ -1,0 +1,143 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "c2751594-0cd5-4088-be1b-b5f2f9ec97c4",
+  "snapshot": "thunderbird",
+  "instruction": "Help me export the first image from the doc file attached in the most recent email in Notes folder, and set this image as the new desktop background.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/c2751594-0cd5-4088-be1b-b5f2f9ec97c4/thunderbird-profile.tar.gz",
+            "path": "/home/user/thunderbird-profile.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "tar",
+          "--recursive-unlink",
+          "-xz",
+          "-f",
+          "/home/user/thunderbird-profile.tar.gz",
+          "-C",
+          "/home/user/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "/usr/bin/thunderbird"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "thunderbird",
+    "os"
+  ],
+  "evaluator": {
+    "func": "compare_images",
+    "result": {
+      "type": "vm_wallpaper",
+      "dest": "background.png"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/c2751594-0cd5-4088-be1b-b5f2f9ec97c4/background.png",
+      "dest": "gold_background.png"
+    },
+    "options": {
+      "reference_base_result": 0.54
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_images
+def compare_images(image1_path, image2_path, **options):
+    # You would call this function with the paths to the two images you want to compare:
+    # score = compare_images('path_to_image1', 'path_to_image2')
+    # print("Similarity score:", score)
+
+    if not image1_path or not image2_path:
+        return 0
+
+    base_score = options.get("reference_base_result", None)
+
+    # Open the images and convert to grayscale
+    image1 = Image.open(image1_path).convert('L')
+    image2 = Image.open(image2_path).convert('L')
+
+    # Resize images to the smaller one's size for comparison
+    image1_size = image1.size
+    image2_size = image2.size
+    new_size = min(image1_size, image2_size)
+
+    image1 = image1.resize(new_size, Image.Resampling.LANCZOS)
+    image2 = image2.resize(new_size, Image.Resampling.LANCZOS)
+
+    # Convert images to numpy arrays
+    image1_array = np.array(image1)
+    image2_array = np.array(image2)
+
+    # Calculate SSIM between two images
+    similarity_index = ssim(image1_array, image2_array)
+
+    epsilon = 0.01
+    if base_score is not None:
+        if similarity_index >= base_score + epsilon:
+            return (similarity_index - base_score) / (1 - base_score)
+        else:
+            return 0
+    else:
+        return similarity_index
+```
+
+## Task:
+
+Analyze the instruction: "Help me export the first image from the doc file attached in the most recent email in Notes folder, and set this image as the new desktop background."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+[IMAGE: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABdgAAAJyCAYAAADXb6IOAAAAAXNSR0IArs4c6QAAAIRlWElmTU0AKg...]

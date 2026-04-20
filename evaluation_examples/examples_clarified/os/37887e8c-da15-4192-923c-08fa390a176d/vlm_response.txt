@@ -1,0 +1,6 @@
+<thoughts>
+Key ambiguities: whether “30 days ago” means exactly 30 days or at least 30 days; whether to recurse into subdirectories; whether to compress files individually or create a single archive; what compression format/output is expected; and whether to operate on regular files only. The evaluator for similar NL2Bash tasks typically expects: recursive search under the given path, matching files with mtime exactly 30 days (find -mtime 30), and in‑place compression to .gz per file (not a tar/zip bundle). It likely checks that matching originals are replaced by .gz in the same locations.
+</thoughts>
+
+<answer>
+In the /tmp/test_files directory and all its subfolders, compress each regular file whose last modification time is exactly 30 days ago (not newer or older). Do this in place using gzip so each matching file becomes filename.ext.gz in the same directory (i.e., don’t create a single archive); leave non‑matching files as they are.

@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator compares the saved document at /home/user/Desktop/presentation_instruction_2023_Feb.docx against a gold .docx, so the edit must be applied to that exact file and saved in place (same name/path/format).
+- The comparison is case-sensitive and checks text content (paragraphs), so all uppercase letters must be converted to lowercase across the document, with no other textual changes (no added/removed words, reordering, or spacing changes).
+- The window name indicates LibreOffice Writer is used; keeping the tone natural is fine without prescribing steps.
+</thoughts>
+
+<answer>
+I’m working with the document at /home/user/Desktop/presentation_instruction_2023_Feb.docx in LibreOffice Writer and need all uppercase letters in its text converted to lowercase across the entire file. Please don’t change any wording, punctuation, spacing, or the order of content—just the letter case—and then save the changes back to the same .docx file at the same location. </answer>

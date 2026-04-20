@@ -1,0 +1,1 @@
+Could you please insert a single blank table with exactly 7 columns and 5 rows at the current text cursor (caret) position in /home/user/Desktop/Table_Of_Work_Effort_Instructions.docx, leave every cell empty (no text), don’t change anything else in the document, and save it to the same .docx file?

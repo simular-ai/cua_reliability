@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator opens and saves a specific file path/name: /home/user/Customers_New_7digit_Id.xlsx. The instruction should explicitly reference this file and that changes must be saved in place.
+- The evaluator compares the entire first sheet’s printed values to a gold sheet, so we must specify not to alter anything outside the target column, including headers, other columns/rows, formatting, blank areas, and sheet names/order.
+- The target column header is case-sensitive (“New 7 Digit ID”), while the original instruction used “Id.” We should match the actual header text.
+- To ensure printed values match (and survive CSV/print), the new IDs should be exactly seven characters with leading zeros and stored as text (no decimals), and rows with blank Old ID should remain blank in the new column.
+</thoughts>
+
+<answer>
+Please do this in the already opened file /home/user/Customers_New_7digit_Id.xlsx (Sheet1): take every number from the ‘Old ID’ column and put it into the ‘New 7 Digit ID’ column, padding with leading zeros so each entry is exactly seven digits (for example, 76 becomes 0000076). Make sure these new IDs are stored as text so the leading zeros are visible and there are no decimals, and leave the ‘New 7 Digit ID’ cell blank wherever ‘Old ID’ is blank. Don’t change anything else in the sheet—keep all headers, other columns/rows, formatting, blank areas, and the sheet itself exactly as they are. Save the changes to the same file when you’re done.

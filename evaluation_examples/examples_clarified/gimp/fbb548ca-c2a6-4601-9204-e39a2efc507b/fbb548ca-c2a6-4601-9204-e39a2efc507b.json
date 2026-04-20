@@ -1,0 +1,17 @@
+{
+  "id": "fbb548ca-c2a6-4601-9204-e39a2efc507b",
+  "snapshot": "gimp",
+  "instruction": "Blue is my favorite color\u2014could you change GIMP\u2019s color theme to \u201cBlue\u201d? If a built\u2011in \u201cBlue\u201d theme isn\u2019t available in this GIMP installation, please just let me know that it can\u2019t be done here (without installing anything or editing files) and, if you can, tell me the closest available theme by name.",
+  "source": "",
+  "config": [],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "gimp"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

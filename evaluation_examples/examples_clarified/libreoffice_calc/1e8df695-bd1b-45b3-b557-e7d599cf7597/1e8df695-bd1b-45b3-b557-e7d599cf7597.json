@@ -1,0 +1,85 @@
+{
+  "id": "1e8df695-bd1b-45b3-b557-e7d599cf7597",
+  "snapshot": "libreoffice_calc",
+  "instruction": "In /home/user/WeeklySales.xlsx (first worksheet), make sure there\u2019s a single column named \u201cProfit\u201d immediately to the right of the \u201cCOGS\u201d column\u2014so the columns read: Week, Sales, COGS, Profit (remove any empty/unnamed column like \u201cUnnamed: 2\u201d if it\u2019s there). Fill \u201cProfit\u201d with Sales minus COGS for each week as numeric values, then save the file back to /home/user/WeeklySales.xlsx.",
+  "source": "SheetCopilot@203",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/1e8df695-bd1b-45b3-b557-e7d599cf7597/WeeklySales.xlsx",
+            "path": "/home/user/WeeklySales.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/WeeklySales.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/1e8df695-bd1b-45b3-b557-e7d599cf7597",
+  "related_apps": [
+    "libreoffice_calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "WeeklySales.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/1e8df695-bd1b-45b3-b557-e7d599cf7597/6_WeeklySales_gt1.xlsx",
+      "dest": "6_WeeklySales_gt1.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/WeeklySales.xlsx",
+      "dest": "WeeklySales.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

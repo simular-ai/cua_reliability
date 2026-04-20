@@ -1,0 +1,85 @@
+{
+  "id": "abed40dc-063f-4598-8ba5-9fe749c0615d",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Work in /home/user/Names_Duplicate_Unique.xlsx (first worksheet) in LibreOffice Calc. From the column labeled \u201cNames with Duplicates,\u201d list each name\u2019s first occurrence only\u2014case and spacing exactly as shown\u2014and put that unique list as plain text into the \u201cUnique Names\u201d column, starting at the first data row below its header, as one contiguous block in the original order of appearance. Leave the remaining cells in \u201cUnique Names\u201d blank, and don\u2019t alter any other columns (including \u201cUnnamed: 0\u201d and \u201cUnnamed: 2\u201d), headers, rows, or sheet names, and don\u2019t add or remove sheets. Save the file in place as the same .xlsx when you\u2019re done. For reference: https://help.libreoffice.org/7.6/ro/text/scalc/guide/remove_duplicates.html?&DbPAR=SHARED&System=UNIX",
+  "source": "https://help.libreoffice.org/7.6/ro/text/scalc/guide/remove_duplicates.html?&DbPAR=SHARED&System=UNIX",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/abed40dc-063f-4598-8ba5-9fe749c0615d/Names_Duplicate_Unique.xlsx",
+            "path": "/home/user/Names_Duplicate_Unique.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Names_Duplicate_Unique.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/abed40dc-063f-4598-8ba5-9fe749c0615d",
+  "related_apps": [
+    "libreoffice calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Names_Duplicate_Unique.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/abed40dc-063f-4598-8ba5-9fe749c0615d/Names_Duplicate_Unique_gold.xlsx",
+      "dest": "Names_Duplicate_Unique_gold.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Names_Duplicate_Unique.xlsx",
+      "dest": "Names_Duplicate_Unique.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

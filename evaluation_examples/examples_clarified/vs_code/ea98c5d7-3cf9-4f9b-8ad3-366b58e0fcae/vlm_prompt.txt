@@ -1,0 +1,127 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "ea98c5d7-3cf9-4f9b-8ad3-366b58e0fcae",
+  "snapshot": "vscode",
+  "instruction": "Please help me remove the shortcut \"ctrl+f\" for Tree view Find (Explorer search) in VS Code Explorer view to avoid shortcut conflict.",
+  "source": [
+    "https://superuser.com/questions/1748097/vs-code-disable-tree-view-find-explorer-search",
+    "https://superuser.com/questions/1417361/how-to-disable-file-filtering-in-vs-code-sidebar-explorer?rq=1"
+  ],
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "code"
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Visual Studio Code"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vscode"
+  ],
+  "evaluator": {
+    "func": "check_json_keybindings",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": {
+          "key": "ctrl+f",
+          "command": "-list.find",
+          "when": "listFocus && listSupportsFind"
+        }
+      }
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/.config/Code/User/keybindings.json",
+      "dest": "keybindings.json"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_json_keybindings
+def check_json_keybindings(actual: str, expected: str, **options) -> float:
+    """
+    Args:
+        actual (str): path to result text file
+        expected (str): expected dict{}
+
+    Return:
+        float: the score
+    """
+
+    def direct_load_json(fp):
+        try:
+            with open(fp, 'r') as f:
+                data = json.load(f)
+            return data
+        except:
+            return None
+
+    def skip_first_line_load_json(fp):
+        try:
+            with open(fp, 'r') as f:
+                f.readline()
+                data = json.load(f)
+            return data
+        except:
+            return None
+
+    for func in [direct_load_json, skip_first_line_load_json]:
+        data = func(actual)
+        if data is not None and type(data) == list:
+            break
+    else:
+        return 0.0
+    expected = expected['expected']
+    if expected in data:
+        return 1.0
+    else:
+        return 0.0
+```
+
+## Task:
+
+Analyze the instruction: "Please help me remove the shortcut "ctrl+f" for Tree view Find (Explorer search) in VS Code Explorer view to avoid shortcut conflict."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator opens a specific file: wssf-project-plan-on-a-page.pptx in LibreOffice Impress.
+- The evaluator checks for a single PNG file at /home/user/Desktop/res.png and compares it to a reference image, implying export of just one slide (likely the first/current slide) with default PNG options.
+- The original instruction is ambiguous about which file and whether to export one slide or all slides.
+</thoughts>
+
+<answer>
+Please use LibreOffice Impress to export the open presentation wssf-project-plan-on-a-page.pptx as a single PNG of the first/current slide, and save it to the Desktop with the exact filename res.png. Just accept the default PNG export options.
+</answer>

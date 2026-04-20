@@ -1,0 +1,1 @@
+Could you open VLC and start playing this exact HLS URL as a network stream, making sure it’s actually playing (not paused)? https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8

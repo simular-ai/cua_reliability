@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator checks for a file at an exact path: /home/user/Desktop/log.txt. The original instruction says to save log.txt “in the same directory as the Python file,” which could place it in a subfolder if calculator.py isn’t directly on the Desktop. This would fail the check.
+- The evaluator compares the file contents exactly (case- and whitespace-sensitive). The instruction doesn’t state that the saved output should be the program’s stdout verbatim, with no extra text or blank lines.
+- The exact filename (log.txt, lowercase) and location (Desktop) need to be explicit to match the evaluator.
+</thoughts>
+
+<answer>
+Please complete calculator.py from the project on the Desktop, run it, and capture exactly what it prints to stdout. Save that output verbatim—no extra text or blank lines—into a plain text file named log.txt (all lowercase) placed directly on the Desktop at /home/user/Desktop/log.txt (not inside any subfolder).

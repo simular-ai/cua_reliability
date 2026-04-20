@@ -1,0 +1,1 @@
+Help me download and install the Orchis theme from gnome-look.org and switch my GNOME Applications (GTK) theme to it. I don’t need icons or the shell theme changed—just make sure the active GTK theme is an Orchis variant so that running gsettings get org.gnome.desktop.interface gtk-theme returns a value containing “Orchis.”

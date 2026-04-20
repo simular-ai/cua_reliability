@@ -1,0 +1,1 @@
+I want to switch on Bluetooth on this Ubuntu system. If you can’t actually do that in this virtual environment (e.g., no Bluetooth hardware or permission to toggle it), please just let me know it isn’t possible here and tell me what I’d normally do to turn it on.

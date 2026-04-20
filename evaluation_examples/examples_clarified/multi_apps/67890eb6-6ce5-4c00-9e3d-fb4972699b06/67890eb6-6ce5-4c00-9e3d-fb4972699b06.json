@@ -1,0 +1,113 @@
+{
+  "id": "67890eb6-6ce5-4c00-9e3d-fb4972699b06",
+  "snapshot": "libreoffice_calc",
+  "instruction": "I\u2019m looking for the ACL main conference Best Paper Award (Long) winners for 2019\u20132022\u2014one winning paper per year, excluding honorable mentions, short-paper awards, workshops, and Findings. Please use the ACL Anthology (https://aclanthology.org/) and enter the results in the existing Desktop file best_awards_acl.xlsx, on the first sheet. Use the header row exactly as: title, year, author list, PDF link (in that order, starting at A1). List full author names in their original order, separated only by commas (no \u201cand\u201d or semicolons). For the PDF link, use the direct ACL Anthology PDF URL ending in .pdf (not arXiv or the landing page). Sort the rows by year in descending order (2022, 2021, 2020, 2019). Save the file in place without renaming or moving it.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/67890eb6-6ce5-4c00-9e3d-fb4972699b06/best_awards_acl.xlsx",
+            "path": "/home/user/Desktop/best_awards_acl.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/best_awards_acl.xlsx"
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://aclanthology.org/"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_calc",
+    "chrome"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "best_awards_acl.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/best_awards_acl.xlsx",
+      "dest": "best_awards_acl.xlsx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/67890eb6-6ce5-4c00-9e3d-fb4972699b06/gold_best_awards_acl.xlsx",
+      "dest": "gold_best_awards_acl.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

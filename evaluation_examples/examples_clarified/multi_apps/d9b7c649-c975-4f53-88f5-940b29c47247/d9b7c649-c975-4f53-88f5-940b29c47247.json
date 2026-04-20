@@ -1,0 +1,71 @@
+{
+  "id": "d9b7c649-c975-4f53-88f5-940b29c47247",
+  "snapshot": "thunderbird",
+  "instruction": "Please use the Thunderbird profile that\u2019s provided, go to the mail folder named \u201cdaily\u201d (under Local Folders in that profile), take the five most recent messages by received date/time from that folder, then list those five in ascending order (earliest to latest among the five). Create an Excel workbook (xlsx, not ods) named report.xlsx on the Desktop at /home/user/Desktop/report.xlsx. Put the table on the first sheet, starting at A1, with a header row exactly in this order and spelling: sender_name, sender_address, subject, CC, number_of_attachments. For sender_name use the display name from the From header; for sender_address use only the email address (no angle brackets or name). For CC, include email addresses only, comma-separated if there are multiple, and leave it blank if none. For number_of_attachments, write the integer count of attachments for each message. Include exactly these five rows (no extra rows).",
+  "source": "https://marketplace.uipath.com/listings/extract-the-first-1000-gmail-emails-from-the-current-month-in-a-new-google-sheets-report",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/d9b7c649-c975-4f53-88f5-940b29c47247/thunderbird-profile.tar.gz",
+            "path": "/home/user/thunderbird-profile.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "tar",
+          "-xz",
+          "--recursive-unlink",
+          "-f",
+          "/home/user/thunderbird-profile.tar.gz",
+          "-C",
+          "/home/user/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "/usr/bin/thunderbird"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "thunderbird",
+    "libreoffice_calc"
+  ],
+  "evaluator": {
+    "func": "compare_table",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/report.xlsx",
+      "dest": "report.xlsx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/d9b7c649-c975-4f53-88f5-940b29c47247/report.xlsx",
+      "dest": "report_gold.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": "RI0",
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

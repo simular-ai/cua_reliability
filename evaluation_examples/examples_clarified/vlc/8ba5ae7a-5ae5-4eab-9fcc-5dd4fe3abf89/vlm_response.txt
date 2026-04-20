@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator looks for a non-commented line in VLC’s vlcrc config file where the key input-record-path equals exactly /home/user/Desktop (no quotes, no trailing slash). The original instruction doesn’t specify the exact key name, file, or the exact path string, which could cause a mismatch. We should minimally clarify that the change should be made in vlcrc, using the input-record-path key, set exactly to /home/user/Desktop, and ensure it’s an active (non-commented) setting.
+</thoughts>
+
+<answer>
+Please change VLC so that new recordings go to my Desktop by setting the input-record-path in the vlcrc config to exactly /home/user/Desktop (no quotes, not commented out).
+</answer>

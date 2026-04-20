@@ -1,0 +1,1 @@
+Using only GIMP (no external plugins or other apps), please convert the image at /home/user/logo.png into a true vector SVG (not an SVG that just embeds the bitmap) and save it as /home/user/logo.svg. If GIMP can’t do this natively, just let me know.

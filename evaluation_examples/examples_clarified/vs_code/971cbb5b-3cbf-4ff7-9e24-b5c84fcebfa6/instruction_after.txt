@@ -1,0 +1,1 @@
+Please help me set this up using only VS Code’s built-in settings (no extensions and no external scripts or command-line flags) so that every time I open VS Code it automatically creates and saves a Python file named “test.py.” If this isn’t possible with settings alone, please tell me it can’t be done and why, and suggest the closest built-in alternative behavior.

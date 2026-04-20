@@ -1,0 +1,11 @@
+<thoughts>
+- The evaluator reads /home/user/Desktop/AllLocations.docx and only scores if there are exactly 3 non-empty “words” (they split on whitespace), so the document must contain exactly three lines with no extra tokens.
+- It matches each whole line against a list of expected Futian District 24-hour self-service check-in machine addresses in Chinese; extra text, numbering, bullets, or spaces would increase the token count and fail the check.
+- The file name and location are fixed: AllLocations.docx on the Desktop, and the evaluator saves the same file. The instruction should explicitly confirm saving to that same file.
+- The content must be in Chinese (Simplified), and only the addresses should be present.
+</thoughts>
+
+<answer>
+I’m a Chinese citizen planning to go to Macau for a concert and haven’t applied for the visa yet. I live in Futian District, Shenzhen. I heard there are 24-hour self-service check-in machines in Shenzhen. Please help me find three (3) addresses of 24-hour self-service check-in machines located in Futian District and put them into the currently open document named “AllLocations.docx” on my Desktop.
+
+Please write the addresses in Simplified Chinese, with each address alone on its own line, and don’t add any other text, numbering, bullets, or extra spaces before/after. The document should contain only these three lines. Save the changes to the same file.

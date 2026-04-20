@@ -1,0 +1,16 @@
+<thoughts>
+The evaluator compares the data of the first sheet in /home/user/exam/grades.xlsx against a golden sheet, requiring exact equality. Ambiguities in the original instruction:
+- It doesn’t name the specific files or paths the agent should use.
+- It doesn’t specify which sheet to edit, or to avoid adding/reordering sheets.
+- It doesn’t define the per-question marking convention (1/0) or how to compute Total Grade.
+- It doesn’t caution against using formulas versus numeric values.
+- It doesn’t stress keeping the exact headers and structure and not adding extra rows/columns.
+To align with the evaluator, the clarified instruction must specify: use /home/user/exam/ReferenceAnswers.docx and /home/user/exam/grades.xlsx; work on the first worksheet only; keep the header exactly as “Student ID, Student Name, Q1, …, Q10, Total Grade”; enter 1/0 for Q columns; Total Grade = number of correct answers × 10; enter numeric results (not formulas); don’t add/rename/reorder sheets or alter structure; save back to the same file path.
+</thoughts>
+
+<answer>
+I’m grading these multiple‑choice English exams and need help finishing the detailed scoring. Please use the answer key in /home/user/exam/ReferenceAnswers.docx and complete the remaining students in the spreadsheet that’s already open in LibreOffice Calc (/home/user/exam/grades.xlsx).
+
+On the first worksheet, keep the existing header row exactly as: “Student ID, Student Name, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Total Grade”. For each listed student, mark each question column (Q1–Q10) with 1 for a correct answer and 0 for an incorrect answer based on the key. Then set “Total Grade” to the number of correct answers × 10 (out of 100) and enter the final numeric value (not a formula). Leave any rows that are already correct as they are.
+
+Please don’t add, rename, or reorder any sheets, don’t change the column names or order, and don’t insert extra rows or columns. Save your changes back to the same file path (/home/user/exam/grades.xlsx) without renaming or moving it.

@@ -1,0 +1,85 @@
+{
+  "id": "37608790-6147-45d0-9f20-1137bb35703d",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Please do this in the already opened workbook \u201cEmployee_Roles_and_Ranks.xlsx\u201d (first worksheet). Leave the \u201cEmployee Data\u201d column and all headers exactly as they are, and fill the existing columns titled \u201cFirst Name\u201d, \u201cLast Name\u201d, and \u201cRank\u201d for every row.\n\nSplit each entry in \u201cEmployee Data\u201d by spaces so that the first word is the First Name, the second word is the Last Name, and everything after the second word is the Rank. Keep the original capitalization and spelling when you copy into those columns. Don\u2019t insert, delete, or reorder any rows, columns, or sheets, and don\u2019t rename anything\u2014just populate those three columns with plain values. When you\u2019re done, save the changes to the same file name (Employee_Roles_and_Ranks.xlsx).",
+  "source": "https://www.youtube.com/shorts/uzPo_CPCHH8",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/37608790-6147-45d0-9f20-1137bb35703d/Employee_Roles_and_Ranks.xlsx",
+            "path": "/home/user/Employee_Roles_and_Ranks.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Employee_Roles_and_Ranks.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/37608790-6147-45d0-9f20-1137bb35703d",
+  "related_apps": [
+    "libreoffice calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "Employee_Roles_and_Ranks.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/37608790-6147-45d0-9f20-1137bb35703d/Employee_Roles_and_Ranks_gold.xlsx",
+      "dest": "Employee_Roles_and_Ranks_gold.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Employee_Roles_and_Ranks.xlsx",
+      "dest": "Employee_Roles_and_Ranks.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

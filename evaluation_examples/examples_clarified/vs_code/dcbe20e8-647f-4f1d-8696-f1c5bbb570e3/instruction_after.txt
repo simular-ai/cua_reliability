@@ -1,0 +1,1 @@
+I want to set a photo from my Downloads as the VS Code editor background image. If that isn’t supported here without installing extensions or custom CSS, please let me know it’s not feasible in this environment and suggest any workable alternatives (like changing the color theme).

@@ -1,0 +1,72 @@
+{
+  "id": "81c425f5-78f3-4771-afd6-3d2973825947",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Please take the entire used range (including headers) from the active sheet of the currently open spreadsheet \u201cOSP_Envelope_Price-List_2023_5000.xlsx\u201d in LibreOffice Calc and insert it into a blank LibreOffice Writer document as one table. Keep the cell text and the row/column structure exactly the same as in Calc (no extra or missing rows/columns and no altered cell text), and preserve the original formatting as much as Writer allows. Save it as a Microsoft Word .docx named \u201cprice.docx\u201d directly on the Desktop (/home/user/Desktop/price.docx), and leave the document open in LibreOffice Writer.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "path": "/home/user/Desktop/OSP_Envelope_Price-List_2023_5000.xlsx",
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/81c425f5-78f3-4771-afd6-3d2973825947/OSP_Envelope_Price-List_2023_5000.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/OSP_Envelope_Price-List_2023_5000.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/81c425f5-78f3-4771-afd6-3d2973825947",
+  "related_apps": [
+    "libreoffice_writer",
+    "libreoffice_calc",
+    "os"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "price.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey(\"ctrl\", \"s\"); time.sleep(0.5);"
+          ]
+        }
+      }
+    ],
+    "func": "compare_docx_tables",
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/price.docx",
+      "dest": "price.docx"
+    },
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/81c425f5-78f3-4771-afd6-3d2973825947/price.docx",
+      "dest": "price_Gold.docx"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

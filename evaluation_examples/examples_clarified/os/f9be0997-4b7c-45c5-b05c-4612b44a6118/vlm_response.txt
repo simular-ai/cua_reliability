@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks the GNOME gsettings key org.gnome.desktop.notifications show-banners and expects it to be false.
+- The original instruction doesn’t specify the desktop environment (GNOME) or the exact setting that should change.
+- To align with the evaluator, clarify that Do Not Disturb should disable notification banners specifically, resulting in show-banners = false.
+- Keep the tone conversational and avoid procedural steps; only state the desired end state.
+</thoughts>
+
+<answer>
+I’m on Ubuntu with GNOME and I want “Do Not Disturb” enabled so notification pop-up banners are turned off. Please switch it on so that the org.gnome.desktop.notifications show-banners setting ends up set to false.

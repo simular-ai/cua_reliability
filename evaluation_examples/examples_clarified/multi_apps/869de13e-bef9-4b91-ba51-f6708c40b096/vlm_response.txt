@@ -1,0 +1,28 @@
+<thoughts>
+The evaluator checks for exact filenames placed into three specific Desktop folders, with no extra items in each. The current instruction doesn’t specify which files count as “academic papers” vs “coding projects,” nor does it name the exact unzipped project folder names. It also doesn’t clarify that only those five particular PDFs should go into Paper_reading, that the two unzipped directories (with their exact names) go into Projects, and that the remaining listed files go into Miscellaneous. The evaluator also relies on exact filenames, including spaces and punctuation, and the folders are under /home/user/Desktop. Minimal clarifications need to enumerate the exact files per folder and emphasize not renaming anything.
+</thoughts>
+
+<answer>
+Could you organize the items on my Desktop (/home/user/Desktop) into the three folders there—Paper_reading, Projects, and Miscellaneous—without renaming anything (keep every filename exactly as is, including spaces and punctuation)?
+
+- Treat the following as academic papers and place them (and only these) into /home/user/Desktop/Paper_reading:
+  1706.03762.pdf
+  1802.05365.pdf
+  1909.10351.pdf
+  GLUE: A MULTI-TASK BENCHMARK AND ANALYSIS.pdf
+  paper01.pdf
+
+- Treat the two unzipped project folders as coding projects and place these folders (not their individual files) into /home/user/Desktop/Projects:
+  2-if-for-array
+  assign1-data_python3
+
+- Put everything else currently on the Desktop into /home/user/Desktop/Miscellaneous, specifically:
+  07-cluster-kMean (1).ppt
+  2023_validation_7bd855d8-463d-4ed5-93ca-5fe35145f733.xlsx
+  assignment_mark_frontpage.docx
+  cco-return-to-school-survey-underlying-data-tables.xlsx
+  DOC_2480903712718068684.pdf
+  Family Status Equality-Eng (Aug 2021).pdf
+  IA_Format.docx
+
+If anything not listed above appears ambiguous (e.g., lacks a clear extension), use content analysis to decide—but for the files present here, please follow the exact categorization above.

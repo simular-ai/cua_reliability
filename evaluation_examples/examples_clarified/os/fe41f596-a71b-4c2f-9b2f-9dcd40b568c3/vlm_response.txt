@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator is “infeasible,” which typically means the environment doesn’t have a battery (e.g., VM/desktop), so the agent should recognize and explain it’s not possible here.
+- The original instruction doesn’t specify the OS or where on screen to show the percentage; the linked Ubuntu help page implies Ubuntu/GNOME and the top bar next to the battery icon.
+- No files/paths are involved, so no need to add any.
+- Minimal clarifications: specify Ubuntu, the top bar location, keep the link, and explicitly invite the assistant to acknowledge infeasibility if no battery is detected.
+</thoughts>
+
+<answer>
+I’m on Ubuntu and want the battery percentage to show in the top bar next to the battery icon (not just the icon). I’m looking at this page for reference: https://help.ubuntu.com/lts/ubuntu-help/power-percentage.html.en. If this system doesn’t have a detectable battery (e.g., it’s a VM or desktop), please let me know it isn’t possible here and tell me what I’d normally change to enable it.

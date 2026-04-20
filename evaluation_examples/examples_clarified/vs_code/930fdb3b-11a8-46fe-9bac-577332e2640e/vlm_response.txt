@@ -1,0 +1,15 @@
+<thoughts>
+- The evaluator looks for a specific JSON object inside the user keybindings list, not just any shortcut.
+- It requires the exact command "workbench.action.focusActiveEditorGroup" with the "when" clause "terminalFocus".
+- It checks a specific file path: /home/user/.config/Code/User/keybindings.json.
+- The file must be valid JSON and a list (array) containing that exact object; key must be exactly "ctrl+j".
+- UI changes alone wouldn’t be detected; the change must be present in that file.
+</thoughts>
+
+<answer>
+Please set up a VS Code user keybinding so that pressing ctrl+j moves focus from the integrated terminal to the active editor. Add this exact entry to my user keybindings file at /home/user/.config/Code/User/keybindings.json (the file should be a valid JSON array and include this object):
+
+{ "key": "ctrl+j", "command": "workbench.action.focusActiveEditorGroup", "when": "terminalFocus" }
+
+It’s fine if this overrides a conflicting default. Reference: https://superuser.com/questions/1270103/how-to-switch-the-cursor-between-terminal-and-code-in-vscode
+</answer>

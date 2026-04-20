@@ -1,0 +1,14 @@
+<thoughts>
+- The evaluator zips every PDF in /home/user/Desktop/book and compares both the filenames and the PDF contents against a gold set.
+- So the output must be: one PDF per chapter, saved directly in /home/user/Desktop/book (no subfolders), with filenames that exactly match a specific naming pattern.
+- If any extra PDFs remain (like the original full book), the file list will differ and the evaluation will fail.
+- The naming must follow the Chapter 1 example exactly (including capitalization, punctuation, spacing, and any leading zeros).
+- The source book being opened is “Spectral Graph Theory.pdf”, so the split should be performed on that file, using chapter boundaries (e.g., TOC/bookmarks).
+</thoughts>
+
+<answer>
+I’m reading this in LibreOffice/your PDF tools from the “Spectral Graph Theory.pdf” in /home/user/Desktop/book. Please split the entire book into one PDF per chapter, using the chapter boundaries from the table of contents/bookmarks, and don’t change the content—just split it.
+
+Name each chapter file exactly the same way I’ve already named Chapter 1 (match the wording, capitalization, punctuation, spacing, and any numbering/leading zeros). Save all the chapter PDFs directly into /home/user/Desktop/book, not in any subfolders.
+
+When you’re done, that folder should contain only the per‑chapter PDFs with those exact names—don’t leave an extra copy of the full book PDF or any other PDFs there.

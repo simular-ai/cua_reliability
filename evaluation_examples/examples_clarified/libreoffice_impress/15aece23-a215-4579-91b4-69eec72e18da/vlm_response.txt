@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares the modified file at /home/user/Desktop/134_2.pptx to an original and only allows the title on slide 2 to move downward; all other shapes, text, and slides must remain unchanged.
+- It specifically looks for the title text “Product Comparison” and checks that it’s moved to the bottom region (significantly lower than before), without altering its text or formatting.
+- The task must be performed on slide 2 (“page 2”), and the file must be saved in place (same path and name).
+</thoughts>
+
+<answer>
+Open /home/user/Desktop/134_2.pptx and, on slide 2 (page 2), move the title text box that says “Product Comparison” down to the bottom of the slide (near the lower edge). Don’t change its text, size, or formatting, and leave everything else on all slides exactly as is. Save the changes to the same file at /home/user/Desktop/134_2.pptx.
+</answer>

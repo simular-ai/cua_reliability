@@ -1,0 +1,7 @@
+<thoughts>
+- The evaluator compares the edited /home/user/Desktop/16_2.pptx against 16_2_Gold.pptx and is strict about: slide background color (solid RGB), all text runs’ font size and color (including text in tables), number of slides/shapes, text content, alignment, and other font attributes (name, bold/italic/underline). It also checks that shapes aren’t moved/resized, slides/notes aren’t altered, and changes are saved to the same file.
+- Ambiguities to clarify: what “content” covers (must include all visible text, including tables); units for font size (points); exact color targets (solid fills with specific RGBs); scope (the existing slide only, not the master); and to avoid changing other attributes or layout. Also confirm saving back to the same path/filename.
+</thoughts>
+
+<answer>
+Please open /home/user/Desktop/16_2.pptx in LibreOffice Impress and, on the existing slide, set all visible text—this includes any placeholders, text boxes, and any text inside tables—to 12 pt and change its font color to orange (use a solid “Orange” swatch; RGB FFA500). Then change this slide’s background fill to a solid red (RGB FF0000). Don’t alter the wording, font family, bold/italic/underline, alignment, bullets, the number/position/size of shapes, the slide master, or any speaker notes—only update the text’s size/color and this slide’s background. When you’re done, save the changes back to /home/user/Desktop/16_2.pptx (same file, no new slides).

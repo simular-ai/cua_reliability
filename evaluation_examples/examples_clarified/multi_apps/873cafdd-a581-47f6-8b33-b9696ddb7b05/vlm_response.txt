@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks for five specific Chrome extensions by exact name, but the original instruction doesn’t spell them out.
+- It also doesn’t point to where the “listed plug-ins” are stored; the task downloads a DOCX to the Desktop.
+- “Plug-ins” could be ambiguous; the evaluator expects Chrome extensions installed in the current Chrome profile.
+- To avoid mismatches, the exact extension names should be specified and installed from the Chrome Web Store, and enabled.
+</thoughts>
+
+<answer>
+My friend (the “plugin guru”) put his picks in the document on my Desktop (Recommended_plugin_list.docx). From the Chrome Web Store, please install and enable every extension on that list in this Chrome profile—specifically these by exact name: Zoom Chrome Extension; Speechify Text to Speech Voice Reader; React Developer Tools; Momentum; and Google Translate. Ignore similarly named items and use the exact names above.

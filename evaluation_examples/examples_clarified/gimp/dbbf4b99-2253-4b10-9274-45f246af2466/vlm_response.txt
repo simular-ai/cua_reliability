@@ -1,0 +1,9 @@
+<thoughts>
+- The original instruction doesn’t specify which “raw image.” From the setup, the file is /home/user/Desktop/yicun.raw.
+- It doesn’t say where to save the JPEG or what to name it. Clarifying a concrete output location and filename avoids ambiguity.
+- The evaluator is marked as infeasible, but adding exact file path and expected output name/location keeps the instruction precise without changing intent.
+</thoughts>
+
+<answer>
+Please convert the raw image at /home/user/Desktop/yicun.raw to a JPEG and save it on the Desktop as yicun.jpg.
+</answer>

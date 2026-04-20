@@ -1,0 +1,1 @@
+Can you create a new top‑level folder on the Google Chrome bookmarks bar named exactly Favorites (no quotes and no period), and make sure it’s the only folder on the bookmarks bar when you’re done?

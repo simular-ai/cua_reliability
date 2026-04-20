@@ -1,0 +1,20 @@
+{
+  "id": "6d72aad6-187a-4392-a4c4-ed87269c51cf",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Could you convert an OpenOffice/LibreOffice Impress presentation to a video file (MP4) without using screen recording, and then play the resulting video in VLC? If that isn\u2019t possible with the tools available in this environment, please just explain that it\u2019s not feasible here.",
+  "source": "https://superuser.com/questions/923171/converting-openoffice-impress-presentation-to-video-without-screen-recording",
+  "config": [],
+  "trajectory": "trajectories/6d72aad6-187a-4392-a4c4-ed87269c51cf",
+  "related_apps": [
+    "libreoffice_calc",
+    "libreoffice_impress",
+    "libreoffice_writer",
+    "vlc"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

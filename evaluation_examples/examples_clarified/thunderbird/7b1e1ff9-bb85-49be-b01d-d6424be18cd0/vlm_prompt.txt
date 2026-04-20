@@ -1,0 +1,154 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "7b1e1ff9-bb85-49be-b01d-d6424be18cd0",
+  "snapshot": "thunderbird",
+  "instruction": "Could you help me open up the profile management tabpage in Thunderbird? I want the profile management tabpage inside Thunderbird app, but not the profile chooser dialog during app launch.",
+  "source": "https://www.quora.com/How-do-I-open-a-Thunderbird-profile-manager-utility",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/thunderbird/dd84e895-72fd-4023-a336-97689ded257c/thunderbird-profile.tar.gz",
+            "path": "/home/user/Desktop/thunderbird-profile.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "tar",
+          "-xzv",
+          "-f",
+          "/home/user/Desktop/thunderbird-profile.tar.gz",
+          "-C",
+          "/home/user/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "/usr/bin/thunderbird"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "thunderbird"
+  ],
+  "evaluator": {
+    "result": {
+      "type": "accessibility_tree"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": [
+        {
+          "selectors": [
+            "application[name=Thunderbird] page-tab-list[attr|id=\"tabmail-tabs\"]>page-tab[name=\"About Profiles\"]"
+          ]
+        }
+      ]
+    },
+    "func": "check_accessibility_tree"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_accessibility_tree
+def check_accessibility_tree(result: str, rules: List[Dict[str, Any]], osname: str = "ubuntu") -> float:
+    """
+    Args:
+        result (str): XML of GNOME Accessibility Tree
+        rules (List[Dict[str, Any]]): list of dict like
+          {
+            "selectors": list of str as CSS selectors, will be connected by ", "
+              to form a composite selector. Only one from `selectors` and
+              `xpath` is needed. If both are present, `xpath` takes the
+              priority.
+            "xpath": str as xpath. Only one from `selectors` and `xpath` is
+              needed. If both are present, `xpath` takes the priority.
+            "text": str as the expected text content of the selected element.
+            "exact": bool specifying whether exact match or fuzzy match should
+              be performed. defaults to True.
+          }
+        osname (str): "ubuntu" | "windows" | "macos". "ubuntu" by default.
+
+    Returns:
+        float
+    """
+
+    a11y_ns_map = _accessibility_ns_map[osname]
+
+    at: _Element = lxml.etree.fromstring(result)
+    total_match_score = 1.
+    for r in rules:
+        if "xpath" in r:
+            elements: List[_Element] = at.xpath(r["xpath"], namespaces=a11y_ns_map)
+        elif "selectors" in r:
+            selector = CSSSelector(", ".join(r["selectors"]), namespaces=a11y_ns_map)
+            elements: List[_Element] = selector(at)
+        else:
+            raise ValueError("At least one of xpath and selectors is required")
+
+        if len(elements) == 0:
+            logger.info("No elements: %s", r["xpath"] if "xpath" in r else r["selectors"])
+            return 0.
+
+        if "text" in r:
+            match_func: Callable[[str], Number] = functools.partial(operator.eq if r["exact"] \
+                                                                        else (lambda a, b: fuzz.ratio(a, b) / 100.)
+                                                                    , r["text"]
+                                                                    )
+            match_score: Number = 0
+            for elm in elements:
+                match_score = max(match_score, match_func(elm.text or None))
+        else:
+            match_score = 1.
+        total_match_score *= match_score
+
+    return float(total_match_score)
+```
+
+## Task:
+
+Analyze the instruction: "Could you help me open up the profile management tabpage in Thunderbird? I want the profile management tabpage inside Thunderbird app, but not the profile chooser dialog during app launch."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

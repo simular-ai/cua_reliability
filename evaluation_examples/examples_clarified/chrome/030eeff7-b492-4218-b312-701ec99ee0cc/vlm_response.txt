@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator checks whether Chrome’s global “Do Not Track” setting is enabled and persists after Chrome is relaunched. The original instruction doesn’t specify the exact setting label, that it should be enabled at the browser level (not per-site), or that it must remain on after a restart. Adding these clarifications aligns the request with what the evaluator verifies without turning it into steps.
+</thoughts>
+
+<answer>
+Could you turn on Chrome’s built-in Do Not Track setting—specifically the toggle labeled “Send a ‘Do Not Track’ request with your browsing traffic”—in this Chrome instance’s browser settings (not just for a single site), and make sure it stays enabled even after Chrome is relaunched?
+</answer>

@@ -1,0 +1,1 @@
+Could you add the “Dissolve” slide transition to the first slide of /home/user/Desktop/Ch4 Video Effect.pptx (in LibreOffice Impress) and save the changes to the same .pptx file?

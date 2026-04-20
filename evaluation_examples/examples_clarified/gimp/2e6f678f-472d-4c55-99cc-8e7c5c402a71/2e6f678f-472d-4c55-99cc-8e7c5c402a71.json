@@ -1,0 +1,45 @@
+{
+  "id": "2e6f678f-472d-4c55-99cc-8e7c5c402a71",
+  "snapshot": "gimp",
+  "instruction": "Please batch process the three images on /home/user/Desktop\u2014squirrel.jpeg, panda.jpeg, and heron.jpeg\u2014by applying GIMP\u2019s Brightness/Contrast filter with Brightness set to +50 (leave Contrast at 0) to all of them in one batch run, rather than adjusting each individually, and save the changes back to the same files on the Desktop without renaming or changing formats.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/2e6f678f-472d-4c55-99cc-8e7c5c402a71/squirrel.jpeg",
+            "path": "/home/user/Desktop/squirrel.jpeg"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/2e6f678f-472d-4c55-99cc-8e7c5c402a71/panda.jpeg",
+            "path": "/home/user/Desktop/panda.jpeg"
+          },
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/gimp/2e6f678f-472d-4c55-99cc-8e7c5c402a71/heron.jpeg",
+            "path": "/home/user/Desktop/heron.jpeg"
+          }
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "gimp"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "gimp"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator parses the active tab URL for Ryanair-style parameters: origin and destination IATA codes (DUB, VIE), number of adults, teens, and children, the outbound date as a relative “10th next month,” and that it’s a one-way trip (isReturn=false). The original instruction doesn’t specify teens/children counts and doesn’t mention using Ryanair, which may lead to missing or mismatched URL parameters. Minimal clarifications are to state no teens or children, and to use the Ryanair website, while keeping the natural tone and not adding extra constraints beyond what’s evaluated.
+</thoughts>
+
+<answer>
+On the Ryanair website (ryanair.com), search for a one‑way flight from Dublin (DUB) to Vienna (VIE) on the 10th of next month for 2 adults, with no teens or children.

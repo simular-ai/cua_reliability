@@ -1,0 +1,100 @@
+{
+  "id": "04578141-1d42-4146-b9cf-6fab4ce5fd74",
+  "snapshot": "libreoffice_impress",
+  "instruction": "Open /home/user/Desktop/45_2.pptx and make this change only on slide 1: there are three text boxes arranged top to bottom\u2014set the font color of all the text in the top box to Yellow, the middle box to Red, and the bottom box to Green. Use the standard \u201cYellow\u201d, \u201cRed\u201d, and \u201cGreen\u201d color swatches (no tints/shades or theme variations), and apply the color to all paragraphs/runs in each box.\n\nDon\u2019t change anything else: keep the text itself, font name/size, bold/italic/underline, bullets, alignment, positions/sizes of shapes, slide background/layout, and slide notes exactly as they are; don\u2019t add or remove any shapes or slides. Save your changes back to the same file at /home/user/Desktop/45_2.pptx.",
+  "source": "https://arxiv.org/pdf/2311.01767.pdf",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/04578141-1d42-4146-b9cf-6fab4ce5fd74/45_2.pptx",
+            "path": "/home/user/Desktop/45_2.pptx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "sleep",
+      "parameters": {
+        "seconds": 5
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/45_2.pptx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_impress"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "45_2.pptx - LibreOffice Impress",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5);"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 5
+        }
+      }
+    ],
+    "func": [
+      "compare_pptx_files",
+      "compare_pptx_files"
+    ],
+    "conj": "or",
+    "expected": [
+      {
+        "type": "cloud_file",
+        "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/04578141-1d42-4146-b9cf-6fab4ce5fd74/45_2_Gold.pptx",
+        "dest": "45_2_Gold.pptx"
+      },
+      {
+        "type": "cloud_file",
+        "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_impress/04578141-1d42-4146-b9cf-6fab4ce5fd74/45_2_Gold_all_fonts.pptx",
+        "dest": "45_2_Gold_All_fonts.pptx"
+      }
+    ],
+    "result": [
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/45_2.pptx",
+        "dest": "45_2.pptx"
+      },
+      {
+        "type": "vm_file",
+        "path": "/home/user/Desktop/45_2.pptx",
+        "dest": "45_2.pptx"
+      }
+    ]
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator checks whether VLC’s global play/pause hotkey is configured by verifying that the “global-key-play-pause=” entry in VLC’s vlcrc config file is non-empty. The original request doesn’t explicitly say “global” or mention persisting the setting in vlcrc, nor does it specify a key to assign. To align with the evaluator, I’ll clarify that the play/pause shortcut must work when VLC isn’t focused (global), should be saved to VLC’s vlcrc (~/.config/vlc/vlcrc) so it persists after restart, and can be bound to a concrete key (e.g., the media Play/Pause key or Ctrl+Alt+Space). I’ll keep the tone conversational and avoid steps.
+</thoughts>
+
+<answer>
+I’m reading a lecture PDF while VLC plays in the background, and I don’t want to switch apps just to pause or resume. Could you configure VLC so that play/pause works via a global keyboard shortcut even when VLC isn’t the active window, without minimizing the PDF reader? Please set VLC’s Global Play/Pause hotkey (not the regular one) to a sensible key like the media Play/Pause key or Ctrl+Alt+Space, and save it so it persists across restarts (i.e., written to VLC’s vlcrc at ~/.config/vlc/vlcrc, updating the global-key-play-pause entry). Here’s the related post for context: https://superuser.com/questions/1708415/pause-and-play-vlc-in-background?rq=1

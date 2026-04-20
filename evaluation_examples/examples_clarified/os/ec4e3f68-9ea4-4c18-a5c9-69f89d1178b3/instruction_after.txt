@@ -1,0 +1,1 @@
+Please update the GNOME Shell favorites (org.gnome.shell favorite-apps) to remove Vim—i.e., delete 'vim.desktop'—so the favorites list contains only 'thunderbird.desktop' and 'google-chrome.desktop'.

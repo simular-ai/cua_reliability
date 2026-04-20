@@ -1,0 +1,14 @@
+<thoughts>
+- The evaluator only checks the exact contents of /home/user/Desktop/res.txt against a gold file, with case and spacing sensitive.
+- The current instruction doesn’t specify what “output” should look like, so the precise text expected in res.txt must be clarified.
+- The document name casing in the environment is “Bubble_Sort_tutorial.docx,” not “bubble_Sort_tutorial.docx.”
+- It helps to state the exact path and that res.txt must be a plain text file with no extra spaces or blank lines.
+</thoughts>
+
+<answer>
+I’m working on my algorithm practice using the “Bubble_Sort_tutorial.docx” on the Desktop. Please help me finish the bubbleSort function in the bubbleSort.py from the project extracted on my Desktop, and then save the result as a plain text file named “res.txt” at /home/user/Desktop/res.txt. For grading, res.txt needs to contain exactly two lines:
+
+Sorted array:
+11 12 22 25 34 64 90
+
+Please match that wording, capitalization, spacing, and line breaks exactly, with no extra spaces or blank lines.

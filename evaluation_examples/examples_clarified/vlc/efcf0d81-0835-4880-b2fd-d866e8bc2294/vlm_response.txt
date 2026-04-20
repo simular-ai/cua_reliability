@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks the VM’s desktop wallpaper image against a specific reference, so the instruction must specify the exact video source, the exact moment/frame, and that the result is a static wallpaper.
+- The config opens VLC to 120.5–121s; without a timestamp the phrase “this part of the video” is ambiguous.
+- To match the reference, the captured frame should be the clean video frame (no player UI/title) and applied as the desktop wallpaper on Ubuntu without cropping.
+- The evaluator does not check any saved file path; it only inspects the wallpaper, so no extra file-naming is needed.
+</thoughts>
+
+<answer>
+From the Interstellar Movie – Official Trailer video saved at /home/user/Desktop/Interstellar Movie - Official Trailer.mp4 (same video as https://www.youtube.com/watch?v=XHprwDJ0-fU&t=436s), take the exact frame around 120.5 seconds—the shot of the circular spacecraft on a black background—and make that still image my Ubuntu desktop wallpaper. Use the clean frame only (no player UI or titles), keep the original aspect ratio (don’t crop), and set it as the background via Ubuntu’s Background settings.

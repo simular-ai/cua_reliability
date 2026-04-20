@@ -1,0 +1,1 @@
+I’m working on a presentation about the history of baseball. Could you open the file “/home/user/Desktop/Mady_and_Mia_Baseball.pptx” in LibreOffice Impress and add the introduction audio “/home/user/Desktop/Baseball.mp3” to the first slide as embedded audio (not just a link), then save the presentation?

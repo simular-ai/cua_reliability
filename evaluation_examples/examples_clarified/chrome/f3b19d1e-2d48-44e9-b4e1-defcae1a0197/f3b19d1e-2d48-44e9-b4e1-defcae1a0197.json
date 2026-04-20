@@ -1,0 +1,62 @@
+{
+  "id": "f3b19d1e-2d48-44e9-b4e1-defcae1a0197",
+  "snapshot": "chrome",
+  "instruction": "On the Ticketek Australia website (premier.ticketek.com.au), find and open the Ticket Delivery FAQs page. Leave that page as the active tab in Chrome, and make sure the page\u2019s URL contains the exact text \u201cTicket-Delivery-FAQs\u201d.",
+  "source": "test_task_0",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://premier.ticketek.com.au/"
+        ]
+      }
+    },
+    {
+      "type": "activate_window",
+      "parameters": {
+        "window_name": "Google Chrome"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "chrome"
+  ],
+  "evaluator": {
+    "func": "is_expected_url_pattern_match",
+    "result": {
+      "type": "active_tab_info"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected": [
+          "Ticket-Delivery-FAQs"
+        ]
+      }
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

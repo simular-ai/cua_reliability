@@ -1,0 +1,89 @@
+{
+  "id": "aceb0368-56b8-4073-b70e-3dc9aee184e0",
+  "snapshot": "libreoffice_calc",
+  "instruction": "I\u2019m grading these multiple\u2011choice English exams and need help finishing the detailed scoring. Please use the answer key in /home/user/exam/ReferenceAnswers.docx and complete the remaining students in the spreadsheet that\u2019s already open in LibreOffice Calc (/home/user/exam/grades.xlsx).\n\nOn the first worksheet, keep the existing header row exactly as: \u201cStudent ID, Student Name, Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10, Total Grade\u201d. For each listed student, mark each question column (Q1\u2013Q10) with 1 for a correct answer and 0 for an incorrect answer based on the key. Then set \u201cTotal Grade\u201d to the number of correct answers \u00d7 10 (out of 100) and enter the final numeric value (not a formula). Leave any rows that are already correct as they are.\n\nPlease don\u2019t add, rename, or reorder any sheets, don\u2019t change the column names or order, and don\u2019t insert extra rows or columns. Save your changes back to the same file path (/home/user/exam/grades.xlsx) without renaming or moving it.",
+  "source": "authors",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/aceb0368-56b8-4073-b70e-3dc9aee184e0/exam.zip",
+            "path": "/home/user/exam.zip"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "unzip",
+          "/home/user/exam.zip",
+          "-d",
+          "/home/user/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "libreoffice",
+          "--writer",
+          "/home/user/exam/ReferenceAnswers.docx"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "libreoffice",
+          "--calc",
+          "/home/user/exam/grades.xlsx"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "nautilus",
+          "/home/user/exam/"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "thunderbird",
+    "os"
+  ],
+  "evaluator": {
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/aceb0368-56b8-4073-b70e-3dc9aee184e0/grades.xlsx",
+      "dest": "gold_grades.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/exam/grades.xlsx",
+      "dest": "grades.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "sheet_data",
+          "sheet_idx0": 0,
+          "sheet_idx1": "EI0"
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

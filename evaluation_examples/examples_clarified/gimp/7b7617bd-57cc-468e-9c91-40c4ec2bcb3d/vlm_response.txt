@@ -1,0 +1,7 @@
+<thoughts>
+The evaluator quits GIMP and inspects the user config file gimprc to confirm a line with the key undo-levels and the value 100 (i.e., it looks for "(undo-levels 100)"). The original instruction doesn’t specify the exact preference name (Undo Levels), the specific config key/value, or that the setting must persist to the gimprc file upon exit. These details are necessary for the check to pass.
+</thoughts>
+
+<answer>
+In GIMP, set the Undo Levels preference (the max undo steps) to 100, and make sure the change is saved to GIMP’s gimprc config so it appears as (undo-levels 100) after quitting. Source: https://www.youtube.com/watch?v=G_PjQAy0iiU
+</answer>

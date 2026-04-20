@@ -1,0 +1,10 @@
+<thoughts>
+The evaluator compares the entire first sheet’s data against a golden sheet and also checks that a chart of the correct type exists on that same first sheet. So it’s important to:
+- Put exactly one new “Total” row on the first worksheet, directly under the last rep, with the label exactly “Total” in the first column, and no extra blank rows or columns.
+- Fill in all monthly totals for Jan–Jun (including March) so there are no blank cells in that row.
+- Keep everything (data and chart) on the original first sheet.
+- Use a line chart (type check only) and save the edits back to /home/user/SalesRep.xlsx without renaming or creating a new file.
+</thoughts>
+
+<answer>
+In /home/user/SalesRep.xlsx, on the first worksheet, add a single new bottom row labeled exactly “Total” in the first column directly beneath the last sales rep, and fill that row with the monthly totals for Jan, Feb, Mar, Apr, May, and Jun (sum each month’s column across all reps so none of those six cells is blank). Then insert a line chart on this same sheet that plots that totals row with Months (Jan–Jun) on the x-axis. Don’t add any extra blank rows or columns, and save your changes in place to SalesRep.xlsx. </answer>

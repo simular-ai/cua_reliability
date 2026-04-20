@@ -1,0 +1,136 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "2b9493d7-49b8-493a-a71b-56cd1f4d6908",
+  "snapshot": "libreoffice_writer",
+  "instruction": "Hey, my LibreOffice Writer seems to have frozen and I can't get it to close normally. Can you help me force quit the application from the command line? I'm on Ubuntu and I don't want to restart my computer or lose any other work I have open.",
+  "source": "https://devicetests.com/kill-libreoffice-writer-command-line-ubuntu",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/2b9493d7-49b8-493a-a71b-56cd1f4d6908/15-MB-docx-file-download.docx",
+            "path": "/home/user/Desktop/15-MB-docx-file-download.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/15-MB-docx-file-download.docx"
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "/bin/bash",
+          "-c",
+          "history -c && echo > ~/.bash_history && sleep 3"
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": "export DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus'\ngnome-terminal --maximize --working-directory=/home/user/",
+        "shell": true
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_writer",
+    "terminal"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "/bin/bash",
+            "-c",
+            "killall gnome-terminal-server"
+          ]
+        }
+      }
+    ],
+    "func": "check_include_exclude",
+    "result": {
+      "type": "vm_command_line",
+      "command": [
+        "/bin/bash",
+        "-c",
+        "output=$(ps aux | grep \"[s]office\"]); if [ -z \"$output\" ]; then echo \"no libreoffice is running\"; else echo \"libreoffice is still running\"; fi; output=$(cat ~/.bash_history | grep \"[k]ill\"); if [ -z \"$output\" ]; then echo \"not killed from terminal\"; else echo \"killed from terminal\"; fi"
+      ]
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "include": [
+          "no libreoffice is running",
+          "killed from terminal"
+        ],
+        "exclude": [
+          "libreoffice is still running",
+          "not killed from terminal"
+        ]
+      }
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: check_include_exclude
+def check_include_exclude(result: str, rules: Dict[str, List[str]]) -> float:
+    if result is None:
+        return 0.
+
+    print(result, rules)
+    include = rules.get("include", [])
+    exclude = rules.get("exclude", [])
+    if all(r in result for r in include) and all(r not in result for r in exclude):
+        return 1.
+    else:
+        return 0.
+```
+
+## Task:
+
+Analyze the instruction: "Hey, my LibreOffice Writer seems to have frozen and I can't get it to close normally. Can you help me force quit the application from the command line? I'm on Ubuntu and I don't want to restart my computer or lose any other work I have open."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>

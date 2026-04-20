@@ -1,0 +1,1 @@
+In /home/user/Desktop/Novels_Intro_Packet.docx, set the line spacing of the first two paragraphs to Double (2.0 lines) only. Don’t change the spacing or content of any other paragraphs. Save the changes to the same file (/home/user/Desktop/Novels_Intro_Packet.docx).

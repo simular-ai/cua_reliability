@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator verifies that the Thunderbird profile at /home/user/.thunderbird no longer contains an IMAP account record with user anonym-x2024@outlook.com and server imap://outlook.office365.com. The original request doesn’t specify that the removal should be done in Thunderbird (not at the Outlook service level), nor does it identify the specific IMAP server string the evaluator checks for. It also doesn’t clarify that the account should be fully removed (not just disabled) and that other accounts should remain intact. Mentioning the IMAP server URL aligns the instruction with the evaluator’s exact check without adding procedural detail.
+</thoughts>
+
+<answer>
+Please remove the Outlook IMAP email account for anonym-x2024@outlook.com from Thunderbird on this computer—specifically the one using the incoming server imap://outlook.office365.com—so it’s fully deleted from the Thunderbird profile and no longer listed among accounts. Don’t alter any other accounts or the online Outlook account itself.

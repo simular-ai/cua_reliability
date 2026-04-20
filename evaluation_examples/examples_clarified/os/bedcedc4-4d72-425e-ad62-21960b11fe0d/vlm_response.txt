@@ -1,0 +1,6 @@
+<thoughts>
+The current instruction references a UI toggle (“Dim screen when inactive”) but the evaluator actually checks a specific GNOME GSettings key/value. It expects org.gnome.desktop.session idle-delay to be set to 0, with the command-line check returning “uint32 0”. This mapping isn’t explicit in the instruction. To avoid ambiguity, the instruction should state that turning off dimming should result in idle-delay being 0 (i.e., disabled), optionally referencing the exact gsettings get output format the evaluator uses.
+</thoughts>
+
+<answer>
+Please turn off “Dim screen when inactive” in Settings, making sure the GNOME session idle delay is disabled—i.e., org.gnome.desktop.session idle-delay is set to 0 (so running “gsettings get org.gnome.desktop.session idle-delay” returns “uint32 0”).</answer>

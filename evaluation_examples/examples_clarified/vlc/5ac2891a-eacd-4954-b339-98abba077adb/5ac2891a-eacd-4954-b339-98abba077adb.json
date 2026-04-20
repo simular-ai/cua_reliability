@@ -1,0 +1,25 @@
+{
+  "id": "5ac2891a-eacd-4954-b339-98abba077adb",
+  "snapshot": "base_setup",
+  "instruction": "On this Linux desktop, please stop VLC from auto-quit behavior by making sure the \u201cQuit at end of playlist\u201d option in the Media menu is turned off. If that toggle isn\u2019t available in this build, set the equivalent preference (Tools > Preferences > Playlist > \u201cWhen finished\u201d) to \u201cDo nothing.\u201d I\u2019d like this to persist so VLC doesn\u2019t close itself after a video or playlist ends in future sessions. Source: https://superuser.com/questions/1412810/how-to-prevent-vlc-media-player-from-auto-closing-after-video-end#:%7E:text=Click%20on%20%22Media%22on%20the,VLC%20player%20after%20video%20ending",
+  "source": "https://superuser.com/questions/1412810/how-to-prevent-vlc-media-player-from-auto-closing-after-video-end#:%7E:text=Click%20on%20%22Media%22on%20the,VLC%20player%20after%20video%20ending",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "VLC_VERBOSE=-1 vlc --no-audio --no-video-title-show",
+        "shell": true
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vlc"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

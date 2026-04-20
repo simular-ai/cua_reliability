@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator compares the edited file at /home/user/Desktop/CCHU9045_Course_Outline_2019-20.docx to a gold .docx and checks paragraph-by-paragraph line spacing.
+- It also requires the same number of paragraphs and likely unchanged text/content.
+- The vague part is which paragraphs should be treated as the introduction, body, and conclusion within an existing multi-paragraph document.
+- The safest minimal clarification is to map “introduction/body/conclusion” to the first, second, and third paragraphs only, keep all other paragraphs unchanged, and save to the same file path/name.
+- Mention font size 12 for those three paragraphs to reflect the user’s requirement without touching the rest.
+</thoughts>
+
+<answer>
+I’ve got a specific file I’m working in: /home/user/Desktop/CCHU9045_Course_Outline_2019-20.docx. Please open it in LibreOffice Writer and treat the first three paragraphs as my “essay” (first = introduction, second = body, third = conclusion). Make the introduction single-spaced, the body double-spaced, and the conclusion 1.5 lines, and ensure those three paragraphs are font size 12. Don’t change any other text, formatting, or the number of paragraphs in the document—leave everything else exactly as it is. Then save the changes back to the same file (CCHU9045_Course_Outline_2019-20.docx) at that path.

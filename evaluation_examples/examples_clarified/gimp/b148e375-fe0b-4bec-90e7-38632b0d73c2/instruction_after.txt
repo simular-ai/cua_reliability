@@ -1,0 +1,1 @@
+In GIMP (opening the white_background.xcf file), please add a new layer and also make sure the default new-layer name preference is saved as “Square”—i.e., the gimprc setting layer-new-name should be set to "Square".

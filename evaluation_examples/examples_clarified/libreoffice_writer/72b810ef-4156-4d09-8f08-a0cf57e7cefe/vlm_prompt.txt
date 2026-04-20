@@ -1,0 +1,136 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "72b810ef-4156-4d09-8f08-a0cf57e7cefe",
+  "snapshot": "libreoffice_writer",
+  "instruction": "I am peer-reviewing my friend's course outline. I think the last paragraph is redundant so I want to add strike-through on words in the last paragraph. Can you do this for me?",
+  "source": "https://superuser.com/questions/657792/libreoffice-writer-how-to-apply-strikethrough-text-formatting?rq=1",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/72b810ef-4156-4d09-8f08-a0cf57e7cefe/GEOG2169_Course_Outline_2022-23.docx",
+            "path": "/home/user/Desktop/GEOG2169_Course_Outline_2022-23.docx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/GEOG2169_Course_Outline_2022-23.docx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "GEOG2169_Course_Outline_2022-23.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": "evaluate_strike_through_last_paragraph",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_writer/72b810ef-4156-4d09-8f08-a0cf57e7cefe/GEOG2169_Course_Outline_2022-23_Gold.docx",
+      "dest": "GEOG2169_Course_Outline_2022-23_Gold.docx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/GEOG2169_Course_Outline_2022-23.docx",
+      "dest": "GEOG2169_Course_Outline_2022-23.docx"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: evaluate_strike_through_last_paragraph
+def evaluate_strike_through_last_paragraph(file_path1, file_path2):
+    if not file_path1 or not file_path2:
+        return 0
+
+    if not compare_docx_files(file_path1, file_path2):
+        return 0
+
+    try:
+        document = Document(file_path1)
+    except Exception as e:
+        logger.error(f"Error: {e}")
+        return 0
+
+    # Get the last paragraph
+    last_paragraph = document.paragraphs[-1]
+
+    # Check if any run in the last paragraph has strike-through formatting
+    for run in last_paragraph.runs:
+        if not run.font.strike:
+            return 0  # At least one word does not have strike-through formatting
+
+    return 1  # All words in the last paragraph have strike-through formatting
+```
+
+## Task:
+
+Analyze the instruction: "I am peer-reviewing my friend's course outline. I think the last paragraph is redundant so I want to add strike-through on words in the last paragraph. Can you do this for me?"
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Input_File**: Input file downloaded to /home/user/Desktop/GEOG2169_Course_Outline_2022-23.docx\nFile info: File format .docx not displayable (10577 bytes)
+
+\n**Ground_Truth_File**: Expected output/ground truth file: GEOG2169_Course_Outline_2022-23_Gold.docx\nFile info: File format .docx not displayable (11384 bytes)

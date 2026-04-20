@@ -1,0 +1,1 @@
+In the opened spreadsheet /home/user/Freeze_row_column.xlsx, please freeze panes on the first sheet so that row 1 and columns A and B stay locked while scrolling (i.e., the split is at C2). Don’t change any cell contents, and save the file with the same name.

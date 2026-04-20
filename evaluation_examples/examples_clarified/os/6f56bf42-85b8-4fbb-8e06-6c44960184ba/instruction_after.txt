@@ -1,0 +1,1 @@
+In your current working directory, copy the existing file named “file1” into each of the directories named “dir1”, “dir2”, and “dir3” so that each of those directories contains a file named “file1”. Keep the filename exactly as “file1” (don’t rename or move the original).

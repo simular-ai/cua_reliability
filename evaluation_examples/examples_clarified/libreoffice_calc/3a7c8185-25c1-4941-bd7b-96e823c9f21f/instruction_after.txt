@@ -1,0 +1,1 @@
+In /home/user/BoomerangSales.xlsx, on the first worksheet, sort the entire table by column A (the “Date Time” column) in ascending order, keeping the header row at the top. Then insert a single line chart on the same sheet, using “Date Time” for the X‑axis and “Quantity” for the Y‑axis. Save the changes to /home/user/BoomerangSales.xlsx.

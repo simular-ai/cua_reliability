@@ -1,0 +1,1 @@
+Please use the GIMP project at /home/user/Desktop/dog_with_background_two_layers.xcf and scale only the “dog” layer so the dog itself is exactly 512 px tall with the aspect ratio locked. Leave the canvas as is, but export just the dog content (hide the background so the area around it is transparent) as a PNG to /home/user/Desktop/resized.png.

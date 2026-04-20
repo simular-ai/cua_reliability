@@ -1,0 +1,1 @@
+Please select the yellow triangle in the GIMP project Triangle_On_The_Side.xcf (on the Desktop) and move it so it sits at the exact center of the image/canvas. When you’re done, export it as a PNG named Triangle_In_The_Middle.png to the Desktop (/home/user/Desktop).

@@ -1,0 +1,11 @@
+<thoughts>
+- The evaluator checks for two specific files on the Desktop: /home/user/Desktop/character_gimp.png and /home/user/Desktop/character_code.png.
+- Both outputs are compared to a reference using structural similarity and require identical image dimensions; if the canvas sizes differ, the check fails.
+- The instruction doesn’t explicitly state to remove the background or to tightly crop to the character’s bounding box, which is implied by the expected “no background” gold image.
+- It’s also unclear that the Python script must read the same input and produce an output matching the GIMP result in both content and canvas size.
+</thoughts>
+
+<answer>
+Open /home/user/Desktop/character.png in GIMP and isolate just the pixel‑art character: remove the background to full transparency and trim the canvas to the character’s exact bounding box (no extra padding, no scaling, and no color changes). Export that result as a PNG with alpha to /home/user/Desktop/character_gimp.png.
+
+Then write a Python script that reads /home/user/Desktop/character.png and performs the same extraction so the output precisely matches your GIMP result in content and canvas size (same crop, same transparency, untouched pixels). Save the script’s output to /home/user/Desktop/character_code.png.

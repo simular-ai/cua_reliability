@@ -1,0 +1,94 @@
+{
+  "id": "58565672-7bfe-48ab-b828-db349231de6b",
+  "snapshot": "chrome",
+  "instruction": "Please open Thunderbird, go to the Bills folder, open the most recent email, and follow the first link in it (it points to https://www.amazon.com/). Open that link as a new tab in the same Google Chrome window, keeping the two existing tabs (https://www.apple.com/ and https://scholar.google.com/) unchanged, so you end up with exactly these three tabs open in this order: https://www.apple.com/, https://scholar.google.com/, then https://www.amazon.com/.",
+  "source": "https://superuser.com/questions/1792660/open-link-from-other-application-does-not-open-the-url-in-firefox",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "google-chrome",
+          "--remote-debugging-port=1337"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "socat",
+          "tcp-listen:9222,fork",
+          "tcp:localhost:1337"
+        ]
+      }
+    },
+    {
+      "type": "chrome_open_tabs",
+      "parameters": {
+        "urls_to_open": [
+          "https://www.apple.com/",
+          "https://scholar.google.com/"
+        ]
+      }
+    },
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/58565672-7bfe-48ab-b828-db349231de6b/thunderbird-profile.tar.gz",
+            "path": "/home/user/thunderbird-profile.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "tar",
+          "-xz",
+          "--recursive-unlink",
+          "-f",
+          "/home/user/thunderbird-profile.tar.gz",
+          "-C",
+          "/home/user/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "/usr/bin/thunderbird"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "thunderbird",
+    "chrome"
+  ],
+  "evaluator": {
+    "func": "is_expected_tabs",
+    "result": {
+      "type": "open_tabs_info"
+    },
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "type": "url",
+        "urls": [
+          "https://www.apple.com/",
+          "https://scholar.google.com/",
+          "https://www.amazon.com/"
+        ]
+      }
+    }
+  },
+  "proxy": true,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

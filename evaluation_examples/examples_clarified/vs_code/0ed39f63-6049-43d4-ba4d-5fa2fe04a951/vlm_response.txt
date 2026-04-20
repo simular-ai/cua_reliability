@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares the exact contents of /home/user/Desktop/vscode_replace_text.txt to a gold file, so the specific file path and saving in place matter.
+- The expected result replaces the substring "text" even when it appears inside other words (e.g., "texts" -> "tests", "texting" -> "testing"), so this needs to be explicit.
+- The comparison is strict (no whitespace or punctuation changes), so we should clarify not to alter anything else.
+- Case sensitivity isn’t toggled by the instruction; the expected changes involve lowercase "text", so clarify that we’re replacing lowercase "text" only.
+</thoughts>
+
+<answer>
+Please open /home/user/Desktop/vscode_replace_text.txt in Visual Studio Code and change every occurrence of the lowercase substring "text" to "test" across the entire file (including inside words like "texts" and "texting"). Don’t change anything else—keep all spacing, punctuation, and line breaks exactly the same—and save the edits to the same file.

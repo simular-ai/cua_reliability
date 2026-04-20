@@ -1,0 +1,1 @@
+From the Terminal that’s already opened in /home/user/Desktop (where the .doc files were extracted), convert all .doc files in this folder—not subdirectories—to PDF in one go using a single LibreOffice/soffice command. Please use the --convert-to pdf option with the *.doc wildcard, saving the PDFs right here so they keep the same base filenames.

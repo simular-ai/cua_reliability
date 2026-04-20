@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares the edited /home/user/Desktop/Geography_And_Magical_Realism.docx against a gold .docx by paragraph text, with exact casing and content, while ignoring extra whitespace.
+- It expects the change to be applied across the entire document, not just a selection.
+- The result must be saved in place (same filename and path, .docx format) so the evaluator can Ctrl+S and compare.
+- “First letter uppercase” needs to be precise: each word should start with an uppercase letter and the remaining letters should be lowercase (i.e., title case/“Capitalize Every Word”), without altering wording, punctuation, or layout.
+</thoughts>
+
+<answer>
+Please apply title case to the entire document at /home/user/Desktop/Geography_And_Magical_Realism.docx in LibreOffice Writer—i.e., make each word start with an uppercase letter and set the remaining letters in each word to lowercase (Capitalize Every Word). Don’t change any wording, punctuation, or layout; just adjust the casing across all text (headings and body). When done, save the changes to the same .docx file at the same path (overwrite the original).</answer>

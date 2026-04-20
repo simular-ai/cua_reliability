@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks the Thunderbird profile’s prefs.js for a specific preference key: mail.identity.id1.htmlSigText.
+- It expects the signature content to be exactly two lines with a single newline between them: "Anonym\nXYZ Lab".
+- It doesn’t check loading a signature from a file or HTML formatting, so the text must be typed directly in the Signature text box and kept as plain text (i.e., “Use HTML” unchecked) to avoid HTML tags.
+- It targets the default/primary account in the loaded profile (identity id1), not any other account.
+</thoughts>
+
+<answer>
+Please set a plain text signature for my primary/default email account in this Thunderbird profile (the account that opens by default). Type the signature directly into the Signature text box (don’t use a signature file) and keep “Use HTML” unchecked. The signature must be exactly two lines with a single line break between them: first line “Anonym”, second line “XYZ Lab”, with no extra spaces or blank lines. This should update the identity’s signature text so that mail.identity.id1.htmlSigText is exactly “Anonym\nXYZ Lab” in the current profile.</answer>

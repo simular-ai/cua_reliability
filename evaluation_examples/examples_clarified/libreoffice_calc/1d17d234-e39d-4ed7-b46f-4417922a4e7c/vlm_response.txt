@@ -1,0 +1,10 @@
+<thoughts>
+The evaluator opens and saves /home/user/FutureValue.xlsx and checks a sheet named exactly "Sheet2". It verifies that:
+- A1:C1 are merged with the text exactly "Investment Summary" in A1, and D1 remains unmerged.
+- A2:B2 are merged with the text exactly "High Interest Rate" in A2.
+- C2:D2 are merged with the text exactly "Low Interest Rate" in C2, and E2 remains unmerged.
+So the instruction should specify the exact workbook, exact sheet name, that the text goes in the top-left cell of each merged range, and that D1 and E2 remain unmerged. No other edits are needed.
+</thoughts>
+
+<answer>
+In the workbook /home/user/FutureValue.xlsx (open in LibreOffice Calc), add a new worksheet named exactly “Sheet2”. On Sheet2, merge exactly A1 through C1 (leave D1 unmerged) and enter the header “Investment Summary” in A1. On the next row, merge A2 through B2 and enter “High Interest Rate” in A2; also merge C2 through D2 and enter “Low Interest Rate” in C2 (leave E2 unmerged). Save the file when you’re done.

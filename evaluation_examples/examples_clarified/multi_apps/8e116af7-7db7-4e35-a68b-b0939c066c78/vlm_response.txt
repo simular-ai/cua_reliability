@@ -1,0 +1,17 @@
+<thoughts>
+The evaluator will open /home/user/Desktop/my_bookkeeping.xlsx in LibreOffice Calc and compare it to a gold file. It checks that:
+- The first 8 rows and columns A–E remain exactly unchanged (so new entries must be appended below existing data, not inserted or modified).
+- Rows 9–13 in column C are exactly “Expense” (case-insensitive).
+- The amounts in D9–D13 match the totals from the receipts (as negative expenses).
+- The running balance in E9–E13 correctly updates from the existing balance.
+
+It also implicitly expects:
+- Working in the first/only sheet without renaming or creating new sheets.
+- Using the specific receipt files downloaded to the Desktop (receipt_0.jpeg, receipt_1.jpg, receipt_2.jpg, receipt_3.pdf, receipt_4.jpg).
+- Saving the edits back to the same file path and name.
+
+The original instruction doesn’t specify file paths, how to append, column usage, sign convention for expenses, or that the balance should be updated. These clarifications are required for the evaluator’s checks to pass.
+</thoughts>
+
+<answer>
+Please update /home/user/Desktop/my_bookkeeping.xlsx by appending the recent expenses from the receipt files on my Desktop (one entry per file: /home/user/Desktop/receipt_0.jpeg, /home/user/Desktop/receipt_1.jpg, /home/user/Desktop/receipt_2.jpg, /home/user/Desktop/receipt_3.pdf, and /home/user/Desktop/receipt_4.jpg). Work in the first sheet, keep the existing headers and all current rows exactly as they are, and add the new entries directly below them without reordering anything. Use the existing columns (Description, Category, Type, Amount, Balance); set Type to “Expense” for each new entry, record each total from the receipt as a negative number in the Amount column, and update the running Balance in column E so it continues from the current balance. If a description or category isn’t clear from a receipt, it’s fine to leave those blank. Don’t add or rename sheets, and save the changes to the same file and location.

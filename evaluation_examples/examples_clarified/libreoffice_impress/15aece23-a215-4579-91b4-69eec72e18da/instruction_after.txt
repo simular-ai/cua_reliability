@@ -1,0 +1,1 @@
+Open /home/user/Desktop/134_2.pptx and, on slide 2 (page 2), move the title text box that says “Product Comparison” down to the bottom of the slide (near the lower edge). Don’t change its text, size, or formatting, and leave everything else on all slides exactly as is. Save the changes to the same file at /home/user/Desktop/134_2.pptx.

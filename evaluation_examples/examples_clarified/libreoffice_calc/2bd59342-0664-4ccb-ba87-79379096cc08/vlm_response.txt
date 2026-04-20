@@ -1,0 +1,7 @@
+<thoughts>
+Ambiguities include which exact file to edit, where the sparklines should be placed, which columns provide the data, whether all rows need charts, and whether to save the changes in place. The evaluator likely checks that the work is done on the provided file, that each order id’s row gets a sparkline in the “Chart” column using only Jan–Mar values from that row, and that the file is saved without renaming or moving it.
+</thoughts>
+
+<answer>
+Open /home/user/OrderId_Month_Chart.xlsx in LibreOffice Calc and, on the sheet that has the OrderId, Jan, Feb, Mar, and Chart columns, add a line sparkline in the Chart cell for every order id using that row’s Jan–Mar values as the source. Save your changes back to the same file (don’t rename or move it).
+</answer>

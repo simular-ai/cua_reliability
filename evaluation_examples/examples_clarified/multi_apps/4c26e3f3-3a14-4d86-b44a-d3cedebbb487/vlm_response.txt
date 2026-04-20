@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator compares the saved image at /home/user/Desktop/background.png against a reference and requires the new image to be darker (reduced brightness) than the reference, while keeping structure similar. 
+- The original instruction asks to “enhance its brightness,” which conflicts with the evaluator’s brightness-decrease check. 
+- The evaluator also implicitly requires no structural changes (no cropping, resizing, or other edits), and expects an exported PNG image saved exactly as /home/user/Desktop/background.png, not the whole slide or a different location/name.
+</thoughts>
+
+<answer>
+On the second slide, the image looks a bit too bright—could you slightly reduce its brightness so it’s darker, but keep everything else the same (no cropping, resizing, or other edits)? When you’re done, please export just that image as a PNG and save it on the Desktop as /home/user/Desktop/background.png. Thanks!</answer>

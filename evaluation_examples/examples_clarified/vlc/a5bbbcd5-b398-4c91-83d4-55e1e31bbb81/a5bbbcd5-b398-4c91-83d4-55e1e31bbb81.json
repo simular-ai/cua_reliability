@@ -1,0 +1,63 @@
+{
+  "id": "a5bbbcd5-b398-4c91-83d4-55e1e31bbb81",
+  "snapshot": "chrome",
+  "instruction": "Could you help me make VLC hide the bottom toolbar in windowed mode by using its Qt Minimal View, and have that stick as the default? I\u2019m fine with you changing the VLC config so it\u2019s persistent\u2014i.e., set qt-minimal-view=1 in the vlcrc file (typically at ~/.config/vlc/vlcrc)\u2014so whenever I\u2019m multitasking in a normal window, the controls don\u2019t show.",
+  "source": "https://superuser.com/questions/776056/how-to-hide-bottom-toolbar-in-vlc",
+  "config": [
+    {
+      "type": "launch",
+      "parameters": {
+        "command": "VLC_VERBOSE=-1 vlc --no-audio --no-video-title-show",
+        "shell": true
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "python",
+          "-c",
+          "import pyautogui; import time; pyautogui.click({SCREEN_WIDTH_HALF}, {SCREEN_HEIGHT_HALF}); time.sleep(0.5);"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "vlc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "launch",
+        "parameters": {
+          "command": [
+            "pkill",
+            "vlc"
+          ]
+        }
+      },
+      {
+        "type": "launch",
+        "parameters": {
+          "command": "vlc --no-audio --no-video-title-show",
+          "shell": true
+        }
+      }
+    ],
+    "func": "check_qt_minimal_view",
+    "expected": {
+      "type": "rule",
+      "rules": {
+        "expected_qt_minimal_view": 1
+      }
+    },
+    "result": {
+      "type": "vlc_config",
+      "dest": "vlcrc"
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

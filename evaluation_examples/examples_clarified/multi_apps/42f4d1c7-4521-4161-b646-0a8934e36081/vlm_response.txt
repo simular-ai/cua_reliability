@@ -1,0 +1,8 @@
+<thoughts>
+- The evaluator verifies that the specific VS Code extension ID "mattn.lisp" is installed, but the instruction only says "lisp extension" without the exact ID.
+- The evaluator expects the input image to be at /home/user/Desktop/character.png and the output to be exactly /home/user/Desktop/resized.png with dimensions 128x128, while the instruction doesn’t specify the full paths or stress the exact filename/location.
+- No other evaluator checks (like content of the script) are enforced, so avoid adding extra requirements.
+</thoughts>
+
+<answer>
+Configure VS Code to edit GIMP Script‑Fu scripts by installing the Lisp extension from mattn (extension ID: mattn.lisp). Then test it by writing Script‑Fu code that resizes the image at /home/user/Desktop/character.png to exactly 128×128 pixels and saves the result as a PNG named resized.png at /home/user/Desktop/resized.png. Use these exact filenames and locations. </answer>

@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator doesn’t check “disable the new 2023 UI” in general; it specifically verifies that two Chrome flags with the exact internal names are present in the configured experiments list: chrome-refresh-2023 and chrome-webui-refresh-2023.
+- The original instruction doesn’t name these flags or state that both must be set, nor does it say to relaunch after changing them.
+- To match the evaluator, the clarified instruction should explicitly mention both internal flag names (in that order) and that they should be set to Disabled, with a relaunch. Including the provided article link preserves context.
+</thoughts>
+
+<answer>
+I don’t like Chrome’s new 2023 UI and want to keep the original look. Please turn off the 2023 refresh by setting both of these feature flags to Disabled and relaunching Chrome: chrome-refresh-2023 (Chrome Refresh 2023) and chrome-webui-refresh-2023 (Chrome WebUI Refresh 2023). You can refer to this article: https://bugartisan.medium.com/disable-the-new-chrome-ui-round-in-2023-db168271f71e
+</answer>

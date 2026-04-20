@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks whether the VLC window size exactly equals the VM screen size, not just that the video looks large.
+- So “fullscreen” must mean true fullscreen (no title bar, menus, borders, or panels), not merely maximized.
+- The video being used is specifically “/home/user/Desktop/Gen 2.mp4”; while the evaluator doesn’t check the file, including it helps disambiguate which VLC window/video is being referred to.
+</thoughts>
+
+<answer>
+Please switch VLC into true fullscreen (not just maximized) so the VLC window exactly matches the display—no title bar, menus, or borders—and the current video at “/home/user/Desktop/Gen 2.mp4” fills the entire screen.
+</answer>

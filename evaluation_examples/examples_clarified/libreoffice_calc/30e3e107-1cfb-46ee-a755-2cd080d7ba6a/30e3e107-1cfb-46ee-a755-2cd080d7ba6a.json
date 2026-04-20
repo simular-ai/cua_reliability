@@ -1,0 +1,114 @@
+{
+  "id": "30e3e107-1cfb-46ee-a755-2cd080d7ba6a",
+  "snapshot": "libreoffice_calc",
+  "instruction": "Open /home/user/DemographicProfile.xlsx and make all changes in that same file. Add a new sheet and keep its name exactly \u201cSheet2\u201d. On Sheet2, merge A1:C1 and set the text to \u201cDemographic Profile\u201d; apply a blue fill (#0000ff, ARGB FF0000FF) and make the font bold white.\n\nThen, on Sheet2, create three pivot tables using the existing data on Sheet1 (the table with headers \u201cRespondents\u201d, \u201cSex\u201d, \u201cCivil Status\u201d, and \u201cHighest Educational Attainment\u201d). For each pivot:\n- Row field: use one category at a time (first Sex, then Civil Status, then Highest Educational Attainment).\n- No column fields and no report filters.\n- Data field: use Respondents summarized by Count, and show values as % of Grand Total.\n\nStack these three pivots vertically on Sheet2 in that order (Sex, then Civil Status, then Highest Educational Attainment), with a blank row separating each one. Save the file when you\u2019re done.",
+  "source": "SheetCopilot@9",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/30e3e107-1cfb-46ee-a755-2cd080d7ba6a/DemographicProfile.xlsx",
+            "path": "/home/user/DemographicProfile.xlsx"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/DemographicProfile.xlsx"
+      }
+    }
+  ],
+  "trajectory": "trajectories/30e3e107-1cfb-46ee-a755-2cd080d7ba6a",
+  "related_apps": [
+    "libreoffice_calc"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "DemographicProfile.xlsx - LibreOffice Calc",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; pyautogui.hotkey(\"ctrl\", \"s\");"
+          ]
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      }
+    ],
+    "func": "compare_table",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/libreoffice_calc/30e3e107-1cfb-46ee-a755-2cd080d7ba6a/1_DemographicProfile_gt1.xlsx",
+      "dest": "1_DemographicProfile_gt1.xlsx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/DemographicProfile.xlsx",
+      "dest": "DemographicProfile.xlsx"
+    },
+    "options": {
+      "rules": [
+        {
+          "type": "pivot_table",
+          "sheet_idx0": "RNSheet2",
+          "sheet_idx1": "ENSheet2",
+          "pivot_props": [
+            "col_fields",
+            "filter",
+            "row_fields",
+            "data_fields"
+          ]
+        },
+        {
+          "type": "check_cell",
+          "sheet_idx": "RNSheet2",
+          "coordinate": "A1",
+          "props": {
+            "bgcolor": {
+              "method": "eq",
+              "ref": "FF0000FF"
+            },
+            "font_color": {
+              "method": "eq",
+              "ref": "FFFFFFFF"
+            },
+            "font_bold": {
+              "method": "eq",
+              "ref": true
+            },
+            "value": {
+              "method": "eq",
+              "ref": "Demographic Profile"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

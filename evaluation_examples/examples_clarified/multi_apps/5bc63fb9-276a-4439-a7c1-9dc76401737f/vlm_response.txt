@@ -1,0 +1,11 @@
+<thoughts>
+- The evaluator compares the resulting DOCX paragraph-by-paragraph with a gold file, with exact text matching and no extra blank paragraphs. So the instruction should clarify to keep each response as a single paragraph, with no extra blank lines, and not to change the text at all.
+- The evaluator expects the file to be saved as /home/user/Desktop/gemini_results.docx and to have that window title open in LibreOffice Writer. So the exact filename, extension, and location need to be explicit.
+- The source JSON path is fixed (/home/user/Desktop/llm_answers.json), but the original instruction doesn’t state it. Adding it avoids ambiguity.
+- “Specifically look at the sentences… that contain ‘Iliad’” could be misread as filtering sentences. The gold likely includes full responses with “Iliad” highlighted. Clarify to include all Gemini responses in full, and only use highlighting to surface “Iliad.”
+- It’s unclear whether to include metadata/keys. The comparison likely expects only the response text. Clarify to copy only the response values.
+- Order matters for paragraph-by-paragraph comparison. Clarify to preserve the original JSON order.
+</thoughts>
+
+<answer>
+Use the JSON file at /home/user/Desktop/llm_answers.json. From that file, collect every response attributed to the Gemini model—copy only the response text values (no keys, IDs, or other metadata), and keep them in the same order they appear in the JSON. Paste them into a new .docx saved as /home/user/Desktop/gemini_results.docx. Put each response as its own paragraph (one per line) with no extra blank paragraphs between them, and don’t modify the text in any way. Don’t filter out sentences: include each full Gemini response, and simply highlight every occurrence of the word “Iliad” wherever it appears in those responses.

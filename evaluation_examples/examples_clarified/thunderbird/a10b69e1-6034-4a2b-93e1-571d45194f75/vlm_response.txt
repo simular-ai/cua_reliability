@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator checks for Thunderbird “Local Folders” storage files named exactly COMPANY and UNIVERSITY (uppercase), and their corresponding .msf index files.
+- It looks specifically under the profile’s “Mail/Local Folders” area, so the folders must be created as local mail folders under the “Local Folders” account, not on a server account or nested under Inbox.
+- The current instruction doesn’t specify that they should be top-level under “Local Folders,” nor that the names must be exact and uppercase, which could cause mismatches.
+</thoughts>
+
+<answer>
+Please create two new top‑level folders under Thunderbird’s “Local Folders” account—named exactly COMPANY and UNIVERSITY (all caps). Make them local mail folders (not under Inbox or any server account), so they appear in Local Folders storage as COMPANY and COMPANY.msf, and UNIVERSITY and UNIVERSITY.msf.
+</answer>

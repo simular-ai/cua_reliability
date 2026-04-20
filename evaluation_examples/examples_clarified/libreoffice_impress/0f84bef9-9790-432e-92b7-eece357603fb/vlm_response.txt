@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator checks whether LibreOffice Impress’s Presenter Screen (Presenter Console) is disabled by verifying a specific setting in the user config XML. It looks for the item at /org.openoffice.Office.Impress/Misc/Start with the property EnablePresenterScreen set to false inside /home/user/.config/libreoffice/4/user/registrymodifications.xcu. The original instruction asks to use only one monitor and get rid of the presenter view, but it doesn’t explicitly say to disable the Presenter Screen nor specify the exact config key/file that the evaluator checks. Minimal clarification should name the feature to disable and the exact file/path/property expected.
+</thoughts>
+
+<answer>
+Whenever I start LibreOffice Impress it uses both screens (the Presenter Screen with current/next slide on one, and the actual slide show on the other). I want only a single monitor showing the slide show, with no Presenter Screen, so the second monitor can be used for other tasks. Please disable the Presenter Screen (aka Presenter Console) in Impress so that the LibreOffice user config reflects this: in /home/user/.config/libreoffice/4/user/registrymodifications.xcu, under /org.openoffice.Office.Impress/Misc/Start, the EnablePresenterScreen setting should be set to false.

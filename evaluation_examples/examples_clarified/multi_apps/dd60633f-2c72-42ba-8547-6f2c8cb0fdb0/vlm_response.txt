@@ -1,0 +1,10 @@
+<thoughts>
+Key ambiguities the evaluator will check that aren’t fully specified:
+- Exact save location and filename: evaluator looks for /home/user/gpt_dev_pure_code.py with that exact name.
+- What counts as “Python code and comments” from code cells: need to exclude non-Python magics/shell lines (%/%%/!) while keeping the Python content that follows (e.g., after %%writefile).
+- Treatment of docstrings: exclude standalone triple-quoted docstrings (module/class/function or narrative blocks) but keep triple-quoted strings if they’re part of real code (assigned/used).
+- Order and formatting: preserve the original order from the notebook and avoid adding headers/shebang or reformatting; don’t include any markdown, outputs, or metadata.
+</thoughts>
+
+<answer>
+From Karpathy’s GPT Colab (the shared notebook opened in the provided link), collect only the Python code from code cells and their Python comments, then concatenate them in the same top-to-bottom order they appear in the notebook. Include all real Python statements and any “# …” comments (including inline “# …” on code lines). Exclude everything that’s not Python code: skip all markdown cells entirely, and ignore IPython/Colab magics or shell invocations (lines starting with %, %% or !)—but if a cell begins with a magic like %%writefile, keep the Python code content that follows the magic line. Also exclude standalone triple-quoted docstrings or narrative blocks (module-, class-, or function-level docstrings, or other unassigned triple-quoted text); keep triple-quoted strings only when they’re part of the code (e.g., assigned to a variable or otherwise used). Don’t add any file header, shebang, encoding line, markdown text, notebook metadata, or outputs, and don’t reformat the code—just merge as-is (whitespace and indentation preserved). Save the result as a plain UTF-8 .py file named exactly gpt_dev_pure_code.py at /home/user/gpt_dev_pure_code.py.

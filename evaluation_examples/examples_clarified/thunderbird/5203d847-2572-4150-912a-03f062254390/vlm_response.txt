@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator reads a Thunderbird filter definition from a specific account’s rules file: …/ImapMail/outlook.office365.com/msgFilterRules.dat. So the filter must be created for the Outlook account (outlook.office365.com), not under Local Folders.
+- It expects the destination folder URI to be mailbox://nobody@Local%20Folders/Promotions, meaning the folder has to be created under “Local Folders” and named exactly “Promotions” (capital P).
+- It checks the filter is enabled, uses the “Move to folder” action (not copy), and the condition string matches AND (subject,contains,discount). To avoid mismatches, the subject keyword should be the lowercase word discount.
+- Postconfig strictly closes a window named “Message Filters,” implying that window should remain open at the end.
+</thoughts>
+
+<answer>
+Create a folder named “Promotions” under Local Folders (not under the IMAP account), then set up an enabled incoming‑mail filter for the Outlook account (outlook.office365.com) that moves messages from its Inbox when the Subject contains the lowercase word “discount” to Local Folders > Promotions (use the “Move to folder” action). Leave the Message Filters window open when you’re done. Reference: https://support.mozilla.org/en-US/kb/organize-your-messages-using-filters
+</answer>

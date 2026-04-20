@@ -1,0 +1,12 @@
+<thoughts>
+- The evaluator compares the edited file at /home/user/Desktop/164_3.pptx against a gold version, so the work must be saved back to that exact path.
+- “Page 2” needs to be unambiguous as “slide 2 (the second slide).”
+- “Add a note” must mean a speaker note in the Notes pane, not a text box on the slide, since the evaluator checks slide notes via notes_slide and also strictly checks shape counts/positions.
+- The note content must exactly match the slide’s title text (case- and punctuation-exact), per the case-sensitive hint and text equality checks.
+- The evaluator strictly checks shapes, text, font properties, alignment, etc., so we must specify not to alter anything else (no new shapes, no layout/position changes, no other formatting changes).
+- Only the title text should be made bold; all other properties should remain unchanged.
+- Other slides must remain untouched, including their notes, because notes on all slides are compared.
+</thoughts>
+
+<answer>
+Open /home/user/Desktop/164_3.pptx in LibreOffice Impress and work on slide 2 (the second slide). Add a speaker note in the Notes pane that exactly matches that slide’s title text—copy it verbatim, including case and punctuation. Then make the title text itself bold. Don’t change the title’s wording, alignment, size, color, position, or add any new shapes; just set the title to bold and add the note. Leave all other slides (and their notes) unchanged, and save the file back to /home/user/Desktop/164_3.pptx.

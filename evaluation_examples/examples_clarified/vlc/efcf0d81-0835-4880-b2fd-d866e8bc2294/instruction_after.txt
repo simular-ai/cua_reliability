@@ -1,0 +1,1 @@
+From the Interstellar Movie – Official Trailer video saved at /home/user/Desktop/Interstellar Movie - Official Trailer.mp4, take the frame that is currently open and make that still image my Ubuntu desktop wallpaper. Use the clean frame only (no player UI or titles), keep the original aspect ratio (don’t crop), and set it as the background via Ubuntu’s Background settings.

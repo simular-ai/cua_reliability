@@ -1,0 +1,1 @@
+From the already-set $sourceDir (/home/user/Desktop/), mirror its directory hierarchy (subdirectories only, including hidden ones) into $targetDir, preserving the same relative paths. Don’t copy any files—just ensure the corresponding directories exist under $targetDir. Create $targetDir if it doesn’t already exist, and don’t remove or overwrite anything that’s already there.

@@ -1,0 +1,1 @@
+When I ran "conda install datasets" in the terminal, I got "conda: command not found." Could you set up my Bash environment so conda works immediately—specifically, add the standard conda init block (the "# >>> conda initialize >>>" section) to ~/.bashrc and reload it so I can use the conda command right away?

@@ -1,0 +1,6 @@
+I’m comparing Hong Kong universities on the Research Grants Council’s Early Career Scheme. Please use only the ECS PDFs at /home/user/Documents/Fundings/ecs (ecs15.pdf through ecs23.pdf) to compute, for each year 2015–2023, the pass rate per university defined as: number of funded ECS projects divided by the total valid ECS applications for that institution in that year.
+
+Put the results in /home/user/Documents/Fundings/supported_rate.xlsx, on the first (and only) worksheet named Sheet1, with exactly this single header row and column order:
+Year, CityU, HKBU, LU, CUHK, HKIEd (EduHK), PolyU, HKUST, HKU
+
+Fill one data row per year from 2015 to 2023 in ascending order. Enter pass rates as plain decimal numbers between 0 and 1 (not percentages), and don’t apply rounding or formatting that would change the printed numeric values. Don’t add any extra text, columns, rows, or additional sheets. Ignore all files under /home/user/Documents/Fundings/grf.

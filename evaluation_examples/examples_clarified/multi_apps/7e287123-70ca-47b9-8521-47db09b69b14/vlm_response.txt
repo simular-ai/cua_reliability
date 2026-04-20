@@ -1,0 +1,12 @@
+<thoughts>
+The evaluator compares the saved Excel file on the Desktop against a golden file by reading the printed values of the first worksheet named “Sheet1”. It expects:
+- The file to be exactly named GRF-p5y.xlsx and saved to /home/user/Desktop.
+- A single table on Sheet1 with headers exactly “Year”, “#Applied”, “#Supported”, “Success Rate”.
+- Years 2019–2023 inclusive, likely one row per year in chronological order.
+- “Success Rate” shown as a percentage with two decimal places (e.g., 28.00%), not as a raw fraction (e.g., 0.28).
+- “#Applied” and “#Supported” as plain integers (no thousand separators).
+The current instruction doesn’t explicitly state the sheet name, the inclusive year range, the display format for percentages, ordering, or the exact save path/filename, all of which can affect the sheet_print comparison. Minimal clarifications should add those without turning into steps.
+</thoughts>
+
+<answer>
+I’m pulling this together from the materials in Documents/Fundings. Please compile a single table covering years 2019 through 2023 (inclusive), with one row per year in chronological order. Use headers exactly as: Year, #Applied, #Supported, Success Rate. “#Applied” and “#Supported” should be whole numbers, and “Success Rate” should be calculated as #Supported/#Applied and formatted as a percentage with two decimal places (e.g., 28.00%). Put the table on the first worksheet (Sheet1), and save the file exactly as GRF-p5y.xlsx on my Desktop.

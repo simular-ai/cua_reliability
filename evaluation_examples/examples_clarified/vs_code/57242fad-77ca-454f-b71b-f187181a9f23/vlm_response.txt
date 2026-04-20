@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator only checks that there is a file whose listing matches “test.py” in /home/user/Desktop using a case-sensitive grep.
+- This means the filename must be exactly “test.py” (lowercase) and the file must be saved directly in /home/user/Desktop (not just an unsaved tab or in a subfolder).
+- No file contents are checked, so content isn’t required, but the file must exist on disk at that exact path.
+- The instruction already specifies using VS Code; keep that.
+</thoughts>
+
+<answer>
+Please use VS Code to create a new Python file named exactly “test.py” (all lowercase) and save it directly in /home/user/Desktop (not inside any subfolder). Make sure the file is actually saved so it appears at that exact path.
+</answer>

@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator checks that the browser’s active tab lands exactly on https://www.nfl.com/scores/2019/post4. The original instruction doesn’t specify the exact page or that the tab should remain on it. It’s also ambiguous whether “2019 Super Bowl” refers to the calendar year or the 2019 NFL season. The expected URL corresponds to the Super Bowl week (post4) for the 2019 NFL season on NFL.com. Minimal clarifications needed: specify the exact NFL.com scores page URL and that this is for the 2019 NFL season, and indicate that the page should be left open/active.
+</thoughts>
+
+<answer>
+Please take me to the official NFL.com scores page for the Super Bowl of the 2019 NFL season—https://www.nfl.com/scores/2019/post4—so I can see the score record, and leave me on that page.

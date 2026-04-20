@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator compares the edited /home/user/Desktop/39_2.pptx against a gold file with strict checks: it requires saving in place (same path/name), unchanged text content, alignment, bullets, indent levels, font family, colors, notes, and shape positions/sizes/count. It only expects font bold on all text of slide 1 and, specifically for the title on slide 1, size exactly 44 pt and underline enabled. Any added/removed shapes, altered layout, or modifications to other slides would fail. Minimal clarifications should therefore specify the exact file, scope (slide 1 only), the exact title formatting, inclusion of the title in “bold all text,” and constraints not to alter other properties or slides, and to save back to the same file.
+</thoughts>
+
+<answer>
+Please edit /home/user/Desktop/39_2.pptx in LibreOffice Impress. On slide 1, make all text bold (including the title and any body/placeholder text). Then, for the title on slide 1 only, set the font size to exactly 44 pt and turn on underline. Don’t change the actual wording, alignment, bullets, indent levels, font family, colors, notes, or any object positions/sizes, and don’t add or remove shapes. Leave all other slides as they are. Save the changes back to the same file at /home/user/Desktop/39_2.pptx. </answer>

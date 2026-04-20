@@ -1,0 +1,9 @@
+<thoughts>
+- The evaluator compares the saved file at /home/user/Freeze_row_column.xlsx to a gold file, checking both that the sheet data is unchanged and that the freeze panes setting matches.
+- Freeze panes are evaluated via the freeze_panes property, which corresponds to locking rows above and columns to the left of a specific cell. To keep both the top header row and the first two header columns visible, the split should be at C2 (freezing row 1 and columns A and B).
+- It operates on the first sheet of the opened document and expects the file to be saved in place with the same name.
+- The original instruction’s phrasing “freeze the range A1:B1” is ambiguous because freezing is done via panes, not ranges.
+</thoughts>
+
+<answer>
+In the opened spreadsheet /home/user/Freeze_row_column.xlsx, please freeze panes on the first sheet so that row 1 and columns A and B stay locked while scrolling (i.e., the split is at C2). Don’t change any cell contents, and save the file with the same name.

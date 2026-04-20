@@ -1,0 +1,1 @@
+Please remove the Outlook IMAP email account for anonym-x2024@outlook.com from Thunderbird on this computer—specifically the one using the incoming server imap://outlook.office365.com—so it’s fully deleted from the Thunderbird profile and no longer listed among accounts. Don’t alter any other accounts or the online Outlook account itself.

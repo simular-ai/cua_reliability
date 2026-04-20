@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator auto-exports the result with a specific filename and path: /home/user/Desktop/dog_without_background.png, and expects a PNG.
+- The checker compares image size and structure to a gold cutout, so the canvas dimensions must remain unchanged (no cropping/resizing).
+- The goal is a true transparent background (alpha), not a solid color.
+- The original instruction doesn’t specify filename, format, or that size must remain the same.
+</thoughts>
+
+<answer>
+Please remove the background from /home/user/Desktop/dog_with_background.png so it’s truly transparent (add an alpha channel if needed), keeping the dog intact and the original canvas size/resolution unchanged—no cropping or resizing. Then export it as a PNG on the Desktop named dog_without_background.png.
+</answer>

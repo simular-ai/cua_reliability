@@ -1,0 +1,51 @@
+{
+  "id": "a1af9f1c-50d5-4bc3-a51e-4d9b425ff638",
+  "snapshot": "thunderbird",
+  "instruction": "For security reasons, I don\u2019t want any incoming mail (IMAP/POP) account added or authenticated in Thunderbird. Please configure Thunderbird so I can send mail from anonym-x2024@outlook.com using an outgoing-only setup\u2014attach the identity to Local Folders and add an SMTP server without creating or syncing any inbox.\n\nUse Outlook\u2019s SMTP settings for sending only:\n- Server: smtp.office365.com (or smtp-mail.outlook.com)\n- Port: 587\n- Connection security: STARTTLS\n- Authentication: Normal password\n- Username: anonym-x2024@outlook.com\n\nI\u2019m not providing mailbox credentials here, so it\u2019s fine if you can\u2019t actually send a test message\u2014just set up Thunderbird so that composing \u201cFrom: anonym-x2024@outlook.com\u201d via that SMTP server is ready, with no incoming service configured.",
+  "source": "https://superuser.com/questions/1764409/how-to-send-email-with-thunderbird-without-configuring-an-incoming-email-service",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/thunderbird/15c3b339-88f7-4a86-ab16-e71c58dcb01e/thunderbird-profile-blank.tar.gz",
+            "path": "/home/user/thunderbird-profile-blank.tar.gz"
+          }
+        ]
+      }
+    },
+    {
+      "type": "execute",
+      "parameters": {
+        "command": [
+          "tar",
+          "-xzv",
+          "--recursive-unlink",
+          "-f",
+          "/home/user/thunderbird-profile-blank.tar.gz",
+          "-C",
+          "/home/user/"
+        ]
+      }
+    },
+    {
+      "type": "launch",
+      "parameters": {
+        "command": [
+          "/usr/bin/thunderbird"
+        ]
+      }
+    }
+  ],
+  "trajectory": "trajectories/99146c54-4f37-4ab8-9327-5f3291665e1e",
+  "related_apps": [
+    "thunderbird"
+  ],
+  "evaluator": {
+    "func": "infeasible"
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}

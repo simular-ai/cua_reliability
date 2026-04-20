@@ -1,0 +1,6 @@
+<thoughts>
+The evaluator checks the first slide of /home/user/Desktop/CPD_Background_Investigation_Process.pptx, looks for the original picture on that slide (same image blob), and verifies that the same image was resized to exactly match the slide’s width and height and is centered. It also expects the changes to be saved back to the same file path/name. The original wording “first page” is ambiguous (should be first slide), and it doesn’t specify using the existing image or the exact file to modify/save. “Keeping its proportion” isn’t enforced by the evaluator, but I’ll keep the natural tone while clarifying the required fill and centering.
+</thoughts>
+
+<answer>
+I’m working in LibreOffice Impress with /home/user/Desktop/CPD_Background_Investigation_Process.pptx. On the first slide, please take the existing rectangular Columbus image already on that slide (don’t replace it) and stretch it to fill the entire slide—both width and height—while keeping it centered. When you’re done, save the changes back to /home/user/Desktop/CPD_Background_Investigation_Process.pptx.

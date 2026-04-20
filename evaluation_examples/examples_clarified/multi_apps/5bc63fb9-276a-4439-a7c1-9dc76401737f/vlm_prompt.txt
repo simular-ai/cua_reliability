@@ -1,0 +1,154 @@
+=== USER MESSAGE ===
+
+You are improving the clarity of an OSWorld evaluation task instruction. The current instruction is vague and doesn't provide enough detail for an AI agent to know exactly what to do based on the evaluation criteria.
+
+The goal is to make MINIMAL clarifications while preserving the natural, human-like tone. Do NOT rewrite as step-by-step instructions. Only clarify ambiguous details that are checked by the evaluator but missing from the instruction.
+
+## Current Task Configuration:
+```json
+{
+  "id": "5bc63fb9-276a-4439-a7c1-9dc76401737f",
+  "snapshot": "multiapps",
+  "instruction": "I have a JSON-formatted data file opened now that stores the responses of several large language models on a specific dataset. Now, I want to filter out all the responses from Gemini and specifically look at the sentences in the responses that contain \"Iliad\". Please copy all of Gemini's responses(values) from the JSON file, paste them into a Word document named \"gemini_results.docx\" under Desktop. Each response should be a new paragraph and sepreated by a new line. Highlight the all the \"Iliad\" word.",
+  "source": "",
+  "config": [
+    {
+      "type": "download",
+      "parameters": {
+        "files": [
+          {
+            "url": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/5bc63fb9-276a-4439-a7c1-9dc76401737f/LLM%20results.json",
+            "path": "/home/user/Desktop/llm_answers.json"
+          }
+        ]
+      }
+    },
+    {
+      "type": "open",
+      "parameters": {
+        "path": "/home/user/Desktop/llm_answers.json"
+      }
+    }
+  ],
+  "trajectory": "trajectories/",
+  "related_apps": [
+    "libreoffice_writer"
+  ],
+  "evaluator": {
+    "postconfig": [
+      {
+        "type": "activate_window",
+        "parameters": {
+          "window_name": "gemini_results.docx - LibreOffice Writer",
+          "strict": true
+        }
+      },
+      {
+        "type": "sleep",
+        "parameters": {
+          "seconds": 0.5
+        }
+      },
+      {
+        "type": "execute",
+        "parameters": {
+          "command": [
+            "python",
+            "-c",
+            "import pyautogui; import time; pyautogui.hotkey('ctrl', 's'); time.sleep(0.5); "
+          ]
+        }
+      }
+    ],
+    "func": "compare_docx_files_and_ignore_new_lines",
+    "expected": {
+      "type": "cloud_file",
+      "path": "https://huggingface.co/datasets/xlangai/ubuntu_osworld_file_cache/resolve/main/multi_apps/5bc63fb9-276a-4439-a7c1-9dc76401737f/gemini_results_Gold.docx",
+      "dest": "gemini_results_Gold.docx"
+    },
+    "result": {
+      "type": "vm_file",
+      "path": "/home/user/Desktop/gemini_results.docx",
+      "dest": "gemini_results.docx"
+    },
+    "options": {
+      "ignore_blanks": false
+    }
+  },
+  "proxy": false,
+  "fixed_ip": false,
+  "possibility_of_env_change": "low"
+}
+```
+
+## Evaluator Function Implementation(s):
+```python
+
+
+================================================================================# Function: compare_docx_files_and_ignore_new_lines
+def compare_docx_files_and_ignore_new_lines(file1, file2, **options):
+    ignore_blanks = options.get('ignore_blanks', True)
+
+    if not file1 or not file2:
+        return 0
+
+    # Determine file types and load documents
+    if file1.endswith('.docx') and file2.endswith('.docx'):
+        try:
+            doc1 = Document(file1)
+            doc2 = Document(file2)
+        except Exception as e:
+            logger.error(f"Error: {e}")
+            return 0
+
+        # First, delete all the blank in paragraphs
+        doc1 = [p for p in doc1.paragraphs if p.text != '']
+        doc2 = [p for p in doc2.paragraphs if p.text != '']
+        doc1_paragraphs = [p.text for p in doc1]
+        doc2_paragraphs = [p.text for p in doc2]
+    else:
+        # Unsupported file types or mismatch
+        print("Unsupported file types or mismatch between file types.")
+        return 0
+
+    # Process and compare documents
+    if ignore_blanks:
+        text1 = re.sub(r'\s+', ' ', '\n'.join(doc1_paragraphs)).strip()
+        text2 = re.sub(r'\s+', ' ', '\n'.join(doc2_paragraphs)).strip()
+        if text1 != text2:
+            return 0
+    else:
+        if len(doc1_paragraphs) != len(doc2_paragraphs):
+            return 0
+        # Compare each paragraph
+        for p1, p2 in zip(doc1_paragraphs, doc2_paragraphs):
+            if p1 != p2:
+                return 0
+    return 1
+```
+
+## Task:
+
+Analyze the instruction: "I have a JSON-formatted data file opened now that stores the responses of several large language models on a specific dataset. Now, I want to filter out all the responses from Gemini and specifically look at the sentences in the responses that contain "Iliad". Please copy all of Gemini's responses(values) from the JSON file, paste them into a Word document named "gemini_results.docx" under Desktop. Each response should be a new paragraph and sepreated by a new line. Highlight the all the "Iliad" word."
+
+Identify what the evaluator checks that isn't clear from the instruction, then provide a minimally clarified version that:
+1. **Keeps the natural human tone** - should sound like a human said it
+2. **Only adds missing details** that the evaluator checks for
+3. **Specifies exact file names/formats/locations** if the evaluator expects them
+4. **Does NOT become a step-by-step procedure** - stay conversational
+
+Additional criteria:
+1. The clarified instruction will replace the original instruction - make sure to retain essential details to avoid losing current context (e.g. do not omit links).
+2. For tasks that have exact file checks, be very careful in accidentally adding or preventing information to the instruction that would cause it to no longer match the evaluator's criteria.
+
+Format your response as:
+<thoughts>
+[Think through what's ambiguous and what the evaluator actually checks for]
+</thoughts>
+
+<answer>
+[The minimally clarified instruction in natural language]
+</answer>
+
+
+\n**Ground_Truth_File**: Expected output/ground truth file: gemini_results_Gold.docx\nFile info: File format .docx not displayable (15841 bytes)

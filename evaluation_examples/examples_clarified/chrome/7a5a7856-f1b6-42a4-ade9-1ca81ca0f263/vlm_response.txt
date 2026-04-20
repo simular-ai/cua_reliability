@@ -1,0 +1,10 @@
+<thoughts>
+- The evaluator checks for a specific URL on the Chrome Bookmarks Bar: https://jalammar.github.io/illustrated-transformer/.
+- The original instruction ("this webpage I'm looking at") is ambiguous because multiple tabs are open; the evaluator expects the Jalammar page, not the YouTube link in "source."
+- The evaluator requires the bookmark to be on the top-level Bookmarks Bar (not inside a folder).
+- The evaluator expects exactly that single URL (set equality), so adding any other bookmarks would fail.
+</thoughts>
+
+<answer>
+Can you add the “Illustrated Transformer” page I have open — https://jalammar.github.io/illustrated-transformer/ — to the Chrome Bookmarks Bar, saved directly on the bar (not inside a folder), and just that one, so I can come back to it later?
+</answer>
