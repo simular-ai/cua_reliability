@@ -1,6 +1,6 @@
 # On the Reliability of Computer Use Agents
 
-Code for reproducing the experiments in *"On the Reliability of Computer Use Agents"*.
+Code for reproducing the experiments in [*"On the Reliability of Computer Use Agents"*](https://arxiv.org/abs/2604.17849)
 
 This repository studies the sources of unreliability in computer-use agents through three factors: stochasticity during execution, ambiguity in task specification, and variability in agent behavior. All experiments are conducted on [OSWorld](https://github.com/xlang-ai/OSWorld) using repeated executions (N=3) of the same task with paired statistical tests.
 
@@ -394,7 +394,15 @@ An asterisk (`*`) denotes statistical significance at p < 0.05. Use `--verbose` 
 
 <!-- TODO: Update with final citation details -->
 ```bibtex
-
+@misc{gonzalezpumariega2026reliabilitycomputeruseagents,
+      title={On the Reliability of Computer Use Agents}, 
+      author={Gonzalo Gonzalez-Pumariega and Saaket Agashe and Jiachen Yang and Ang Li and Xin Eric Wang},
+      year={2026},
+      eprint={2604.17849},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2604.17849}, 
+}
 ```
 
 ## License
